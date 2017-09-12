@@ -1,0 +1,47 @@
+/* Link atrebutes, change color of links */
+a:link{
+    color: #e11c1c;
+}
+
+a:visited{
+    color: #e11c1c;
+}
+
+a:hover{ 
+    color: white;
+}
+
+
+body{
+    
+    background-color: #111111;
+}
+
+#background_div{
+    
+    background: #d8d8d8;
+    /* background: linear-gradient(#d8d8d8, #111111); */
+    height: 900px;
+    width: 800px;
+    top: -8px;
+    
+    /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    /* Defualt text settings */
+    color: black;
+    font-family: ubuntu;
+}
+
+/* This should be at the bottom of the CSS! */
+#footer{
+    
+    top: 654px;
+    
+    /* Center in Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
