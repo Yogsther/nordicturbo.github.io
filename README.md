@@ -1,15 +1,18 @@
-"# Nordic Turbo" 
+![NordicTurbo.co](http://i.imgur.com/oW4b4mv.png)
 
 This website is a hub for the te16 elite.
 We dont know yet, what it will become.
 
-<<<<<<< HEAD
+Check out the website here: https://yogsther.github.io/nordicturbo.github.io/
+
+We will get a domain soon!
+
 ![For the Team](http://i.imgur.com/oOXx5LB.png)
 	
-    Test text!
-=======
-![Logo](http://i.imgur.com/vZzVhSb.png)
+    *Never use: -f in git.
+    *Make sure to comment your code thoroughly!
+    
 	
 
->>>>>>> 952b6b90953030ba4fca867deb5248f8396ded1e
+
 
