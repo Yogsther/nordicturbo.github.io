@@ -76,14 +76,20 @@ body{
     position: relative;
     margin: 3px;
     color: #29394c;
-}
-
-.btn:hover{
-    top: 2px;
-    box-shadow: 0px 0px 0px #29394c;
     cursor: pointer;
 }
 
+.btn:hover{
+    background: #436a95;
+    color: white;
+    
+}
+
+.btn:active{
+    top: 4px;
+    top: 2px;
+    box-shadow: 0px 0px 0px #29394c;
+}
 
 #top_buttons{
     
