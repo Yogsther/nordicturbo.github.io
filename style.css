@@ -1,9 +1,6 @@
 /* Link atrebutes, change color of links */
-<<<<<<< HEAD
 button:focus {outline:0;}
 
-=======
->>>>>>> f63465475bfc8788aac648b2beef6552ddbc0077
 a:link{
     color: #e11c1c;
 }
@@ -24,11 +21,7 @@ body{
 
 #background_div{
     
-<<<<<<< HEAD
     background: #2d3f53;
-=======
-    background: #d8d8d8;
->>>>>>> f63465475bfc8788aac648b2beef6552ddbc0077
     /* background: linear-gradient(#d8d8d8, #111111); */
     height: 900px;
     width: 800px;
@@ -41,7 +34,6 @@ body{
     
     /* Defualt text settings */
     color: black;
-<<<<<<< HEAD
     font-family: 'Muli', sans-serif;
 }
 
@@ -110,24 +102,11 @@ body{
 /* This should be at the bottom of the CSS! */
 
 #footer_div{
-=======
-    font-family: ubuntu;
-}
-
-/* This should be at the bottom of the CSS! */
-#footer{
-    
-    top: 654px;
->>>>>>> f63465475bfc8788aac648b2beef6552ddbc0077
     
     /* Center in Div */
     margin: 0 auto;
     position: relative;
     display: block;
-<<<<<<< HEAD
 }
 
 
-=======
-}
->>>>>>> f63465475bfc8788aac648b2beef6552ddbc0077
