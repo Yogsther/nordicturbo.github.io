@@ -1,4 +1,6 @@
 /* Link atrebutes, change color of links */
+button:focus {outline:0;}
+
 a:link{
     color: #e11c1c;
 }
@@ -19,7 +21,7 @@ body{
 
 #background_div{
     
-    background: #d8d8d8;
+    background: #2d3f53;
     /* background: linear-gradient(#d8d8d8, #111111); */
     height: 900px;
     width: 800px;
@@ -32,16 +34,79 @@ body{
     
     /* Defualt text settings */
     color: black;
-    font-family: ubuntu;
+    font-family: 'Muli', sans-serif;
 }
 
-/* This should be at the bottom of the CSS! */
-#footer{
+#header_table{
+    height: 90px;
+    background: #436a95;
+    box-shadow: 0px 7px 3px #29394c;
     
-    top: 654px;
+    
+}
+
+#header_logo{
+    height: 90px;
+    /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
+/* Button */
+.btn{
+    background: white;
+    border: none;
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    border-radius: 4px;
+    height: 30px;
+    width: 70px;
+    box-shadow: 0px 7px 3px #29394c;
+    position: relative;
+    margin: 3px;
+    color: #29394c;
+}
+
+.btn:hover{
+    top: 2px;
+    box-shadow: 0px 0px 0px #29394c;
+    cursor: pointer;
+}
+
+
+#top_buttons{
+    
+    height: 30px;
+    width: 317px;
+    position: relative;
+    top: 10px;
+    /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+}
+
+
+/* This should be at the bottom of the CSS! */
+
+#footer_div{
     
     /* Center in Div */
     margin: 0 auto;
     position: relative;
     display: block;
 }
+
+

@@ -12,7 +12,4 @@ We will get a domain soon!
     *Never use: -f in git.
     *Make sure to comment your code thoroughly!
     
-	
-
-
-
+    
