@@ -1,12 +1,15 @@
-/* Link atrebutes, change color of links */
+/* Removes blue border in chrome */
 button:focus {outline:0;}
 
+
+/* Link atrebutes, change color of links */
+
 a:link{
-    color: #e11c1c;
+    color: #a0ceff;
 }
 
 a:visited{
-    color: #e11c1c;
+    color: #a0ceff;
 }
 
 a:hover{ 
@@ -43,11 +46,22 @@ body{
     box-shadow: 0px 7px 3px #29394c;
     
     
+    
+    /*
+    background-image: url(img/header_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;*/
+    
 }
 
 #header_logo{
-    height: 90px;
-    /* Center the Div */
+    height: 70px;
+    top: 13px;
+
+    position: relative;
+    
+    /* Center in Div */
     margin: 0 auto;
     position: relative;
     display: block;
@@ -97,12 +111,54 @@ body{
     width: 317px;
     position: relative;
     top: 10px;
+    
     /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+
+
+#home_page{
+    
+    height: 600px;
+    width: 500px;
+    position: relative;
+    left: 60px;
+    top: 40px;
+    
+    /* Text settings */
+    color: white;
+    
+}
+
+
+.code_window{
+    height: 23px;
+    width: 600px;
+    border-radius: 2px;
+    background: white;
+    color: #2d3f53;
+    padding: 6px;
+    padding-left: 19px;
+    
+    /* Center in Div */
     margin: 0 auto;
     position: relative;
     display: block;
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 /* This should be at the bottom of the CSS! */
