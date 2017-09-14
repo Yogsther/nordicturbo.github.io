@@ -28,6 +28,8 @@ function error(){
 function loadGif(){
     // Reload gif when reloading the website
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
+    var click = new Audio("sound/click.wav");
+    click.play();
  
 }
 
@@ -53,7 +55,7 @@ function slideShow(){
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
-        document.getElementById("slide_image").src="img/slideshow_image01.png"
+        document.getElementById("slide_image").src="img/slideshow_image01.gif"
         progressBar();
     } else if (slideIndex == 2){
         document.getElementById("slide_image").src="img/slideshow_image02.png"
