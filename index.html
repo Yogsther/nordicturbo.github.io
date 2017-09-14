@@ -14,12 +14,12 @@
    <!-- Background wall -->
      <div id="background_div">
         <div id="header_table">
-            <img src="img/website_logo_gif.gif" id="header_logo">
+            <img src="img/website_logo_gif.gif" id="header_logo" onclick="loadGif()">
             
         </div>    
            
         
-        <!-- Buttons (duh..) -->
+         <!-- Buttons (duh..) -->
         <div id="top_buttons">
             <button class="btn" onclick="home()">Home</button> 
             <button class="btn" onclick="git()">Git</button>
@@ -28,7 +28,7 @@
          
          </div>
          
-        
+         <!-- From here and up should be the same for every page! -->
          
         <div id="home_page">
     
@@ -37,10 +37,14 @@
         <br>To install this rep on your computer, click the "Git" button.<br>
                 
         <div id="slideshow">
+            <div id="progress_div">
+            <div id="progress_bar"></div>
+            </div>
             
             
             <img src="img/slideshow_image01.png" id="slide_image" class="fade" onclick="slideRedirect()">
-      
+            
+            
             
             
         </div>    
@@ -48,7 +52,7 @@
          </div>
     
     
-            <div id="twitter_div">
+            <div id="twitter_div" class="fade">
                 <a class="twitter-timeline" id="twitter" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
     

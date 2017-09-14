@@ -159,32 +159,31 @@ body{
     float: right;
     top: -560px;
     position: relative;
-    
-    
-    
 }
 
 
 
 #slide_image{
-    
     height: 270px;
     position: relative;
     top: 15px;
     cursor: pointer;
-    
+    box-shadow: 0px 2px 10px black; 
 }
 
-
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+#progress_div{
+    width: 480px;
 }
 
-
-
+#progress_bar{
+    height: 5px;
+    width: 100%;
+    background: red;
+    z-index: 10;
+    position: relative;
+    top: 286px;
+    opacity: 0.5;
+}
 
 
 
