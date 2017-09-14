@@ -1,4 +1,7 @@
+
+![Banner-not-actually-a-gif](https://i.imgur.com/2D3f1ce.gif)
 ![NordicTurbo.co](http://i.imgur.com/oW4b4mv.png)
+
 
 This website is a hub for the te16 elite.
 We dont know yet, what it will become.
