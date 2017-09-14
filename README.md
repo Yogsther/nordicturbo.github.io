@@ -16,3 +16,16 @@ Here's a fun gif!
     *Make sure to comment your code thoroughly!
     
     
+Changelog:
+
+v. 1.1
+- Theme switcher
+- Twitter feed
+- Transparent logo
+- Slide show:
+    * Gif
+    * Progress bar
+    * Clickable links
+- Big updates to readme.md
+    
+    

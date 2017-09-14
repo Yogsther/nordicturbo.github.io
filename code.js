@@ -1,8 +1,7 @@
 var slideIndex = 0;
 
 slideShowCheck();
-
-loadGif();
+getTheme();
 
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
@@ -25,13 +24,81 @@ function error(){
 }
 
 
-function loadGif(){
-    // Reload gif when reloading the website
+function changeTheme(){
+    // Change theme and play a little sound.
+    getTheme();
+    var currentTheme = readCookie("Theme");
+    if(currentTheme == "Default"){
+        // Change to red
+        createCookie("Theme", "Red", 10000); 
+        console.log("Theme changed to Red");
+    } else {
+        // Change back to defualt if the current theme is not defult.
+        createCookie("Theme", "Default", 10000); 
+    }
+    getTheme();
+    
+    
+    
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
     var click = new Audio("sound/click.wav");
     click.play();
  
 }
+
+
+// Theme manager:
+
+
+
+function getTheme(){
+    
+    var currentTheme = readCookie("Theme");
+    if(currentTheme == null){
+        
+        createCookie("Theme", "Default", 10000); 
+        console.log("Created Cookie, Default theme.");
+        
+    } else if (currentTheme == "Default"){
+        
+        console.log("Defualt theme is selected.");
+    } else if (currentTheme == "Red"){
+        // CHANGE COLOR TO RED
+        console.log("Red theme is selected.");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    else {
+        // Error, this should not happen.
+        console.error("Error: 1 - No theme found!");
+    }
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -107,7 +174,33 @@ function progressBar() {
 }
 
 
+// Cookie functions from Overstacked
 
+
+function createCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
  
 
 

@@ -58,7 +58,7 @@ body{
 #header_logo{
     height: 100px;
     top: -15px;
-
+    background-blend-mode: screen;
     position: relative;
     
     /* Center in Div */
