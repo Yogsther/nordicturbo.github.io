@@ -11,11 +11,12 @@ Check out the website here: https://yogsther.github.io/nordicturbo.github.io/
 We will get a domain soon!
 
 Here's a fun gif!
+
 ![really cool gif!](https://i.imgur.com/6z1bQxS.gif)
 
 ![For the Team](http://i.imgur.com/oOXx5LB.png)
 	
-    *Never use: -f in git.
+    
     *Make sure to comment your code thoroughly!
     
     
@@ -29,6 +30,6 @@ v. 1.1
     * Gif
     * Progress bar
     * Clickable links
-- Big updates to readme.md
+
     
     
