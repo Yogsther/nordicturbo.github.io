@@ -56,8 +56,8 @@ body{
 }
 
 #header_logo{
-    height: 70px;
-    top: 13px;
+    height: 100px;
+    top: -15px;
 
     position: relative;
     
@@ -149,6 +149,51 @@ body{
     display: block;
     
 }
+
+
+#twitter_div{
+    
+    height: 100px;
+    width: 190px;
+    left: -20px;
+    float: right;
+    top: -560px;
+    position: relative;
+    
+    
+    
+}
+
+
+
+#slide_image{
+    
+    height: 270px;
+    position: relative;
+    top: 15px;
+    cursor: pointer;
+    
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

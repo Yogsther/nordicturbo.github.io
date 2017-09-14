@@ -10,11 +10,11 @@
 
 </head>
 <body>
-    
-    <!-- Background wall -->
+   
+   <!-- Background wall -->
      <div id="background_div">
         <div id="header_table">
-            <img src="img/header_logo.png" id="header_logo">
+            <img src="img/website_logo_gif.gif" id="header_logo">
             
         </div>    
            
@@ -23,27 +23,34 @@
         <div id="top_buttons">
             <button class="btn" onclick="home()">Home</button> 
             <button class="btn" onclick="git()">Git</button>
-            <button class="btn">Index</button>
-            <button class="btn">About</button> 
-        </div>
+            <button class="btn" onclick="error()">Index</button>
+            <button class="btn" onclick="error()">About</button> 
+         
+         </div>
+         
+        
          
         <div id="home_page">
     
         Welcome to Nordic Turbo!<br>
         <a href="https://github.com/Yogsther/nordicturbo.github.io">Here</a> is a link to our github.<br>
-        <br>To install this rep on your computer, click the "Git" button ^<br>
-            or just click <a href="git.html">this link!</a>
-    
+        <br>To install this rep on your computer, click the "Git" button.<br>
+                
+        <div id="slideshow">
+            
+            
+            <img src="img/slideshow_image01.png" id="slide_image" class="fade" onclick="slideRedirect()">
+      
+            
+            
+        </div>    
         
-    
-    
-    
-    
-    
          </div>
     
     
-    
+            <div id="twitter_div">
+                <a class="twitter-timeline" id="twitter" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
     
     
     
@@ -57,6 +64,7 @@
         </div>
     <!-- END OF BACKGROUND DIV -->
          <script src="code.js"></script>
+         <element onload="loadGif()"></element>
     </div>
 </body>
 </html>
