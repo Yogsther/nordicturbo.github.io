@@ -1,5 +1,6 @@
 var slideIndex = 0;
 
+aboutPageCheck();
 slideShowCheck();
 getTheme();
 
@@ -8,14 +9,24 @@ if (window.location.href.indexOf("index.html") != -1){
     slideShow();
     }
 }
+
+function aboutPageCheck(){
+if (window.location.href.indexOf("about.html") != -1){
+    getSavedSkins();
+    }
+}
     
-    
+// Button redirect functions    
 
 function git(){
     window.location.href = "git.html";
 }
 function home(){
     window.location.href = "index.html"
+}
+
+function about(){
+    window.location.href = "about.html"
 }
 
 function error(){
@@ -30,16 +41,18 @@ function changeTheme(){
     var currentTheme = readCookie("Theme");
     if(currentTheme == "Default"){
         // Change to red
+        window.setTimeout(ThemeRed,300); 
         createCookie("Theme", "Red", 10000); 
         console.log("Theme changed to Red");
     } else {
         // Change back to defualt if the current theme is not defult.
         createCookie("Theme", "Default", 10000); 
+        window.setTimeout(ThemeDefault,300);
+        
     }
 
     
     
-    getTheme();
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
     var click = new Audio("sound/click.wav");
     click.play();
@@ -47,10 +60,79 @@ function changeTheme(){
  
 }
 
+// Theme skins code
+
+function addSkins(){
+    var skinName = document.getElementById("theme_chooser").value;
+    document.getElementById("theme_chooser").value = "";
+    console.log(skinName);
+    
+    // Change skin to superDark
+    if(skinName.toLowerCase() == "superdark"){
+        superDark();
+        console.log("You saved SuperDark");
+    }
+    
+    if(skinName.toLowerCase() == "emerald"){
+        Emerald();
+        
+    }
+    
+    getSavedSkins();
+    window.location.reload(false); 
+}
+
+function getSavedSkins(){
+    
+    //Read every saved skin
+    var superDark = readCookie("superDark");
+    var Emerald = readCookie("Emerald");
+    // Check every theme
+    if(superDark == "true"){
+        document.getElementById("saved_skins").innerHTML += 'superDark        <button class="btn" onclick="superDark()">Choose</button><br>';}
+    if(Emerald == "true"){
+        document.getElementById("saved_skins").innerHTML += 'Emerald        <button class="btn" onclick="Emerald()">Choose</button><br>';}
+    
+    
+}
+
+// Change to Emerald & save it.
+function Emerald(){
+    // Save theme
+    createCookie("Emerald", true, 10000);
+    
+    // Change colors
+        document.getElementById("background_div").style.backgroundColor = "#6df75b";
+        document.getElementById("header_table").style.backgroundColor = "#43a337";
+    
+    // Change to theme 
+    createCookie("Theme", "Emerald", 10000);
+    
+}
+
+
+
+// Change to superDark & save it. 
+function superDark(){
+    // Save superDark
+        createCookie("superDark", true, 10000);
+        console.log("Saved superDark");
+        console.log("superDark skin selected!");
+    
+        // Change colors
+        document.getElementById("background_div").style.backgroundColor = "#3a3a3a";
+        document.getElementById("header_table").style.backgroundColor = "#1e1e1e";
+        
+        
+        // CHANGE TO SUPER DARK HERE!!!
+        createCookie("Theme", "superDark", 10000);
+}
+
+
+
+
 
 // Theme manager:
-
-
 
 function getTheme(){
     
@@ -65,8 +147,15 @@ function getTheme(){
         
     } else if (currentTheme == "Red"){
         // Change theme to Red.
-        window.setTimeout(ThemeRed,300); 
+       // window.setTimeout(ThemeRed,300); 
+        ThemeRed();    
+    } else if (currentTheme == "superDark"){
+        // Change theme to superDark
+        superDark();
             
+    } else if (currentTheme == "Emerald"){
+        // Change theme to Emerald
+        Emerald();
     }
     
     
@@ -112,15 +201,15 @@ function slideShow(){
     
     if (slideIndex < 3){
         slideIndex = slideIndex + 1;
-        console.log("Index: " + slideIndex);
+        
     } else {
         slideIndex = 1;
-        console.log("Index: " + slideIndex + " Index set to 1");
+       
     }
     
     
     document.getElementById("slide_image").src="img/slideshow_image03.png";
-    console.log("working as intended?"); 
+    
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){

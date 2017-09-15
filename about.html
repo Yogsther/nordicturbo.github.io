@@ -10,8 +10,8 @@
 
 </head>
 <body>
-    
-    <!-- Background wall -->
+   
+   <!-- Background wall -->
      <div id="background_div">
         <div id="header_table">
             <img src="img/website_logo_gif.gif" id="header_logo" onclick="changeTheme()">
@@ -27,43 +27,29 @@
             <button class="btn" onclick="about()">About</button> 
          </div>
          
-         <!-- From here and up should be the same for every page! -->
-         
+        <!-- From here and up should be the same for every page! -->
         <div id="home_page">
-    
-        Make a folder, name it "NordicTurbo". Open bash in the folder and enter this:
-        <br><br>
-        <div class="code_window">
-            git init
-         </div><br>And then...
-        <div class="code_window">
-            git remote add origin https://github.com/Yogsther/nordicturbo.github.io
-         </div><br>
-            Aaaaaand...
-             <div class="code_window">
-            git pull --allow-unrelated-histories origin master
-         </div><br>
-            Almost done...
-            <div class="code_window">
-            git add .
-         </div><br>
-            <div class="code_window">
-            git commit -m "First commit"
-         </div><br>
-            <div class="code_window">
-            git push -u origin master
-         </div><br>
-            I really hoped it worked, if not - join the <a href="https://discord.gg/Hb4Vg7S">discord</a> and contact Ollé!
         
+            Welcome to the about section. Here is we're you can find links and sources to everything Notu.co.<br><br>
+            Skin code: <input id="theme_chooser" class="text_field">
+            <button class="btn" onclick="addSkins();">Go</button>
+            <br><br>
+            Saved skins:
+            <br><br>
+            <div id="saved_skins">
+                
+                
+                
+            <!--     
+            superDark        <button class="btn">Choose</button><br>
+            superWhite       <button class="btn">Choose</button><br>
+            Emerald          <button class="btn">Choose</button><br>
+            -->
+            
+            
+         
             </div>
-    
-    
-    
-    
-    
-    
-    
-    
+        </div>
         <!-- Footer -->
         
         <div id="footer_div">
@@ -71,7 +57,7 @@
         </div>
     <!-- END OF BACKGROUND DIV -->
          <script src="code.js"></script>
-   
+         <element onload="loadGif()"></element>
     </div>
 </body>
 </html>
