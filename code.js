@@ -74,9 +74,9 @@ function addSkins(){
     }
     
     if(skinName.toLowerCase() == "emerald"){
-        Emerald();
-        
-    }
+        Emerald(); }
+    
+    
     
     getSavedSkins();
     window.location.reload(false); 
@@ -104,6 +104,9 @@ function Emerald(){
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#6df75b";
         document.getElementById("header_table").style.backgroundColor = "#43a337";
+    
+// IMG        document.getElementById("header_table").style.backgroundImage = "url()";
+    
     
     // Change to theme 
     createCookie("Theme", "Emerald", 10000);
