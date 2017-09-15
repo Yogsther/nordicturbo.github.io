@@ -1,4 +1,4 @@
-/* Removes blue border in chrome */
+/* Removes blue border in chrome.  */
 button:focus {outline:0;}
 
 
@@ -26,8 +26,8 @@ body{
     
     background: #2d3f53;
     /* background: linear-gradient(#d8d8d8, #111111); */
-    height: 900px;
-    width: 800px;
+    height: 1300px;
+    width: 1000px;
     top: -8px;
     
     /* Center the Div */
@@ -35,6 +35,7 @@ body{
     position: relative;
     display: block;
     
+    border-radius: 20px;
     /* Defualt text settings */
     color: black;
     font-family: 'Muli', sans-serif;
@@ -43,7 +44,7 @@ body{
 #header_table{
     height: 90px;
     background: #436a95;
-    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
     
     
     
@@ -86,7 +87,7 @@ body{
     border-radius: 4px;
     height: 30px;
     width: 70px;
-    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
     position: relative;
     margin: 3px;
     color: #29394c;
@@ -122,8 +123,8 @@ body{
 
 #home_page{
     
-    height: 600px;
-    width: 500px;
+    height: 1100px;
+    width: 600px;
     position: relative;
     left: 60px;
     top: 40px;
@@ -133,7 +134,7 @@ body{
     
 }
 
-
+/* For showing code lines */
 .code_window{
     height: 23px;
     width: 600px;
@@ -151,13 +152,13 @@ body{
 }
 
 
-#twitter_div{
-    
+#sidebar_div{
+    /* Twitter and Discord widgets */
     height: 100px;
-    width: 190px;
+    width: 290px;
     left: -20px;
     float: right;
-    top: -560px;
+    top: -1050px;
     position: relative;
 }
 
@@ -169,7 +170,10 @@ body{
     top: 15px;
     cursor: pointer;
     box-shadow: 0px 2px 10px black; 
-    /* Make logo undraggable */
+    
+    left: 40px;
+    
+    /* Make image undraggable */
     user-drag: none; 
     user-select: none;
     -moz-user-select: none;
@@ -180,6 +184,7 @@ body{
 
 #progress_div{
     width: 480px;
+    left: 40px;
 }
 
 #progress_bar{
@@ -190,6 +195,7 @@ body{
     position: relative;
     top: 286px;
     opacity: 0.5;
+    left: 40px;
 }
 
 

@@ -93,7 +93,7 @@ function ThemeRed(){
         // Text color  document.getElementById("members_header_text").style.color = "#f9ba4c"; 
 }
 
-// Change to Theme: Red
+// Change to Theme: Default
 function ThemeDefault(){
         
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
@@ -120,8 +120,7 @@ function slideShow(){
     
     
     document.getElementById("slide_image").src="img/slideshow_image03.png";
-    console.log("working as intended?");
-    setTimeout(slideShow, 4000); 
+    console.log("working as intended?"); 
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
@@ -149,15 +148,7 @@ function slideRedirect(){
 
 
 
-// Wait function, use wait(5000); waits for 5 seconds.
 
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
-}
 
 
 //Progress bar
@@ -165,10 +156,11 @@ function wait(ms){
 function progressBar() {
     var elem = document.getElementById("progress_bar"); 
     var width = 1;
-    var id = setInterval(frame, 40);
+    var id = setInterval(frame, 60);
     function frame() {
         if (width >= 100) {
             clearInterval(id);
+            slideShow();
         } else {
             width++; 
             elem.style.width = width + '%'; 
