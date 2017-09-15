@@ -36,13 +36,14 @@ function changeTheme(){
         // Change back to defualt if the current theme is not defult.
         createCookie("Theme", "Default", 10000); 
     }
+
+    
+    
     getTheme();
-    
-    
-    
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
     var click = new Audio("sound/click.wav");
     click.play();
+    
  
 }
 
@@ -55,21 +56,18 @@ function getTheme(){
     
     var currentTheme = readCookie("Theme");
     if(currentTheme == null){
-        
+        // Create cookie if user is new to the site.
         createCookie("Theme", "Default", 10000); 
         console.log("Created Cookie, Default theme.");
         
     } else if (currentTheme == "Default"){
+        window.setTimeout(ThemeDefault,300); 
         
-        console.log("Defualt theme is selected.");
     } else if (currentTheme == "Red"){
-        // CHANGE COLOR TO RED
-        console.log("Red theme is selected.");
+        // Change theme to Red.
+        window.setTimeout(ThemeRed,300); 
+            
     }
-    
-    
-    
-    
     
     
     
@@ -78,29 +76,34 @@ function getTheme(){
         // Error, this should not happen.
         console.error("Error: 1 - No theme found!");
     }
-    
-    
-    
-    
-    
-    
-    
+  
 }
 
 
+// Change to Theme: Red
+function ThemeRed(){
+        // Background color
+        document.getElementById("background_div").style.backgroundColor = "#ce2d2d";
+        // Header color
+        document.getElementById("header_table").style.backgroundColor = "#f44242";
+        // Debug
+        console.log("Red theme is selected.");  
+    
+        // Background Color  document.getElementById("members_background_shadow").style.backgroundColor = "#cd932d";
+        // Text color  document.getElementById("members_header_text").style.color = "#f9ba4c"; 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+// Change to Theme: Red
+function ThemeDefault(){
+        
+        document.getElementById("background_div").style.backgroundColor = "#2d3f53";
+        document.getElementById("header_table").style.backgroundColor = "#436a95";
+        console.log("Defualt theme is selected.");
+        // Debug
+    
+        // Background Color  document.getElementById("members_background_shadow").style.backgroundColor = "#cd932d";
+        // Text color  document.getElementById("members_header_text").style.color = "#f9ba4c"; 
+}
 
 
 // Slide show 
