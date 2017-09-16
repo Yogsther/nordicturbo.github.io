@@ -3,6 +3,8 @@ var slideIndex = 0;
 slideShowCheck();
 getTheme();
 
+
+
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
     slideShow();
@@ -205,8 +207,6 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
  
-
-
 
 
 
