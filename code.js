@@ -34,7 +34,7 @@ function error(){
     audio.play();
 }
 
-
+// Only for the two default themes - Red and Blue
 function changeTheme(){
     // Change theme and play a little sound.
     getTheme();
@@ -76,6 +76,9 @@ function addSkins(){
     if(skinName.toLowerCase() == "emerald"){
         Emerald(); }
     
+    if(skinName.toLowerCase() == "halloween2016"){
+        Halloween2016(); }
+    
     
     
     getSavedSkins();
@@ -87,14 +90,34 @@ function getSavedSkins(){
     //Read every saved skin
     var superDark = readCookie("superDark");
     var Emerald = readCookie("Emerald");
+    var Halloween2016 = readCookie("Halloween2016");
     // Check every theme
     if(superDark == "true"){
         document.getElementById("saved_skins").innerHTML += 'superDark        <button class="btn" onclick="superDark()">Choose</button><br>';}
     if(Emerald == "true"){
         document.getElementById("saved_skins").innerHTML += 'Emerald        <button class="btn" onclick="Emerald()">Choose</button><br>';}
+    if(Halloween2016 == "true"){
+        document.getElementById("saved_skins").innerHTML += 'Halloween 2016        <button class="btn" onclick="Halloween2016()">Choose</button><br>';}
     
     
 }
+
+function Halloween2016(){
+    // Save theme
+    createCookie("Halloween2016", true, 10000);
+    
+    // Change colors
+        document.getElementById("background_div").style.backgroundColor = "#111111";
+        document.getElementById("header_table").style.backgroundImage = "url(img/banner_halloween2016.gif)";
+    
+// IMG        document.getElementById("header_table").style.backgroundImage = "url()";
+    
+    
+    // Change to theme 
+    createCookie("Theme", "Halloween2016", 10000);
+    
+}
+
 
 // Change to Emerald & save it.
 function Emerald(){
@@ -104,7 +127,7 @@ function Emerald(){
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#6df75b";
         document.getElementById("header_table").style.backgroundColor = "#43a337";
-    
+        document.getElementById("header_table").style.backgroundImage = "url()";
 // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
     
     
@@ -121,10 +144,11 @@ function superDark(){
         createCookie("superDark", true, 10000);
         console.log("Saved superDark");
         console.log("superDark skin selected!");
-    
+        
         // Change colors
         document.getElementById("background_div").style.backgroundColor = "#3a3a3a";
         document.getElementById("header_table").style.backgroundColor = "#1e1e1e";
+        document.getElementById("header_table").style.backgroundImage = "url()";
         
         
         // CHANGE TO SUPER DARK HERE!!!
@@ -159,6 +183,9 @@ function getTheme(){
     } else if (currentTheme == "Emerald"){
         // Change theme to Emerald
         Emerald();
+    } else if (currentTheme == "Halloween2016"){
+        // Change theme to Emerald
+        Halloween2016();
     }
     
     
@@ -178,6 +205,7 @@ function ThemeRed(){
         document.getElementById("background_div").style.backgroundColor = "#ce2d2d";
         // Header color
         document.getElementById("header_table").style.backgroundColor = "#f44242";
+        document.getElementById("header_table").style.backgroundImage = "url()";
         // Debug
         console.log("Red theme is selected.");  
     
@@ -191,6 +219,7 @@ function ThemeDefault(){
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
         document.getElementById("header_table").style.backgroundColor = "#436a95";
         console.log("Defualt theme is selected.");
+        document.getElementById("header_table").style.backgroundImage = "url()";
         // Debug
     
         // Background Color  document.getElementById("members_background_shadow").style.backgroundColor = "#cd932d";
