@@ -1,0 +1,12 @@
+Adobe After Effects v13.8.1 Windows 64 render log for project “axe_animation.aep”
+
+Rendering started on 2017-09-13 at 14:10:51
+
+  2017-09-13 14:10:51: Starting composition “notu_axe_logo”.
+
+  Output To: C:\Users\kaol16\Desktop\NordicTurbo\img\notu_axe_logo.mov  After Effects error: render can't continue - out of disk space (26  ::  165)After Effects warning: Could not delete the file 'C:\Users\kaol16\Desktop\NordicTurbo\img\notu_axe_logo.mov'.  2017-09-13 14:10:52: Finished composition “notu_axe_logo”.
+
+
+  Total Time Elapsed: 0 Seconds
+Log closed on 2017-09-13 at 14:10:52
+

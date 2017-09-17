@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “axe_animation (newAnimation).aep”
+
+Rendering started on 2017-09-14 at 23:41:27
+
+  2017-09-14 23:41:27: Starting composition “Pre-comp 1”.
+
+  Output To: C:\te16_git\NordicTurbo\img\alpha-notuco-animation.mov  After Effects error: Rendering error while writing to file “C:\te16_git\NordicTurbo\img\alpha-notuco-animation.mov”. Unable to delete existing file. (-1610153460)  didn’t delete empty file “alpha-notuco-animation.mov” because it was larger than expected. (26  ::  170)  2017-09-14 23:41:28: Finished composition “Pre-comp 1”.
+
+
+  Total Time Elapsed: 1 Seconds
+Log closed on 2017-09-14 at 23:41:29
+

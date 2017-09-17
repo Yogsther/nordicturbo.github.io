@@ -1,0 +1,245 @@
+/* Removes blue border in chrome.  */
+button:focus {outline:0;}
+input:focus {outline:0;}
+
+
+/* Link atrebutes, change color of links */
+
+a:link{
+    color: #a0ceff;
+}
+
+a:visited{
+    color: #a0ceff;
+}
+
+a:hover{ 
+    color: white;
+}
+
+
+body{
+    
+    background-color: #111111;
+}
+
+#background_div{
+    
+    background: #2d3f53;
+    /* background: linear-gradient(#d8d8d8, #111111); */
+    height: 1300px;
+    width: 1000px;
+    top: -8px;
+    
+    /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    border-radius: 20px;
+    /* Defualt text settings */
+    color: black;
+    font-family: 'Muli', sans-serif;
+}
+
+#header_table{
+    height: 90px;
+    background: #436a95;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    
+    
+    
+    /*
+    background-image: url(img/header_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;*/
+    
+}
+
+#header_logo{
+    height: 100px;
+    top: -15px;
+    background-blend-mode: screen;
+    position: relative;
+    
+    /* Center in Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
+/* Button */
+.btn{
+    background: white;
+    border: none;
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    border-radius: 4px;
+    height: 30px;
+    width: 70px;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 3px;
+    color: #29394c;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: #436a95;
+    color: white;
+    
+}
+
+.btn:active{
+    top: 4px;
+    top: 2px;
+    box-shadow: 0px 0px 0px #29394c;
+}
+
+#top_buttons{
+    
+    height: 30px;
+    width: 318px;
+    position: relative;
+    top: 10px;
+    
+    /* Center the Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+
+
+#home_page{
+    
+    height: 1100px;
+    width: 600px;
+    position: relative;
+    left: 60px;
+    top: 40px;
+    
+    /* Text settings */
+    color: white;
+    
+}
+
+/* For showing code lines */
+.code_window{
+    height: 23px;
+    width: 600px;
+    border-radius: 2px;
+    background: white;
+    color: #2d3f53;
+    padding: 6px;
+    padding-left: 19px;
+    
+    /* Center in Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+}
+
+.text_field{
+    border-radius: 4px;
+    border: none;
+    height: 26px;
+    width: 100px;
+    font-weight: bold;
+    padding: 2px;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+#sidebar_div{
+    /* Twitter and Discord widgets */
+    height: 100px;
+    width: 290px;
+    left: -20px;
+    float: right;
+    top: -1050px;
+    position: relative;
+}
+
+
+
+#slide_image{
+    height: 270px;
+    position: relative;
+    top: 15px;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px black; 
+    
+    left: 40px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#progress_div{
+    width: 480px;
+    left: 40px;
+}
+
+#progress_bar{
+    height: 5px;
+    width: 100%;
+    background: grey;
+    z-index: 10;
+    position: relative;
+    top: 286px;
+    opacity: 0.5;
+    left: 40px;
+}
+
+
+
+#saved_skins{
+    width: 265px;
+    text-align: right;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* This should be at the bottom of the CSS! */
+
+#footer_div{
+    
+    /* Center in Div */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+

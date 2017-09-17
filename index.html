@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+</head>
+<body>
+   
+   <!-- Background wall -->
+     <div id="background_div">
+        <div id="header_table">
+            <img src="img/website_logo_gif.gif" id="header_logo" onclick="changeTheme()">
+            
+        </div>    
+           
+        
+         <!-- Buttons (duh..) -->
+        <div id="top_buttons">
+            <button class="btn" onclick="home()">Home</button> 
+            <button class="btn" onclick="git()">Git</button>
+            <button class="btn" onclick="error()">Index</button>
+            <button class="btn" onclick="about()">About</button> 
+         </div>
+         
+         <!-- From here and up should be the same for every page! -->
+        
+        <!-- Homepage / Blog -->
+        <div id="home_page">
+    
+        Welcome to Nordic Turbo!<br>
+        <a href="https://github.com/Yogsther/nordicturbo.github.io">Here</a> is a link to our github.<br>
+        <br>Featured:
+                
+        
+        <!-- Slideshow -->
+        <div id="slideshow">
+            <div id="progress_div">
+            <div id="progress_bar"></div>
+            </div>
+            <img src="img/slideshow_image01.gif" id="slide_image" class="fade" onclick="slideRedirect()">
+        </div>    
+        
+        <br><br> 
+         On this website we will host our projects, and maybe do other fun things!
+         
+         
+        <!-- End of homepage -->
+        </div>
+    a
+    
+            <div id="sidebar_div" class="fade">
+                <a class="twitter-timeline" width="300"
+                data-height="500" id="twitter" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <br><br>
+                
+                <iframe src="https://discordapp.com/widget?id=357102560827539457&theme=dark" width="290" height="540" allowtransparency="true" frameborder="0"></iframe>
+                
+            </div>
+           
+            
+    
+    
+    
+    
+    
+    
+        <!-- Footer -->
+        
+        <div id="footer_div">
+        
+        </div>
+    <!-- END OF BACKGROUND DIV -->
+         <script src="code.js"></script>
+         <element onload="loadGif()"></element>
+    </div>
+</body>
+</html>
+
