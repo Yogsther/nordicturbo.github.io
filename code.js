@@ -4,6 +4,12 @@ aboutPageCheck();
 slideShowCheck();
 getTheme();
 
+// Get Credits
+getCredits();
+// Get Num of Crates
+getCrates();
+
+
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
     slideShow();
@@ -21,6 +27,7 @@ if (window.location.href.indexOf("about.html") != -1){
 function git(){
     window.location.href = "git.html";
 }
+
 function home(){
     window.location.href = "index.html"
 }
@@ -286,6 +293,60 @@ function progressBar() {
             width++; 
             elem.style.width = width + '%'; 
         }
+    }
+}
+
+
+// Crate functions vvv
+
+function openCrate(){
+    
+    // Get Credits
+    getCredits();
+    // Get Num of Crates
+    var crates = readCookie("crates");
+    if(crates == null){
+        crates = 0;
+        createCookie("crates",0,10000);
+        document.getElementById("numCrates").innerHTML = crates;
+    }
+    
+    
+    // Decalre themeCards
+    var SuperdarkCard = "/img/superDark_card.png"
+    
+    
+    // Play Layer 01 Gif
+    document.getElementById("unbox_layer_01").src="/img/crate_animation_layer_01.gif";
+    // Play Background Effect video
+    var video = document.getElementById("unbox_layer_02"); 
+    video.play();
+    // Change card
+    document.getElementById("themeCard").src=SuperdarkCard;
+    
+}
+
+function addCredits(amount){
+    var credits = readCookie("credits");
+    if(credits == null){
+        credits = credits + amount;
+        createCookie("credits",0,10000);
+    }
+}
+
+function getCrates(){
+    var crates = readCookie("crates");
+    if(crates == null){
+        crates = 0;
+        createCookie("crates",0,10000);
+    }
+}
+
+function getCredits(){
+    var credits = readCookie("credits");
+    if(credits == null){
+        credits = 0;
+        createCookie("credits",0,10000);
     }
 }
 

@@ -230,9 +230,20 @@ body{
     display: block;
 }
 
+#unbox_layer_02{
+    z-index: -2;
+    top: -550px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+}
+
 #crate_header{
    
-    height: 200px;
+    height: 140px;
     
     /* Center */
     margin: 0 auto;
@@ -240,8 +251,27 @@ body{
     display: block;
 }
 
+#themeCard{
+    z-index: -1;
+    height: 100px;
+    top: -800px;
+    left: -5px;
+    
+     /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
 
-
+#crateInfoText{
+    color: gold;
+    text-align: center;
+    top: -720px;
+    position: relative;
+    font-family: ubuntu;
+    font-size: 19px;
+    
+}
 
 
 
