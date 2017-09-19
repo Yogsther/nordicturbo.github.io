@@ -1,10 +1,14 @@
 ﻿Todo list for Nordic Turbo website.
-This todo list can be in Swedish or English
+
+
+- Lootboxes, Credits and Themes
+	Lootboxes can be baught using credits. 1 Lootbox = 1000 Credits
+	250 Credits can be claimed by visting the site every 24 hours.	
+	A lootbox will contain one Theme.
 
 - Add a footer
 - Lägg till teman:
-    Fixa nya teman, LBGT
-
-    
-- Fixa fade i slideshow
+	Fixa nya teman, LBGT
+  
 - Fix error sound effect
+- Fixa fade i slideshow
