@@ -1,0 +1,12 @@
+Adobe After Effects v13.8.1 Windows 64 render log for project “CrateUnboxing_Animation_v.1.aep”
+
+Rendering started on 2017-09-19 at 14:03:58
+
+  2017-09-19 14:03:58: Starting composition “Crate_notuco_v.1”.
+
+  Output To: C:\Users\kaol16\Desktop\NordicTurbo\img\create_animation_layer_01.mov    2017-09-19 14:04:11: Finished composition “Crate_notuco_v.1”.
+
+
+  Total Time Elapsed: 13 Seconds
+Log closed on 2017-09-19 at 14:04:11
+

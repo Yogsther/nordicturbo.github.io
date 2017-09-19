@@ -220,9 +220,25 @@ body{
 
 
 
+#unbox_layer_01{
+    
+    top: -130px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
 
-
-
+#crate_header{
+   
+    height: 200px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
 
 
 

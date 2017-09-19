@@ -1,0 +1,12 @@
+Adobe After Effects v13.8.1 Windows 64 render log for project “CrateUnboxing_Animation_v.1.aep”
+
+Rendering started on 2017-09-19 at 14:21:19
+
+  2017-09-19 14:21:19: Starting composition “Comp 2”.
+
+  Output To: C:\Users\kaol16\Desktop\NordicTurbo\img\create_animation_layer_02_rare.mov    2017-09-19 14:22:51: Finished composition “Comp 2”.
+
+
+  Total Time Elapsed: 1 Min, 32 Sec
+Log closed on 2017-09-19 at 14:22:51
+
