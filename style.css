@@ -222,7 +222,7 @@ body{
 
 #unbox_layer_01{
     
-    top: -130px;
+    top: 30px;
     
     
     /* Center */
@@ -253,11 +253,10 @@ body{
 }
 
 #themeCard{
-    z-index: -1;
-    height: 100px;
-    top: -800px;
-    left: -5px;
     
+    height: 99px;
+    top: -110px;
+    z-index: -2;
      /* Center */
     margin: 0 auto;
     position: relative;
@@ -267,12 +266,97 @@ body{
 #crateInfoText{
     color: gold;
     text-align: center;
-    top: -720px;
+
     position: relative;
     font-family: ubuntu;
     font-size: 19px;
     
 }
+
+#credit_animated{
+    height: 50px;
+}
+#numCredits{
+    font-size: 30px;
+    position: relative;
+    top: -14px;
+}
+
+#openCrateButton{
+
+    background-color: gold;
+    color: black;
+    width: 100px;
+    top: -145px;
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+#openCrateButton:active{
+    top: -142px;
+}
+
+#dev_buttons_crate{
+    width: 220px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+}
+
+
+#buy_crates_image{
+    top: 50px;
+    height: 200px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+
+#buy_crate{
+    
+    top: 50px;
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    
+}
+
+#buy_crate:active{ 
+    top: 53px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

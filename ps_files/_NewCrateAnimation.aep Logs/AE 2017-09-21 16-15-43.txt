@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “_NewCrateAnimation.aep”
+
+Rendering started on 2017-09-21 at 16:15:43
+
+  2017-09-21 16:15:43: Starting composition “Still_Animated”.
+
+  Output To: C:\te16_git\NordicTurbo\img\stillAnimatedTOGIF.mov    2017-09-21 16:15:49: Finished composition “Still_Animated”.
+
+
+  Total Time Elapsed: 6 Seconds
+Log closed on 2017-09-21 at 16:15:49
+

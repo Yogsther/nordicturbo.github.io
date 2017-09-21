@@ -1,14 +1,60 @@
 var slideIndex = 0;
 
+var credits = readCookie("credits");
+var crates = readCookie("crates");
+
+
+// Price of a crate (default should be 1000 credits)
+var priceOfCrate = 1000;
+
+checkForDev();
 aboutPageCheck();
 slideShowCheck();
-getTheme();
+checkIfThemeApplies();
+checkCrateStatus();
 
 // Get Credits
 getCredits();
 // Get Num of Crates
 getCrates();
 
+function checkIfThemeApplies(){
+    if (window.location.href.indexOf("crate") != -1){
+        return false;
+    }else{
+        getTheme();
+    }
+    
+}
+
+function checkForDev(){
+    
+    if (window.location.href.indexOf("crate") != -1){
+        var devMode = readCookie("dev");
+        if(devMode == "true"){
+        // Get devmode buttons for crate.html
+            // Summon Credit Button
+            document.getElementById("dev_buttons_crate").innerHTML += '<button class="btn" style="width: 100px;" onclick="addCredits(1000);">Add Credits</button> <button class="btn" style="width: 100px;" onclick="addCrates(1);">Add Crates</button> <button class="btn" style="width: 210px; background-color: red; color: white;" onclick="disableDev();">Disable Devmode</button>';
+            
+            console.log("Devmode is active.");
+        }
+}
+}
+
+function enableDev(){
+    var devMode = true;
+    createCookie("dev", devMode, 10000);
+    console.log("Devmode has been enabled.");
+    checkForDev();
+    location.reload();
+}
+
+function disableDev(){
+    var devMode = false;
+    createCookie("dev", devMode, 10000);
+    checkForDev();
+    location.reload();
+}
 
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
@@ -299,39 +345,111 @@ function progressBar() {
 
 // Crate functions vvv
 
-function openCrate(){
+function checkCrateStatus(){
     
-    // Get Credits
-    getCredits();
-    // Get Num of Crates
-    var crates = readCookie("crates");
-    if(crates == null){
-        crates = 0;
-        createCookie("crates",0,10000);
-        document.getElementById("numCrates").innerHTML = crates;
+    if(credits < priceOfCrate){
+        document.getElementById("buy_crate").style.backgroundColor = "#ad3c31";
     }
     
+    if(crates >= 1){
+        
+        document.getElementById("open_crate_button_spot").innerHTML = '<button class="btn" id="openCrateButton" onclick="openCrate()">Open Crate</button>'
+    }
+
+
+}
+
+
+function buyCrate(){
     
-    // Decalre themeCards
-    var SuperdarkCard = "/img/superDark_card.png"
-    
-    
-    // Play Layer 01 Gif
-    document.getElementById("unbox_layer_01").src="/img/crate_animation_layer_01.gif";
-    // Play Background Effect video
-    var video = document.getElementById("unbox_layer_02"); 
-    video.play();
-    // Change card
-    document.getElementById("themeCard").src=SuperdarkCard;
+    if (credits >= priceOfCrate){
+        // Cleared to buy one crate.
+       
+        credits = Number(credits) - 1000;
+        createCookie("credits",credits,10000);
+        
+        addCrates(1);
+        
+        console.log("1 Crate baught.");
+        } else {
+            
+        var neededFunds = priceOfCrate - credits;
+        alert("Not sufficient funds, you need " + neededFunds + " more credits to buy this item.");
+        console.log("Not sufficient funds, you need " + neededFunds + " more credits to buy this item.");
+        
+    }
+    getCredits();
+    checkCrateStatus();
+    location.reload();
     
 }
 
-function addCredits(amount){
-    var credits = readCookie("credits");
-    if(credits == null){
-        credits = credits + amount;
-        createCookie("credits",0,10000);
+
+function openCrate(){
+
+        // Check if user has any crates
+        
+        if (crates >= 1){
+        // Cleared to open crate
+        // Decalre themeCards
+        var superDarkCard = "img/superDark_card.png"
+        
+        // Delete one crate
+        crates = Number(crates) - 1;
+        addCrates(-1);
+    
+        
+        // Play opening animation
+        document.getElementById("unbox_layer_01").src="/img/crate_unbox_animated.gif";
+        
+        // Change final card aka Unlocked item
+        document.getElementById("themeCard").src=superDarkCard;
+            
+        } else {
+            console.error("This shouldn't have happened. Error code 349, Please contact Olle about this.");
+        }
     }
+    
+    
+
+    
+    
+
+    
+
+
+function addCredits(amount){
+    
+    var credits = readCookie("credits");
+        
+        if(credits == null){
+            createCookie("credits",0,10000);
+            credits = Number(credits) + Number(amount);
+            createCookie("credits",credits, 10000);
+            console.log("Added " + amount);
+        } else {
+            credits = Number(credits) + amount;
+            createCookie("credits",credits, 10000);
+            console.log("Added " + amount + ", total credits: " + credits + ".");
+        }
+        getCredits();
+}
+
+function addCrates(amount){
+    
+    var crates = readCookie("crates");
+        
+        if(crates == null){
+            createCookie("crates",0,10000);
+            crates = Number(crates) + Number(amount);
+            createCookie("crates",crates, 10000);
+            console.log("Added " + amount);
+        } else {
+            crates = Number(crates) + amount;
+            createCookie("crates",crates, 10000);
+            console.log("Added " + amount + ", total crates: " + crates + ".");
+        }
+        getCrates();
 }
 
 function getCrates(){
@@ -340,6 +458,11 @@ function getCrates(){
         crates = 0;
         createCookie("crates",0,10000);
     }
+    if(crates == 1){
+        document.getElementById("numCrates").innerHTML = crates + " crate";
+    } else {
+    document.getElementById("numCrates").innerHTML = crates + " crates";
+        }
 }
 
 function getCredits(){
@@ -348,6 +471,8 @@ function getCredits(){
         credits = 0;
         createCookie("credits",0,10000);
     }
+    document.getElementById("numCredits").innerHTML = credits;
+    
 }
 
 

@@ -1,5 +1,18 @@
 Changelog:
 
+v.2.0a (Crate Beta v.1)
+- Added the Crate beta (/crate.html)
+    Buy crates working
+    Credit system working
+    Opening crates sort of working
+    
+- New Dev-menu for developers in Notu.co Crates
+    Functions:  enableDev();
+                disableDev();
+                addCredits(amount);
+                addCrates(amount);
+    
+
 
 v.1.2.1 (Pre-Halloween Update)
 - Added Halloween 2016 skin (code: halloween2016)

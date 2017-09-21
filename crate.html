@@ -17,26 +17,26 @@
         
     
         <!-- Crate -->
-        <img id="unbox_layer_01" src="/img/crate_still.png" onclick="openCrate()">
-        <!-- Rarity Layer -->
-        <video id="unbox_layer_02" width="700" src="/img/crate_animation_layer_02_rare.mov"></video>
-        <!-- Item card -->
+        <img id="unbox_layer_01" src="/img/crate_still_animated.gif" onclick="openCrate()">
+        <!-- Theme Card -->
         <img id="themeCard" src="">
         
-        <!-- Crate text -->
-        
+    
+    
+        <!-- Crate text and Button -->
         <div id="crateInfoText">
-        You have <span id="numCrates">0</span> crates.
+        You have <span id="numCrates">N/A</span>.
+        <br>
+            <span id="numCredits">N/A</span> <img src="img/credit_animated.gif" id="credit_animated">
         </div>
+        <span id="open_crate_button_spot">
         
-        
-        
-        
-        
+        </span>
+        <span id="dev_buttons_crate"> </span>
     
-    
-    
-    
+        <img id="buy_crates_image" src="img/buycrates.png">
+        <button class="btn" id="buy_crate" onclick="buyCrate();" style="background-color: #40ad32; color: white;">Buy</button>
+        
     
     
     
