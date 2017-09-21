@@ -1,8 +1,10 @@
 Todo list for Nordic Turbo website.
 
+!IMPORTANT - Move crate gifs to Imgur!
 
 - Lootboxes, Credits and Themes
-	Lootboxes can be baught using credits. 1 Lootbox = 1000 Credits
+    
+    Add custom amount of crates baught (input field.)
 	250 Credits can be claimed by visting the site every 24 hours.	
 	A lootbox will contain one Theme.
     Lootbox animation and system.

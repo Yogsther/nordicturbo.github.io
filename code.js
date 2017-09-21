@@ -18,6 +18,10 @@ getCredits();
 // Get Num of Crates
 getCrates();
 
+function reloadPage(){
+    location.reload();
+}
+
 function checkIfThemeApplies(){
     if (window.location.href.indexOf("crate") != -1){
         return false;
@@ -354,6 +358,8 @@ function checkCrateStatus(){
     if(crates >= 1){
         
         document.getElementById("open_crate_button_spot").innerHTML = '<button class="btn" id="openCrateButton" onclick="openCrate()">Open Crate</button>'
+    } else if (crates < 1) {
+        document.getElementById("unbox_layer_01").src="img/no_box.png";
     }
 
 
@@ -361,7 +367,7 @@ function checkCrateStatus(){
 
 
 function buyCrate(){
-    
+
     if (credits >= priceOfCrate){
         // Cleared to buy one crate.
        
@@ -381,7 +387,6 @@ function buyCrate(){
     getCredits();
     checkCrateStatus();
     location.reload();
-    
 }
 
 
@@ -404,9 +409,12 @@ function openCrate(){
         
         // Change final card aka Unlocked item
         document.getElementById("themeCard").src=superDarkCard;
+        
+        // Change Button
+            document.getElementById("open_crate_button_spot").innerHTML = '<button class="btn" id="openCrateButton" onclick="reloadPage()">Ok</button>'
             
         } else {
-            console.error("This shouldn't have happened. Error code 349, Please contact Olle about this.");
+            console.error("This shouldn't have happened. Error code 420:69, Please contact Olle about this.");
         }
     }
     
