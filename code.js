@@ -405,7 +405,7 @@ function openCrate(){
     
         
         // Play opening animation
-        document.getElementById("unbox_layer_01").src="/img/crate_unbox_animated.gif";
+        document.getElementById("unbox_layer_01").src="https://i.imgur.com/s0tfTeO.gif";
         
         // Change final card aka Unlocked item
         document.getElementById("themeCard").src=superDarkCard;
