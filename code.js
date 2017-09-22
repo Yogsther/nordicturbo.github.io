@@ -133,9 +133,12 @@ function addSkins(){
     if(skinName.toLowerCase() == "emerald"){
         Emerald(); }
     
-    if(skinName.toLowerCase() == "halloween2016"){
-        Halloween2016(); }
+    if(skinName.toLowerCase() == "halloween2017"){
+        Halloween2017(); }
     
+    if(skinName.toLocaleLowerCase() == "lgbt2017"){
+        LGBT2017();
+    }
     
     
     getSavedSkins();
@@ -147,31 +150,53 @@ function getSavedSkins(){
     //Read every saved skin
     var superDark = readCookie("superDark");
     var Emerald = readCookie("Emerald");
-    var Halloween2016 = readCookie("Halloween2016");
+    var Halloween2017 = readCookie("Halloween2017");
+    var LGBT2017 = readCookie("LGBT2017");
+    
     // Check every theme
     if(superDark == "true"){
         document.getElementById("saved_skins").innerHTML += 'superDark        <button class="btn" onclick="superDark()">Choose</button><br>';}
     if(Emerald == "true"){
         document.getElementById("saved_skins").innerHTML += 'Emerald        <button class="btn" onclick="Emerald()">Choose</button><br>';}
-    if(Halloween2016 == "true"){
-        document.getElementById("saved_skins").innerHTML += 'Halloween 2016        <button class="btn" onclick="Halloween2016()">Choose</button><br>';}
+    if(Halloween2017 == "true"){
+        document.getElementById("saved_skins").innerHTML += 'Halloween 2017        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
+    
+    if(LGBT2017 == "true"){
+      document.getElementById("saved_skins").innerHTML += 'Pride 2017        <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+    
+}
+
+function LGBT2017(){
+    
+    // Save theme
+    createCookie("LGBT2017", true, 10000);
+    
+    // Change colors and banner
+        document.getElementById("background_div").style.backgroundColor = "#e2403b";
+        document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
+
+    // Change to theme 
+    createCookie("Theme", "LGBT2017", 10000);
+    
     
     
 }
 
-function Halloween2016(){
+
+
+function Halloween2017(){
     // Save theme
-    createCookie("Halloween2016", true, 10000);
+    createCookie("Halloween2017", true, 10000);
     
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#111111";
-        document.getElementById("header_table").style.backgroundImage = "url(img/banner_halloween2016.gif)";
+        document.getElementById("header_table").style.backgroundImage = "url(img/banner_halloween2017.gif)";
     
 // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
     
     
     // Change to theme 
-    createCookie("Theme", "Halloween2016", 10000);
+    createCookie("Theme", "Halloween2017", 10000);
     
 }
 
@@ -240,10 +265,14 @@ function getTheme(){
     } else if (currentTheme == "Emerald"){
         // Change theme to Emerald
         Emerald();
-    } else if (currentTheme == "Halloween2016"){
+    } else if (currentTheme == "Halloween2017"){
         // Change theme to Emerald
-        Halloween2016();
+        Halloween2017();
+    } else if (currentTheme == "LGBT2017"){
+        // Change theme to Emerald
+        LGBT2017();
     }
+    
     
     
     
@@ -395,20 +424,67 @@ function openCrate(){
         // Check if user has any crates
         
         if (crates >= 1){
-        // Cleared to open crate
+            
+            
         // Decalre themeCards
-        var superDarkCard = "img/superDark_card.png"
+        var superDarkCard = "img/superDark_card.png"; 
+        var halloweenCard = "img/halloween2017_card.png";
+        var emeraldCard = "img/emerald_card.png";
+            
+            
+        // Get rarity of crate item.
+            // Generate random number between 1-100
+            // 90-100   = Legendary     = 10%
+            // 70-89    = Epic          = 20%
+            // 1-69     = Common        = 70%
+        
+        var legendaryNum = 90;
+        var epicNum = 70;
+            
+        var rareNumber = Math.floor(Math.random() * 100) + 1;
+        console.log("rarNumber = " + rareNumber);
+            
+        // Set rarity    
+        
+        if (rareNumber >= legendaryNum){
+            // Item is legendary tier.
+            console.log("You got a Legendary!!");
+            
+            document.getElementById("themeCard").src=halloweenCard;
+            createCookie("Halloween2017", true, 10000);
+           
+            
+            
+            
+        } else if (rareNumber >= epicNum){
+            // Item is epic tier.
+            console.log("You got an Epic!");
+            
+            document.getElementById("themeCard").src=superDarkCard;
+            createCookie("superDark", true, 10000);
+            
+        } else {
+            // Item is common tier.
+            console.log("You got a common.");
+            
+            // Unlock Emerald
+            document.getElementById("themeCard").src=emeraldCard;
+            createCookie("Emerald", true, 10000);
+        }
+            
+            
+        // Cleared to open crate
+        
         
         // Delete one crate
         crates = Number(crates) - 1;
-        addCrates(-1);
+        addCrates(-1); 
     
         
         // Play opening animation
         document.getElementById("unbox_layer_01").src="https://i.imgur.com/s0tfTeO.gif";
+
         
-        // Change final card aka Unlocked item
-        document.getElementById("themeCard").src=superDarkCard;
         
         // Change Button
             document.getElementById("open_crate_button_spot").innerHTML = '<button class="btn" id="openCrateButton" onclick="reloadPage()">Ok</button>'

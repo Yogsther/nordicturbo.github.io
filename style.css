@@ -244,7 +244,7 @@ body{
 
 #crate_header{
    
-    height: 140px;
+    height: 200px;
     
     /* Center */
     margin: 0 auto;
@@ -254,7 +254,7 @@ body{
 
 #themeCard{
     
-    height: 99px;
+    height: 89px;
     top: -110px;
     z-index: -2;
      /* Center */

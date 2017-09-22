@@ -1,0 +1,12 @@
+Adobe After Effects v13.8.1 Windows 64 render log for project “HalloweenTheme_2017.aep”
+
+Rendering started on 2017-09-22 at 12:10:47
+
+  2017-09-22 12:10:47: Starting composition “Comp 1”.
+
+  Output To: C:\Users\kaol16\Desktop\NordicTurbo\img\DELETEME.mov    2017-09-22 12:10:51: Finished composition “Comp 1”.
+
+
+  Total Time Elapsed: 4 Seconds
+Log closed on 2017-09-22 at 12:10:51
+
