@@ -27,6 +27,7 @@ function checkIfThemeApplies(){
         return false;
     }else{
         getTheme();
+        checkClaim();
     }
     
 }
@@ -313,7 +314,72 @@ function ThemeDefault(){
 }
 
 
+
+
+// Claiming button function
+
+function claimHourlyCredits(){
+    
+    
+    createCookie("creditsClaimed", true, 0.04166);
+    // Play Cash sound effect
+    var audio = new Audio("sound/cash.wav");
+    audio.volume = 0.25;
+    audio.play();
+    
+    // Debug
+    console.log("You have claimed 250 credits.");
+    
+    // Add credits
+    addCredits(250);
+}
+
+function claimAnimation(animationStatus){
+    
+    if(animationStatus == 1){
+        document.getElementById("claim_button").src="/img/button_claim_hover.gif";
+        //Hover on
+        console.log("Hover off");
+    } else if(animationStatus == 2){
+        document.getElementById("claim_button").src="/img/button_claim.gif";
+        // Hover off
+        console.log("Hover on");
+    }
+    
+    
+}
+
+
+function checkClaim(){
+    // Check if hourly credits have been claimed
+    // and display button if they have naaaaht.
+    var claimStatus = readCookie("creditsClaimed");
+
+    
+    if(claimStatus == "true"){
+        console.log("Claimed");
+    } else {
+        console.log("Not claimed");
+        document.getElementById("insert_claim_button_here").innerHTML += '<img src="img/button_claim.gif" id="claim_button" onclick="claimHourlyCredits();" onmouseover="claimAnimation(1)"; onmouseout="claimAnimation(2)">';
+        }
+        
+        checkClaim();
+    
+    }
+    
+    
+    
+
+
+
+
+
+
+
+
+
 // Slide show 
+
 
 function slideShow(){
     
