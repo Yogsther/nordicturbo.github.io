@@ -331,7 +331,9 @@ function claimHourlyCredits(){
     console.log("You have claimed 250 credits.");
     
     // Add credits
+    document.getElementById("insert_claim_button_here").innerHTML = "";
     addCredits(250);
+    
 }
 
 function claimAnimation(animationStatus){
@@ -360,11 +362,8 @@ function checkClaim(){
         console.log("Claimed");
     } else {
         console.log("Not claimed");
-        document.getElementById("insert_claim_button_here").innerHTML += '<img src="img/button_claim.gif" id="claim_button" onclick="claimHourlyCredits();" onmouseover="claimAnimation(1)"; onmouseout="claimAnimation(2)">';
+        document.getElementById("insert_claim_button_here").innerHTML = '<img src="img/button_claim.gif" id="claim_button" onclick="claimHourlyCredits();" onmouseover="claimAnimation(1)"; onmouseout="claimAnimation(2)">';
         }
-        
-        checkClaim();
-    
     }
     
     
