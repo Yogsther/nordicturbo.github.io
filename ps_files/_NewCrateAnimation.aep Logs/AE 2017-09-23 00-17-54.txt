@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “_NewCrateAnimation.aep”
+
+Rendering started on 2017-09-23 at 00:17:54
+
+  2017-09-23 00:17:54: Starting composition “Unbox_animation”.
+
+  Output To: C:\te16_git\NordicTurbo\img\Unbox_animation_common.mov    2017-09-23 00:17:57: Finished composition “Unbox_animation”.
+
+
+  Total Time Elapsed: 2 Seconds
+Log closed on 2017-09-23 at 00:17:57
+

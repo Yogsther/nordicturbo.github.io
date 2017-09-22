@@ -1,0 +1,17 @@
+Adobe After Effects v14.1 Windows 64 render log for project “LGBT_Theme.aep”
+
+Rendering started on 2017-09-22 at 23:42:04
+
+  2017-09-22 23:42:04: Starting composition “Pre-comp 1”.
+
+  Output To: C:\te16_git\NordicTurbo\img\Pre-comp 1.avi    2017-09-22 23:42:04: Finished composition “Pre-comp 1”.
+
+
+  2017-09-22 23:42:04: Starting composition “Pre-comp 1”.
+
+  Output To: C:\te16_git\NordicTurbo\img\Pre-comp 1 (0-00-01-05).psd    2017-09-22 23:42:05: Finished composition “Pre-comp 1”.
+
+
+  Total Time Elapsed: 1 Seconds
+Log closed on 2017-09-22 at 23:42:05
+

@@ -4,11 +4,18 @@ var credits = readCookie("credits");
 var crates = readCookie("crates");
 
 
+        // Decalre themeCards
+        var superDarkCard = "img/superDark_card.png"; 
+        var halloweenCard = "img/halloween2017_card.png";
+        var emeraldCard = "img/emerald_card.png";
+        var prideCard = "img/pride_2017_card.png";
+
+
 // Price of a crate (default should be 1000 credits)
 var priceOfCrate = 1000;
 
 checkForDev();
-aboutPageCheck();
+itemsPageCheck();
 slideShowCheck();
 checkIfThemeApplies();
 checkCrateStatus();
@@ -67,8 +74,8 @@ if (window.location.href.indexOf("index.html") != -1){
     }
 }
 
-function aboutPageCheck(){
-if (window.location.href.indexOf("about.html") != -1){
+function itemsPageCheck(){
+if (window.location.href.indexOf("items.html") != -1){
     getSavedSkins();
     }
 }
@@ -83,8 +90,8 @@ function home(){
     window.location.href = "index.html"
 }
 
-function about(){
-    window.location.href = "about.html"
+function items(){
+    window.location.href = "items.html"
 }
 
 function error(){
@@ -173,7 +180,7 @@ function LGBT2017(){
     createCookie("LGBT2017", true, 10000);
     
     // Change colors and banner
-        document.getElementById("background_div").style.backgroundColor = "#e2403b";
+        document.getElementById("background_div").style.backgroundColor = "#bc3131";
         document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
 
     // Change to theme 
@@ -491,10 +498,7 @@ function openCrate(){
         if (crates >= 1){
             
             
-        // Decalre themeCards
-        var superDarkCard = "img/superDark_card.png"; 
-        var halloweenCard = "img/halloween2017_card.png";
-        var emeraldCard = "img/emerald_card.png";
+        
             
             
         // Get rarity of crate item.
@@ -512,29 +516,15 @@ function openCrate(){
         // Set rarity    
         
         if (rareNumber >= legendaryNum){
-            // Item is legendary tier.
-            console.log("You got a Legendary!!");
             
-            document.getElementById("themeCard").src=halloweenCard;
-            createCookie("Halloween2017", true, 10000);
-           
-            
-            
+            rarityLegendary();
             
         } else if (rareNumber >= epicNum){
-            // Item is epic tier.
-            console.log("You got an Epic!");
             
-            document.getElementById("themeCard").src=superDarkCard;
-            createCookie("superDark", true, 10000);
+            rarityEpic();
             
         } else {
-            // Item is common tier.
-            console.log("You got a common.");
-            
-            // Unlock Emerald
-            document.getElementById("themeCard").src=emeraldCard;
-            createCookie("Emerald", true, 10000);
+            rarityCommon();
         }
             
             
@@ -546,8 +536,7 @@ function openCrate(){
         addCrates(-1); 
     
         
-        // Play opening animation
-        document.getElementById("unbox_layer_01").src="https://i.imgur.com/s0tfTeO.gif";
+        
 
         
         
@@ -563,8 +552,53 @@ function openCrate(){
 
     
     
-
+function rarityLegendary(){
+    // Item is legendary tier.
+    console.log("You got a Legendary!!");
+            
+    document.getElementById("themeCard").src=halloweenCard;
+    createCookie("Halloween2017", true, 10000);
     
+    // Play opening animation
+    document.getElementById("unbox_layer_01").src="https://i.imgur.com/EtPCQfw.gif";
+}
+    
+function rarityEpic(){
+    // Item is epic tier.
+    console.log("You got an Epic!");
+    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
+    
+    if(whatEpicNum == 1){
+        
+        // Get first item, superDark
+        document.getElementById("themeCard").src=superDarkCard;
+        createCookie("superDark", true, 10000);
+    } else if (whatEpicNum == 2){
+        
+        // Get second item, Pride 2017
+        document.getElementById("themeCard").src=prideCard;
+        createCookie("LGBT2017", true, 10000);
+    }
+    
+    
+    
+    // Play opening animation
+    document.getElementById("unbox_layer_01").src="https://i.imgur.com/vT8Nzpr.gif";
+}
+
+function rarityCommon(){
+    
+    // Item is common tier.
+    console.log("You got a common.");
+            
+    // Unlock Emerald
+    document.getElementById("themeCard").src=emeraldCard;
+    createCookie("Emerald", true, 10000);
+    
+    
+    // Play opening animation
+    document.getElementById("unbox_layer_01").src="https://i.imgur.com/JUpfLOn.gif";
+}
 
 
 function addCredits(amount){

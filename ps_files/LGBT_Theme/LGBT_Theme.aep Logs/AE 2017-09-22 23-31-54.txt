@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “LGBT_Theme.aep”
+
+Rendering started on 2017-09-22 at 23:31:54
+
+  2017-09-22 23:31:54: Starting composition “Comp 1”.
+
+  Output To: C:\te16_git\NordicTurbo\img\PrideTOGIF[DELETE ME].mov    2017-09-22 23:31:58: Finished composition “Comp 1”.
+
+
+  Total Time Elapsed: 3 Seconds
+Log closed on 2017-09-22 at 23:31:58
+

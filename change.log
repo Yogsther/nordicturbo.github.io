@@ -1,6 +1,11 @@
 Changelog:
 
 
+v.3.1 (Crate Beta v.3.1)
+- Crates:
+    Added new Animation to show rarity (1 spin = common, 2 spins = epic, 3 spind = legendary.)
+    Moved the "saved skins" section to the Items tab.
+
 v.3.0 (Crate Beta v.3)
 - Crates:
     Claim 250 NotuCoins every hour on the homepage.
