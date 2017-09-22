@@ -339,11 +339,11 @@ function claimHourlyCredits(){
 function claimAnimation(animationStatus){
     
     if(animationStatus == 1){
-        document.getElementById("claim_button").src="/img/button_claim_hover.gif";
+        document.getElementById("claim_button").src="https://i.imgur.com/Kjxgl4t.gif";
         //Hover on
         console.log("Hover off");
     } else if(animationStatus == 2){
-        document.getElementById("claim_button").src="/img/button_claim.gif";
+        document.getElementById("claim_button").src="https://i.imgur.com/AE30uLU.gif";
         // Hover off
         console.log("Hover on");
     }
