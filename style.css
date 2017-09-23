@@ -6,11 +6,11 @@ input:focus {outline:0;}
 /* Link atrebutes, change color of links */
 
 a:link{
-    color: #a0ceff;
+    color: white;
 }
 
 a:visited{
-    color: #a0ceff;
+    color: white;
 }
 
 a:hover{ 
@@ -321,7 +321,7 @@ body{
 }
 
 #openCrateButton:active{
-    top: -78px;
+    top: -72px;
 }
 
 #dev_buttons_crate{
@@ -335,31 +335,9 @@ body{
 }
 
 
-#buy_crates_image{
-    top: 50px;
-    height: 200px;
-    
-    /* Center */
-    margin: 0 auto;
-    position: relative;
-    display: block;
-}
 
 
-#buy_crate{
-    
-    top: 50px;
-    /* Center */
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    
-    
-}
 
-#buy_crate:active{ 
-    top: 53px;
-}
 
 
 #claim_button{
@@ -382,18 +360,68 @@ body{
 }
 
 
+#infoGraphic{
+    height: 300px;
+    width: 900px;
+    top: 50px;
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
 
 
+#buy_crates_image{
+    top: 50px;
+    height: 200px;
+}
 
 
+#buy_crate{
+    
+    position: relative;
+    float: left;
+    top: 200px;
+    left: 198px;
 
 
+}
+
+#buy_crate:active{ 
+    top: 203px;
+}
 
 
+#animated_huge{
+    height: 220px;
+    float: right;
+    position: relative;
+    left: -120px;
+    top: -60px;
+}
+
+#credit_info{
+    color: white;
+    font-family: 'Muli', sans-serif;
+    text-align: center;
+    width: 250px;
+    float: right;
+    position: relative;
+    top: 140px;
+    left: 115px;
+    
+}
 
 
-
-
+#title_ubuntu{
+    
+    font-family: ubuntu;
+    font-weight: 800;
+    text-shadow: 0px 0px 10px #FFFFFF;
+    font-size: 23px;
+    
+    
+}
 
 
 

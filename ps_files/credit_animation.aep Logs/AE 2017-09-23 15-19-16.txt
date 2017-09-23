@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “credit_animation.aep”
+
+Rendering started on 2017-09-23 at 15:19:16
+
+  2017-09-23 15:19:16: Starting composition “credit_1000x1000”.
+
+  Output To: C:\te16_git\NordicTurbo\img\DELTE_ME_BIG_COIN_ANIMATION.mov    2017-09-23 15:19:18: Finished composition “credit_1000x1000”.
+
+
+  Total Time Elapsed: 2 Seconds
+Log closed on 2017-09-23 at 15:19:18
+
