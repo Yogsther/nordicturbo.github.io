@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “axe_animation (newAnimation).aep”
+
+Rendering started on 2017-09-24 at 20:37:45
+
+  2017-09-24 20:37:45: Starting composition “Developer Update 01”.
+
+  Output To: C:\te16_git\NordicTurbo\vid\Developer Update 01.mov    2017-09-24 20:44:54: Finished composition “Developer Update 01”.
+
+
+  Total Time Elapsed: 7 Min, 8 Sec
+Log closed on 2017-09-24 at 20:44:54
+
