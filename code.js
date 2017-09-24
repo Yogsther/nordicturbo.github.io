@@ -9,6 +9,7 @@ var crates = readCookie("crates");
         var halloweenCard = "img/halloween2017_card.png";
         var emeraldCard = "img/emerald_card.png";
         var prideCard = "img/pride_2017_card.png";
+        var swedenCard = "img/sweden_card.png";
 
 
 // Price of a crate (default should be 1000 credits)
@@ -148,6 +149,9 @@ function addSkins(){
         LGBT2017();
     }
     
+    if(skinName.toLocaleLowerCase() == "swedenlegend"){
+        Sweden();
+    }
     
     getSavedSkins();
     window.location.reload(false); 
@@ -160,6 +164,7 @@ function getSavedSkins(){
     var Emerald = readCookie("Emerald");
     var Halloween2017 = readCookie("Halloween2017");
     var LGBT2017 = readCookie("LGBT2017");
+    var Sweden = readCookie("Sweden");
     
     // Check every theme
     if(superDark == "true"){
@@ -172,7 +177,57 @@ function getSavedSkins(){
     if(LGBT2017 == "true"){
       document.getElementById("saved_skins").innerHTML += 'Pride 2017        <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
     
+    if(Sweden == "true"){
+      document.getElementById("saved_skins").innerHTML += 'Sweden        <button class="btn" onclick="Sweden()">Choose</button><br>';}
 }
+
+// Theme manager:
+
+function getTheme(){
+    
+    var currentTheme = readCookie("Theme");
+    if(currentTheme == null){
+        // Create cookie if user is new to the site.
+        createCookie("Theme", "Default", 10000); 
+        console.log("Created Cookie, Default theme.");
+        
+    } else if (currentTheme == "Default"){
+        window.setTimeout(ThemeDefault,300); 
+        
+    } else if (currentTheme == "Red"){
+        // Change theme to Red.
+       // window.setTimeout(ThemeRed,300); 
+        ThemeRed();    
+    } else if (currentTheme == "superDark"){
+        // Change theme to superDark
+        superDark();
+            
+    } else if (currentTheme == "Emerald"){
+        // Change theme to Emerald
+        Emerald();
+    } else if (currentTheme == "Halloween2017"){
+        // Change theme to Emerald
+        Halloween2017();
+    } else if (currentTheme == "LGBT2017"){
+        // Change theme to Emerald
+        LGBT2017();
+    } else if (currentTheme == "Sweden"){
+        // Change theme to Emerald
+        Sweden();
+    }
+    
+    
+    
+    
+    
+    else {
+        // Error, this should not happen.
+        console.error("Error: 1 - No theme found!");
+    }
+  
+}
+
+
 
 function LGBT2017(){
     
@@ -190,6 +245,29 @@ function LGBT2017(){
     
 }
 
+
+function Sweden(){
+    
+    // Save theme
+    createCookie("Sweden", true, 10000);
+    
+    // Change colors
+    document.getElementById("background_div").style.backgroundColor = "#1c263a";
+    document.getElementById("header_table").style.backgroundImage = "url(img/banner_sweden.gif)";
+    
+    // Check if this is the homepage.
+    if (window.location.href.indexOf("index.html") != -1){
+    swedishMusic = new Audio("sound/swedish_national.mp3"); 
+    swedishMusic.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+    swedishMusic.volume = .25;
+    swedishMusic.play();
+    }
+    // Change to theme 
+    createCookie("Theme", "Sweden", 10000);
+}
 
 
 function Halloween2017(){
@@ -249,48 +327,6 @@ function superDark(){
 
 
 
-// Theme manager:
-
-function getTheme(){
-    
-    var currentTheme = readCookie("Theme");
-    if(currentTheme == null){
-        // Create cookie if user is new to the site.
-        createCookie("Theme", "Default", 10000); 
-        console.log("Created Cookie, Default theme.");
-        
-    } else if (currentTheme == "Default"){
-        window.setTimeout(ThemeDefault,300); 
-        
-    } else if (currentTheme == "Red"){
-        // Change theme to Red.
-       // window.setTimeout(ThemeRed,300); 
-        ThemeRed();    
-    } else if (currentTheme == "superDark"){
-        // Change theme to superDark
-        superDark();
-            
-    } else if (currentTheme == "Emerald"){
-        // Change theme to Emerald
-        Emerald();
-    } else if (currentTheme == "Halloween2017"){
-        // Change theme to Emerald
-        Halloween2017();
-    } else if (currentTheme == "LGBT2017"){
-        // Change theme to Emerald
-        LGBT2017();
-    }
-    
-    
-    
-    
-    
-    else {
-        // Error, this should not happen.
-        console.error("Error: 1 - No theme found!");
-    }
-  
-}
 
 
 // Change to Theme: Red
@@ -555,9 +591,17 @@ function openCrate(){
 function rarityLegendary(){
     // Item is legendary tier.
     console.log("You got a Legendary!!");
-            
-    document.getElementById("themeCard").src=halloweenCard;
-    createCookie("Halloween2017", true, 10000);
+    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
+        
+    if(whatEpicNum == 1){
+        // Get item halloween
+        document.getElementById("themeCard").src=halloweenCard;
+        createCookie("Halloween2017", true, 10000);
+        
+    } else if (whatEpicNum == 2){
+        document.getElementById("themeCard").src=swedenCard;
+        createCookie("Sweden", true, 10000);
+    }
     
     // Play opening animation
     document.getElementById("unbox_layer_01").src="https://i.imgur.com/EtPCQfw.gif";
