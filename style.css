@@ -215,16 +215,8 @@ body{
     
     position: relative;
     height: 250px;
-    
-    
-}
-
-#advert_01{
-    
+    cursor: pointer;
     top: 20px;
-    height: 250px;
-    width: 450px;
-    
     /* Center */
     margin: 0 auto;
     position: relative;
@@ -233,9 +225,14 @@ body{
 }
 
 
+
 #saved_skins{
     width: 265px;
     text-align: right;
+    background: rgba(0, 0, 0, .7);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
     
 }
 
@@ -335,8 +332,22 @@ body{
 }
 
 
+/* Colors for Items rarity on /items.html */
 
+#legendary{
+    color: #f4e604;
 
+}
+
+#epic{
+    color: #ed145b;
+
+}
+
+#common{
+    color: #29a5f3;
+
+}
 
 
 

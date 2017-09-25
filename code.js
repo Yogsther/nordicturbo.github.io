@@ -11,6 +11,11 @@ var crates = readCookie("crates");
         var prideCard = "img/pride_2017_card.png";
         var swedenCard = "img/sweden_card.png";
 
+// Declare Music variables
+
+swedishMusic = new Audio("sound/swedish_national.mp3");
+
+
 
 // Price of a crate (default should be 1000 credits)
 var priceOfCrate = 1000;
@@ -69,6 +74,11 @@ function disableDev(){
     location.reload();
 }
 
+
+function goToCrates(){
+    window.location.href = "crate.html";
+}
+
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
     slideShow();
@@ -93,6 +103,10 @@ function home(){
 
 function items(){
     window.location.href = "items.html"
+}
+
+function about(){
+    window.location.href = "about.html"
 }
 
 function error(){
@@ -122,6 +136,8 @@ function changeTheme(){
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
     var click = new Audio("sound/click.wav");
     click.play();
+    // Stop all music
+    swedishMusic.pause();
     
  
 }
@@ -167,18 +183,23 @@ function getSavedSkins(){
     var Sweden = readCookie("Sweden");
     
     // Check every theme
-    if(superDark == "true"){
-        document.getElementById("saved_skins").innerHTML += 'superDark        <button class="btn" onclick="superDark()">Choose</button><br>';}
-    if(Emerald == "true"){
-        document.getElementById("saved_skins").innerHTML += 'Emerald        <button class="btn" onclick="Emerald()">Choose</button><br>';}
-    if(Halloween2017 == "true"){
-        document.getElementById("saved_skins").innerHTML += 'Halloween 2017        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
     
-    if(LGBT2017 == "true"){
-      document.getElementById("saved_skins").innerHTML += 'Pride 2017        <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+
+    if(Halloween2017 == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
     
     if(Sweden == "true"){
-      document.getElementById("saved_skins").innerHTML += 'Sweden        <button class="btn" onclick="Sweden()">Choose</button><br>';}
+      document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';}
+    
+    if(LGBT2017 == "true"){
+      document.getElementById("saved_skins").innerHTML += '<span id="epic">Pride 2017  </span>      <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+    
+    if(superDark == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="epic"> superDark</span>        <button class="btn" onclick="superDark()">Choose</button><br>';}
+
+    
+    if(Emerald == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Emerald    </span>    <button class="btn" onclick="Emerald()">Choose</button><br>';}
 }
 
 // Theme manager:
@@ -234,12 +255,16 @@ function LGBT2017(){
     // Save theme
     createCookie("LGBT2017", true, 10000);
     
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
     // Change colors and banner
         document.getElementById("background_div").style.backgroundColor = "#bc3131";
         document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
 
     // Change to theme 
     createCookie("Theme", "LGBT2017", 10000);
+    
     
     
     
@@ -251,13 +276,16 @@ function Sweden(){
     // Save theme
     createCookie("Sweden", true, 10000);
     
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
+    
     // Change colors
     document.getElementById("background_div").style.backgroundColor = "#1c263a";
     document.getElementById("header_table").style.backgroundImage = "url(img/banner_sweden.gif)";
     
     // Check if this is the homepage.
-    if (window.location.href.indexOf("index.html") != -1){
-    swedishMusic = new Audio("sound/swedish_national.mp3"); 
+    if (window.location.href.indexOf("index.html") != -1){ 
     swedishMusic.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
@@ -273,6 +301,9 @@ function Sweden(){
 function Halloween2017(){
     // Save theme
     createCookie("Halloween2017", true, 10000);
+    
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
     
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#111111";
@@ -293,8 +324,12 @@ function Emerald(){
     createCookie("Emerald", true, 10000);
     
     // Change colors
-        document.getElementById("background_div").style.backgroundColor = "#6df75b";
-        document.getElementById("header_table").style.backgroundColor = "#43a337";
+        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+        
+        document.getElementById("background_div").style.backgroundColor = "#03492b";
+        document.getElementById("header_table").style.backgroundColor = "#1e603d";
         document.getElementById("header_table").style.backgroundImage = "url()";
 // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
     
@@ -312,6 +347,9 @@ function superDark(){
         createCookie("superDark", true, 10000);
         console.log("Saved superDark");
         console.log("superDark skin selected!");
+        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
         
         // Change colors
         document.getElementById("background_div").style.backgroundColor = "#3a3a3a";
@@ -331,6 +369,8 @@ function superDark(){
 
 // Change to Theme: Red
 function ThemeRed(){
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
         // Background color
         document.getElementById("background_div").style.backgroundColor = "#ce2d2d";
         // Header color
@@ -345,7 +385,9 @@ function ThemeRed(){
 
 // Change to Theme: Default
 function ThemeDefault(){
-        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
         document.getElementById("header_table").style.backgroundColor = "#436a95";
         console.log("Defualt theme is selected.");
@@ -434,18 +476,18 @@ function slideShow(){
     }
     
     
-    document.getElementById("slide_image").src="img/slideshow_image03.png";
+    document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png";
     
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
-        document.getElementById("slide_image").src="img/slideshow_image01.gif"
+        document.getElementById("slide_image").src="https://i.imgur.com/5eSQh2j.png"
         progressBar();
     } else if (slideIndex == 2){
-        document.getElementById("slide_image").src="img/slideshow_image02.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/JDGDg05.png"
         progressBar();
     } else if (slideIndex == 3){
-        document.getElementById("slide_image").src="img/slideshow_image03.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png"
         progressBar();
     }
     
@@ -453,11 +495,12 @@ function slideShow(){
 
 function slideRedirect(){
     if (slideIndex == 1){
-        console.log("Sorry, you cant click this image");
+            window.open("https://www.youtube.com/watch?v=gv3G5LGKjlA",'_blank');
+            
     } else if (slideIndex == 2){
-        window.location.href = "https://twitter.com/NordicTurbo";
+        window.open("https://twitter.com/NordicTurbo",'_blank');
     } else if (slideIndex == 3){
-        window.location.href = "https://github.com/Yogsther/nordicturbo.github.io"
+        window.open("https://github.com/Yogsther/nordicturbo.github.io",'_blank');
     }
 }
 
