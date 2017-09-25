@@ -255,12 +255,16 @@ function LGBT2017(){
     // Save theme
     createCookie("LGBT2017", true, 10000);
     
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
     // Change colors and banner
         document.getElementById("background_div").style.backgroundColor = "#bc3131";
         document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
 
     // Change to theme 
     createCookie("Theme", "LGBT2017", 10000);
+    
     
     
     
@@ -271,6 +275,10 @@ function Sweden(){
     
     // Save theme
     createCookie("Sweden", true, 10000);
+    
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
     
     // Change colors
     document.getElementById("background_div").style.backgroundColor = "#1c263a";
@@ -294,6 +302,9 @@ function Halloween2017(){
     // Save theme
     createCookie("Halloween2017", true, 10000);
     
+    // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#111111";
         document.getElementById("header_table").style.backgroundImage = "url(img/banner_halloween2017.gif)";
@@ -313,8 +324,12 @@ function Emerald(){
     createCookie("Emerald", true, 10000);
     
     // Change colors
-        document.getElementById("background_div").style.backgroundColor = "#6df75b";
-        document.getElementById("header_table").style.backgroundColor = "#43a337";
+        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+        
+        document.getElementById("background_div").style.backgroundColor = "#03492b";
+        document.getElementById("header_table").style.backgroundColor = "#1e603d";
         document.getElementById("header_table").style.backgroundImage = "url()";
 // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
     
@@ -332,6 +347,9 @@ function superDark(){
         createCookie("superDark", true, 10000);
         console.log("Saved superDark");
         console.log("superDark skin selected!");
+        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
         
         // Change colors
         document.getElementById("background_div").style.backgroundColor = "#3a3a3a";
@@ -351,6 +369,8 @@ function superDark(){
 
 // Change to Theme: Red
 function ThemeRed(){
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
         // Background color
         document.getElementById("background_div").style.backgroundColor = "#ce2d2d";
         // Header color
@@ -365,7 +385,9 @@ function ThemeRed(){
 
 // Change to Theme: Default
 function ThemeDefault(){
-        
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+    
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
         document.getElementById("header_table").style.backgroundColor = "#436a95";
         console.log("Defualt theme is selected.");
