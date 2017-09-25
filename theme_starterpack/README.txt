@@ -1,6 +1,10 @@
 How to create skins for notu.co Guide
 Replace every instance of "THEME-NAME" with the name of your theme.
 
+Naming your theme: 
+Make sure you name your theme with either all caps, or with the first letter capital.
+ex. Superdark or SUPERDARK
+
 1. Create a card for the theme using the photshop file "THEME-NAME_card.psd"
 Make sure you get the right rairty color.
 
@@ -8,6 +12,8 @@ Make sure you get the right rairty color.
 
 3. Edit the THEME-NAME_code.js accordingly. Set your background color and header color. Make sure you replace every 
 single THEME-NAME and THEMENAME with the name of your theme.
+
+4. Edit the theme_info.txt with the information about your theme.
 
 
 
