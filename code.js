@@ -3,6 +3,8 @@ var slideIndex = 0;
 var credits = readCookie("credits");
 var crates = readCookie("crates");
 
+var musicEnabled = readCookie("musicToggle");
+
 
         // Decalre themeCards
         var superDarkCard = "img/superDark_card.png"; 
@@ -10,6 +12,7 @@ var crates = readCookie("crates");
         var emeraldCard = "img/emerald_card.png";
         var prideCard = "img/pride_2017_card.png";
         var swedenCard = "img/sweden_card.png";
+        var coffeecard = "img/coffee_card.png"
 
 // Declare Music variables
 
@@ -20,19 +23,29 @@ swedishMusic = new Audio("sound/swedish_national.mp3");
 // Price of a crate (default should be 1000 credits)
 var priceOfCrate = 1000;
 
+runCrateFunctions();
+runOnItemsPage();
 checkForDev();
 itemsPageCheck();
 slideShowCheck();
 checkIfThemeApplies();
-checkCrateStatus();
 
-// Get Credits
-getCredits();
-// Get Num of Crates
-getCrates();
+
+
 
 function reloadPage(){
     location.reload();
+}
+
+function runCrateFunctions(){
+    if (window.location.href.indexOf("crate") != -1){
+        
+        checkCrateStatus();
+        // Get Credits
+        getCredits();
+        // Get Num of Crates
+        getCrates();
+    }
 }
 
 function checkIfThemeApplies(){
@@ -41,8 +54,16 @@ function checkIfThemeApplies(){
     }else{
         getTheme();
         checkClaim();
+        countDown();
     }
     
+}
+
+function runOnItemsPage(){
+    
+    if (window.location.href.indexOf("items.html") != -1){
+        musicToggleButtonStatus();
+    }  
 }
 
 function checkForDev(){
@@ -90,6 +111,48 @@ if (window.location.href.indexOf("items.html") != -1){
     getSavedSkins();
     }
 }
+
+function toggleMusic(){
+    
+    var musicEnabled = readCookie("musicToggle");
+    
+    if(musicEnabled == null){
+        // If this is the first time the button is clicked, ever.
+        createCookie("musicToggle", true, 10000);
+        console.log("Cookie was created for music toggle");
+        toggleMusic();
+    } else if(musicEnabled == "true") {
+        // Music has been disabled
+        console.log("Music has been disabled");
+        createCookie("musicToggle", false, 10000);
+    } else if(musicEnabled == "false"){
+        // Music has been enabled
+        console.log("Music enabled.");
+        createCookie("musicToggle", true, 10000);
+    } else {
+        console.error("Something went wrong, please tell the notu.co devs about this. Error code: 55:2");
+    }
+    musicToggleButtonStatus();
+}
+
+function musicToggleButtonStatus(){
+    
+    var musicEnabled = readCookie("musicToggle");
+    
+    if(musicEnabled == "true") {
+        document.getElementById("music_toggle_button").style.backgroundColor = "#2baf2b";
+        document.getElementById("musicToggleText").innerHTML = "Enabled"; 
+    } else if(musicEnabled == "false"){
+        document.getElementById("music_toggle_button").style.backgroundColor = "#b2403a";
+        document.getElementById("musicToggleText").innerHTML = "Disabled"; 
+        
+    } else {
+        createCookie("musicToggle", true, 10000);
+        musicToggleButtonStatus();
+    }
+}
+
+
     
 // Button redirect functions    
 
@@ -169,6 +232,10 @@ function addSkins(){
         Sweden();
     }
     
+    if(skinName.toLocaleLowerCase() == "coffee"){
+        Coffee();
+    }
+    
     getSavedSkins();
     window.location.reload(false); 
 }
@@ -181,25 +248,45 @@ function getSavedSkins(){
     var Halloween2017 = readCookie("Halloween2017");
     var LGBT2017 = readCookie("LGBT2017");
     var Sweden = readCookie("Sweden");
+    var Coffee = readCookie("Coffee");
     
     // Check every theme
     
 
     if(Halloween2017 == "true"){
-        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
+        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';
+        // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";
+    }
     
     if(Sweden == "true"){
-      document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';}
+      document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';
+        // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+    
+    if(Coffee == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="epic">Coffee    </span>    <button class="btn" onclick="Coffee()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
     
     if(LGBT2017 == "true"){
-      document.getElementById("saved_skins").innerHTML += '<span id="epic">Pride 2017  </span>      <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+      document.getElementById("saved_skins").innerHTML += '<span id="epic">Pride 2017  </span>      <button class="btn" onclick="LGBT2017()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
     
     if(superDark == "true"){
-        document.getElementById("saved_skins").innerHTML += '<span id="epic"> superDark</span>        <button class="btn" onclick="superDark()">Choose</button><br>';}
-
+        document.getElementById("saved_skins").innerHTML += '<span id="epic"> superDark</span>        <button class="btn" onclick="superDark()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
     
     if(Emerald == "true"){
-        document.getElementById("saved_skins").innerHTML += '<span id="common">Emerald    </span>    <button class="btn" onclick="Emerald()">Choose</button><br>';}
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Emerald    </span>    <button class="btn" onclick="Emerald()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+    
+    
+    
+    
 }
 
 // Theme manager:
@@ -235,6 +322,8 @@ function getTheme(){
     } else if (currentTheme == "Sweden"){
         // Change theme to Emerald
         Sweden();
+    } else if (currentTheme == "Coffee"){
+        Coffee();
     }
     
     
@@ -284,6 +373,8 @@ function Sweden(){
     document.getElementById("background_div").style.backgroundColor = "#1c263a";
     document.getElementById("header_table").style.backgroundImage = "url(img/banner_sweden.gif)";
     
+    // Check if music is enabled.
+    if (musicEnabled == "true"){
     // Check if this is the homepage.
     if (window.location.href.indexOf("index.html") != -1){ 
     swedishMusic.addEventListener('ended', function() {
@@ -295,6 +386,7 @@ function Sweden(){
     }
     // Change to theme 
     createCookie("Theme", "Sweden", 10000);
+    }
 }
 
 
@@ -362,8 +454,23 @@ function superDark(){
 }
 
 
-
-
+// Theme coffee
+function Coffee(){
+    
+    // Save theme
+    createCookie("Coffee", true, 10000);
+    
+    // Change colors
+    // Set Text Color
+    document.getElementById("home_page").style.color = "white";
+    // Set background color.
+    document.getElementById("background_div").style.backgroundColor = "#5b3017";
+    
+    document.getElementById("header_table").style.backgroundImage = "url(img/coffee_banner.png)";
+    
+    // Change to theme 
+    createCookie("Theme", "Coffee", 10000);
+}
 
 
 
@@ -400,13 +507,59 @@ function ThemeDefault(){
 
 
 
+function getMinutes(){
+    var currentdate = new Date(); 
+    var minutes = currentdate.getMinutes();
+    return minutes;
+}
+
+
+
+function countDown(){
+    
+    
+    
+    var claimStatus = readCookie("creditsClaimed");
+    if(claimStatus == "true"){
+    // If hourly credits are claimed, run & display countdown
+
+    var currentMinutes = getMinutes();
+    var lastTimeClaimed = readCookie("lastClaimed");
+    var thirtyMinutes = readCookie("claimInThirty");
+    
+    if (Number(lastTimeClaimed) > Number(currentMinutes)){
+        var minutesLeft = Number(lastTimeClaimed) - Number(currentMinutes);
+    }
+    if (Number(currentMinutes) > Number(lastTimeClaimed)){
+        var newTime = 60 - Number(currentMinutes);
+        var minutesLeft = Number(newTime) + Number(lastTimeClaimed);
+    }
+    if (Number(currentMinutes) == Number(lastTimeClaimed) && (thirtyMinutes == "true")){
+        var minutesLeft = "60";
+    } else if (Number(currentMinutes) == Number(lastTimeClaimed)){
+        var minutesLeft = "0";
+    }
+    console.log("Minutes left: " + minutesLeft);
+    
+    
+    document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "</i>"; 
+    setInterval(countDown, 30000);
+    }
+    
+}
+
+
+
 
 // Claiming button function
 
 function claimHourlyCredits(){
     
-    
+    var minutes = getMinutes();
+    createCookie("lastClaimed", minutes, 0.04166);
+    createCookie("claimInThirty", true, 0.02);
     createCookie("creditsClaimed", true, 0.04166);
+    
     // Play Cash sound effect
     var audio = new Audio("sound/cash.wav");
     audio.volume = 0.25;
@@ -417,6 +570,7 @@ function claimHourlyCredits(){
     
     // Add credits
     document.getElementById("insert_claim_button_here").innerHTML = "";
+    countDown();
     addCredits(250);
     
 }
@@ -653,7 +807,7 @@ function rarityLegendary(){
 function rarityEpic(){
     // Item is epic tier.
     console.log("You got an Epic!");
-    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
     
     if(whatEpicNum == 1){
         
@@ -665,7 +819,12 @@ function rarityEpic(){
         // Get second item, Pride 2017
         document.getElementById("themeCard").src=prideCard;
         createCookie("LGBT2017", true, 10000);
-    }
+    } else if (whatEpicNum == 3){
+        
+        // Coffee
+        document.getElementById("themeCard").src=coffeecard;
+        createCookie("Coffee", true, 10000);
+    } 
     
     
     

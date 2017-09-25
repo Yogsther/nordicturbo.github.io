@@ -22,7 +22,8 @@
          
          <div id="claim_credits_div">
                 <span id="insert_claim_button_here"></span>
-            </div>   
+                <span id="insert_claim_countdown"></span>
+            </div>  
         
          <!-- Buttons (duh..) -->
         <div id="top_buttons">
@@ -42,11 +43,20 @@
             Skin code: <input id="theme_chooser" class="text_field">
             <button class="btn" onclick="addSkins();">Go</button>
             <br><br>
+            
+            
+            <i>Toggle music for themes</i>
+            <button id="music_toggle_button" class="btn" onclick="toggleMusic();"><span id="musicToggleText">Enabled</span></button>
+            
+            
+            <br><br>
             Saved skins:
             <br><br>
+            
             <div id="saved_skins">
                 
-                
+                <span id="no_themes"><i>No themes found :( </i><br></span>
+            
                 
             <!--     
             superDark        <button class="btn">Choose</button><br>

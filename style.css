@@ -434,10 +434,25 @@ body{
     
 }
 
+#music_toggle_button{
+    color: white;
+    background-color: #2baf2b;
+}
+
+#insert_claim_countdown{
+    color: white;
+    position: relative;
+    left: -6px;
+    text-align: right;
+    top: 7px;
+    
+}
 
 
-
-
+#no_themes{
+    position: relative;
+    lefT: -54px;
+}
 
 
 

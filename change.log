@@ -1,8 +1,19 @@
 Changelog:
 
+v.4.0 (Claim Countdown)
+- Added Coffee theme (Epic), and it's avalible in crates.
+- Added claim countdown
+- Added "toggle music for themes button" under the items page
+- Full rework of the Emerald theme
+
+- Moved a lot of images to Imgur
+- Fixed numerous tiny bugs
+
+
 v.3.3
 - Added about page
 	Download a theme_starterpack.zip and make your own themes!
+    
 - Changed cash sound effect
 - Fixed the Crate link bug
 - Fixed order and color of saved skins
