@@ -11,6 +11,11 @@ var crates = readCookie("crates");
         var prideCard = "img/pride_2017_card.png";
         var swedenCard = "img/sweden_card.png";
 
+// Declare Music variables
+
+swedishMusic = new Audio("sound/swedish_national.mp3");
+
+
 
 // Price of a crate (default should be 1000 credits)
 var priceOfCrate = 1000;
@@ -122,6 +127,8 @@ function changeTheme(){
     document.getElementById("header_logo").src="img/website_logo_gif.gif";
     var click = new Audio("sound/click.wav");
     click.play();
+    // Stop all music
+    swedishMusic.pause();
     
  
 }
@@ -256,8 +263,7 @@ function Sweden(){
     document.getElementById("header_table").style.backgroundImage = "url(img/banner_sweden.gif)";
     
     // Check if this is the homepage.
-    if (window.location.href.indexOf("index.html") != -1){
-    swedishMusic = new Audio("sound/swedish_national.mp3"); 
+    if (window.location.href.indexOf("index.html") != -1){ 
     swedishMusic.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
