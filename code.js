@@ -440,18 +440,18 @@ function slideShow(){
     }
     
     
-    document.getElementById("slide_image").src="img/slideshow_image03.png";
+    document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png";
     
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
-        document.getElementById("slide_image").src="img/slideshow_image01.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/5eSQh2j.png"
         progressBar();
     } else if (slideIndex == 2){
-        document.getElementById("slide_image").src="img/slideshow_image02.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/JDGDg05.png"
         progressBar();
     } else if (slideIndex == 3){
-        document.getElementById("slide_image").src="img/slideshow_image03.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png"
         progressBar();
     }
     
