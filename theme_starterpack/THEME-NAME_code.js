@@ -4,6 +4,9 @@ function THEMENAME(){
     createCookie("THEME-NAME", true, 10000);
     
     // Change colors
+    
+    // Set Text Color
+    document.getElementById("home_page").style.color = "white";
     // Set background color.
     document.getElementById("background_div").style.backgroundColor = "#000000";
     // Set color of header.
