@@ -439,7 +439,7 @@ function slideShow(){
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
-        document.getElementById("slide_image").src="img/slideshow_image01.gif"
+        document.getElementById("slide_image").src="img/slideshow_image01.png"
         progressBar();
     } else if (slideIndex == 2){
         document.getElementById("slide_image").src="img/slideshow_image02.png"
@@ -453,11 +453,12 @@ function slideShow(){
 
 function slideRedirect(){
     if (slideIndex == 1){
-        console.log("Sorry, you cant click this image");
+            window.open("https://www.youtube.com/watch?v=gv3G5LGKjlA",'_blank');
+            
     } else if (slideIndex == 2){
-        window.location.href = "https://twitter.com/NordicTurbo";
+        window.open("https://twitter.com/NordicTurbo",'_blank');
     } else if (slideIndex == 3){
-        window.location.href = "https://github.com/Yogsther/nordicturbo.github.io"
+        window.open("https://github.com/Yogsther/nordicturbo.github.io",'_blank');
     }
 }
 
