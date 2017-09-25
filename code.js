@@ -105,6 +105,10 @@ function items(){
     window.location.href = "items.html"
 }
 
+function about(){
+    window.location.href = "about.html"
+}
+
 function error(){
     var audio = new Audio("sound/error.wav");
     audio.play();
@@ -179,18 +183,23 @@ function getSavedSkins(){
     var Sweden = readCookie("Sweden");
     
     // Check every theme
-    if(superDark == "true"){
-        document.getElementById("saved_skins").innerHTML += 'superDark        <button class="btn" onclick="superDark()">Choose</button><br>';}
-    if(Emerald == "true"){
-        document.getElementById("saved_skins").innerHTML += 'Emerald        <button class="btn" onclick="Emerald()">Choose</button><br>';}
-    if(Halloween2017 == "true"){
-        document.getElementById("saved_skins").innerHTML += 'Halloween 2017        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
     
-    if(LGBT2017 == "true"){
-      document.getElementById("saved_skins").innerHTML += 'Pride 2017        <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+
+    if(Halloween2017 == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';}
     
     if(Sweden == "true"){
-      document.getElementById("saved_skins").innerHTML += 'Sweden        <button class="btn" onclick="Sweden()">Choose</button><br>';}
+      document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';}
+    
+    if(LGBT2017 == "true"){
+      document.getElementById("saved_skins").innerHTML += '<span id="epic">Pride 2017  </span>      <button class="btn" onclick="LGBT2017()">Choose</button><br>';}
+    
+    if(superDark == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="epic"> superDark</span>        <button class="btn" onclick="superDark()">Choose</button><br>';}
+
+    
+    if(Emerald == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Emerald    </span>    <button class="btn" onclick="Emerald()">Choose</button><br>';}
 }
 
 // Theme manager:
