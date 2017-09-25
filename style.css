@@ -216,6 +216,7 @@ body{
     position: relative;
     height: 250px;
     
+    z-index: 5;
     
 }
 
@@ -224,6 +225,7 @@ body{
     top: 20px;
     height: 250px;
     width: 450px;
+    z-index: 5;
     
     /* Center */
     margin: 0 auto;
