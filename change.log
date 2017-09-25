@@ -1,6 +1,12 @@
 Changelog:
 
-v.3.2.1
+v.3.3
+- Added about page
+	Download a theme_starterpack.zip and make your own themes!
+- Changed cash sound effect
+- Fixed the Crate link bug
+- Fixed order and color of saved skins
+
 - Added Github webhook to our Discord server.
 
 v.3.2 (Crate Beta v2.2)
