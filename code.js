@@ -74,6 +74,11 @@ function disableDev(){
     location.reload();
 }
 
+
+function goToCrates(){
+    window.location.href = "crate.html";
+}
+
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
     slideShow();

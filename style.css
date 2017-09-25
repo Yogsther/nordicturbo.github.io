@@ -215,24 +215,15 @@ body{
     
     position: relative;
     height: 250px;
-    
-    z-index: 5;
-    
-}
-
-#advert_01{
-    
+    cursor: pointer;
     top: 20px;
-    height: 250px;
-    width: 450px;
-    z-index: 5;
-    
     /* Center */
     margin: 0 auto;
     position: relative;
     display: block;
     left: -20px;
 }
+
 
 
 #saved_skins{
