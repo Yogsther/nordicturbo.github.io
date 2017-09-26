@@ -13,6 +13,8 @@ function THEMENAME(){
     document.getElementById("header_table").style.backgroundColor = "#FFFFFF";
     
     // Set background banner. (! un-comment the line below if you want a banner !) Make sure you have img/ before!
+    
+    document.getElementById("header_table").style.backgroundImage = "url()";
     // document.getElementById("header_table").style.backgroundImage = "url(img/banner_THEME-NAME.gif)";
     
     // Change to theme 

@@ -1,0 +1,2 @@
+Theme name (This one can contain spaces): Super Bright
+Theme rarity: Common

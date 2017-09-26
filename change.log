@@ -1,5 +1,10 @@
 Changelog:
 
+v.4.1 (Theme System Rewrite Part 1)
+- Rewritten parts of theme system
+- Added theme: Superbright (Common) and it's avalible in crates.
+- Fixed Sweden Skin bug
+
 v.4.0 (Claim Countdown)
 - Added Coffee theme (Epic), and it's avalible in crates.
 - Added claim countdown

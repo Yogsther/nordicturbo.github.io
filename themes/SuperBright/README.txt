@@ -1,13 +1,5 @@
-How to create skins for notu.co Guide (v.2.5)
-
+How to create skins for notu.co Guide
 Replace every instance of "THEME-NAME" with the name of your theme.
-You can use the website_template.psd to try out diffrent designs, and colors.
-
-If you're having any problems, check out the Example folder. Thats how everything should look when you are done.
-
-Naming your theme: 
-Make sure you name your theme with either all caps, or with the first letter capital.
-ex. Superdark or SUPERDARK
 
 1. Create a card for the theme using the photshop file "THEME-NAME_card.psd"
 Make sure you get the right rairty color.
@@ -16,8 +8,6 @@ Make sure you get the right rairty color.
 
 3. Edit the THEME-NAME_code.js accordingly. Set your background color and header color. Make sure you replace every 
 single THEME-NAME and THEMENAME with the name of your theme.
-
-4. Edit the theme_info.txt with the information about your theme.
 
 
 
@@ -30,4 +20,5 @@ You can use the THEME-NAME_banner.psd
 
 5. Make sure you edit in the banenr in the .js file.
 
-6. If you want Music, just include a music file and Olle will fix!
+6. You're done, Send in the files in a .zip to the notu.co discord and look forward to seeing this theme in the crates.
+

@@ -13,6 +13,7 @@ var musicEnabled = readCookie("musicToggle");
         var prideCard = "img/pride_2017_card.png";
         var swedenCard = "img/sweden_card.png";
         var coffeecard = "img/coffee_card.png"
+        var superbrightCard = "img/Super-Bright_card.png"
 
 // Declare Music variables
 
@@ -184,13 +185,13 @@ function changeTheme(){
     var currentTheme = readCookie("Theme");
     if(currentTheme == "Default"){
         // Change to red
-        window.setTimeout(ThemeRed,300); 
+        window.setTimeout(Red,300); 
         createCookie("Theme", "Red", 10000); 
         console.log("Theme changed to Red");
     } else {
         // Change back to defualt if the current theme is not defult.
         createCookie("Theme", "Default", 10000); 
-        window.setTimeout(ThemeDefault,300);
+        window.setTimeout(Default,300);
         
     }
 
@@ -212,29 +213,8 @@ function addSkins(){
     document.getElementById("theme_chooser").value = "";
     console.log(skinName);
     
-    // Change skin to superDark
-    if(skinName.toLowerCase() == "superdark"){
-        superDark();
-        console.log("You saved SuperDark");
-    }
-    
-    if(skinName.toLowerCase() == "emerald"){
-        Emerald(); }
-    
-    if(skinName.toLowerCase() == "halloween2017"){
-        Halloween2017(); }
-    
-    if(skinName.toLocaleLowerCase() == "lgbt2017"){
-        LGBT2017();
-    }
-    
-    if(skinName.toLocaleLowerCase() == "swedenlegend"){
-        Sweden();
-    }
-    
-    if(skinName.toLocaleLowerCase() == "coffee"){
-        Coffee();
-    }
+    var addSkinFunction = skinName + "();" 
+    eval(addSkinFunction);
     
     getSavedSkins();
     window.location.reload(false); 
@@ -249,10 +229,10 @@ function getSavedSkins(){
     var LGBT2017 = readCookie("LGBT2017");
     var Sweden = readCookie("Sweden");
     var Coffee = readCookie("Coffee");
+    var Superbright = readCookie("Superbright");
     
     // Check every theme
     
-
     if(Halloween2017 == "true"){
         document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';
         // Remove "No THemes Found"
@@ -284,58 +264,32 @@ function getSavedSkins(){
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
     
-    
-    
-    
+    if(Superbright == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Super Bright    </span>    <button class="btn" onclick="Superbright()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+
 }
 
-// Theme manager:
 
+// New theme manager:
 function getTheme(){
-    
-    var currentTheme = readCookie("Theme");
-    if(currentTheme == null){
+    var currentThemeName = readCookie("Theme");
+
+    if(currentThemeName == null){
         // Create cookie if user is new to the site.
         createCookie("Theme", "Default", 10000); 
         console.log("Created Cookie, Default theme.");
+        getTheme();
         
-    } else if (currentTheme == "Default"){
-        window.setTimeout(ThemeDefault,300); 
-        
-    } else if (currentTheme == "Red"){
-        // Change theme to Red.
-       // window.setTimeout(ThemeRed,300); 
-        ThemeRed();    
-    } else if (currentTheme == "superDark"){
-        // Change theme to superDark
-        superDark();
-            
-    } else if (currentTheme == "Emerald"){
-        // Change theme to Emerald
-        Emerald();
-    } else if (currentTheme == "Halloween2017"){
-        // Change theme to Emerald
-        Halloween2017();
-    } else if (currentTheme == "LGBT2017"){
-        // Change theme to Emerald
-        LGBT2017();
-    } else if (currentTheme == "Sweden"){
-        // Change theme to Emerald
-        Sweden();
-    } else if (currentTheme == "Coffee"){
-        Coffee();
+    } else { 
+    console.log("Current theme is: " + currentThemeName + ".");
+    var finalFunction = currentThemeName + "();";
+    eval(finalFunction);
     }
-    
-    
-    
-    
-    
-    else {
-        // Error, this should not happen.
-        console.error("Error: 1 - No theme found!");
-    }
-  
 }
+
+
 
 
 
@@ -350,6 +304,7 @@ function LGBT2017(){
     // Change colors and banner
         document.getElementById("background_div").style.backgroundColor = "#bc3131";
         document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
+    
 
     // Change to theme 
     createCookie("Theme", "LGBT2017", 10000);
@@ -384,10 +339,11 @@ function Sweden(){
     swedishMusic.volume = .25;
     swedishMusic.play();
     }
+    
+}
     // Change to theme 
     createCookie("Theme", "Sweden", 10000);
     }
-}
 
 
 function Halloween2017(){
@@ -429,6 +385,29 @@ function Emerald(){
     // Change to theme 
     createCookie("Theme", "Emerald", 10000);
     
+}
+
+
+function Superbright(){
+    
+    // Save theme
+    createCookie("Superbright", true, 10000);
+    
+    // Change colors
+    
+    // Set Text Color
+    document.getElementById("home_page").style.color = "black";
+    // Set background color.
+    document.getElementById("background_div").style.backgroundColor = "#f7f7f7";
+    // Set color of header.
+    document.getElementById("header_table").style.backgroundColor = "#dadada";
+    document.getElementById("header_table").style.backgroundImage = "url()";
+    
+    // Set background banner. (! un-comment the line below if you want a banner !) Make sure you have img/ before!
+    // document.getElementById("header_table").style.backgroundImage = "url(img/banner_THEME-NAME.gif)";
+    
+    // Change to theme 
+    createCookie("Theme", "Superbright", 10000);
 }
 
 
@@ -475,7 +454,7 @@ function Coffee(){
 
 
 // Change to Theme: Red
-function ThemeRed(){
+function Red(){
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
         // Background color
@@ -491,7 +470,7 @@ function ThemeRed(){
 }
 
 // Change to Theme: Default
-function ThemeDefault(){
+function Default(){
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
     
@@ -836,10 +815,23 @@ function rarityCommon(){
     
     // Item is common tier.
     console.log("You got a common.");
-            
-    // Unlock Emerald
-    document.getElementById("themeCard").src=emeraldCard;
-    createCookie("Emerald", true, 10000);
+    
+    
+    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
+    
+    if(whatEpicNum == 1){
+        
+        // Get first item, superWhite
+        document.getElementById("themeCard").src=superbrightCard;
+        createCookie("Superbright", true, 10000);
+    } else if (whatEpicNum == 2){
+        
+        // Unlock Emerald
+        document.getElementById("themeCard").src=emeraldCard;
+        createCookie("Emerald", true, 10000);
+    }
+    
+    
     
     
     // Play opening animation
@@ -903,6 +895,21 @@ function getCredits(){
     document.getElementById("numCredits").innerHTML = credits;
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Cookie functions from Overstacked

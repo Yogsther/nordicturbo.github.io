@@ -1,4 +1,9 @@
 How to add skins to notu.co!
 
--ask olle
+1. Make a theme using theme_starterpack.zip
+2. Insert the function in THEME-NAME_code.js in code.js
+3. Move Banner & Card to /img
+4. Declare the card at the top of the code.
+5. Do function getSavedSkins(){
+
 
