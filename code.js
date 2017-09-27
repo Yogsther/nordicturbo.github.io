@@ -31,7 +31,7 @@ itemsPageCheck();
 slideShowCheck();
 checkIfThemeApplies();
 
-
+countDownTimer();
 
 
 function reloadPage(){
@@ -520,14 +520,19 @@ function countDown(){
     }
     console.log("Minutes left: " + minutesLeft);
     
+    if(claimStatus != true){
+        checkClaim();
+    }    
     
     document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "</i>"; 
-    setInterval(countDown, 30000);
+    
     }
     
 }
 
-
+function countDownTimer(){
+    setInterval(countDown, 30000); 
+}
 
 
 // Claiming button function
@@ -853,7 +858,7 @@ function addCredits(amount){
             createCookie("credits",credits, 10000);
             console.log("Added " + amount + ", total credits: " + credits + ".");
         }
-        getCredits();
+        runCrateFunctions(); 
 }
 
 function addCrates(amount){
