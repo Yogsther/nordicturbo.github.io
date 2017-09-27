@@ -456,6 +456,63 @@ body{
 
 
 
+#devtheme_backgroundcolor{
+    position: absolute;
+    top: 255px;
+    right: 230px;
+    width: 60px;
+    text-align: center;
+}
+
+
+#devtheme_headercolor{
+    position: absolute;
+    top: 255px;
+    right: 162px;
+    width: 60px;
+    text-align: center;
+}
+
+
+#devtheme_headerurl{
+    position: absolute;
+    top: 255px;
+    right: 94px;
+    width: 60px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* This should be at the bottom of the CSS! */

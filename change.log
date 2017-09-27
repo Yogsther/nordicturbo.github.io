@@ -1,5 +1,10 @@
 Changelog:
 
+
+v.5.0 (Dev Theme & Common Theme Dump) [IN PROGRESS]
+- Added Devtheme
+
+
 v.4.1 (Theme System Rewrite Part 1)
 - Rewritten parts of theme system
 - Added theme: Superbright (Common) and it's avalible in crates.

@@ -236,7 +236,8 @@ function getSavedSkins(){
     
     
     if(Devtheme == "true"){
-        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Dev theme</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';
+        var devtheme_button = readCookie("devthemebutton");
+        document.getElementById("saved_skins").innerHTML += devtheme_button;
         // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";
     }
@@ -284,7 +285,7 @@ function getSavedSkins(){
 // New theme manager:
 function getTheme(){
     var currentThemeName = readCookie("Theme");
-
+    
     if(currentThemeName == null){
         // Create cookie if user is new to the site.
         createCookie("Theme", "Default", 10000); 
@@ -325,26 +326,71 @@ function LGBT2017(){
 
 
 function Devtheme(){
-     // Save theme
+    
+    
+        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"> <input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"><input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br>Current colors: <font color="red">#98322 <font color="white">& <font color="blue">#ffffff</font></font><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
+        
+        createCookie("devthemebutton", devtheme_button, 10000);
+    
+        // Save theme
         createCookie("Devtheme", true, 10000);
+        
     
-        var textColor = readCookie("devtheme_textcolor");
-        var headerColor = readCookie("devtheme_headercolor");
-        var backgroundColor = readCookie("devtheme_backgroundcolor");
+        if (window.location.href.indexOf("items.html") != -1){
+        // Only on /items.html
+    
+        var headerColor = document.getElementById("devtheme_headercolor").value;
+        var backgroundColor = document.getElementById("devtheme_backgroundcolor").value;
+        var headerURL = document.getElementById("devtheme_headerurl").value;
+    
+        if(headerColor != ""){
+            headerColor = "#" + headerColor;
+            document.getElementById("header_table").style.backgroundColor = headerColor;
+            createCookie("devtheme_headercolor", headerColor, 10000);
+        }
+        if(backgroundColor != ""){
+            backgroundColor = "#" + backgroundColor;
+            document.getElementById("background_div").style.backgroundColor = backgroundColor;
+            createCookie("devtheme_backgroundcolor", backgroundColor, 10000);
+        }
+        if(headerURL != ""){
+            headerURL = "url(" + headerURL + ")"
+            document.getElementById("header_table").style.backgroundImage = headerURL;
+            createCookie("header_image_url_input", headerURL, 10000);
+        }
+    }
+        headerColor = readCookie("devtheme_headercolor");  
+        backgroundColor = readCookie("devtheme_backgroundcolor");  
 
-        // Set Text Color
-        document.getElementById("home_page").style.color = textColor;
-        
-        document.getElementById("background_div").style.backgroundColor = backgroundColor;
-        document.getElementById("header_table").style.backgroundColor = headerColor;
-        document.getElementById("header_table").style.backgroundImage = "url()";
-        
     
-    
+        if(headerColor != ""){
+            document.getElementById("header_table").style.backgroundColor = headerColor;
+            createCookie("devtheme_headercolor", headerColor, 10000);
+        }
+        if(backgroundColor != ""){
+            document.getElementById("background_div").style.backgroundColor = backgroundColor;
+            createCookie("devtheme_backgroundcolor", backgroundColor, 10000);
+        }
+        if(headerURL != ""){
+            document.getElementById("header_table").style.backgroundImage = headerURL;
+            createCookie("header_image_url_input", headerURL, 10000);
+        }
+        
+      
+        
+        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"> <input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"><input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br>Current colors: <font color="' + headerColor + '">' + headerColor + ' <font color="white">& <font color="' + backgroundColor + '">#ffffff</font></font><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
+        
+        createCookie("devthemebutton", devtheme_button, 10000);
         // Change to theme 
         createCookie("Theme", "Devtheme", 10000);
+   
+}       
+        
+function removeDevTheme(){
+        eraseCookie("Devtheme");
+        createCookie("Theme", "Default", 10000);
+        reloadPage();
 }
-
 
 
 
