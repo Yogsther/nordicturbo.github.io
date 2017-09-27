@@ -230,8 +230,17 @@ function getSavedSkins(){
     var Sweden = readCookie("Sweden");
     var Coffee = readCookie("Coffee");
     var Superbright = readCookie("Superbright");
+    var Devtheme = readCookie("Devtheme");
     
     // Check every theme
+    
+    
+    if(Devtheme == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="legendary">Dev theme</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';
+        // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";
+    }
+    
     
     if(Halloween2017 == "true"){
         document.getElementById("saved_skins").innerHTML += '<span id="legendary">Halloween 2017</span>        <button class="btn" onclick="Halloween2017()">Choose</button><br>';
@@ -313,6 +322,30 @@ function LGBT2017(){
     
     
 }
+
+
+function Devtheme(){
+     // Save theme
+        createCookie("Devtheme", true, 10000);
+    
+        var textColor = readCookie("devtheme_textcolor");
+        var headerColor = readCookie("devtheme_headercolor");
+        var backgroundColor = readCookie("devtheme_backgroundcolor");
+
+        // Set Text Color
+        document.getElementById("home_page").style.color = textColor;
+        
+        document.getElementById("background_div").style.backgroundColor = backgroundColor;
+        document.getElementById("header_table").style.backgroundColor = headerColor;
+        document.getElementById("header_table").style.backgroundImage = "url()";
+        
+    
+    
+        // Change to theme 
+        createCookie("Theme", "Devtheme", 10000);
+}
+
+
 
 
 function Sweden(){
