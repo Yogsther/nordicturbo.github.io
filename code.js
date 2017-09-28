@@ -231,6 +231,7 @@ function getSavedSkins(){
     var Coffee = readCookie("Coffee");
     var Superbright = readCookie("Superbright");
     var Devtheme = readCookie("Devtheme");
+    var Ruby = readCookie("Ruby");
     
     // Check every theme
     
@@ -271,6 +272,11 @@ function getSavedSkins(){
     
     if(Emerald == "true"){
         document.getElementById("saved_skins").innerHTML += '<span id="common">Emerald    </span>    <button class="btn" onclick="Emerald()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+    
+    f(Ruby == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Ruby    </span>    <button class="btn" onclick="Ruby()">Choose</button><br>';
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
     
@@ -465,6 +471,24 @@ function Emerald(){
     // Change to theme 
     createCookie("Theme", "Emerald", 10000);
     
+}
+
+function Ruby(){
+        // Save theme
+        createCookie("Ruby", true, 10000);
+    
+        // Change colors
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+        
+        document.getElementById("background_div").style.backgroundColor = "#860000";
+        document.getElementById("header_table").style.backgroundColor = "#db1313";
+        document.getElementById("header_table").style.backgroundImage = "url()";
+        // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
+    
+    
+        // Change to theme 
+        createCookie("Theme", "Ruby", 10000);    
 }
 
 
@@ -902,7 +926,7 @@ function rarityCommon(){
     console.log("You got a common.");
     
     
-    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
     
     if(whatEpicNum == 1){
         
