@@ -17,8 +17,8 @@ var musicEnabled = readCookie("musicToggle");
         var rubyCard = "img/ruby_card.png";
         var sapphireCard = "img/sapphire_card.png";
 
-// Declare Music variables
 
+// Declare Music variables
 swedishMusic = new Audio("sound/swedish_national.mp3");
 
 
@@ -159,13 +159,14 @@ function musicToggleButtonStatus(){
     
 // Button redirect functions    
 
-function git(){
-    window.location.href = "git.html";
-}
-
 function home(){
     window.location.href = "index.html"
 }
+
+function goToCrates(){
+    window.location.href = "crate.html"
+}
+
 
 function items(){
     window.location.href = "items.html"
@@ -209,12 +210,21 @@ function changeTheme(){
 }
 
 // Button hover color change
-function buttonOn(){
+function buttonOn(buttonID){
+    var buttonColor = "black";
     
-    var buttonId = this.id
-    console.log("This: " + buttonId);
+    var currentTheme = readCookie("Theme")
+    var functionName = currentTheme + "('buttonColor');";
+    var buttonColor = eval(functionName);
     
-    
+    if(buttonColor != "undefined"){
+    console.log(buttonColor);
+    document.getElementById(buttonID).style.background = buttonColor;
+    }
+}
+
+function buttonOff(buttonID){
+    document.getElementById(buttonID).style.background = "";
 }
 
 
@@ -330,7 +340,14 @@ function getTheme(){
 
 
 
-function LGBT2017(){
+function LGBT2017(request){
+    
+    var buttonColor = "#d84138";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
+    
     
     // Save theme
     createCookie("LGBT2017", true, 10000);
@@ -422,7 +439,13 @@ function removeDevTheme(){
 
 
 
-function Sweden(){
+function Sweden(request){
+    
+    var buttonColor = "#efda39";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
     
     // Save theme
     createCookie("Sweden", true, 10000);
@@ -453,7 +476,14 @@ function Sweden(){
     }
 
 
-function Halloween2017(){
+function Halloween2017(request){
+    
+    var buttonColor = "#ff9021";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
+    
     // Save theme
     createCookie("Halloween2017", true, 10000);
     
@@ -558,7 +588,15 @@ function Superbright(){
 
 
 // Change to superDark & save it. 
-function superDark(){
+function superDark(request){
+    
+    var buttonColor = "#3d3d3d";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
+    
+    
     // Save superDark
         createCookie("superDark", true, 10000);
         console.log("Saved superDark");
@@ -579,7 +617,13 @@ function superDark(){
 
 
 // Theme coffee
-function Coffee(){
+function Coffee(request){
+    
+    var buttonColor = "#ba7637";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
     
     // Save theme
     createCookie("Coffee", true, 10000);
@@ -599,7 +643,14 @@ function Coffee(){
 
 
 // Change to Theme: Red
-function Red(){
+function Red(request){
+    
+        var buttonColor = "#ef4f4f";
+    
+        if(request == "buttonColor"){
+            return buttonColor;
+        }
+        
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
         // Background color

@@ -96,9 +96,8 @@ body{
 }
 
 .btn:hover{
-    
-    color: white;
-    
+    color: white;   
+    background: #3a6cbc;
 }
 
 .btn:active{
@@ -222,6 +221,13 @@ body{
     position: relative;
     display: block;
     left: -20px;
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -247,6 +253,14 @@ body{
     margin: 0 auto;
     position: relative;
     display: block;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -258,6 +272,14 @@ body{
     margin: 0 auto;
     position: relative;
     display: block;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #themeCard{
@@ -269,6 +291,14 @@ body{
     margin: 0 auto;
     position: relative;
     display: block;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #crateInfoText{
@@ -278,6 +308,8 @@ body{
     position: relative;
     font-family: ubuntu;
     font-size: 19px;
+    
+    
     
 }
 
@@ -292,12 +324,26 @@ body{
     top: 50px;
     right: 5px;
     
-    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     
 }
 
 #credit_animated{
     height: 50px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 #numCredits{
     font-size: 30px;
@@ -379,12 +425,28 @@ body{
     margin: 0 auto;
     position: relative;
     display: block;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
 #buy_crates_image{
     top: 50px;
     height: 200px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -409,6 +471,14 @@ body{
     position: relative;
     left: -120px;
     top: -60px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #credit_info{
@@ -483,9 +553,21 @@ body{
 }
 
 
+#goback_button{
+    position: absolute;
+    top: 65px;
+    left: 40px;
+    background: #383838;
+    color: white;
+}
 
-
-
+#projects_button{
+    position: absolute;
+    top: 100px;
+    left: 55px;
+    width: 100px;
+    
+}
 
 
 

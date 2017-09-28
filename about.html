@@ -27,34 +27,26 @@
             </div> 
         
          <!-- Buttons (duh..) -->
-        <div id="top_buttons">
-            <button class="btn" onclick="home()">Home</button> 
-            <button class="btn" onclick="git()">Git</button>
-            <button class="btn" onclick="items()">Items</button>
-            <button class="btn" onclick="about()">About</button> 
-         </div>
+       <div id="top_buttons">
+            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button> 
+            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button> 
+            <button id="items_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="items()">Items</button>
+            <button id="about_button" class="btn" onclick="about()" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">About</button>
+        </div>
          
          <!-- From here and up should be the same for every page! -->
         
         <!-- Homepage / Blog -->
         <div id="home_page">
-    
+            For devs:<br>
             
             Download the <a href="theme_starterpack.zip">theme_starterpack.zip</a> here
             if you want to help and contribute with a theme! :)
+            <br><br>
+            Add this repository via <a href="git.html">Git</a>
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+   
             
             
             
