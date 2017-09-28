@@ -275,7 +275,7 @@ function getSavedSkins(){
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
     
-    f(Ruby == "true"){
+    if(Ruby == "true"){
         document.getElementById("saved_skins").innerHTML += '<span id="common">Ruby    </span>    <button class="btn" onclick="Ruby()">Choose</button><br>';
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
