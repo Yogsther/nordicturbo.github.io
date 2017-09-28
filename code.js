@@ -14,6 +14,7 @@ var musicEnabled = readCookie("musicToggle");
         var swedenCard = "img/sweden_card.png";
         var coffeecard = "img/coffee_card.png"
         var superbrightCard = "img/Super-Bright_card.png"
+        var rubyCard = "img/ruby_card.png";
 
 // Declare Music variables
 
@@ -926,7 +927,7 @@ function rarityCommon(){
     console.log("You got a common.");
     
     
-    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
     
     if(whatEpicNum == 1){
         
@@ -938,6 +939,10 @@ function rarityCommon(){
         // Unlock Emerald
         document.getElementById("themeCard").src=emeraldCard;
         createCookie("Emerald", true, 10000);
+    } else if (whatEpicNum == 3){
+        // Unlock Ruby
+        document.getElementById("themeCard").src=rubyCard;
+        createCookie("Ruby", true, 10000);
     }
     
     
