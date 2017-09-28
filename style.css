@@ -456,7 +456,7 @@ body{
 
 
 
-#devtheme_backgroundcolor{
+#devtheme_headercolor{
     position: absolute;
     top: 255px;
     right: 230px;
@@ -465,7 +465,7 @@ body{
 }
 
 
-#devtheme_headercolor{
+#devtheme_backgroundcolor{
     position: absolute;
     top: 255px;
     right: 162px;

@@ -217,7 +217,7 @@ function addSkins(){
     eval(addSkinFunction);
     
     getSavedSkins();
-    window.location.reload(false); 
+    reloadPage();
 }
 
 function getSavedSkins(){
@@ -328,7 +328,7 @@ function LGBT2017(){
 function Devtheme(){
     
     
-        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"> <input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"><input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br>Current colors: <font color="red">#98322 <font color="white">& <font color="blue">#ffffff</font></font><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
+        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"><input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"> <input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br><i>Current colors: <font color="#FFFFFF">#?????? <font color="white">& <font color="#ffffff">#??????</font></font></i><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
         
         createCookie("devthemebutton", devtheme_button, 10000);
     
@@ -360,7 +360,8 @@ function Devtheme(){
         }
     }
         headerColor = readCookie("devtheme_headercolor");  
-        backgroundColor = readCookie("devtheme_backgroundcolor");  
+        backgroundColor = readCookie("devtheme_backgroundcolor"); 
+        headerURL = readCookie("header_image_url_input");
 
     
         if(headerColor != ""){
@@ -378,7 +379,7 @@ function Devtheme(){
         
       
         
-        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"> <input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"><input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br>Current colors: <font color="' + headerColor + '">' + headerColor + ' <font color="white">& <font color="' + backgroundColor + '">#ffffff</font></font><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
+        var devtheme_button = '<span id="legendary">Custom Dev theme</span> <input type="text" placeholder="111111" class="text_field" maxlength="6" id="devtheme_backgroundcolor"><input type="text" placeholder="ffffff" class="text_field" maxlength="6" id="devtheme_headercolor"> <input type="text" placeholder="http://" class="text_field" id="devtheme_headerurl"><button class="btn" onclick="Devtheme()">weeb</button><br>Current colors: <font color="' + headerColor + '">' + headerColor + ' <font color="white">& <font color="' + backgroundColor + '">' + backgroundColor + ' </font></font><br><a href="javascript:removeDevTheme()">Remove Devtheme<br><br>';
         
         createCookie("devthemebutton", devtheme_button, 10000);
         // Change to theme 
