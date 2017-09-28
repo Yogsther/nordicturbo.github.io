@@ -15,6 +15,7 @@ var musicEnabled = readCookie("musicToggle");
         var coffeecard = "img/coffee_card.png"
         var superbrightCard = "img/Super-Bright_card.png"
         var rubyCard = "img/ruby_card.png";
+        var sapphireCard = "img/sapphire_card.png";
 
 // Declare Music variables
 
@@ -233,6 +234,7 @@ function getSavedSkins(){
     var Superbright = readCookie("Superbright");
     var Devtheme = readCookie("Devtheme");
     var Ruby = readCookie("Ruby");
+    var Sapphire = readCookie("Sapphire");
     
     // Check every theme
     
@@ -281,12 +283,20 @@ function getSavedSkins(){
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
     
+    
+    if(Sapphire == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="common">Sapphire    </span>    <button class="btn" onclick="Sapphire()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+    
     if(Superbright == "true"){
         document.getElementById("saved_skins").innerHTML += '<span id="common">Super Bright    </span>    <button class="btn" onclick="Superbright()">Choose</button><br>';
     // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
 
 }
+
+
 
 
 // New theme manager:
@@ -493,6 +503,26 @@ function Ruby(){
 }
 
 
+function Sapphire(){
+        // Save theme
+        createCookie("Sapphire", true, 10000);
+    
+        // Change colors
+        // Set Text Color
+        document.getElementById("home_page").style.color = "white";
+        
+        document.getElementById("background_div").style.backgroundColor = "#1d2872";
+        document.getElementById("header_table").style.backgroundColor = "#3043cc";
+        document.getElementById("header_table").style.backgroundImage = "url()";
+        // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
+    
+    
+        // Change to theme 
+        createCookie("Theme", "Sapphire", 10000);    
+}
+
+
+
 function Superbright(){
     
     // Save theme
@@ -528,8 +558,8 @@ function superDark(){
         document.getElementById("home_page").style.color = "white";
         
         // Change colors
-        document.getElementById("background_div").style.backgroundColor = "#3a3a3a";
-        document.getElementById("header_table").style.backgroundColor = "#1e1e1e";
+        document.getElementById("background_div").style.backgroundColor = "#111111";
+        document.getElementById("header_table").style.backgroundColor = "#1c1c1c";
         document.getElementById("header_table").style.backgroundImage = "url()";
         
         
@@ -881,10 +911,12 @@ function rarityLegendary(){
         
     if(whatEpicNum == 1){
         // Get item halloween
+        console.log("You got Halloween 2017");
         document.getElementById("themeCard").src=halloweenCard;
         createCookie("Halloween2017", true, 10000);
         
     } else if (whatEpicNum == 2){
+        console.log("You got Sweden");
         document.getElementById("themeCard").src=swedenCard;
         createCookie("Sweden", true, 10000);
     }
@@ -899,17 +931,17 @@ function rarityEpic(){
     var whatEpicNum = Math.floor(Math.random() * 3) + 1;
     
     if(whatEpicNum == 1){
-        
+        console.log("You got superDark");
         // Get first item, superDark
         document.getElementById("themeCard").src=superDarkCard;
         createCookie("superDark", true, 10000);
     } else if (whatEpicNum == 2){
-        
+        console.log("You got Pride 2017");
         // Get second item, Pride 2017
         document.getElementById("themeCard").src=prideCard;
         createCookie("LGBT2017", true, 10000);
     } else if (whatEpicNum == 3){
-        
+        console.log("You got Coffee");
         // Coffee
         document.getElementById("themeCard").src=coffeecard;
         createCookie("Coffee", true, 10000);
@@ -927,22 +959,28 @@ function rarityCommon(){
     console.log("You got a common.");
     
     
-    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 4) + 1;
     
     if(whatEpicNum == 1){
-        
+        console.log("You got SuperBright");
         // Get first item, superWhite
         document.getElementById("themeCard").src=superbrightCard;
         createCookie("Superbright", true, 10000);
     } else if (whatEpicNum == 2){
-        
+        console.log("You got Emerald");
         // Unlock Emerald
         document.getElementById("themeCard").src=emeraldCard;
         createCookie("Emerald", true, 10000);
     } else if (whatEpicNum == 3){
+        console.log("You got Ruby");
         // Unlock Ruby
         document.getElementById("themeCard").src=rubyCard;
         createCookie("Ruby", true, 10000);
+    } else if (whatEpicNum == 4){
+        console.log("You got Sapphire");
+        // Unlock Sapphire
+        document.getElementById("themeCard").src=sapphireCard;
+        createCookie("Sapphire", true, 10000);
     }
     
     
