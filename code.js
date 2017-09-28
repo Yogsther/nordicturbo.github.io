@@ -652,12 +652,12 @@ function countDown(){
         var minutesLeft = "60";
     } else if (Number(currentMinutes) == Number(lastTimeClaimed)){
         var minutesLeft = "0";
+        checkCrateStatus();
+        checkClaim();
     }
     console.log("Minutes left: " + minutesLeft);
     
-    if(claimStatus != true){
-        checkClaim();
-    }    
+    
     
     document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "</i>"; 
     

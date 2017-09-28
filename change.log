@@ -6,6 +6,8 @@ v.5.0 (Dev Theme & Common Theme Dump) [IN PROGRESS]
 - Add 5 new Common themes, Ruby, Sapphire,
 - Reworked superDark theme, now it's even darker.
 
+- Bugs: Fixed countdown not refreshing at zero.
+
 
 v.4.1 (Theme System Rewrite Part 1)
 - Rewritten parts of theme system
