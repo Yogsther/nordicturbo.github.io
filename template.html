@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
 </head>
 <body>
@@ -18,19 +19,51 @@
             
         </div>    
            
+        <!-- Hourly Credit Claim -->
+        
+            <div id="claim_credits_div">
+                <span id="insert_claim_button_here"></span>
+                <span id="insert_claim_countdown"></span>
+            </div>   
         
          <!-- Buttons (duh..) -->
+            <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Projects</button> 
         <div id="top_buttons">
-            <button class="btn" onclick="home()">Home</button> 
-            <button class="btn" onclick="git()">Git</button>
-            <button class="btn" onclick="error()">Index</button>
-            <button class="btn" onclick="error()">About</button> 
-         </div>
+            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button> 
+            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button> 
+            <button id="items_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="items()">Items</button>
+            <button id="about_button" class="btn" onclick="about()" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">About</button>
+        </div>
          
-        <!-- From here and up should be the same for every page! -->
+         <!-- From here and up should be the same for every page! -->
         
-        
-        
+        <!-- Homepage / Blog -->
+        <div id="home_page">
+    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <!-- End of homepage -->
+        </div>
+
         <!-- Footer -->
         
         <div id="footer_div">

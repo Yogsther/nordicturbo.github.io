@@ -1,10 +1,15 @@
-var slideIndex = 0;
+// Sale settings
+var sale = true;
+var priceOfCrate = 250;
+
+
+
 
 var credits = readCookie("credits");
 var crates = readCookie("crates");
 
 var musicEnabled = readCookie("musicToggle");
-
+var slideIndex = 0;
 
         // Decalre themeCards
         var superDarkCard = "img/superDark_card.png"; 
@@ -24,7 +29,7 @@ swedishMusic = new Audio("sound/swedish_national.mp3");
 
 
 // Price of a crate (default should be 1000 credits)
-var priceOfCrate = 1000;
+
 
 runCrateFunctions();
 runOnItemsPage();
@@ -32,8 +37,9 @@ checkForDev();
 itemsPageCheck();
 slideShowCheck();
 checkIfThemeApplies();
-
+runOnIndex();
 countDownTimer();
+checkForSale();
 
 
 function reloadPage(){
@@ -48,6 +54,7 @@ function runCrateFunctions(){
         getCredits();
         // Get Num of Crates
         getCrates();
+       
     }
 }
 
@@ -58,8 +65,15 @@ function checkIfThemeApplies(){
         getTheme();
         checkClaim();
         countDown();
+        
     }
     
+}
+
+function runOnIndex(){
+    if (window.location.href.indexOf("index.html") != -1){
+        getXP();
+    }
 }
 
 function runOnItemsPage(){
@@ -96,6 +110,19 @@ function disableDev(){
     createCookie("dev", devMode, 10000);
     checkForDev();
     location.reload();
+}
+
+function checkForSale(){
+    if(sale == true){
+        if (window.location.href.indexOf("index") != -1){
+        document.getElementById("crate_advert").src = "https://i.imgur.com/i3XcZH7.png";}
+        if (window.location.href.indexOf("crate") != -1){
+        document.getElementById("buy_crates_image").src = "https://i.imgur.com/1WFshCx.png";}
+        
+        
+        
+    }
+    
 }
 
 
@@ -619,7 +646,7 @@ function superDark(request){
 // Theme coffee
 function Coffee(request){
     
-    var buttonColor = "#ba7637";
+    var buttonColor = "#d5b17e";
     
     if(request == "buttonColor"){
         return buttonColor;
@@ -698,6 +725,7 @@ function countDown(){
     if(claimStatus == "true"){
     // If hourly credits are claimed, run & display countdown
 
+    var bankStatus = readCookie("credits");
     var currentMinutes = getMinutes();
     var lastTimeClaimed = readCookie("lastClaimed");
     var thirtyMinutes = readCookie("claimInThirty");
@@ -720,7 +748,7 @@ function countDown(){
     
     
     
-    document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "</i>"; 
+    document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "<br><span id='rightText'> You have " + bankStatus + " credits.</span></i>"; 
     
     }
     
@@ -752,6 +780,7 @@ function claimHourlyCredits(){
     document.getElementById("insert_claim_button_here").innerHTML = "";
     countDown();
     addCredits(250);
+    addXP(100);
     
 }
 
@@ -885,7 +914,7 @@ function buyCrate(){
     if (credits >= priceOfCrate){
         // Cleared to buy one crate.
        
-        credits = Number(credits) - 1000;
+        credits = Number(credits) - priceOfCrate;
         createCookie("credits",credits,10000);
         
         addCrates(1);
@@ -1050,6 +1079,149 @@ function rarityCommon(){
     // Play opening animation
     document.getElementById("unbox_layer_01").src="https://i.imgur.com/JUpfLOn.gif";
 }
+
+
+// XP System
+
+function getXP(){
+    
+    var xpBackgroundAnimated;
+    var level;
+    var xpLeft;
+    var xpBar;
+    
+    var xpBarColor = "#5ccae0";
+    
+    var xp = readCookie("xp");
+    if(xp == "null"){
+        createCookie("xp",0,10000);
+    }
+    
+    if(xp >= 1000){
+        // If player has higher level than 1
+        
+        level = xp / 1000;
+        level = Math.floor(level);
+        
+        xpLeft = level * 1000;
+        xpLeft = xp - xpLeft;
+        xpLeft = 1000 - xpLeft;
+        
+    
+        
+        
+        
+    } else {
+        level = 0;
+        xpLeft = 1000 - xp;
+    }
+    
+
+    xpBar = xpLeft / 10;
+    xpBar = 100 - xpBar;
+    
+    console.log(xpBar);
+    
+    level = level + 1;
+    
+    
+    if (level >= 2){
+        xpBarColor = "#7c4fd1";
+    }
+    if (level >= 3){
+        xpBarColor = "#ba1da7";
+    }
+    if (level >= 4){
+        xpBarColor = "#a8174c";
+    }
+    if (level >= 5){
+        xpBarColor = "#ce0c3c";
+    }
+    if (level >= 6){
+        xpBarColor = "#ff4774";
+    }
+    if (level >= 7){
+        xpBarColor = "#326617";
+    }
+    if (level >= 8){
+        xpBarColor = "#5bc425";
+    }
+    if (level >= 9){
+        xpBarColor = "#75f931";
+    }
+    if (level >= 10){
+        xpBarColor = "#e0b731";
+        xpBackgroundAnimated = "url(img/xp_blue.gif)";
+    }
+    
+    if (level >= 15){
+        xpBarColor = "#f24e1d";
+    }
+    
+    if (level >= 20){
+        xpBarColor = "#f1bc1d";
+    }
+    
+    if (level >= 30){
+        xpBarColor = "#ff1622";
+    }
+    
+    if (level >= 40){
+        xpBarColor = "#ff3030";
+    }
+    
+    if (level >= 50){
+        xpBarColor = "#262626";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    document.getElementById("xp_bar").style.background = xpBarColor;
+    document.getElementById("xp_bar").style.width = xpBar + "%";
+    document.getElementById("level_disaply").innerHTML = "Lvl " + level;
+    document.getElementById("xp_left").innerHTML = xpLeft + "xp left";
+    document.getElementById("xp_div").style.backgroundImage = xpBackgroundAnimated;
+    
+    
+    
+    
+    
+    return xp;
+}
+
+function addXP(amount){
+    var xp = getXP();
+        
+        if(xp == null){
+            createCookie("xp",0,10000);
+            credits = Number(xp) + Number(amount);
+            createCookie("xp",credits, 10000);
+            console.log("You gained " + amount + "xp.");
+        } else {
+            xp = Number(xp) + amount;
+            createCookie("xp",xp, 10000);
+            console.log("You gained " + amount + "xp.");
+        }
+    getXP();
+}
+
+
+
+
+
+
+
+
 
 
 function addCredits(amount){

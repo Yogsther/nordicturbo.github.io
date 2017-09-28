@@ -1,6 +1,14 @@
 /* Removes blue border in chrome.  */
-button:focus {outline:0;}
-input:focus {outline:0;}
+button:focus{
+    outline:0;
+    background: #d3d3d3;
+   
+}
+input:focus {
+    outline:0;
+    background: #f2f2f2;
+   
+}
 
 
 /* Link atrebutes, change color of links */
@@ -29,7 +37,7 @@ body{
     /* background: linear-gradient(#d8d8d8, #111111); */
     height: 1300px;
     width: 1000px;
-    top: -8px;
+    top: -7px;
     
     /* Center the Div */
     margin: 0 auto;
@@ -169,7 +177,7 @@ body{
     width: 290px;
     left: -20px;
     float: right;
-    top: -1050px;
+    top: -1000px;
     position: relative;
 }
 
@@ -569,16 +577,70 @@ body{
     
 }
 
+#projects_button:active{
+    top: 103px;
+}
 
+#rightText{
+    position: relative;
+    font-size: 13px;
+}
 
+#xp_div{
+    background: rgba(0, 0, 0, .7);
+    position: relative;
+    height: 100px;
+    width: 290px;
+    top: -20px;
+    border-radius: 10px;
+    color: white;
+    
+    
+    
+    
+}
 
+#level_disaply{
+    font-family: ubuntu;
+    font-weight: 900;
+    font-size: 30px;
+    text-shadow: 0px 0px 5px #ffffff;
+    position: relative;
+    text-align: center;
+    top: 20px;
+    
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    width: 240px;
+    
+}
 
+#xp_bar{
+    position: relative;
+    background: #c44646;
+    height: 8px;
+    top: 22px;
+    width: 68%;
+    z-index: 2;
+    
+}
 
+#xp_bar_rest{
+    position: relative;
+    background: #383838;
+    height: 8px;
+    top: 14px;
+    width: 100%;
+    z-index: 1;
+}
 
-
-
-
-
+#xp_left{
+    position: relative;
+    top: 20px;
+    left: 200px;
+}
 
 
 

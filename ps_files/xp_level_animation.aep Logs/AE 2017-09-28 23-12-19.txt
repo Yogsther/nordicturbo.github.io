@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “xp_level_animation.aep”
+
+Rendering started on 2017-09-28 at 23:12:19
+
+  2017-09-28 23:12:19: Starting composition “Comp 2”.
+
+  Output To: C:\te16_git\NordicTurbo\vid\animation_blue.mov    2017-09-28 23:12:22: Finished composition “Comp 2”.
+
+
+  Total Time Elapsed: 3 Seconds
+Log closed on 2017-09-28 at 23:12:22
+
