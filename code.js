@@ -208,6 +208,16 @@ function changeTheme(){
  
 }
 
+// Button hover color change
+function buttonOn(){
+    
+    var buttonId = this.id
+    console.log("This: " + buttonId);
+    
+    
+}
+
+
 // Theme skins code
 
 function addSkins(){
