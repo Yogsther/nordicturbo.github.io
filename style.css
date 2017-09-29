@@ -622,7 +622,7 @@ body{
     background: #c44646;
     height: 8px;
     top: 22px;
-    width: 68%;
+    width: 0%;
     z-index: 2;
     
 }
@@ -638,18 +638,57 @@ body{
 
 #xp_left{
     position: relative;
-    top: 20px;
+    top: 10px;
     left: 200px;
 }
 
+#insert_number_of_credits{
+    position: relative;
+    top: 10px;
+    left: -65px; 
+    text-align: right;
+    
+    
+}
+
+#credit_animation_xpscreen{
+    height: 26px;
+    top: 19px;
+    left: -60px;
+    position: relative;
+}
+
+#project_cards_div{
+    width: 900px;
+    /* Center */
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    
+}
 
 
+#project_card{
+    height: 280px;
+    padding: 20px;
+    
+    animation: zoomOut .1s forwards ease-in;
+}
 
+#project_card:hover{
+    animation: zoomIn .1s forwards ease-out;
+}
 
+@keyframes zoomIn {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.1);}
+}
 
-
-
-
+@keyframes zoomOut {
+    0% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+}
 
 
 

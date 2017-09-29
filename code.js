@@ -24,7 +24,7 @@ var slideIndex = 0;
 
 
 // Declare Music variables
-swedishMusic = new Audio("sound/swedish_national.mp3");
+var swedishMusic = new Audio("sound/swedish_national.mp3");
 
 
 
@@ -65,6 +65,7 @@ function checkIfThemeApplies(){
         getTheme();
         checkClaim();
         countDown();
+        getBankStatus();
         
     }
     
@@ -194,6 +195,9 @@ function goToCrates(){
     window.location.href = "crate.html"
 }
 
+function project(){
+    window.location.href = "browse.html"
+}
 
 function items(){
     window.location.href = "items.html"
@@ -725,7 +729,7 @@ function countDown(){
     if(claimStatus == "true"){
     // If hourly credits are claimed, run & display countdown
 
-    var bankStatus = readCookie("credits");
+    
     var currentMinutes = getMinutes();
     var lastTimeClaimed = readCookie("lastClaimed");
     var thirtyMinutes = readCookie("claimInThirty");
@@ -748,7 +752,7 @@ function countDown(){
     
     
     
-    document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "<br><span id='rightText'> You have " + bankStatus + " credits.</span></i>"; 
+    document.getElementById("insert_claim_countdown").innerHTML = "<i>Minutes until next claim: " + minutesLeft + "<br><span id='rightText'></span></i>"; 
     
     }
     
@@ -757,6 +761,15 @@ function countDown(){
 function countDownTimer(){
     setInterval(countDown, 30000); 
 }
+
+// Update bank status
+
+function getBankStatus(){
+    
+    var bankStatus = readCookie("credits");
+    document.getElementById("insert_number_of_credits").innerHTML = bankStatus;
+}
+
 
 
 // Claiming button function
@@ -1278,6 +1291,7 @@ function getCredits(){
         createCookie("credits",0,10000);
     }
     document.getElementById("numCredits").innerHTML = credits;
+    return credits;
     
 }
 
