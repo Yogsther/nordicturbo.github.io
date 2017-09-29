@@ -594,10 +594,7 @@ body{
     top: -20px;
     border-radius: 10px;
     color: white;
-    
-    
-    
-    
+
 }
 
 #level_disaply{
@@ -659,7 +656,8 @@ body{
 }
 
 #project_cards_div{
-    width: 900px;
+    width: 812px;
+    left: 35px;
     /* Center */
     margin: 0 auto;
     position: relative;
@@ -671,18 +669,41 @@ body{
 
 #project_card{
     height: 280px;
-    padding: 20px;
-    
+    padding: 10px;
     animation: zoomOut .1s forwards ease-in;
+    cursor: pointer;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
 }
 
 #project_card:hover{
     animation: zoomIn .1s forwards ease-out;
+    
+    
+    
 }
 
+
+
 @keyframes zoomIn {
-    0% {transform: scale(1);}
-    100% {transform: scale(1.1);}
+    0% {
+        transform: scale(1);
+        box-shadow:inset 0px 0px 0px 0px #ffffff;
+        
+    }
+    100% {
+        transform: scale(1.1);
+        box-shadow:inset 0px 0px 0px 30px #ffffff;
+        
+        
+    }
 }
 
 @keyframes zoomOut {
