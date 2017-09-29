@@ -37,7 +37,7 @@ body{
     /* background: linear-gradient(#d8d8d8, #111111); */
     height: 1300px;
     width: 1000px;
-    top: -7px;
+    top: -8px;
     
     /* Center the Div */
     margin: 0 auto;
@@ -710,8 +710,6 @@ body{
     0% {transform: scale(1.1);}
     100% {transform: scale(1);}
 }
-
-
 
 
 

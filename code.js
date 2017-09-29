@@ -40,6 +40,7 @@ checkIfThemeApplies();
 runOnIndex();
 countDownTimer();
 checkForSale();
+getXP();
 
 
 function reloadPage(){
@@ -535,7 +536,13 @@ function Halloween2017(request){
 
 
 // Change to Emerald & save it.
-function Emerald(){
+function Emerald(request){
+    
+    var buttonColor = "#1e603d";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
     // Save theme
     createCookie("Emerald", true, 10000);
     
@@ -555,7 +562,12 @@ function Emerald(){
     
 }
 
-function Ruby(){
+function Ruby(request){
+        var buttonColor = "#db1313";
+    
+            if(request == "buttonColor"){
+                    return buttonColor;
+            }
         // Save theme
         createCookie("Ruby", true, 10000);
     
@@ -574,10 +586,14 @@ function Ruby(){
 }
 
 
-function Sapphire(){
+function Sapphire(request){
         // Save theme
         createCookie("Sapphire", true, 10000);
+         var buttonColor = "#3043cc";
     
+            if(request == "buttonColor"){
+                    return buttonColor;
+            }
         // Change colors
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
@@ -594,13 +610,17 @@ function Sapphire(){
 
 
 
-function Superbright(){
+function Superbright(request){
     
     // Save theme
     createCookie("Superbright", true, 10000);
     
     // Change colors
+     var buttonColor = "#f7f7f7";
     
+            if(request == "buttonColor"){
+                    return buttonColor;
+            }
     // Set Text Color
     document.getElementById("home_page").style.color = "black";
     // Set background color.
