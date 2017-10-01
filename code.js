@@ -1,6 +1,6 @@
 // Sale settings
-var sale = true;
-var priceOfCrate = 250;
+var sale = false;
+var priceOfCrate = 1000;
 
 
 

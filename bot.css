@@ -2,6 +2,19 @@ body{
     background: #d32626;
 }
 
+a:link{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{ 
+    color: lightgrey;
+}
+
+
 #header_image{
     top: 50px;
     height: 250px;
@@ -36,7 +49,7 @@ body{
 }
 
 #info_text{
-    width: 300px;
+    width: 440px;
     font-size: 15px;
     top: 15px;
     position: relative;
@@ -55,7 +68,15 @@ body{
 }
 
 
-
+#links{
+    width: 200px;
+    text-align: center;
+    top: 20px;
+    
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
 
 
 
