@@ -132,6 +132,10 @@ function goToCrates(){
     window.location.href = "crate.html";
 }
 
+function botCard(){
+    window.location.href = "bot.html";
+}
+
 function slideShowCheck(){
 if (window.location.href.indexOf("index.html") != -1){
     slideShow();

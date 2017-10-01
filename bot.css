@@ -1,0 +1,71 @@
+body{
+    background: #d32626;
+}
+
+#header_image{
+    top: 50px;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    border-style: solid;
+    border-color: white;
+    border-radius: 20px;
+    
+     /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#text{
+    width: 400px;
+    
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    
+    color: white;
+    font-family: ubuntu;
+    font-size: 20px;
+    top: 70px;
+    text-align: center;
+}
+
+#info_text{
+    width: 300px;
+    font-size: 15px;
+    top: 15px;
+    position: relative;
+    text-align: left;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    font-family: 'Muli', sans-serif;
+}
+
+
+#second_command{
+    position: relative;
+    top: 3px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
