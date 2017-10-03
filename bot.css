@@ -81,6 +81,101 @@ a:hover{
 
 
 
+#expand{
+    text-align: right;
+    width: 00px;
+    position: relative;
+    animation: goOut .1s forwards ease-out;
+    
+    
+}
+
+#expand:hover{
+    animation: expandDong .1s forwards ease-out;
+}
+
+
+
+#plus_button{
+    
+    height: 50px;
+    position: relative;
+    top: -313px;
+    left: 334px;
+    
+    cursor: pointer;
+    animation: plusDown .1s forwards ease-out;
+      /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+}
+
+#plus_button:hover{
+    animation: plusUp .1s forwards ease-out;
+}
+
+
+@keyframes expandDong {
+    0% {
+        left: 0px;
+        
+    }
+    100% {
+        left: 9px;
+        
+    }
+}
+@keyframes goOut {
+    0% {
+        left: 9px;
+        
+    }
+    100% {
+        left: 0px;
+        
+    }
+}
+
+@keyframes plusUp {
+    0% {
+        top: -313px;
+        
+    }
+    100% {
+        top: -320px;
+        
+    }
+}
+@keyframes plusDown {
+    0% {
+        top: -320px;
+        
+    }
+    100% {
+        top: -313px;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
