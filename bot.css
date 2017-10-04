@@ -73,6 +73,8 @@ a:hover{
     text-align: center;
     top: 20px;
     
+    padding-bottom: 40px;
+    
     margin: 0 auto;
     position: relative;
     display: block;
@@ -82,8 +84,8 @@ a:hover{
 
 
 #expand{
-    text-align: right;
-    width: 00px;
+
+    width: 200px;
     position: relative;
     animation: goOut .1s forwards ease-out;
     
@@ -100,7 +102,7 @@ a:hover{
     
     height: 50px;
     position: relative;
-    top: -313px;
+    top: -323px;
     left: 334px;
     
     cursor: pointer;
@@ -126,13 +128,13 @@ a:hover{
         
     }
     100% {
-        left: 9px;
+        left: 4px;
         
     }
 }
 @keyframes goOut {
     0% {
-        left: 9px;
+        left: 4px;
         
     }
     100% {
@@ -143,7 +145,7 @@ a:hover{
 
 @keyframes plusUp {
     0% {
-        top: -313px;
+        top: -317px;
         
     }
     100% {
@@ -157,12 +159,15 @@ a:hover{
         
     }
     100% {
-        top: -313px;
+        top: -317px;
         
     }
 }
 
-
+#commands_text{
+    position: relative;
+    left: -54px;
+}
 
 
 

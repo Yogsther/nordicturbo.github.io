@@ -18,8 +18,8 @@
         Livingforit Bot<span id="dots"></span>
         <br>
     <div id="info_text">
-            <img src="img/plus.png" id="plus_button">
-            <b>Commands:<br></b>
+            <img src="img/plus.png" id="plus_button" onclick="addBot();">
+        <b><span id="commands_text">Commands:</span><br></b>
             !botstatus <i>- Tells you the status of the bot.</i><br>
             <span id="second_command">!help <i>- Tells you what the fuck the bot can do.</i><br>
             <br>
@@ -28,13 +28,11 @@
             <span id="second_command">!roll [amount] [color] -<i> Bet on a roulette.</i></span><br>
             <span id="second_command">!bank -<i> See your bank status.</i></span><br>
             <span id="second_command">!leaderboard -<i> See the leaderboard for Roulette.</i></span><br>
-                <div id="expand"><a href="javascript:expand01()"><i>Expand</i></a></div>
+                <div id="expand"><a href="javascript:expand01()" onmouseover="expandDong()" onmouseout="despandDong()"><i>Expand<span id="add_dong"></span></i></a></div>
                 
-                <br><br>
                 <!-- EXPAND -->
-            <span id="second_command">!wire -<i> Send money to another person.</i></span><br>
-            <span id="second_command">!startpot -<i> Start a Jackpot.</i></span><br>
-            <span id="second_command">!add [amount] -<i> Bett money on the current Jackpot.</i></span><br>
+                <span id="expand_commands"></span>
+            
 
             
             
@@ -49,14 +47,17 @@
         <br>
         
         <b><strike>Usefull</strike> features of the bot:</b><br>
-        Reacts with [up] and [down] emojis when memes are posted in specifik channels, like #dank_memes, and #original_memes. (Only posted images.) <br><br>
+        Reacts with [up] and [down] emojis when memes are posted in specifik channels, like #dank_memes or #original_memes (Only to images) to let people
+                vote on memes!<br><br>
         Whenever Notuco is mentioned in a conversation, the bot strikes and links you to the notu.co website.<br>
         ... And more secret features
             <br><br>
         To leave feedback or report a bug, message the bot!<br>
             <div id="links">
+                <a href="https://discord.gg/cMmxspj">Add me to your server!.</a><br>
             <a href="https://github.com/Yogsther/livingforit-bot">Fork me on github.</a><br>
-            <a href="https://discord.gg/cMmxspj">Join my discord.</a>
+            <a href="https://discord.gg/cMmxspj">Join my discord.</a><br>
+                
             </div>
         
         </span>
