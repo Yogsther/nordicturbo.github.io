@@ -47,7 +47,7 @@ function addBot(){
 
 function expand01(){
     
-    document.getElementById("expand_commands").innerHTML = '<br><span id="second_command">!wire -<i> Send money to another person.</i></span><br><span id="second_command">!startpot -<i> Start a Jackpot.</i></span><br><span id="second_command">!add [amount] -<i> Bett money on the current Jackpot.</i></span><br>'
+    document.getElementById("expand_commands").innerHTML = '<br><span id="second_command">!wire -<i> Send money to another person.</i></span><br><span id="second_command">!startpot -<i> Start a Jackpot.</i></span><br><span id="second_command">!add [amount] -<i> Bett money on the current Jackpot.</i></span><br><span id="second_command">!moneymaker -<i> Add money to your account by clicking an emote.</i></span><br>'
     document.getElementById("expand").innerHTML = "";
     document.getElementById("header_image").src = "https://i.imgur.com/almEaUq.png"
     
