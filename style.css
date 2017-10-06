@@ -594,8 +594,23 @@ body{
     top: -20px;
     border-radius: 10px;
     color: white;
+ 
 
 }
+
+#lvl_portrait{
+
+    position: relative;
+    height: 100px;
+    width: 290px;
+    top: -80px;
+    border-radius: 10px;
+}
+
+#lvl_portrait:hover{
+    filter: brightness(70%);
+}
+
 
 #level_disaply{
     font-family: ubuntu;

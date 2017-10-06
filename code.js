@@ -1162,6 +1162,15 @@ function getXP(){
     
     level = level + 1;
     
+    //Get xp level portrait
+    
+    
+    
+    var xpPortraitLocation = "url(img/lvl/" + level + ".png)"
+    if(level > 24){
+        xpPortraitLocation = "url(img/lvl/over.gif)"
+    }
+
     
     if (level >= 2){
         xpBarColor = "#7c4fd1";
@@ -1189,9 +1198,7 @@ function getXP(){
     }
     if (level >= 10){
         xpBarColor = "#e0b731";
-        xpBackgroundAnimated = "url(img/xp_blue.gif)";
     }
-    
     if (level >= 15){
         xpBarColor = "#f24e1d";
     }
@@ -1228,9 +1235,9 @@ function getXP(){
     document.getElementById("xp_bar").style.width = xpBar + "%";
     document.getElementById("level_disaply").innerHTML = "Lvl " + level;
     document.getElementById("xp_left").innerHTML = xpLeft + "xp left";
-    document.getElementById("xp_div").style.backgroundImage = xpBackgroundAnimated;
-    
-    
+    document.getElementById("xp_div").style.backgroundImage = xpPortraitLocation;
+
+    document.getElementById("xp_div").style.color = "white";
     
     
     
