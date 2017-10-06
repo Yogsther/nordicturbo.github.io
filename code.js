@@ -881,7 +881,8 @@ function slideShow(){
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
-        document.getElementById("slide_image").src="https://i.imgur.com/5eSQh2j.png"
+        // Slide show 1
+        document.getElementById("slide_image").src="https://i.imgur.com/iYh2uBA.png"
         progressBar();
     } else if (slideIndex == 2){
         document.getElementById("slide_image").src="https://i.imgur.com/JDGDg05.png"
@@ -895,7 +896,7 @@ function slideShow(){
 
 function slideRedirect(){
     if (slideIndex == 1){
-            window.open("https://www.youtube.com/watch?v=gv3G5LGKjlA",'_blank');
+            window.open("bot.html");
             
     } else if (slideIndex == 2){
         window.open("https://twitter.com/NordicTurbo",'_blank');

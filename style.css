@@ -656,8 +656,8 @@ body{
 }
 
 #project_cards_div{
-    width: 812px;
-    left: 35px;
+    width: 732px;
+    left: 78px;
     /* Center */
     margin: 0 auto;
     position: relative;
@@ -668,7 +668,7 @@ body{
 
 
 #project_card{
-    height: 280px;
+    height: 250px;
     padding: 10px;
     animation: zoomOut .1s forwards ease-in;
     cursor: pointer;
