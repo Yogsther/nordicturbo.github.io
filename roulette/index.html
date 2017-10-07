@@ -12,9 +12,11 @@
 </head>
 <body>
     
-   <!-- Credit display -->
-    <div id="credits_display"><span id="numCredits">N/A</span> <img src="credit_animated.gif" id="credit_animated"></div>
+
+    <button id="goback_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn2" onclick="home()">Go Back</button> 
     
+    <div id="credits_display"><span id="numCredits">N/A</span> <img src="credit_animated.gif" id="credit_animated"></div>
+    <span id="insert_pst"></span>
     <img src="roullete_logo.png" id="logo">
     
     <div id="roll_div">
@@ -25,8 +27,8 @@
     <div id="inputs">
         <input type="text" id="bet_input" class="bet_input" placeholder="Bet">
         <button id="red_button" class="btn" onclick="addRed()">RED</button>
-        <button id="black_button" class="btn" onclick="addBet()">BLACK</button>
-        <button id="green_button" class="btn" onclick="addBet()">GREEN</button>
+        <button id="black_button" class="btn" onclick="addBlack()">BLACK</button>
+        <button id="green_button" class="btn" onclick="addGreen()">GREEN</button>
 
         <div id="red_bet" class="bet_info">0</div>
         <div id="black_bet" class="bet_info">0</div>

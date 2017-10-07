@@ -353,7 +353,7 @@ body{
     -webkit-user-select: none;
     -ms-user-select: none;
 }
-#numCredits{
+#numCreditsCratePage{
     font-size: 30px;
     position: relative;
     top: -14px;
@@ -664,28 +664,30 @@ body{
 }
 
 #xp_left{
-    position: relative;
-    top: 10px;
-    left: 200px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     z-index: 2;
 }
 
-#insert_number_of_credits{
+#numCredits{
     position: relative;
-    top: 10px;
-    left: -65px; 
-    text-align: right;
+    font-size: 17px;
+    left: 10px;
+    text-align: left;
     z-index: 2;
+    top: 10px;
     
     
 }
 
 #credit_animation_xpscreen{
     height: 26px;
-    top: 19px;
-    left: -60px;
     position: relative;
+
+
     z-index: 2;
+    top: 8px;
 }
 
 #project_cards_div{

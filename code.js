@@ -66,7 +66,8 @@ function checkIfThemeApplies(){
         getTheme();
         checkClaim();
         countDown();
-        getBankStatus();
+    getBankStatus();
+         
         
     }
     
@@ -134,6 +135,10 @@ function goToCrates(){
 
 function botCard(){
     window.location.href = "bot.html";
+}
+
+function rouletteCard(){
+    window.location.href = "roulette";
 }
 
 function slideShowCheck(){
@@ -816,8 +821,11 @@ function claimHourlyCredits(){
     // Add credits
     document.getElementById("insert_claim_button_here").innerHTML = "";
     countDown();
+
     addCredits(250);
     addXP(100);
+        getXP();
+    getBankStatus();
     
 }
 
@@ -1322,7 +1330,7 @@ function getCredits(){
         credits = 0;
         createCookie("credits",0,10000);
     }
-    document.getElementById("numCredits").innerHTML = credits;
+    document.getElementById("numCreditsCratePage").innerHTML = credits;
     return credits;
     
 }
