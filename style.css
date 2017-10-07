@@ -587,13 +587,14 @@ body{
 }
 
 #xp_div{
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, 1);
     position: relative;
     height: 100px;
     width: 290px;
     top: -20px;
     border-radius: 10px;
     color: white;
+    overflow: hidden
  
 
 }
@@ -605,11 +606,24 @@ body{
     width: 290px;
     top: -80px;
     border-radius: 10px;
+    z-index: 2;
 }
 
-#lvl_portrait:hover{
-    filter: brightness(70%);
+
+
+
+#xp_portrait_img{
+    top: -181px;
+    position: relative;
+    z-index: 0;
+    opacity: 0.5;
+    
 }
+
+
+
+
+
 
 
 #level_disaply{
@@ -620,6 +634,7 @@ body{
     position: relative;
     text-align: center;
     top: 20px;
+    z-index: 2;
     
     /* Center */
     margin: 0 auto;
@@ -652,6 +667,7 @@ body{
     position: relative;
     top: 10px;
     left: 200px;
+    z-index: 2;
 }
 
 #insert_number_of_credits{
@@ -659,6 +675,7 @@ body{
     top: 10px;
     left: -65px; 
     text-align: right;
+    z-index: 2;
     
     
 }
@@ -668,6 +685,7 @@ body{
     top: 19px;
     left: -60px;
     position: relative;
+    z-index: 2;
 }
 
 #project_cards_div{

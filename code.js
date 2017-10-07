@@ -1166,9 +1166,9 @@ function getXP(){
     
     
     
-    var xpPortraitLocation = "url(img/lvl/" + level + ".png)"
+    var xpPortraitLocation = "img/lvl/" + level + ".png"
     if(level > 24){
-        xpPortraitLocation = "url(img/lvl/over.gif)"
+        xpPortraitLocation = "img/lvl/over.gif"
     }
 
     
@@ -1235,7 +1235,7 @@ function getXP(){
     document.getElementById("xp_bar").style.width = xpBar + "%";
     document.getElementById("level_disaply").innerHTML = "Lvl " + level;
     document.getElementById("xp_left").innerHTML = xpLeft + "xp left";
-    document.getElementById("xp_div").style.backgroundImage = xpPortraitLocation;
+    document.getElementById("xp_portrait_img").src = xpPortraitLocation;
 
     document.getElementById("xp_div").style.color = "white";
     

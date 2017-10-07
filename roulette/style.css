@@ -1,0 +1,298 @@
+/* Removes blue border in chrome.  */
+button:focus{
+    outline:0;
+    background: #d3d3d3;
+   
+}
+input:focus {
+    outline:0;
+    background: #f2f2f2;
+   
+}
+
+
+/* Link atrebutes, change color of links */
+
+a:link{
+    color: red;
+}
+
+a:visited{
+    color: red;
+}
+
+a:hover{ 
+    color: white;
+}
+
+body{
+    background-color: #111111;
+}
+
+
+#logo{
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+}
+
+#roll_div{
+    height: 70px;
+    width: 130px;
+    background-color: #d13838;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px black;
+    
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    
+    top: -25px;
+    
+    color: white;
+    font-size: 50px;
+    font-family: ubuntu;
+    text-align: center;
+
+}
+
+#roll_number{
+    
+    position: relative;
+    top: 5px;
+    text-shadow: 1px 1px 1px black;
+    
+    
+}
+
+#count_down{
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    width: 200px;
+    text-align: left;
+    color: white;
+    font-family: ubuntu;
+    top: -19px;
+    width: 110px;
+    left: 5px;
+    
+}
+
+
+#inputs{
+    width: 300px;
+    
+    
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+
+.bet_input{
+    height: 30px;
+    width: 295px;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    font-family: ubuntu;
+    font-size: 20px;
+    color: #4b4b4b;
+    
+}
+
+.btn{
+    
+    height: 30px;
+    width: 92px;
+    border: none;
+    color: white;
+    font-family: ubuntu;
+    border-radius: 5px;
+    top: 9px;
+    position: relative;
+    
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    
+    animation: buttonDown .1s forwards;
+    
+    
+}
+
+.btn:hover{
+    
+    animation: buttonUp .1s forwards;
+}
+
+
+
+#red_button{
+    background-color: #d13838;
+}
+
+#black_button{
+    background-color: #3f3f3f;
+}
+
+#green_button{
+    background-color: #50df5b;
+}
+
+
+@keyframes buttonUp {
+    0% {
+        top: 9px;
+    }
+    100% {
+        top: 7px;
+    }
+}
+
+@keyframes buttonDown {
+    0% {
+        top: 7px;
+    }
+    100% {
+        top: 9px;
+    }
+}
+
+
+
+.bet_info{
+    position: absolute;
+    top: 32px;
+    color: white;
+    font-family: ubuntu;
+    margin: 44px;
+    text-align: center;
+    width: 100px;
+
+    
+}
+
+#green_bet{
+    left: 159px;;
+}
+
+#black_bet{
+    left: 59px;
+}
+
+#red_bet{
+    left: -44px;
+}
+
+
+/* Credit display */
+#credits_display{
+    color: gold;
+    text-align: center;
+
+    position: absolute;
+    font-family: ubuntu;
+    font-size: 19px;
+    width: 200px;
+    top: 50px;
+    right: 5px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+}
+
+#credit_animated{
+    height: 50px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#numCredits{
+    top: -15px;
+    position: relative;
+    font-size: 30px;
+}
+
+#log_title{
+    color: white;
+    font-family: arial;
+    top: 40px;
+    position: relative;
+    width: 300px;
+
+    margin: 0 auto;
+}
+
+#log_box{
+    color: white;
+    font-family: arial;
+    top: 40px;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: auto;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
