@@ -265,7 +265,7 @@ body{
 #pst_tab{
     position: absolute;
     top: -5px;
-    left: 30px;
+    left: 100px;
     cursor: pointer;
     
     /* Make image undraggable */
