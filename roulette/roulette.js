@@ -28,6 +28,9 @@ addCredits(0);
 checkNewUser();
 
 
+function back(){
+    window.location.href = "/browse.html";
+}
 
 function insertCredits(){
     
