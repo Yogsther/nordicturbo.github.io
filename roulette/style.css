@@ -1,13 +1,9 @@
 /* Removes blue border in chrome.  */
 button:focus{
     outline:0;
-    background: #d3d3d3;
-   
 }
 input:focus {
     outline:0;
-    background: #f2f2f2;
-   
 }
 
 
@@ -122,7 +118,7 @@ body{
     color: white;
     font-family: ubuntu;
     border-radius: 5px;
-    top: 9px;
+    top: 8px;
     position: relative;
     
     margin-left: 2.5px;
@@ -155,19 +151,19 @@ body{
 
 @keyframes buttonUp {
     0% {
-        top: 9px;
+        top: 13px;
     }
     100% {
-        top: 7px;
+        top: 11px;
     }
 }
 
 @keyframes buttonDown {
     0% {
-        top: 7px;
+        top: 11px;
     }
     100% {
-        top: 9px;
+        top: 13px;
     }
 }
 
@@ -175,7 +171,7 @@ body{
 
 .bet_info{
     position: absolute;
-    top: 32px;
+    top: 62px;
     color: white;
     font-family: ubuntu;
     margin: 44px;
@@ -307,8 +303,25 @@ body{
 
 
 
+.btn3{
+    height: 25px;
+    width: 56px;
+    left: 2px;
+    border: none;
+    color: white;
+    font-family: ubuntu;
+    border-radius: 5px;
+    top: 6.5px;
+    background-color: #232323;
+    position: relative;
 
+}
 
+.btn3:hover{
+ 
+    background-color: #3a3a3a;
+
+}
 
 
 

@@ -1,15 +1,20 @@
 Changelog:
 
+ALPHA:
 
-v.5.0 (Dev Theme & Common Theme Dump) [IN PROGRESS]
 
+v.5.0 (Dev Theme & Common Theme Dump)
+
+- Added Projects button, and site.
+- Added XP Portraits to every level (up to 25 - more to come.)
+- Added Livingforit Bot to projects
+- Added Roulette Gamemode to projects.
 - Added XP System, gain 100xp every time you claim the hourly credit reward.
 - Added sale feature for crates.
 - Buttons now accordingly match your theme color.
 - Added Custom Devtheme for testing new colors.
 - Add 2 new Common themes, Ruby, Sapphire,
 - Reworked superDark theme, now it's even darker.
-- Added Projects button, and site.
 
 - Bugs: Fixed countdown not refreshing at zero.
 

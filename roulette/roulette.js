@@ -71,7 +71,6 @@ function roll(){
     if(time == 0){
         rolling();
     }
-    
 }
 
 
