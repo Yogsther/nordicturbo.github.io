@@ -3,8 +3,7 @@
 var countDownTime = 10;
 var rolls = 10;
 
-// First log message
-log("<br>Welcome to Nuto.co Roulette! Bet using your NotuCoins. If you're lucky.. you may profit.<br>");
+
 
 
 var time = countDownTime;
@@ -21,15 +20,41 @@ var currentlyRolling = false;
 
 
 // Startup function(s)
+startUpFunction();
 
-roll();
-insertCredits();
-addCredits(0);
-checkNewUser();
+function startUpFunction(){
+    if (window.location.href.indexOf("index") != -1){
+        // Startup function for Roulette
+        roll();
+        insertCredits();
+        addCredits(0);
+        checkNewUser();
+        
+        // Startup message on Roulette
+        log("<br>Welcome to Nuto.co Roulette! Bet using your NotuCoins. If you're lucky.. you may profit.<br>");
+    } else {
+        // Startup function for crash
+        insertCredits();
+        addCredits(0);
+        runCrash();
+        // Startup message on Crash
+        log("<br>Welcome to the brand new Crash site. Test it out :)<br>");
+    }
+}
+
+
 
 
 function back(){
     window.location.href = "/browse.html";
+}
+
+function gotoRoulette(){
+    window.location.href = "index.html";
+}
+
+function gotoCrash(){
+    window.location.href = "crash.html";
 }
 
 function insertCredits(){
@@ -52,6 +77,99 @@ function runPst(){
     location.reload();
     
 }
+
+var crashStatus = 0;
+var crashed = false;
+var crashInProgress = false;
+var randomCrashVar;
+var crashMultiplier;
+
+// Crash functions
+
+function runCrash(){
+    crashStatus = 0;
+    crashed = false;
+    crashMultiplier = 0;
+    crashInProgress = true;
+    crash();
+    document.getElementById("crash_lock_button").innerHTML = "Cash out";
+}
+
+// !!!!!!!!!!!!!!!!!!! First run reset crash on startup, to make sure user can bet on join.
+
+function crash(){
+    
+    if(crashed == false){
+        
+        randomCrashVar = Math.floor(Math.random()*200) + 1;
+        
+        
+        if(randomCrashVar == 1){
+            crashed = true;
+            crashInProgress = false;
+            // Crashed
+            crash();
+            return;
+        }
+        // Not crashed
+        crashStatus = crashStatus + 0.01;
+        crashMultiplier = crashStatus.toFixed(2);
+        console.log(crashStatus.toFixed(2));
+        insertCrashStatus();
+        
+        crashSpeed = 50;
+        if(crashMultiplier > 1){
+            crashSpeed = 50 / crashMultiplier;
+        }
+        
+        setTimeout('crash();', crashSpeed);
+        return;
+    }
+    insertCrashStatus();
+    console.log("Crashed");
+    document.getElementById("crash_lock_button").innerHTML = "Bet";
+    
+    
+}
+
+function resetCrash(){
+    
+    
+    
+}
+
+
+
+
+function insertCrashStatus(){
+    
+    if(crashed == true){
+        document.getElementById("crash_main_text").innerHTML = '<span style=" position: relative; top: -35px; color: red; font-size: 50px;">Crashed<br></span><span style="color: red; font-size: 50px; position: relative; top: -70px;">at ' + crashStatus.toFixed(2) + 'x</span>';
+        return;
+    }
+    if(crashed != true){
+        document.getElementById("crash_main_text").innerHTML = crashStatus.toFixed(2) + 'x';
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,7 +223,7 @@ function rolling(){
         
         if(currentRolls > 0){
             currentlyRolling = true;
-            rollNumber = Math.floor(Math.random()*14);
+            rollNumber = Math.floor(Math.random()*15);
             document.getElementById("roll_number").innerHTML = rollNumber;
             insertRollColor();
             currentRolls = currentRolls - 1;

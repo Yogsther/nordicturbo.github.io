@@ -282,8 +282,44 @@ body{
     position: absolute;
     top: 20px;
     left: 20px;
-    background: #383838;
     color: white;
+}
+
+#goback_button:hover{
+    background: #707070;
+    top: 18px;
+}
+#goback_button:active{
+    top: 22px;
+}
+
+#roulette_button{
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    color: white;
+}
+
+#roulette_button:hover{
+    background: #707070;
+    top: 18px;
+}
+#roulette_button:active{
+    top: 22px;
+}
+
+#crash_button{
+    position: absolute;
+    top: 20px;
+    left: 180px;
+    color: white;
+}
+#crash_button:hover{
+    background: #707070;
+    top: 18px;
+}
+#crash_button:active{
+    top: 22px;
 }
 
 
@@ -299,9 +335,15 @@ body{
     position: relative;
     margin: 3px;
     color: #29394c;
+    background: #383838;
     cursor: pointer;
 }
 
+.btn2:hover{
+ 
+    background: #3a3a3a;
+
+}
 
 
 .btn3{
@@ -313,17 +355,64 @@ body{
     font-family: ubuntu;
     border-radius: 5px;
     top: 6.5px;
-    background-color: #232323;
+    background: #232323;
     position: relative;
     cursor: pointer;
 
 }
 
-.btn3:hover{
- 
-    background-color: #3a3a3a;
+
+#crash_border{
+    
+    height: 200px;
+    width: 350px;
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+    background: #1c1c1c;
+}
+
+
+#crash_main_text{
+    top: 50px;
+    font-size: 5vw;
+    color: #5ce24e;
+    font-family: ubuntu;
+    text-align: center;
+    position: relative;
+}
+
+
+#crash_inputs{
+    width: 350px;
+    position: relative;
+    margin: 0 auto;
+    top: 10px;
+    
+}
+
+
+#crash_amount{
+    width: 220px;
+    height: 30px;
 
 }
+
+#crash_lock_button{
+    color: #111111;
+    background: #5ce24e;
+    font-size: 19px;
+    height: 33px;
+    width: 118px;
+    top: 0px;
+}
+
+
+#crash_lock_button:active{
+    top: 2px;
+}
+
+
 
 
 
