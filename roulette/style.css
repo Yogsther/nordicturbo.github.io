@@ -123,6 +123,7 @@ body{
     
     margin-left: 2.5px;
     margin-right: 2.5px;
+    cursor: pointer;
     
     animation: buttonDown .1s forwards;
     
@@ -314,6 +315,7 @@ body{
     top: 6.5px;
     background-color: #232323;
     position: relative;
+    cursor: pointer;
 
 }
 

@@ -55,6 +55,29 @@ function runPst(){
 
 
 
+
+function addAmount(betValue){
+    betValue = Number(betValue);
+    var betValueBar = Number(document.getElementById("bet_input").value);
+    betValueBar = betValueBar + betValue;
+    document.getElementById("bet_input").value =  betValueBar;
+}
+
+function addx2(){
+    var betValueBar = Number(document.getElementById("bet_input").value);
+    betValueBar = betValueBar * 2;
+    document.getElementById("bet_input").value =  betValueBar;
+}
+
+function addAll(){
+    var betValueBar = Number(document.getElementById("bet_input").value);
+    betValueBar = credits;
+    document.getElementById("bet_input").value =  betValueBar;
+}
+
+
+
+
 function roll(){
     
     if(time > 0){
@@ -75,7 +98,7 @@ function roll(){
 
 
 function rolling(){
-        console.log("Rolling");
+        
         insertCountdown("rolling");
         
         // Rolling
@@ -86,7 +109,7 @@ function rolling(){
             document.getElementById("roll_number").innerHTML = rollNumber;
             insertRollColor();
             currentRolls = currentRolls - 1;
-            console.log(currentRolls);
+           
             setTimeout('rolling();', 300);
             return;
         } 
@@ -187,7 +210,7 @@ function insertRollColor(){
 
 function addRed(){
     
-    
+    var credits = readCookie("credits");
     var betAmount = Number(document.getElementById("bet_input").value);
          
     if(currentlyRolling == true){
@@ -221,12 +244,13 @@ function addRed(){
     addCredits(Number("-" + betAmount));
     redBet = redBet + betAmount;
     insertBet();
+    
 
 }
 
 function addBlack(){
     
-    
+    var credits = readCookie("credits");
     var betAmount = Number(document.getElementById("bet_input").value);
          
     if(currentlyRolling == true){
@@ -266,7 +290,7 @@ function addBlack(){
 
 function addGreen(){
     
-    
+    var credits = readCookie("credits");
     var betAmount = Number(document.getElementById("bet_input").value);
          
     if(currentlyRolling == true){
