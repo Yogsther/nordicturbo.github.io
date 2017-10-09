@@ -14,7 +14,7 @@ var redBet = 0;
 var blackBet = 0;
 var greenBet = 0;
 var rollColorName;
-
+var countdown = 5;
 var credits = readCookie("credits");
 var currentlyRolling = false;
 
@@ -22,8 +22,18 @@ var currentlyRolling = false;
 // Startup function(s)
 startUpFunction();
 
+
+
+
 function startUpFunction(){
-    if (window.location.href.indexOf("index") != -1){
+    if (window.location.href.indexOf("crash") != -1){
+        // Startup function for crash
+        insertCredits();
+        addCredits(0);
+        resetCrash();
+        // Startup message on Crash
+        log("<br>Welcome to the brand new Crash site. Test it out :)<br>");
+    } else {
         // Startup function for Roulette
         roll();
         insertCredits();
@@ -32,16 +42,9 @@ function startUpFunction(){
         
         // Startup message on Roulette
         log("<br>Welcome to Nuto.co Roulette! Bet using your NotuCoins. If you're lucky.. you may profit.<br>");
-    } else {
-        // Startup function for crash
-        insertCredits();
-        addCredits(0);
-        runCrash();
-        // Startup message on Crash
-        log("<br>Welcome to the brand new Crash site. Test it out :)<br>");
+
     }
 }
-
 
 
 
@@ -78,36 +81,116 @@ function runPst(){
     
 }
 
-var crashStatus = 0;
+var crashStatus = 1;
 var crashed = false;
 var crashInProgress = false;
 var randomCrashVar;
 var crashMultiplier;
+var crashBet = 0;
+var hasBet = false;
+var canCashOut = false;
+
 
 // Crash functions
 
 function runCrash(){
-    crashStatus = 0;
+    crashStatus = 1;
     crashed = false;
     crashMultiplier = 0;
     crashInProgress = true;
+    hasBet = false;
     crash();
     document.getElementById("crash_lock_button").innerHTML = "Cash out";
 }
 
-// !!!!!!!!!!!!!!!!!!! First run reset crash on startup, to make sure user can bet on join.
+var crashWoah = new Audio('crash.mp3');
+
+function betOnCrash(){
+    
+    var credits = Number(readCookie("credits"));
+    
+    
+    
+    
+    if(crashInProgress == true){
+        
+        if(canCashOut == true){
+        // CASH OUT FEATURE
+        var winMoney = Math.round(crashMultiplier * crashBet);
+        var profitMoney = winMoney - crashBet;
+            
+        log("Cashed out at " + crashMultiplier + " Won: " + winMoney + "<span style='color: #5ce24e;'> Profit: " + profitMoney + "</span>");
+        
+        addCredits(winMoney);    
+        crashWoah.play();
+        canCashOut = false;
+        return;
+        }
+    }
+    
+    
+    
+    if(hasBet == false && crashInProgress == true){
+        error("Can't cash out.");
+        return;
+    }
+    
+     if(crashInProgress == true){
+        error("You can't bet while Crash is in progress.");
+        return;
+    }
+    if(hasBet != true){
+        crashBet = document.getElementById("crash_amount").value;
+    }
+    
+    
+    if(isFinite(crashBet) != true){
+        error("Bet amount must be a number!");
+        return;
+    }
+    
+    if(crashBet < 1){
+        error("Minimum bet amount is 1");
+        return;
+    }
+    
+    if(crashBet % 1 != 0){
+        error("Bet amount must be a whole number.");
+        return;
+    }
+    
+    if(credits < crashBet){
+        error("You don't have enough credits to bet " + crashBet);
+        return;
+    }
+    
+    if(hasBet != true){
+    // Bet
+    var deleteAmount = crashBet * -1
+    addCredits(deleteAmount);
+    log("<i>Bet placed: " + crashBet + "</i>");
+    canCashOut = true;
+    hasBet = true;
+    return;
+    }
+    
+    
+}
+
+
 
 function crash(){
     
     if(crashed == false){
         
-        randomCrashVar = Math.floor(Math.random()*200) + 1;
+        randomCrashVar = Math.floor(Math.random()*100);
         
         
-        if(randomCrashVar == 1){
+        if(randomCrashVar == 0){
             crashed = true;
             crashInProgress = false;
             // Crashed
+            countdown = 5;
             crash();
             return;
         }
@@ -117,24 +200,55 @@ function crash(){
         console.log(crashStatus.toFixed(2));
         insertCrashStatus();
         
-        crashSpeed = 50;
-        if(crashMultiplier > 1){
-            crashSpeed = 50 / crashMultiplier;
-        }
-        
+
+        crashSpeed = 110 / crashMultiplier;
+                
         setTimeout('crash();', crashSpeed);
         return;
     }
+    // Crashed
+    if(canCashOut == true){
+    log("Crashed at <span style='color: red;'>" + crashMultiplier + " Final: -" + crashBet);
+    }
+    
+    if(canCashOut != true){
+    log("Crashed at <span style='color: red;'>" + crashMultiplier);
+    }
+    
+    canCashOut = false;
+    hasBet = false;
+    setTimeout('resetCrash();', 1500);
     insertCrashStatus();
     console.log("Crashed");
     document.getElementById("crash_lock_button").innerHTML = "Bet";
+    crashBet = 0;
     
     
 }
 
+var countdown = 5;
+
+
 function resetCrash(){
+    crashInProgress = false;
+    crashStatus = 1;
+    crashed = false;
+    crashMultiplier = 0;
+    document.getElementById("crash_lock_button").innerHTML = "Bet";
     
+    if(countdown > 0.1){
+
+        countdown = countdown - 0.1;
+        console.log(countdown.toFixed(2));
+        document.getElementById("crash_main_text").innerHTML = "<span style='font-size: 40px; color: grey; position: relative; top: -25px;'>Starting in " + countdown.toFixed(1) + "</span>";
+        setTimeout('resetCrash();', 100);
+        
+        return;
+    }
     
+    runCrash();
+    
+  
     
 }
 
@@ -144,7 +258,7 @@ function resetCrash(){
 function insertCrashStatus(){
     
     if(crashed == true){
-        document.getElementById("crash_main_text").innerHTML = '<span style=" position: relative; top: -35px; color: red; font-size: 50px;">Crashed<br></span><span style="color: red; font-size: 50px; position: relative; top: -70px;">at ' + crashStatus.toFixed(2) + 'x</span>';
+        document.getElementById("crash_main_text").innerHTML = '<span style=" position: relative; top: -45px; color: red; font-size: 50px;">Crashed<br></span><span style="color: red; font-size: 50px; position: relative; top: -105px;">at ' + crashStatus.toFixed(2) + 'x</span>';
         return;
     }
     if(crashed != true){
