@@ -29,6 +29,11 @@ a:hover{
 body{
     
     background-color: #000000;
+    background-size: 1400px;
+    background-repeat: no-repeat;
+    background-position: top;
+    
+    
 }
 
 #background_div{

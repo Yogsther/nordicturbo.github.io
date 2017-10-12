@@ -2,6 +2,17 @@
 var sale = false;
 var priceOfCrate = 1000;
 
+// Event background settings, leave blank for black.
+// File path of image or URL i.e (/img/halloweenbackground.png)
+var eventBackground = "";
+
+
+
+
+
+
+// Background image
+var customBackround = readCookie("customBackground");
 
 
 
@@ -21,14 +32,12 @@ var slideIndex = 0;
         var superbrightCard = "img/Super-Bright_card.png"
         var rubyCard = "img/ruby_card.png";
         var sapphireCard = "img/sapphire_card.png";
+        var piCard = "img/pi_card.png";
 
 
-// Declare Music variables
+// Declare Music variables for every theme with music.
 var swedishMusic = new Audio("sound/swedish_national.mp3");
 
-
-
-// Price of a crate (default should be 1000 credits)
 
 
 runCrateFunctions();
@@ -40,7 +49,20 @@ checkIfThemeApplies();
 runOnIndex();
 countDownTimer();
 checkForSale();
-getXP();
+
+
+
+function getBackgroundImage(){
+    customBackround = readCookie("customBackground");
+    
+    if(customBackround == "true"){
+        return;
+    } else {
+        // EVENT BACKGROUND 
+        document.body.style.backgroundImage = "url(" + eventBackground + ")";
+        document.body.style.backgroundColor = "#000000";
+    }
+}
 
 
 function reloadPage(){
@@ -63,12 +85,12 @@ function checkIfThemeApplies(){
     if (window.location.href.indexOf("crate") != -1){
         return false;
     }else{
+        getBackgroundImage();
         getTheme();
         checkClaim();
         countDown();
-    getBankStatus();
-         
         
+       
     }
     
 }
@@ -76,6 +98,7 @@ function checkIfThemeApplies(){
 function runOnIndex(){
     if (window.location.href.indexOf("index") != -1){
         getXP();
+        getBankStatus();
     }
 }
 
@@ -292,6 +315,7 @@ function getSavedSkins(){
     var LGBT2017 = readCookie("LGBT2017");
     var Sweden = readCookie("Sweden");
     var Coffee = readCookie("Coffee");
+    var Pi = readCookie("Pi");
     var Superbright = readCookie("Superbright");
     var Devtheme = readCookie("Devtheme");
     var Ruby = readCookie("Ruby");
@@ -317,6 +341,12 @@ function getSavedSkins(){
     if(Sweden == "true"){
       document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';
         // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";}
+    
+    
+    if(Pi == "true"){
+        document.getElementById("saved_skins").innerHTML += '<span id="epic">Pi    </span>    <button class="btn" onclick="Pi()">Choose</button><br>';
+    // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
     
     if(Coffee == "true"){
@@ -394,11 +424,11 @@ function LGBT2017(request){
     createCookie("LGBT2017", true, 10000);
     
     // Set Text Color
-        document.getElementById("home_page").style.color = "white";
+    document.getElementById("home_page").style.color = "white";
     
     // Change colors and banner
-        document.getElementById("background_div").style.backgroundColor = "#bc3131";
-        document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
+    document.getElementById("background_div").style.backgroundColor = "#bc3131";
+    document.getElementById("header_table").style.backgroundImage = "url(img/banner_lgbt_2017.gif)";
     
 
     // Change to theme 
@@ -493,7 +523,8 @@ function Sweden(request){
     
     // Set Text Color
         document.getElementById("home_page").style.color = "white";
-    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
     
     // Change colors
     document.getElementById("background_div").style.backgroundColor = "#1c263a";
@@ -527,9 +558,10 @@ function Halloween2017(request){
     
     // Save theme
     createCookie("Halloween2017", true, 10000);
-    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
     // Set Text Color
-        document.getElementById("home_page").style.color = "white";
+    document.getElementById("home_page").style.color = "white";
     
     // Change colors
         document.getElementById("background_div").style.backgroundColor = "#111111";
@@ -554,7 +586,8 @@ function Emerald(request){
     }
     // Save theme
     createCookie("Emerald", true, 10000);
-    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
     // Change colors
         
         // Set Text Color
@@ -563,13 +596,50 @@ function Emerald(request){
         document.getElementById("background_div").style.backgroundColor = "#03492b";
         document.getElementById("header_table").style.backgroundColor = "#1e603d";
         document.getElementById("header_table").style.backgroundImage = "url()";
-// IMG        document.getElementById("header_table").style.backgroundImage = "url()";
+        // IMG        document.getElementById("header_table").style.backgroundImage = "url()";
     
     
     // Change to theme 
     createCookie("Theme", "Emerald", 10000);
     
 }
+
+
+
+
+function Pi(request){
+    
+    var buttonColor = "#da3030";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
+   
+    createCookie("customBackground", "true", 10000);
+    // Background color
+    document.body.style.backgroundColor = "#111111";
+    // Background Image
+    document.body.style.backgroundImage = "url(img/pi_background.png)";
+    getBackgroundImage();
+    
+    // Save theme
+    createCookie("Pi", true, 10000);
+    
+    // Set Text Color
+    document.getElementById("home_page").style.color = "white";
+    
+    // Change colors
+    document.getElementById("background_div").style.backgroundColor = "#252525";
+    document.getElementById("header_table").style.backgroundImage = "url(img/pi_banner.png)";
+
+    
+    
+    // Change to theme 
+    createCookie("Theme", "Pi", 10000);
+    
+}
+
+
 
 function Ruby(request){
         var buttonColor = "#db1313";
@@ -579,6 +649,9 @@ function Ruby(request){
             }
         // Save theme
         createCookie("Ruby", true, 10000);
+    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
     
         // Change colors
         // Set Text Color
@@ -606,6 +679,10 @@ function Sapphire(request){
         // Change colors
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
+    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
+    
         
         document.getElementById("background_div").style.backgroundColor = "#1d2872";
         document.getElementById("header_table").style.backgroundColor = "#3043cc";
@@ -630,6 +707,12 @@ function Superbright(request){
             if(request == "buttonColor"){
                     return buttonColor;
             }
+    
+    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
+    
+    
     // Set Text Color
     document.getElementById("home_page").style.color = "black";
     // Set background color.
@@ -655,6 +738,11 @@ function superDark(request){
     if(request == "buttonColor"){
         return buttonColor;
     }
+    
+    
+    
+    createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
     
     
     // Save superDark
@@ -685,6 +773,9 @@ function Coffee(request){
         return buttonColor;
     }
     
+    createCookie("customBackground", "false", 10000);
+    getBackgroundImage();
+    
     // Save theme
     createCookie("Coffee", true, 10000);
     
@@ -706,11 +797,16 @@ function Coffee(request){
 function Red(request){
     
         var buttonColor = "#ef4f4f";
-    
+        
         if(request == "buttonColor"){
             return buttonColor;
         }
         
+        
+        createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
+    
+    
         // Set Text Color
         document.getElementById("home_page").style.color = "white";
         // Background color
@@ -728,6 +824,10 @@ function Red(request){
 // Change to Theme: Default
 function Default(){
         // Set Text Color
+        
+        createCookie("customBackground", "false", 10000);
+        getBackgroundImage();
+    
         document.getElementById("home_page").style.color = "white";
     
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
@@ -824,7 +924,7 @@ function claimHourlyCredits(){
 
     addCredits(250);
     addXP(100);
-        getXP();
+    getXP();
     getBankStatus();
     
 }
@@ -912,8 +1012,6 @@ function slideRedirect(){
         window.open("https://github.com/Yogsther/nordicturbo.github.io",'_blank');
     }
 }
-
-
 
 
 
@@ -1064,7 +1162,7 @@ function rarityLegendary(){
 function rarityEpic(){
     // Item is epic tier.
     console.log("You got an Epic!");
-    var whatEpicNum = Math.floor(Math.random() * 3) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 4) + 1;
     
     if(whatEpicNum == 1){
         console.log("You got superDark");
@@ -1081,6 +1179,11 @@ function rarityEpic(){
         // Coffee
         document.getElementById("themeCard").src=coffeecard;
         createCookie("Coffee", true, 10000);
+    }  else if (whatEpicNum == 4){
+        console.log("You got Pi");
+        // Coffee
+        document.getElementById("themeCard").src=piCard;
+        createCookie("Pi", true, 10000);
     } 
     
     
