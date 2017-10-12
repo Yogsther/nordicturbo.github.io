@@ -177,13 +177,39 @@ function betOnCrash(){
     
 }
 
-
+var crashSpeed;
+var crashChance;
 
 function crash(){
     
     if(crashed == false){
         
-        randomCrashVar = Math.floor(Math.random()*100);
+        
+        if(crashStatus < 2){
+            randomCrashVar = Math.floor(Math.random()*100);
+            crashChance = "1%";
+            }
+        
+        if(crashStatus > 2){
+            crashChance = "0.5%";
+            randomCrashVar = Math.floor(Math.random()*200);   
+            }
+        if(crashStatus > 3){
+            crashChance = "0.33%";
+            randomCrashVar = Math.floor(Math.random()*300);  
+            }
+        if(crashStatus > 4){
+            crashChance = "0.25%";
+            randomCrashVar = Math.floor(Math.random()*400); 
+            }
+        if(crashStatus > 10){
+            crashChance = "0.01%";
+            randomCrashVar = Math.floor(Math.random()*1000);    
+            
+        }
+
+        
+        console.log("Crash status: " + crashStatus.toFixed(3) + ". Crash speed: " + crashSpeed + "ms" + " Crash chance: " + crashChance);
         
         
         if(randomCrashVar == 0){
@@ -197,7 +223,6 @@ function crash(){
         // Not crashed
         crashStatus = crashStatus + 0.01;
         crashMultiplier = crashStatus.toFixed(2);
-        console.log(crashStatus.toFixed(2));
         insertCrashStatus();
         
 
@@ -219,7 +244,7 @@ function crash(){
     hasBet = false;
     setTimeout('resetCrash();', 1500);
     insertCrashStatus();
-    console.log("Crashed");
+    console.log("CRASHED @ " + crashMultiplier);
     document.getElementById("crash_lock_button").innerHTML = "Bet";
     crashBet = 0;
     
@@ -239,7 +264,6 @@ function resetCrash(){
     if(countdown > 0.1){
 
         countdown = countdown - 0.1;
-        console.log(countdown.toFixed(2));
         document.getElementById("crash_main_text").innerHTML = "<span style='font-size: 40px; color: grey; position: relative; top: -25px;'>Starting in " + countdown.toFixed(1) + "</span>";
         setTimeout('resetCrash();', 100);
         
