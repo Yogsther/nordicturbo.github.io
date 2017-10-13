@@ -166,11 +166,16 @@ function betOnCrash(){
     
     if(hasBet != true){
     // Bet
-    var deleteAmount = crashBet * -1
+    var deleteAmount = crashBet * -1;
+    var xpReward = Math.round(crashBet * 0.2);
+    addXP(xpReward);
+        
     addCredits(deleteAmount);
-    log("<i>Bet placed: " + crashBet + "</i>");
+    log("<i>Bet placed: " + crashBet + " | XP Reward: " + xpReward + "</i>");
+    
     canCashOut = true;
     hasBet = true;
+    
     return;
     }
     
@@ -208,7 +213,7 @@ function crash(){
             
         }
 
-        
+        crashSpeed = Number(crashSpeed).toFixed(5);
         console.log("Crash status: " + crashStatus.toFixed(3) + ". Crash speed: " + crashSpeed + "ms" + " Crash chance: " + crashChance);
         
         
@@ -394,11 +399,21 @@ function rolling(){
             winnerMoney = greenBet * 14;
             
         }
+        // Xp reward
+        var xpReward = Math.round(totalBet * 0.2);
+        addXP(xpReward);
+    
+    
         // Fund bank
         addCredits(winnerMoney);
         
         // Log message
-        log("<span style='color:" + rollColor + ";')>" + rollColorName + "</span> (" + rollNumber + ") Bet: " + totalBet + ". Won: " + winnerMoney + ". Final: " + (winnerMoney - totalBet));    
+        log("<span style='color:" + rollColor + ";')>" + rollColorName + "</span> (" + rollNumber + ") Bet: " + totalBet + ". Won: " + winnerMoney + ". Final: " + (winnerMoney - totalBet));
+    
+        if (xpReward > 0){
+            log("XP Reward: " + xpReward);
+        }
+        
     
     
         // Post rolling (reset)
@@ -627,6 +642,24 @@ function addCredits(amount){
             console.log("Added " + amount + ", total credits: " + credits + ".");
         }
         insertCredits(); 
+}
+
+
+// XP Function
+
+function addXP(amount){
+    var xp = Number(readCookie("xp"));
+        
+        if(xp == null){
+            createCookie("xp",0,10000);
+            credits = Number(xp) + Number(amount);
+            createCookie("xp",credits, 10000);
+            console.log("You gained " + amount + "xp.");
+        } else {
+            xp = Number(xp) + amount;
+            createCookie("xp",xp, 10000);
+            console.log("You gained " + amount + "xp.");
+        }
 }
 
 

@@ -707,11 +707,12 @@ body{
 }
 
 
-#project_card{
+.project_card{
     height: 250px;
     padding: 10px;
     animation: zoomOut .1s forwards ease-in;
     cursor: pointer;
+    position: absolute;
     
     /* Make image undraggable */
     user-drag: none; 
@@ -723,10 +724,18 @@ body{
     
 }
 
-#project_card:hover{
+.project_card:hover{
     animation: zoomIn .1s forwards ease-out;
 }
 
+
+#card_2{
+    left: 243px;
+}
+
+#card_3{
+    left: 487px;
+}
 
 
 @keyframes zoomIn {
