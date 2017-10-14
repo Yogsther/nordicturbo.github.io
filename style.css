@@ -900,6 +900,20 @@ body{
     border-radius: 10px;
 }
 
+::-webkit-scrollbar{
+background-color: black;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #3a3a3a;
+    border-radius: 3px;
+    width: 30px;
+}
+
+
+
+
+
 #chat_message{
     width: 200px;
     padding-left: 5px;
@@ -944,7 +958,6 @@ body{
     position: relative;
     top: -14px;
     left: 10px;
-    
     font-size: 15px;
     font-weight: 700;
 }
@@ -952,29 +965,34 @@ body{
 #message_content{
     color: white;
     width: 250px;
-    left: 13px;
+    left: 12px;
     font-size: 14px;
     
     top: 5px;
     position: relative;
 }
-/*
+
+#timestamp{
+    color: white;
+    position: absolute;
+    font-size: 13px;
+    top: -37px;
+    right: 10px;
+        
+}
 
 
-<div id="message_blob">
-                        <img src="img/profiles/profile_anime_01.png">
-                        <span id="message_username">Olle Anime</span>
-                        <span id="message_content">Message bla bla bla</span>  
-                    </div>
-
-
-
-
-*/
-
-
-
-
+#sidebar-colored{
+    
+    width: 2px;
+    position: absolute;
+    top: 1px;
+    left: -4px;
+    border-radius: 5px;
+    height: 100%;
+    
+    
+}
 
 
 

@@ -29,8 +29,20 @@ socket.on('disconnect', function(){
     console.log('User has disconected');
   });
 
-  socket.on("chat", function(data){
+    
+    
+    
+    
+socket.on("chat", function(data){
+    
+    // Check for too long usernames (hacked!)
+    if(data.username.length > 32){
+        console.log("failed: too long username: " + data.username);
+        return;
+    }  
+    // Send out message to every client.
     io.sockets.emit("chat", data);
-    console.log(data);
+    // Log message in console.
+    console.log("Message > " + data.username + ": " + data.message);
   });
 });
