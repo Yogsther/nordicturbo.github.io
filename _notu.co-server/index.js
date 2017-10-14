@@ -9,6 +9,8 @@ var server = app.listen(25565, function(){
 });
 
 
+var admins = ["Agman", "🅱man", "Olle", "DigitalMole", "Pop", "Popkrull", "Hivod", "Olof"];
+
 // Static files
 
 app.use(express.static("public"))

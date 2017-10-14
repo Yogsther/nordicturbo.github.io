@@ -928,7 +928,7 @@ body{
 
 #message_profile{
     height: 40px;
-    left: 5px;
+    left: 7px;
     position: relative;
     /* Make image undraggable */
     user-drag: none; 
