@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
 </head>
 <body>
@@ -27,6 +29,13 @@
                 <span id="insert_claim_button_here"></span>
                 <span id="insert_claim_countdown"></span>
             </div>   
+         
+         
+            <div id="profile">
+                <img src="img/profiles/profile_none.png" id="insert-profile">
+                <span id="insert-username">New</span>
+            </div>
+         
         
          <!-- Buttons (duh..) -->
             <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="project()">Projects</button> 
@@ -87,12 +96,37 @@
                     <img src="img/lvl/1.png" id="xp_portrait_img">
                 </div>
                 
+                <div id="chat-window">
+                    <div id="chat-inner">
+                    
+                    <!-- Chat message template 
+                        
+                    <div id="message_blob">
+                        <img id="message_profile" src="img/profiles/profile_none.png">
+                        <span id="message_username">Username</span>
+                        <div id="message_content">message</div>  
+                    </div>
+                        
+                    -->    
+
+                        
+                        
+                    </div> 
+                <input type="text" class="text_field" id="chat_message" placeholder="Message..."/> 
+                <button class="btn" id="send_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" onclick="sendMessage()">Send</button>
+                </div>
+                
+                <div id="twitter">
                 <a class="twitter-timeline" width="300"
-                data-height="500" id="twitter" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                data-height="500" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <br><br>
+                </div>
                 
+                
+                
+                <!-- 
                 <iframe src="https://discordapp.com/widget?id=357102560827539457&theme=dark" width="290" height="300" allowtransparency="true" frameborder="0"></iframe>
-                
+                -->
             </div>
 
         <!-- Footer -->
@@ -104,6 +138,8 @@
          
     <!-- END OF BACKGROUND DIV -->
          <script src="code.js"></script>
+         <script src="chat.js"></script>
+         
          <element onload="loadGif()"></element>
     </div>
 </body>
