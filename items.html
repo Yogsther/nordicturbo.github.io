@@ -36,12 +36,12 @@
         <!-- From here and up should be the same for every page! -->
         <div id="home_page">
         
-            Here is your inventory. If you have any skincodes, you can enter them below. 
+            Here is your inventory. If you have any theme codes, you can enter them below. 
             <br>
-            Open crates to get new items.<br>
+            Open crates to get more themes, and profile pictures.<br>
             <br>
-            Skin code: <input id="theme_chooser" class="text_field">
-            <button class="btn" onclick="addSkins();" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">Go</button>
+            Theme code: <input id="theme_chooser" class="text_field">
+            <button class="btn" onclick="addSkins();" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" id="goButton">Go</button>
             <br><br>
             
             
@@ -50,9 +50,10 @@
             
             
             <br><br>
-            Saved skins:
+            <div id="items-title">
+                Saved skins:<span id="switcharu"> Customize Profile:</span>
             <br><br>
-            
+            </div>
             <div id="saved_skins">
                 
                 
@@ -76,23 +77,41 @@
             Profile pictures
             -->
             <div id="profile-select">
-                <input id="newUserName" type="text" placeholder="Username" maxlength="20"/>
-                <button id="submitUserName" onclick="changeUsername();">Change</button>
+                <input id="newUserName" type="text" class="text_field" placeholder="Username" maxlength="20"/>
+                <button id="submitUserName" onclick="changeUsername();" class="btn" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">Change</button>
                 
                 <div id="insertUsername">Username</div> 
                 <img id="prof-preview" src="img/profiles/profile_none.png">
                 
-                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_bot.png">
-                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_01.png">
-                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_sweden.png">
                 
-
+                <span id="all_profiles">
+                    
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_none.png" title="Notu.co Axe">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_bot.png" title="L.it Bot">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_happy.png" title="Happy Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_cool.png" title="Cool Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_crying.png" title="Crying Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_angry.png" title="Angry Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_01.png" title="Anime 1">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_02.png" title="Anime 2">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_03.png" title="Anime 3">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_01.png" title="Livingfor.it Wizard">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_02.png" title="Livingfor.it Rainbow Dash">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_jason.png" title="Jason">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_sweden.png" title="Sweden Flag">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_ussr.png" title="USSR Flag">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_diamond.png" title="Minecraft Steve">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_rob.png" title="Roblox">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_overwatch.png" title="Overwatch Dark">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_primabook.png" title="Primabook">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_coffee.png" title="Coffee">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_shotgun.png" title="Shotgun">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_binary.png" title="Binary">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_expand.png" title="Expand">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_dong.png" title="Dong">
                 
-                
-                
-                
-                
-                
+                    
+                </span>
             </div>
         </div>
         <!-- Footer -->

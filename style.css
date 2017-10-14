@@ -182,7 +182,7 @@ body{
     width: 290px;
     left: -20px;
     float: right;
-    top: -1000px;
+    top: -990px;
     position: relative;
 }
 
@@ -759,9 +759,9 @@ body{
     border-radius: 8px;
     padding: 20px;
     position: absolute;
-    top: 233px;
+    top: 232px;
     left: 340px;
-    height: 270px;
+    height: 299px;
     width: 470px;
 
 }
@@ -769,8 +769,9 @@ body{
 
 #profile-img{
     height: 60px;
-    padding: 4px;
-    left: 19px;
+    padding-left: 1.75px;
+    padding-right: 1.75px;
+    left: 1px;
     top: 50px;
     position: relative;
     cursor: pointer;
@@ -787,31 +788,22 @@ body{
 
 #newUserName{
     position: absolute;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    padding: 4px;
-    font-weight: 600;
-    text-align: center;
+    padding: 7px;
+    height: 17px;
+    top: 22px;
     
 }
 
 #submitUserName{
     position: absolute;
-    left: 216px;
-    height: 40px;
-    border: none;
-    border-radius: 4px;
-    width: 70px;
-    color: white;
-    background: #232323;
-    cursor: pointer;
-    
+    left: 140px;
 }
 
-#submitUserName:hover{
-    background: #424242;  
+#submitUserName:active{
+    top: 22px;
 }
+
+
 
 
 
@@ -846,15 +838,15 @@ body{
 #insertUsername{
     position: absolute;
     top: 28px;
-    right: -80px;
+    right: -6px;
     text-align: left;
     width: 250px;
 }
 
 #prof-preview{
     height: 30px;
-    top: 25px;
-    left: 298px;
+    top: 22px;
+    left: 228px;
     position: absolute;
     
      /* Make image undraggable */
@@ -866,6 +858,164 @@ body{
     -ms-user-select: none;
     
 }
+
+#goButton{
+    top: 1px;
+}
+#goButton:active{
+    top: 4px;
+}
+
+#items-title{
+    position: relative;
+    top: 30px;
+    left: 20px;
+}
+
+#switcharu{
+    text-align: right;
+    position: absolute;
+    right: 143px;
+}
+
+
+
+#chat-window{
+    position: absolute;
+    height: 480px;
+    width: 290px;
+    background-color: rgba(0,0,0,.4);
+    
+    border-radius: 10px;
+}
+
+#chat-inner{
+    position: absolute;
+    height: 430px;
+    top: 5px;
+    width: 280px;
+    left: 5px;
+    background-color: black;
+    overflow: auto;
+    border-radius: 10px;
+}
+
+#chat_message{
+    width: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#send_button{
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+    width: 50px;
+}
+
+#send_button:active{
+    top: 439px;
+}
+
+#message_blob{
+    padding-top: 10px;
+    padding-bottom: 10px;
+   
+}
+
+#message_profile{
+    height: 40px;
+    left: 5px;
+    position: relative;
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#message_username{
+    color: white;
+    position: relative;
+    top: -14px;
+    left: 10px;
+    
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#message_content{
+    color: white;
+    width: 250px;
+    left: 13px;
+    font-size: 14px;
+    
+    top: 5px;
+    position: relative;
+}
+/*
+
+
+<div id="message_blob">
+                        <img src="img/profiles/profile_anime_01.png">
+                        <span id="message_username">Olle Anime</span>
+                        <span id="message_content">Message bla bla bla</span>  
+                    </div>
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#twitter{
+    position: absolute;
+    bottom: -950px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 459px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
