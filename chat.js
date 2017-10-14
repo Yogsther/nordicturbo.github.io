@@ -28,7 +28,11 @@ function sendMessage(){
     var messageContent = document.getElementById("chat_message").value;
     var messageUsername = readCookie("username");
     var messageProfile = readCookie("profileLocation");
-    var messageTime = currentdate.getHours() + ":" + currentdate.getMinutes();
+    
+    var hours = ("0" + currentdate.getHours()).slice(-2);
+    var minutes = ("0" + currentdate.getMinutes()).slice(-2);
+    
+    var messageTime = hours + ":" + minutes;
     var xp = (readCookie("xp") / 1000) + 1;
         xp = Math.floor(xp);
     

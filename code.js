@@ -138,6 +138,7 @@ function insertProfile(){
         var newRandom = Math.floor(Math.random()*8999)+1000;
         username = "New #" + newRandom;
         createCookie("username", username, 10000);
+        createCookie("profileLocation", "http://livingforit.xyz/img/profiles/profile_none.png", 10000)
 
     }
     
