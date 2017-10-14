@@ -99,6 +99,7 @@ function runOnIndex(){
     if (window.location.href.indexOf("index") != -1){
         getXP();
         getBankStatus();
+        insertProfile();
     }
 }
 
@@ -106,6 +107,7 @@ function runOnItemsPage(){
     
     if (window.location.href.indexOf("items.html") != -1){
         musicToggleButtonStatus();
+        insertUsername();
     }  
 }
 
@@ -122,6 +124,81 @@ function checkForDev(){
         }
 }
 }
+
+
+
+
+// Profiles
+
+
+var username = readCookie("username"); 
+
+function insertProfile(){
+    username = readCookie("username"); 
+    if(username == null){
+        // Generate & save profile name, user has no saved Name.
+        var newRandom = Math.floor(Math.random()*8999)+1000;
+        username = "New #" + newRandom;
+        createCookie("username", username, 10000);
+
+    }
+    
+    document.getElementById("insert-username").innerHTML = username;
+    
+    var profPic = readCookie("profileLocation");
+    if(profPic != null){
+        document.getElementById("insert-profile").src = profPic;
+    }
+    
+    
+    
+    //TODO
+}
+
+function getUsername(){
+    username = readCookie("username"); 
+    if(username == null){
+        // Generate & save profile name, user has no saved Name.
+        var newRandom = Math.floor(Math.random()*8999)+1000;
+        username = "New #" + newRandom;
+        createCookie("username", username, 10000);
+
+    }
+    return username;
+}
+
+
+function changeUsername(){
+    
+    var newUsername = document.getElementById("newUserName").value;
+    createCookie("username", newUsername, 10000);
+    insertUsername();
+    document.getElementById("newUserName").value = "";
+    
+}
+
+function insertUsername(){
+    username = getUsername();
+    var profPic = readCookie("profileLocation");
+    document.getElementById("prof-preview").src = profPic;
+    document.getElementById("insertUsername").innerHTML = username;
+    
+    
+}
+
+
+function changeProfile(pic){
+    console.log(pic.src)
+    var newPic = pic.src;
+    createCookie("profileLocation", newPic, 10000);
+    insertUsername();
+}
+
+
+
+
+
+
 
 function enableDev(){
     var devMode = true;

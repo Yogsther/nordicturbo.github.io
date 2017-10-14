@@ -413,7 +413,9 @@ body{
 #claim_button{
     height: 50px;
     cursor: pointer;
-    
+    position: absolute;
+    top: -70px;
+    right: -5px;
     /* Make logo undraggable */
     user-drag: none; 
     user-select: none;
@@ -527,7 +529,7 @@ body{
     position: relative;
     left: -6px;
     text-align: right;
-    top: 7px;
+    top: 0px;
     
 }
 
@@ -750,6 +752,120 @@ body{
 
 
 
+/* Profiles and Username */
+
+#profile-select{
+    background: rgba(0, 0, 0, .7);
+    border-radius: 8px;
+    padding: 20px;
+    position: absolute;
+    top: 233px;
+    left: 340px;
+    height: 270px;
+    width: 470px;
+
+}
+
+
+#profile-img{
+    height: 60px;
+    padding: 4px;
+    left: 19px;
+    top: 50px;
+    position: relative;
+    cursor: pointer;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+#newUserName{
+    position: absolute;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+    font-weight: 600;
+    text-align: center;
+    
+}
+
+#submitUserName{
+    position: absolute;
+    left: 216px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    width: 70px;
+    color: white;
+    background: #232323;
+    cursor: pointer;
+    
+}
+
+#submitUserName:hover{
+    background: #424242;  
+}
+
+
+
+#profile{
+    position: absolute;
+    right: 20px;
+    top: 94px;
+    width: 500px;
+}
+#insert-profile{
+    height: 60px;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    
+     /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#insert-username{
+    color: white;
+    position: absolute;
+    top: 57px;
+    font-size: 20px;
+    right: 80px;
+    text-align: right;
+}
+#insertUsername{
+    position: absolute;
+    top: 28px;
+    right: -80px;
+    text-align: left;
+    width: 250px;
+}
+
+#prof-preview{
+    height: 30px;
+    top: 25px;
+    left: 298px;
+    position: absolute;
+    
+     /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+}
 
 
 

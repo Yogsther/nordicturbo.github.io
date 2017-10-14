@@ -3,14 +3,23 @@ Changelog:
 ALPHA:
 
 
-Alpha | v.5.1 (IN PROGRESS)
+Alpha | v.5.2 [!IN PROGRESS]
+
+- Added chat window on homepage with custom usernames (changed under "Items")
+  display user-level on message, and custom selected profile pictures (change under "Items")
+
+- Removed Discord widget
+  reason: Unnecessary feature, and took up important space.
+
+
+Alpha | v.5.1
 
 - Added feature for limited time backgrounds for events.
 - New theme: Pi (Epic) avalible in crates now.
 - Added gamemode Crash in Project: Roulette
 - Added +10, +100, +1000, x2 & "All-in" buttons to Roulette.
 - Remade Roulette Project Card
-
+- Fixed numerous bugs
 
 Alpha | v.5.0 (Proejects Tab, Common Theme Dump & Roulette)
 

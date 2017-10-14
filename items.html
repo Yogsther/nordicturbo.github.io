@@ -59,7 +59,7 @@
                 
                 
                 
-                <span id="no_themes"><i>No themes found :( </i><br></span>
+            <span id="no_themes"><i>No themes found :( </i><br></span>
             
                 
             <!--     
@@ -70,6 +70,29 @@
             
             
          
+            </div>
+            
+            <!--
+            Profile pictures
+            -->
+            <div id="profile-select">
+                <input id="newUserName" type="text" placeholder="Username" maxlength="20"/>
+                <button id="submitUserName" onclick="changeUsername();">Change</button>
+                
+                <div id="insertUsername">Username</div> 
+                <img id="prof-preview" src="img/profiles/profile_none.png">
+                
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_bot.png">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_01.png">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_sweden.png">
+                
+
+                
+                
+                
+                
+                
+                
             </div>
         </div>
         <!-- Footer -->
