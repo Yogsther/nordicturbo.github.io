@@ -63,12 +63,8 @@ io.on("connection", function(socket){
     }
     
 }
-    
-    console.log(lastMessagePos);
-    var messages = "boi";
-    
     console.log("User has connected: " + socket.id);
-    io.sockets.connected[socket.id].emit("cache", messages);
+
 
     
 socket.on('disconnect', function(){
