@@ -10,6 +10,7 @@ var server = app.listen(25565, function(){
 
 
 var admins = ["Agman", "🅱man", "Olle", "DigitalMole", "Pop", "Popkrull", "Hivod", "Olof"];
+var clients = [];
 
 // Static files
 
@@ -23,8 +24,11 @@ var io = socket(server);
 
 io.on("connection", function(socket){
   
-  console.log("User has connected");
-  
+    var messages = "test"
+    console.log("User has connected: " + socket.id);
+    io.sockets.connected[socket.id].emit("cache", messages);
+
+    
 socket.on('disconnect', function(){
     console.log('User has disconected');
   });

@@ -114,7 +114,9 @@ function reviveChat(){
     console.log("Chat revived");
 }
 
-
+socket.on("cache", function(messages){
+        console.log(messages);  
+});
 
 // Get incoming messages
 
