@@ -36,14 +36,48 @@ function sendMessage(){
     var xp = (readCookie("xp") / 1000) + 1;
         xp = Math.floor(xp);
     
+    document.getElementById("chat_message").value = ""; 
+    
     // Dont send message if message is empty.
     if(messageContent.length < 1){
         return;
     }
     
+    if(chatEnabled == false){
+        // "Disable chat" message
+        document.getElementById("chat-inner").innerHTML += '<div id="spam_div"><span id="spam_warning"><i>Chat has been disabled for 5 seconds. <br>Reason: Spam.</i></span></div>';
+        
+        // Scroll down in chat on error message
+        var chatWindow = document.getElementById("chat-inner");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        
+        return;
+    }
+    
+    
+    if(spamStatus >= 4){
+        // Disable chat
+        // "Disable chat" message
+        document.getElementById("chat-inner").innerHTML += '<div id="spam_div"><span id="spam_warning"><i>Chat has been disabled for 5 seconds. <br>Reason: Spam.</i></span></div>';
+        
+        // Scroll down in chat on error message
+        var chatWindow = document.getElementById("chat-inner");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        
+        chatEnabled = false;
+        setTimeout(reviveChat, 5000);
+        return;
+        
+    }
+    
+    
+    // Message is clear to send
+    
+    spamStatus++;
+    
     console.log(messageContent + messageProfile + messageUsername + messageTime + " ! " +  xp);
     
-    document.getElementById("chat_message").value = "";
+   
     
     socket.emit("chat", {
         message: messageContent,
@@ -55,7 +89,30 @@ function sendMessage(){
     
 }
 
+var chatEnabled = true;
+var clearToSend = true;
+var spamStatus = 0;
 
+setInterval(spamCheck, 2000);
+
+function spamCheck(){
+    
+    if(spamStatus >= 1){
+        spamStatus = spamStatus - 1;
+        console.log("Spam status*: " + spamStatus);
+        return;
+    }
+        console.log("Spam status: " + spamStatus);
+    
+    
+    
+}
+
+function reviveChat(){
+    chatEnabled = true;
+    spamStatus = 0;
+    console.log("Chat revived");
+}
 
 
 
@@ -108,6 +165,8 @@ socket.on("chat", function(data){
     }
 
     document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + data.message + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+    
+    
     
     // Scroll to bottom on new message
     var chatWindow = document.getElementById("chat-inner");

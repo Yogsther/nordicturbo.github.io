@@ -2,14 +2,18 @@ Changelog:
 
 ALPHA:
 
+Alpha | v.5.3 [!IN PROGRESS]
+- Added spam prevention in the global chat.
 
-Alpha | v.5.2 [!IN PROGRESS]
+
+Alpha | v.5.2 (The Chat Update)
 
 - Added chat window on homepage with custom usernames (changed under "Items")
-  display user-level on message, and custom selected profile pictures (change under "Items")
-
+  display user-level on message, and custom selected profile pictures (changed under "Items")
+- Added user profiles for Notu.co with custom profile pictures.
+- Added 25 profile pictures
 - Removed Discord widget
-  reason: Unnecessary feature, and took up important space.
+  reason: Unnecessary and took up important space.
 
 
 Alpha | v.5.1
