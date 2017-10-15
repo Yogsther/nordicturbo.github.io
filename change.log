@@ -2,8 +2,14 @@ Changelog:
 
 ALPHA:
 
-Alpha | v.5.3 [!IN PROGRESS]
+Alpha | v.5.4 [!IN PROGRESS]
+- Added profanity filter (IN PROGRESS)
+...more
+
+Alpha | v.5.3 
+- Added cached chat!
 - Added spam prevention in the global chat.
+- Added 7 new profile pictures
 
 
 Alpha | v.5.2 (The Chat Update)
