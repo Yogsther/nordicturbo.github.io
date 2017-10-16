@@ -7,23 +7,23 @@ var socket = io.connect("http://213.66.254.63:25565");
 var playStatus = "Somewhere";
 
 if(window.location.href.indexOf("items") != -1){
-    playStatus = "Items"   
+    playStatus = "Items";   
 }
 
 if(window.location.href.indexOf("crate") != -1){
-    playStatus = "Crates"   
+    playStatus = "Crates";   
 }
 
 if(window.location.href.indexOf("roulette") != -1){
-    playStatus = "Gambling"   
+    playStatus = "Gambling";  
 }
 
 if(window.location.href.indexOf("about") != -1){
-    playStatus = "About"   
+    playStatus = "About";   
 }
 
 if(window.location.href.indexOf("crate") != -1){
-    playStatus = "Crates"   
+    playStatus = "Crates";   
 }
 
 // On connection send over Username, ProfileLoc & Lvl
