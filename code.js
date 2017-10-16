@@ -1,6 +1,8 @@
 // Sale settings
 var sale = false;
 var priceOfCrate = 1000;
+// Amount of XP you gain by being idle on the website every 10 seconds.
+var idleXP = 1;
 
 // Event background settings, leave blank for black.
 // File path of image or URL i.e (/img/halloweenbackground.png)
@@ -11,6 +13,11 @@ var eventBackground = "";
 
 // Background image
 var customBackround = readCookie("customBackground");
+
+setTimeout(function(){
+    setInterval(addXP(1), 10000);
+}, 10000);
+
 
 
 

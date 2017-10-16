@@ -2,6 +2,7 @@
 // Socket.io & chat functions
 
 var socket = io.connect("http://213.66.254.63:25565");
+socket.heartbeatTimeout = 20000;
 
 // On connection send over Username, ProfileLoc & Lvl
 
@@ -19,7 +20,8 @@ socket.on("login", function(request){
             username: messageUsername,
             profilepic: messageProfile,
             xp: xp,
-            id: socket.id
+            id: socket.id,
+            status: "Online"
         });
         
         console.log("Sent over data");
@@ -38,10 +40,7 @@ socket.on("listreset", function(profile){
         document.getElementById("online_list_inner").innerHTML = "";
 })
 
-
 socket.on("onlinepush", function(profile){
-    
-   
     
     onlineUsers++;
     
@@ -95,7 +94,7 @@ socket.on("onlinepush", function(profile){
     }
     
     console.log(xpColor);
-    document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">Online</span></span></div>';
+    document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
     
     document.getElementById("online_users_number").innerHTML = onlineUsers;
     
