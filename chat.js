@@ -2,7 +2,6 @@
 // Socket.io & chat functions
 
 var socket = io.connect("http://213.66.254.63:25565");
-socket.heartbeatTimeout = 20000;
 
 // On connection send over Username, ProfileLoc & Lvl
 

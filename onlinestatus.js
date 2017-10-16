@@ -3,7 +3,6 @@
 
 //var socket = io.connect("http://213.66.254.63:25565");
 var socket = io.connect("http://213.66.254.63:25565");
-socket.heartbeatTimeout = 20000;
 
 var playStatus = "Somewhere";
 
