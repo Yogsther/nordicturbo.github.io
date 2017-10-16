@@ -1022,11 +1022,111 @@ body{
     left:5px;
 }
 
+#online_list{
+    height: 300px;
+    width: 483px;
+    background-color: rgba(0,0,0,.4);
+    position: absolute;
+    top: 450px;
+    left: 40px;
+    border-radius: 10px;
+    
+}
+
+#online_list_title{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+#online_list_inner{
+    height: 252px;
+    width: 467px;
+    margin: 0 auto;
+    top: 40px;
+    background-color: rgba(0,0,0,1);
+    position: relative;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}      
 
 
 
 
-                        
+
+#online_user_div{
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative;
+    height: 70px;
+    width: 217px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+#online_list_user_profile{
+    height: 50px;
+    position: absolute;
+    top: 7px;
+    left: 5px;
+}
+
+
+#online_list_name{
+    font-size: 17px;
+    position: absolute;
+    top: 10px;
+    left: 70px;
+}
+
+#online_list_status{
+    position: absolute;
+    top: 36px;
+    left: 70px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #twitter{

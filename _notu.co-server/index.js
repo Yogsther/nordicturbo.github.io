@@ -11,7 +11,8 @@ var server = app.listen(25565, function(){
 
 
 var admins = ["Agman", "🅱man", "Olle", "DigitalMole", "Pop", "Popkrull", "Hivod", "Olof"];
-var clients = [];
+
+var onlineUsers = [];
 var cache = [];
 
 // Static files
@@ -24,10 +25,15 @@ var io = socket(server);
 
 
 
+
+
 io.on("connection", function(socket){
   
-
-            
+ 
+    // Request user info on connection
+    io.sockets.connected[socket.id].emit("login", "loginInfo");
+    
+    
        
     // Get the 10 latest messages
     // timeback is how many messages will get loaded for new users.
@@ -63,12 +69,37 @@ io.on("connection", function(socket){
     }
     
 }
+    
     console.log("User has connected: " + socket.id);
 
 
     
 socket.on('disconnect', function(){
-    console.log('User has disconected');
+    
+    
+    console.log('User has disconected: ' + socket.id);
+    // Delete user from online list on disconnect
+    io.sockets.emit("listreset");
+    
+    var pos = onlineUsers.findIndex(i => i.id === socket.id);
+    onlineUsers.splice(pos,1);
+    
+     var userPos = 0;    
+    
+    // Send all online users
+
+    while(userPos >= 0){
+
+        if(onlineUsers[userPos] == null){
+            userPos = -1;
+            console.log("Online users: " + onlineUsers.length);
+            return;
+        }
+        var newUser = onlineUsers[userPos];
+        io.sockets.emit("onlinepush", newUser);
+        userPos++;
+    }
+    
   });
     
     
@@ -89,7 +120,38 @@ socket.on("chat", function(data){
     // Log message in console.
     console.log("Message > " + data.username + ": " + data.message);
   });
+    
+    
+    
+    // Emit users
+    socket.on("sentover", function(userinfo){
+    // Reset list
+    io.sockets.emit("listreset");
+        
+    // Save user to client array
+    onlineUsers.push(userinfo);
+    var userPos = 0;    
+    
+    // Send all online users
+
+    while(userPos >= 0){
+
+        if(onlineUsers[userPos] == null){
+            userPos = -1;
+            console.log("Online users: " + onlineUsers.length);
+            return;
+        }
+        var newUser = onlineUsers[userPos];
+        io.sockets.emit("onlinepush", newUser);
+        userPos++;
+    }
 });
+    
+    
+});
+
+
+
 
 
 
