@@ -525,10 +525,10 @@ body{
 }
 
 #insert_claim_countdown{
-    color: white;
     position: relative;
     left: -6px;
     text-align: right;
+    color: white;
     top: 0px;
     
 }
@@ -1056,6 +1056,7 @@ body{
 
 
 #online_user_div{
+    color: white;
     margin-left: 10px;
     margin-top: 10px;
     position: relative;
