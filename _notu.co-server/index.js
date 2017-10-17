@@ -30,32 +30,6 @@ var io = socket(server);
 io.on("connection", function(socket){
     
     
-    
-    
-    /* Debug
-    try{
-    console.log("Name in 0: "+onlineUsers[0].username);}
-    catch(err){}
-    
-    try{
-    console.log("Name in 1: "+onlineUsers[1].username);}
-    catch(err){}
-    
-    try{
-    console.log("Name in 2: "+onlineUsers[2].username);}
-    catch(err){}
-    
-    try{
-    console.log("Name in 3: "+onlineUsers[3].username);}
-    catch(err){}
-    
-    try{
-    console.log("Name in 4: "+onlineUsers[4].username);}
-    catch(err){}
-    */
-    
-   
-    
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
        
@@ -100,7 +74,6 @@ io.on("connection", function(socket){
 socket.on('disconnect', function(){
     
     
-   
     // Delete user from online list on disconnect
     io.sockets.emit("listreset");
     
@@ -109,22 +82,19 @@ socket.on('disconnect', function(){
     
     var userPos = 0;    
     
-    try{
-    console.log("User left: " + onlineUsers[userPos].username + " @ " + userPos);}
-    catch(err){}
     
     // Send all online users
 
-    while(userPos >= 0){
+    while(userPos <= 50){
 
-        if(onlineUsers[userPos] == null){
-            userPos = -1;
-            return;
+        if(onlineUsers[userPos] == undefined){
+            userPos++;
         }
+        if(onlineUsers[userPos] != undefined){
         var newUser = onlineUsers[userPos];
         io.sockets.emit("onlinepush", newUser);
         userPos++;
-        
+        }
     }
     
     
@@ -161,7 +131,7 @@ socket.on("chat", function(data){
        
     // NOTE! This system only supports 50 users online at a time. That can be changed, but will slow down performance.
     // If desired, change here:
-    var pushPos = 0;
+    var pushPos = 10;
     var namePushed = false;  
     var supportedAmount = 50; 
     io.sockets.emit("listreset"); 
@@ -171,18 +141,18 @@ socket.on("chat", function(data){
     // Custom push feature for pushing client userstats - Prevents overwriting, happened when using .push    
     while(namePushed == false){
         
-        if(onlineUsers[pushPos] === undefined){
-            
+        if(onlineUsers[pushPos] == undefined || onlineUsers[pushPos] == null){
+            console.log("Wrote in, on pos: " + pushPos);
             onlineUsers[pushPos] = userinfo;
             namePushed = true;
-            console.log("User joined: " + userinfo.username + " @ " + pushPos); 
-            
-        } else if(onlineUsers[pushPos] !== undefined){
+        } 
+        if(onlineUsers[pushPos] != undefined && onlineUsers[pushPos] != null){
             pushPos++; 
+            console.log("Skipped one");
         }
     }
 } 
-     
+     /*
         console.log("-------------------");
     for(i = 0; i < 6; i++){
         console.log("NUMBER: " + i + " >>> "+onlineUsers[i]);
@@ -194,7 +164,7 @@ socket.on("chat", function(data){
         console.log("ID: " + onlineUsers[i].id);
         }
         console.log("..............");
-    }
+    } */
          
         // onlineUsers.push(userinfo);
         var userPos = 0; 
