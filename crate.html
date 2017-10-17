@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Unbox</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+        <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="http://www.livingforit.xyz/onlinestatus.js"></script>
+
+</head>
+<body>
+   
+    <!-- Background wall -->
+
+        <img id="crate_header" src="img/crate_header.png">
+        
+    
+        <!-- Crate -->
+        <img id="unbox_layer_01" src="https://i.imgur.com/SrGFgzU.gif">
+        <!-- Theme Card -->
+        <img id="themeCard" src="">
+        
+        <button id="goback_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Go Back</button> 
+    
+        <!-- Crate text and Button -->
+        
+        <div id="credits_display"><span id="numCreditsCratePage">N/A</span> <img src="img/credit_animated.gif" id="credit_animated"></div>
+    
+        <div id="crateInfoText">
+        You have <span id="numCrates">N/A</span>.
+        <br>
+            
+        </div>
+        <span id="open_crate_button_spot">
+        
+        </span>
+        <span id="dev_buttons_crate"> </span>
+    
+        <div id="infoGraphic">
+        <img id="buy_crates_image" src="img/buycrates.png">
+        <button class="btn" id="buy_crate" onclick="buyCrate();" style="background-color: #40ad32; color: white;">Buy</button>
+        
+        <img src="img/credit_animated_huge.gif" id="animated_huge"> 
+        <div id="credit_info">
+            <span id="title_ubuntu"><i>How to get NotuCoins</i></span><br>
+        Every hour you can claim 250C
+            on the <a href="index.html">homepage</a>. Soon there will be more ways
+        to get Credits.
+            
+        </div>
+        </div>
+    
+    
+        <!-- Fix background -->
+        <style> 
+            body{background-color: #111111;}
+        </style>
+
+        
+         
+    
+        <!-- Footer -->
+        
+    <!-- END OF BACKGROUND DIV -->
+         <script src="code.js"></script>
+         <element onload="loadGif()"></element>
+    </div>
+</body>
+</html>
+

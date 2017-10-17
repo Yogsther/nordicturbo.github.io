@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="http://www.livingforit.xyz/onlinestatus.js"></script>
+   
+    
+</head>
+<body>
+   
+   <!-- Background wall -->
+     <div id="background_div">
+        <div id="header_table">
+            <img src="img/website_logo_gif.gif" id="header_logo" onclick="changeTheme()">
+            
+        </div>    
+           
+         
+         <div id="claim_credits_div">
+                <span id="insert_claim_button_here"></span>
+                <span id="insert_claim_countdown"></span>
+            </div>  
+        <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="project()">Projects</button>
+         <!-- Buttons (duh..) -->
+       <div id="top_buttons">
+            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button> 
+            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button> 
+            <button id="items_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="items()">Items</button>
+            <button id="about_button" class="btn" onclick="about()" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">About</button>
+        </div>
+         
+        <!-- From here and up should be the same for every page! -->
+        <div id="home_page">
+        
+            Here is your inventory. If you have any theme codes, you can enter them below. 
+            <br>
+            Open crates to get more themes, and profile pictures.<br>
+            <br>
+            Theme code: <input id="theme_chooser" class="text_field">
+            <button class="btn" onclick="addSkins();" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" id="goButton">Go</button>
+            <br><br>
+            
+            
+            <i>Toggle music for themes</i>
+            <button id="music_toggle_button" class="btn" onclick="toggleMusic();"><span id="musicToggleText">Enabled</span></button>
+            
+            
+            <br><br>
+            <div id="items-title">
+                Saved skins:<span id="switcharu"> Customize Profile:</span>
+            <br><br>
+            </div>
+            <div id="saved_skins">
+                
+                
+                
+                
+                
+            <span id="no_themes"><i>No themes found :( </i><br></span>
+            
+                
+            <!--     
+            superDark        <button class="btn">Choose</button><br>
+            superWhite       <button class="btn">Choose</button><br>
+            Emerald          <button class="btn">Choose</button><br>
+            -->
+            
+            
+         
+            </div>
+            
+            <!--
+            Profile pictures
+            -->
+            <div id="profile-select">
+                <input id="newUserName" type="text" class="text_field" placeholder="Username" maxlength="20"/>
+                <button id="submitUserName" onclick="changeUsername();" class="btn" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">Change</button>
+                
+                <div id="insertUsername">Username</div> 
+                <img id="prof-preview" src="img/profiles/profile_none.png">
+                
+                
+                <span id="all_profiles">
+                    
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_none.png" title="Notu.co Axe">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_bot.png" title="L.it Bot">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_zelda.png" title="Zelda">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_link.png" title="Link">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_salesman.png" title="Happy Salesman">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_mario.png" title="Mario">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_mii_01.png" title="Mii">  
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_happy.png" title="Happy Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_cool.png" title="Cool Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_crying.png" title="Crying Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_angry.png" title="Angry Emoji">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_01.png" title="Anime 1">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_02.png" title="Anime 2">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_anime_03.png" title="Anime 3">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_01.png" title="Livingfor.it Wizard">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_livingforit_02.png" title="Livingfor.it Rainbow Dash">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_lego.png" title="Livingfor.it Lego">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_shyguy.png" title="Livingfor.it Shy Guy">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_jason.png" title="Jason">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_sweden.png" title="Sweden Flag">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_ussr.png" title="USSR Flag">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_diamond.png" title="Minecraft Steve">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_rob.png" title="Roblox">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_overwatch.png" title="Overwatch Dark">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_primabook.png" title="Primabook">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_coffee.png" title="Coffee">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_shotgun.png" title="Shotgun">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_binary.png" title="Binary">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_expand.png" title="Expand">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_dong.png" title="Dong">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_killerbean.png" title="Killer Bean">
+                <img onclick="changeProfile(this);" id="profile-img" src="img/profiles/profile_humanbean.png" title="Human Bean">
+                
+                    
+                </span>
+            </div>
+        </div>
+        <!-- Footer -->
+        
+        <div id="footer_div">
+        
+        
+        </div>
+    <!-- END OF BACKGROUND DIV -->
+         <script src="code.js"></script>
+         <element onload="loadGif()"></element>
+    </div>
+</body>
+</html>
+

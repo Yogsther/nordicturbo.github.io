@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    
+            <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="http://www.livingforit.xyz/onlinestatus.js"></script>
+
+</head>
+<body>
+   
+   <!-- Background wall -->
+     <div id="background_div">
+        <div id="header_table">
+            <img src="img/website_logo_gif.gif" id="header_logo" onclick="changeTheme()">
+            
+        </div>    
+           
+        <!-- Hourly Credit Claim -->
+        
+            <div id="claim_credits_div">
+                <span id="insert_claim_button_here"></span>
+                <span id="insert_claim_countdown"></span>
+            </div>   
+        
+         <!-- Buttons (duh..) -->
+            <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="project()">Projects</button> 
+        <div id="top_buttons">
+            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button> 
+            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button> 
+            <button id="items_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="items()">Items</button>
+            <button id="about_button" class="btn" onclick="about()" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">About</button>
+        </div>
+         
+         <!-- From here and up should be the same for every page! -->
+        
+        <!-- Homepage / Blog -->
+        <div id="home_page">
+    
+            <div id="project_cards_div">
+            
+            <img src="img/projectcard_roulette.png" class="project_card" onclick="rouletteCard()" id="card_1">
+                
+            <img src="img/projectcard_livingforitbot.png" class="project_card" onclick="botCard()" id="card_2">
+            
+            <img src="img/projectcard_placeholder.png" class="project_card" id="card_3">
+            
+            
+            
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <!-- End of homepage -->
+        </div>
+
+        <!-- Footer -->
+        
+        <div id="footer_div">
+        
+        </div>
+    <!-- END OF BACKGROUND DIV -->
+         <script src="code.js"></script>
+         <element onload="loadGif()"></element>
+    </div>
+</body>
+</html>
+
