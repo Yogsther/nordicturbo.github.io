@@ -35,7 +35,7 @@ socket.on("login", function(request){
             status: "Online"
         });
         
-        console.log("Sent over data");
+        console.log("You have connected to the server, socket.id: " + socket.id);
     }
     
    

@@ -29,6 +29,8 @@ var io = socket(server);
 
 io.on("connection", function(socket){
     
+    console.log(socket.id);
+    
     
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
@@ -73,19 +75,47 @@ io.on("connection", function(socket){
     
 socket.on('disconnect', function(){
     
-    
+
     // Delete user from online list on disconnect
     io.sockets.emit("listreset");
+
+    // Find the index of user logged in Onlineusers array
+    // var pos = onlineUsers.find(o => o.id === socket.id);
     
-    var pos = onlineUsers.findIndex(i => i.id === socket.id);
-    onlineUsers.splice(pos,1);
+    // var pos = onlineUsers.findIndex(x => x.id == socket.id) == -1;
+
+    // Start position to search in array
+    var initPos = 0;
+    var found = false;
+    
+    while(found == false){
+    
+            if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
+                console.log(initPos + " = Empty");
+                initPos++;
+            } else if(onlineUsers[initPos].id === socket.id){
+                console.log("FOUND @: " + initPos)
+                onlineUsers.splice(initPos,1);
+                found = true;
+            }
+            if(initPos > onlineUsers.length){
+                console.log("ERROR: user.lenght");
+                found = true;
+            } else {
+            initPos++;
+        }
+    
+    }
+    
+    
+    
     
     var userPos = 0;    
     
     
     // Send all online users
 
-    while(userPos <= 50){
+    while(userPos < 51){
 
         if(onlineUsers[userPos] == undefined){
             userPos++;
@@ -97,8 +127,7 @@ socket.on('disconnect', function(){
         }
     }
     
-    
-    
+
   });
     
     
@@ -131,12 +160,50 @@ socket.on("chat", function(data){
        
     // NOTE! This system only supports 50 users online at a time. That can be changed, but will slow down performance.
     // If desired, change here:
-    var pushPos = 10;
+    var pushPos = 0;
     var namePushed = false;  
     var supportedAmount = 50; 
     io.sockets.emit("listreset"); 
         
-    if(onlineUsers.findIndex(x => x.username == userinfo.username) == -1){
+    /*
+     while(found == false){
+    
+            if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
+                console.log(initPos + " = Empty");
+                initPos++;
+            } else if(onlineUsers[initPos].id === socket.id){
+                console.log("FOUND @: " + initPos)
+                onlineUsers.splice(initPos,1);
+                found = true;
+            }
+            if(initPos > onlineUsers.length){
+                console.log("ERROR: user.lenght");
+                found = true;
+            }
+    
+    }
+    */
+        
+
+    var newUser = true;
+    var initPos = 0;
+        
+    while(initPos < onlineUsers.length){
+        if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
+            console.log(initPos + " = Empty");
+            initPos++;
+            
+        } else if (onlineUsers[initPos].id === userinfo.username){
+            console.log("USER ALREADY HERE!: " + initPos)
+            newUser = false;
+            initPos++;
+        } else {
+            initPos++;
+        }
+    }    
+        
+        
+    if(newUser){
 
     // Custom push feature for pushing client userstats - Prevents overwriting, happened when using .push    
     while(namePushed == false){
