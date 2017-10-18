@@ -37,7 +37,8 @@ var slideIndex = 0;
         var superbrightCard = "img/Super-Bright_card.png"
         var rubyCard = "img/ruby_card.png";
         var sapphireCard = "img/sapphire_card.png";
-        var piCard = "img/pi_card.png";
+        var piCard = "img/pi_card.png"; 
+        var deepfriedTheme = "img/deepfried_card.png"
 
 
 // Declare Music variables for every theme with music.
@@ -403,6 +404,7 @@ function getSavedSkins(){
     var Devtheme = readCookie("Devtheme");
     var Ruby = readCookie("Ruby");
     var Sapphire = readCookie("Sapphire");
+    var Deepfried = readCookie("Deepfried");
     
     // Check every theme
     
@@ -425,6 +427,13 @@ function getSavedSkins(){
       document.getElementById("saved_skins").innerHTML += '<span id="legendary">Sweden </span>       <button class="btn" onclick="Sweden()">Choose</button><br>';
         // Remove "No THemes Found"
         document.getElementById("no_themes").innerHTML = "";}
+    
+    if(Deepfried == "true"){
+    
+        document.getElementById("saved_skins").innerHTML += '<span id="epic">Deepfried    </span>    <button class="btn" onclick="Deepfried()">Choose</button><br>';
+    // Remove "No THemes Found"
+        document.getElementById("no_themes").innerHTML = "";
+    }
     
     
     if(Pi == "true"){
@@ -719,6 +728,39 @@ function Pi(request){
     
     // Change to theme 
     createCookie("Theme", "Pi", 10000);
+    
+}
+
+
+function Deepfried(request){
+    
+    var buttonColor = "#da3030";
+    
+    if(request == "buttonColor"){
+        return buttonColor;
+    }
+    // If theme has custom bg
+    createCookie("customBackground", "true", 10000);
+    // Background color
+    document.body.style.backgroundColor = "#000000";
+    // Background Image
+    document.body.style.backgroundImage = "url(img/deepfired_theme_background.png)";
+    getBackgroundImage();
+    
+    // Save theme
+    createCookie("Deepfried", true, 10000);
+    
+    // Set Text Color
+    document.getElementById("home_page").style.color = "white";
+    
+    // Change colors
+    document.getElementById("background_div").style.backgroundColor = "#252525";
+    document.getElementById("header_table").style.backgroundImage = "url(img/deepfired_theme_banner.png)";
+
+    
+    
+    // Change to theme 
+    createCookie("Theme", "Deepfried", 10000);
     
 }
 
