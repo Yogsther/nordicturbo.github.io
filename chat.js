@@ -9,6 +9,19 @@ socket.on("login", function(request){
     
     if(request == "loginInfo"){
         
+        
+         var personalID = readCookie("persID");
+        // Generate new personalID for new users.
+        if(personalID == null){
+            var newID = Math.floor(Math.random() * 999999999) + 1;
+            createCookie("persID", newID, 10000);
+            personalID = readCookie("persID");
+        }
+        
+        console.log("Personal ID: " + personalID);
+        
+        
+        
         var messageUsername = readCookie("username");
         var messageProfile = readCookie("profileLocation");
         
@@ -32,7 +45,8 @@ socket.on("login", function(request){
             profilepic: messageProfile,
             xp: xp,
             id: socket.id,
-            status: "Online"
+            status: "Online",
+            persID: personalID
         });
         
         console.log("You have connected to the server, socket.id: " + socket.id);

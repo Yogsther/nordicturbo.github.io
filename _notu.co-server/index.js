@@ -193,8 +193,9 @@ socket.on("chat", function(data){
             console.log(initPos + " = Empty");
             initPos++;
             
-        } else if (onlineUsers[initPos].id === userinfo.username){
-            console.log("USER ALREADY HERE!: " + initPos)
+        } else if (onlineUsers[initPos].persID === userinfo.persID){
+            console.log("USER ALREADY HERE!, wrote in: " + initPos)
+            onlineUsers[initPos] = userinfo;
             newUser = false;
             initPos++;
         } else {
