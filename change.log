@@ -3,8 +3,16 @@ Changelog:
 ALPHA:
 
 Alpha | v.5.4 [!IN PROGRESS]
-- Added profanity filter (IN PROGRESS)
-...more
+
+- [!IN PROGRESS] Added clever profanity filter with censoring.
+- [!IN PROGRESS] Added Animated Profile Pictures as loot in crates (Legendary) 
+- Added Deepfried theme to crates!
+- Now playes sound and gives you a Crate on level-up!
+- Added crate notification icon on the Crate button on the homepage.
+- Added ping sound effect for global chat.
+- Added online list showing everyones status on the website.
+- Fixed Roulette & Crash XP exploit
+
 
 Alpha | v.5.3 
 - Added cached chat!
@@ -92,7 +100,7 @@ v.3.1 (Crate Beta v.2.1)
 v.3.0 (Crate Beta v.2)
 - Crates:
     Claim 250 NotuCoins every hour on the homepage.
-    Avalible items in lootbox: Halloween 2017, superDark, Emerald.
+    Avalible items in crates: Halloween 2017, superDark, Emerald.
     Crate probabilites are working.
 - Added new Theme: Pride (SC: LGBT2017)
 

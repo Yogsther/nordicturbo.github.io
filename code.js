@@ -8,6 +8,18 @@ var idleXP = 1;
 // File path of image or URL i.e (/img/halloweenbackground.png)
 var eventBackground = "";
 
+yearlyCrate();
+
+
+// Give free crates to users every year, and on the first time they log on.
+function yearlyCrate(){
+    var newuser = readCookie("brandnew");
+    if(newuser == null){
+        createCookie("brandnew", false, 365);
+        addCrates(1);
+        showCratesOnIndex();
+    }
+}
 
 
 
@@ -90,13 +102,14 @@ function runCrateFunctions(){
 function checkIfThemeApplies(){
     if (window.location.href.indexOf("crate") != -1){
         return false;
+        
     }else{
+        showCratesOnIndex();
         getBackgroundImage();
         getTheme();
         checkClaim();
         countDown();
-        
-       
+          
     }
     
 }
@@ -106,6 +119,7 @@ function runOnIndex(){
         getXP();
         getBankStatus();
         insertProfile();
+        
     }
 }
 
@@ -134,6 +148,30 @@ function checkForDev(){
 
 
 
+
+function showCratesOnIndex(){
+    
+    var currentCrates = readCookie("crates");
+    
+    if(crates == 0){
+       document.getElementById("insertBlob").style.visibility = "hidden";
+    } else {
+        document.getElementById("insertBlob").style.visibility = "visible";
+    }
+    if(crates != null){
+    var crateLenght = crates.toString().length * 15;
+    if(crates.toString().length == 1){
+        crateLenght = 20;
+    }
+    }
+    var finalLenght = crateLenght + "px";
+    
+    document.getElementById("insertBlob").innerHTML = '<div id="crateStatusBlobDiv" style="width: ' + finalLenght +';">' + currentCrates + '</div>';
+    console.log("Crates: " + currentCrates);
+}
+
+
+
 // Profiles
 
 
@@ -142,6 +180,7 @@ var username = readCookie("username");
 function insertProfile(){
     username = readCookie("username"); 
     if(username == null){
+        // Give brand new users one free lootbox
         // Generate & save profile name, user has no saved Name.
         var newRandom = Math.floor(Math.random()*8999)+1000;
         username = "New #" + newRandom;
@@ -1166,9 +1205,7 @@ function checkCrateStatus(){
     if(credits < priceOfCrate){
         document.getElementById("buy_crate").style.backgroundColor = "#ad3c31";
     }
-    
     if(crates >= 1){
-        
         document.getElementById("open_crate_button_spot").innerHTML = '<button class="btn" id="openCrateButton" onclick="openCrate()">Open Crate</button>'
     } else if (crates < 1) {
         document.getElementById("unbox_layer_01").src="img/no_box.png";
@@ -1287,7 +1324,7 @@ function rarityLegendary(){
 function rarityEpic(){
     // Item is epic tier.
     console.log("You got an Epic!");
-    var whatEpicNum = Math.floor(Math.random() * 4) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 5) + 1;
     
     if(whatEpicNum == 1){
         console.log("You got superDark");
@@ -1309,6 +1346,11 @@ function rarityEpic(){
         // Coffee
         document.getElementById("themeCard").src=piCard;
         createCookie("Pi", true, 10000);
+    } else if (whatEpicNum == 5){
+        console.log("You got Deepfried");
+        // Coffee
+        document.getElementById("themeCard").src=deepfriedTheme;
+        createCookie("Deepfried", true, 10000);
     } 
     
     
@@ -1482,7 +1524,8 @@ function getXP(){
 
 function addXP(amount){
     var xp = getXP();
-        
+    var oldLvl = parseInt(Math.floor(xp / 1000) + 1, 10)
+    
         if(xp == null){
             createCookie("xp",0,10000);
             credits = Number(xp) + Number(amount);
@@ -1492,8 +1535,20 @@ function addXP(amount){
             xp = Number(xp) + amount;
             createCookie("xp",xp, 10000);
             console.log("You gained " + amount + "xp.");
+            var newLvl = parseInt(Math.floor(xp / 1000) + 1, 10)
+            // Added xp, check for lvl up:
+            //if(oldXP.floor)
+            if(newLvl > oldLvl){
+                // User has leveled up!
+                // Play level up sound effect
+                var levelupSound = new Audio("/sound/notu_lvlup_v2.wav");
+                levelupSound.volume = 0.3;
+                levelupSound.play();
+                addCrates(1);
+                
+            }
         }
-    getXP();
+      getXP();
 }
 
 
@@ -1518,6 +1573,7 @@ function addCredits(amount){
             credits = Number(credits) + amount;
             createCookie("credits",credits, 10000);
             console.log("Added " + amount + ", total credits: " + credits + ".");
+           
         }
         runCrateFunctions(); 
 }
@@ -1536,6 +1592,9 @@ function addCrates(amount){
             createCookie("crates",crates, 10000);
             console.log("Added " + amount + ", total crates: " + crates + ".");
         }
+        if (window.location.href.indexOf("index") != -1){
+        showCratesOnIndex();
+        }
         getCrates();
 }
 
@@ -1545,11 +1604,13 @@ function getCrates(){
         crates = 0;
         createCookie("crates",0,10000);
     }
+    if (window.location.href.indexOf("crate") != -1){
     if(crates == 1){
         document.getElementById("numCrates").innerHTML = crates + " crate";
     } else {
-    document.getElementById("numCrates").innerHTML = crates + " crates";
+        document.getElementById("numCrates").innerHTML = crates + " crates";
         }
+    }
 }
 
 function getCredits(){

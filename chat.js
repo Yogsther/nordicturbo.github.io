@@ -4,6 +4,8 @@
 var socket = io.connect("http://213.66.254.63:25565");
 
 // On connection send over Username, ProfileLoc & Lvl
+// First time loading page, making sure not to run the chat ping sound when reciving chat cache.
+var first = 1;
 
 socket.on("login", function(request){
     
@@ -202,14 +204,15 @@ function sendMessage(){
     
     console.log(messageContent + messageProfile + messageUsername + messageTime + " ! " +  xp);
     
-   
+    var personalID = readCookie("persID");
     
     socket.emit("chat", {
         message: messageContent,
         username: messageUsername,
         profile: messageProfile,
         time: messageTime,
-        xp: xp
+        xp: xp,
+        persID: personalID
     });
     
 }
@@ -289,8 +292,19 @@ socket.on("chat", function(data){
     }
 
     document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + data.message + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+
+    var personalID = readCookie("persID");
     
+    if(personalID !== data.persID){
     
+    if(first > 10){
+    var pingSound = new Audio("sound/ping.wav");
+    pingSound.volume = 0.4;
+    pingSound.play();
+        }
+    }
+    first++;
+
     
     // Scroll to bottom on new message
     var chatWindow = document.getElementById("chat-inner");

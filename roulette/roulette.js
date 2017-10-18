@@ -118,9 +118,21 @@ function betOnCrash(){
         // CASH OUT FEATURE
         var winMoney = Math.round(crashMultiplier * crashBet);
         var profitMoney = winMoney - crashBet;
-            
-        log("Cashed out at " + crashMultiplier + " Won: " + winMoney + "<span style='color: #5ce24e;'> Profit: " + profitMoney + "</span>");
         
+        var xpReward = Math.round(profitMoney * 0.2);
+        if(xpReward > 1000){
+            xpReward = 1000;
+        }
+          
+        
+        
+        log("Cashed out at " + crashMultiplier + " Won: " + winMoney + "<span style='color: #5ce24e;'> Profit: " + profitMoney + "</span>");
+        if(xpReward > 0){
+            log("XP Reward: " + xpReward);
+            addXP(xpReward); 
+        }
+            
+            
         addCredits(winMoney);    
         crashWoah.play();
         canCashOut = false;
@@ -167,11 +179,10 @@ function betOnCrash(){
     if(hasBet != true){
     // Bet
     var deleteAmount = crashBet * -1;
-    var xpReward = Math.round(crashBet * 0.2);
-    addXP(xpReward);
+    
         
     addCredits(deleteAmount);
-    log("<i>Bet placed: " + crashBet + " | XP Reward: " + xpReward + "</i>");
+    log("<i>Bet placed: " + crashBet + "</i>");
     
     canCashOut = true;
     hasBet = true;
@@ -400,8 +411,14 @@ function rolling(){
             
         }
         // Xp reward
-        var xpReward = Math.round(totalBet * 0.2);
-        addXP(xpReward);
+        var xpReward = Math.round((winnerMoney - totalBet) * 0.2);
+        
+        if(xpReward > 1000){
+            xpReward = 1000;
+            console.log(xpReward)
+        }
+    
+        
     
     
         // Fund bank
@@ -412,6 +429,7 @@ function rolling(){
     
         if (xpReward > 0){
             log("XP Reward: " + xpReward);
+            addXP(xpReward);
         }
         
     
@@ -649,6 +667,7 @@ function addCredits(amount){
 
 function addXP(amount){
     var xp = Number(readCookie("xp"));
+    var oldLvl = parseInt(Math.floor(xp / 1000) + 1, 10)
         
         if(xp == null){
             createCookie("xp",0,10000);
@@ -659,6 +678,22 @@ function addXP(amount){
             xp = Number(xp) + amount;
             createCookie("xp",xp, 10000);
             console.log("You gained " + amount + "xp.");
+            
+            var newLvl = parseInt(Math.floor(xp / 1000) + 1, 10)
+            // Added xp, check for lvl up:
+            //if(oldXP.floor)
+            if(newLvl > oldLvl){
+                // User has leveled up!
+                // Play level up sound effect
+                var levelupSound = new Audio("/sound/notu_lvlup_v2.wav");
+                levelupSound.volume = 0.3;
+                levelupSound.play();
+                
+                var crates = readCookie("crates");
+                crates = Number(crates) + 1;
+                createCookie("crates", crates, 10000)
+                
+            }
         }
 }
 
