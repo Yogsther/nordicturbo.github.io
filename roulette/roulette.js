@@ -202,8 +202,8 @@ function crash(){
         
         
         if(crashStatus < 2){
-            randomCrashVar = Math.floor(Math.random()*100);
-            crashChance = "1%";
+            randomCrashVar = Math.floor(Math.random()*75);
+            crashChance = "1.33%";
             }
         
         if(crashStatus > 2){

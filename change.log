@@ -12,7 +12,7 @@ Alpha | v.5.4 [!IN PROGRESS]
 - Added ping sound effect for global chat.
 - Added online list showing everyones status on the website.
 - Fixed Roulette & Crash XP exploit
-
+- Adjusted crash probabilities (Crash Chance under 2x is set to 1.33%, instead of 1%, other values remain the same)
 
 Alpha | v.5.3 
 - Added cached chat!
