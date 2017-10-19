@@ -770,7 +770,7 @@ body{
     position: absolute;
     top: 232px;
     left: 340px;
-    height: 370px;
+    padding-bottom: 70px;
     width: 470px;
 
 }
@@ -784,6 +784,8 @@ body{
     top: 50px;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
+    border-radius: 60px;
     
     /* Make image undraggable */
     user-drag: none; 
@@ -827,6 +829,8 @@ body{
     position: absolute;
     top: 40px;
     right: 10px;
+    overflow: hidden;
+    border-radius: 60px;
     
      /* Make image undraggable */
     user-drag: none; 
@@ -857,6 +861,8 @@ body{
     top: 22px;
     left: 228px;
     position: absolute;
+    overflow: hidden;
+    border-radius: 30px;
     
      /* Make image undraggable */
     user-drag: none; 
@@ -958,6 +964,10 @@ body{
     height: 40px;
     left: 7px;
     position: relative;
+    
+    overflow: hidden;
+    border-radius: 40px;
+    
     /* Make image undraggable */
     user-drag: none; 
     user-select: none;
@@ -1073,6 +1083,17 @@ body{
     position: absolute;
     top: 7px;
     left: 5px;
+    
+    overflow: hidden;
+    border-radius: 40px;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 

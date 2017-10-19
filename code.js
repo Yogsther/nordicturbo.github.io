@@ -429,7 +429,66 @@ function addSkins(){
     reloadPage();
 }
 
+function unlockProfile(name){
+    
+    // Read cookie
+    var animatedPictures = readCookie("animatedProfiles");
+    if(animatedPictures == undefined || animatedPictures == null){
+        createCookie("animatedProfiles", "", 10000);
+        animatedPictures = readCookie("animatedProfiles");
+    }
+    animatedPictures = animatedPictures.split("|")
+    
+    // Modify value
+    if(animatedPictures.indexOf(name) == -1){
+    animatedPictures.push(name);
+    }
+    
+    // Save cookie
+    animatedPictures = animatedPictures.join("|");
+    createCookie("animatedProfiles", animatedPictures, 10000)
+    
+    console.log(animatedPictures);
+    
+}
+
+function getProfileLoc(name){
+        var imageLoc = "img/profiles/animated_" + name + ".gif";
+        return imageLoc;
+}
+
+
+
 function getSavedSkins(){
+    
+    // Save all default profile pictures, for later adding.
+    var defualtPictures = document.getElementById("all_profiles").innerHTML;
+    // Delete all pictures from the html, add them later
+    document.getElementById("all_profiles").innerHTML = "";
+    
+    // Get saved animated profile pictures
+    var animatedPictures = readCookie("animatedProfiles");
+    if(animatedPictures == undefined || animatedPictures == null){
+        createCookie("animatedProfiles", "", 10000);
+        animatedPictures = readCookie("animatedProfiles");
+    }
+    animatedPictures = animatedPictures.split("|")
+    
+    var i = animatedPictures.length;
+    while(i > 0){
+        
+        if(animatedPictures[i] == null){
+        } else {
+            var name = animatedPictures[i];
+            var nameOfImage = "img/profiles/animated_" + animatedPictures[i] + ".gif";
+            document.getElementById("all_profiles").innerHTML += '<img onclick="changeProfile(this);" id="profile-img" src="' + nameOfImage + '" title="'+ name +'">';
+            console.log(nameOfImage);
+        }
+        i = i-1;   
+    }
+    
+    // Add back old profile pictures 
+    document.getElementById("all_profiles").innerHTML += defualtPictures;
     
     //Read every saved skin
     var superDark = readCookie("superDark");
@@ -1303,7 +1362,7 @@ function openCrate(){
 function rarityLegendary(){
     // Item is legendary tier.
     console.log("You got a Legendary!!");
-    var whatEpicNum = Math.floor(Math.random() * 2) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 5) + 1;
         
     if(whatEpicNum == 1){
         // Get item halloween
@@ -1315,7 +1374,39 @@ function rarityLegendary(){
         console.log("You got Sweden");
         document.getElementById("themeCard").src=swedenCard;
         createCookie("Sweden", true, 10000);
-    }
+    } else if(whatEpicNum == 3){
+        // Name of unlock
+        var unlockName = "happysale";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = "80px";
+        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    } else if(whatEpicNum == 4){
+        // Name of unlock
+        var unlockName = "flagsv";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = "80px";
+        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    } else if(whatEpicNum == 5){
+        // Name of unlock
+        var unlockName = "toad";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = "80px";
+        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    } 
     
     // Play opening animation
     document.getElementById("unbox_layer_01").src="https://i.imgur.com/EtPCQfw.gif";
