@@ -326,7 +326,7 @@ function replaceAll(str, find, replace) {
 
 
 var chatFilter = true;
-var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba"];
+var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "religion"];
 
 socket.on("chat", function(data){
 
@@ -341,7 +341,7 @@ socket.on("chat", function(data){
         
         while(wordPos < bannedWords.length){
             
-            if(killSwitch > 50){
+            if(killSwitch > 500){
                 console.log("Killed it");
                 return;
             }
@@ -356,7 +356,7 @@ socket.on("chat", function(data){
                 
                 // Replace final string
                 recivedMessage = recivedMessage.toLowerCase().replace(replaceWord, newWord);
-                //killSwitch++;
+                killSwitch++;
                 wordPos = 0;
             }
             if(bannedWords[wordPos].indexOf(recivedMessage.toLowerCase()) == -1){
