@@ -228,6 +228,7 @@ function sendMessage(){
     var currentdate = new Date(); 
     
     var messageContent = document.getElementById("chat_message").value;
+    
     var messageUsername = readCookie("username");
     var messageProfile = readCookie("profileLocation");
     
@@ -319,8 +320,55 @@ function reviveChat(){
 
 
 // Get incoming messages
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+    } 
+
+
+var chatFilter = true;
+var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba"];
 
 socket.on("chat", function(data){
+
+    var recivedMessage = data.message;
+    
+    if(chatFilter){
+        
+        var wordPos = 0;
+        var killSwitch = 0;
+        var lastPos = 0;
+        
+        
+        while(wordPos < bannedWords.length){
+            
+            if(killSwitch > 50){
+                console.log("Killed it");
+                return;
+            }
+            
+            if(recivedMessage.toLowerCase().indexOf(bannedWords[wordPos], lastPos) != -1){
+                var replaceWord = bannedWords[wordPos];
+                var lastChar= replaceWord.charAt(replaceWord.length - 1);
+                var firstChar = replaceWord.charAt(0);
+                var censur = "*".repeat(replaceWord.length - 2);
+                var newWord = firstChar + censur + lastChar;
+                lastPos = wordPos + 1;
+                
+                // Replace final string
+                recivedMessage = recivedMessage.toLowerCase().replace(replaceWord, newWord);
+                //killSwitch++;
+                wordPos = 0;
+            }
+            if(bannedWords[wordPos].indexOf(recivedMessage.toLowerCase()) == -1){
+                
+                //killSwitch = 50;
+                wordPos++;
+            }   
+        } 
+    }
+    
+      
+    
     
     var xpColor = "white";
     if(data.xp >= 2){
@@ -381,7 +429,7 @@ socket.on("chat", function(data){
         xpColor = "#ffe228";
     }
 
-    document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + data.message + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+    document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + recivedMessage + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
     
     var personalID = readCookie("persID");
     
