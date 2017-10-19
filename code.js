@@ -1356,7 +1356,9 @@ function openCrate(){
     }
     
     
-
+// Declare settings for CSS Profile preview on unlock
+var profTopCSS = "-98.5px";
+var profHeightCSS = "78px";
     
     
 function rarityLegendary(){
@@ -1381,8 +1383,8 @@ function rarityLegendary(){
         unlockProfile(unlockName);
         var imageLocation = getProfileLoc(unlockName);
         document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = "80px";
-        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
         document.getElementById("themeCard").style.borderRadius = "80px";
     } else if(whatEpicNum == 4){
         // Name of unlock
@@ -1392,8 +1394,8 @@ function rarityLegendary(){
         var imageLocation = getProfileLoc(unlockName);
         document.getElementById("themeCard").src = imageLocation;
         document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = "80px";
-        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
         document.getElementById("themeCard").style.borderRadius = "80px";
     } else if(whatEpicNum == 5){
         // Name of unlock
@@ -1403,8 +1405,8 @@ function rarityLegendary(){
         var imageLocation = getProfileLoc(unlockName);
         document.getElementById("themeCard").src = imageLocation;
         document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = "80px";
-        document.getElementById("themeCard").style.top = "-100px";
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
         document.getElementById("themeCard").style.borderRadius = "80px";
     } 
     
@@ -1415,7 +1417,7 @@ function rarityLegendary(){
 function rarityEpic(){
     // Item is epic tier.
     console.log("You got an Epic!");
-    var whatEpicNum = Math.floor(Math.random() * 5) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 6) + 1;
     
     if(whatEpicNum == 1){
         console.log("You got superDark");
@@ -1442,7 +1444,19 @@ function rarityEpic(){
         // Coffee
         document.getElementById("themeCard").src=deepfriedTheme;
         createCookie("Deepfried", true, 10000);
-    } 
+    }
+    if(whatEpicNum == 6){
+        // Name of unlock
+        var unlockName = "animated_halloween2017";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    }
     
     
     
@@ -1456,7 +1470,7 @@ function rarityCommon(){
     console.log("You got a common.");
     
     
-    var whatEpicNum = Math.floor(Math.random() * 4) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 10) + 1;
     
     if(whatEpicNum == 1){
         console.log("You got SuperBright");
@@ -1478,6 +1492,22 @@ function rarityCommon(){
         // Unlock Sapphire
         document.getElementById("themeCard").src=sapphireCard;
         createCookie("Sapphire", true, 10000);
+    }
+    
+    if(whatEpicNum >= 5 && whatEpicNum <= 10){
+        
+        // Get random common
+        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean"]
+        var unlockName = commonPics[Math.floor(Math.random()*commonPics.length)];
+    
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
+        document.getElementById("themeCard").style.borderRadius = "80px";
     }
     
     
