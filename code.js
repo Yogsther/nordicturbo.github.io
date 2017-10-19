@@ -1364,7 +1364,7 @@ var profHeightCSS = "78px";
 function rarityLegendary(){
     // Item is legendary tier.
     console.log("You got a Legendary!!");
-    var whatEpicNum = Math.floor(Math.random() * 5) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 6) + 1;
         
     if(whatEpicNum == 1){
         // Get item halloween
@@ -1400,6 +1400,17 @@ function rarityLegendary(){
     } else if(whatEpicNum == 5){
         // Name of unlock
         var unlockName = "toad";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    } else if(whatEpicNum == 6){
+        // Name of unlock
+        var unlockName = "toad2";
         console.log("You got a profile picture! > " + unlockName);
         unlockProfile(unlockName);
         var imageLocation = getProfileLoc(unlockName);
@@ -1497,7 +1508,7 @@ function rarityCommon(){
     if(whatEpicNum >= 5 && whatEpicNum <= 10){
         
         // Get random common
-        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears", "toad2"]
+        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears"]
         var unlockName = commonPics[Math.floor(Math.random()*commonPics.length)];
     
         console.log("You got a profile picture! > " + unlockName);
