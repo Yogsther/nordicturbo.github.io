@@ -453,7 +453,7 @@ function unlockProfile(name){
 }
 
 function getProfileLoc(name){
-        var imageLoc = "img/profiles/animated_" + name + ".gif";
+        var imageLoc = "img/profiles/unlock_" + name + ".gif";
         return imageLoc;
 }
 
@@ -480,7 +480,7 @@ function getSavedSkins(){
         if(animatedPictures[i] == null){
         } else {
             var name = animatedPictures[i];
-            var nameOfImage = "img/profiles/animated_" + animatedPictures[i] + ".gif";
+            var nameOfImage = "img/profiles/unlock_" + animatedPictures[i] + ".gif";
             document.getElementById("all_profiles").innerHTML += '<img onclick="changeProfile(this);" id="profile-img" src="' + nameOfImage + '" title="'+ name +'">';
             console.log(nameOfImage);
         }
