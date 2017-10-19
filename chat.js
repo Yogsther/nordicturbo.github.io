@@ -303,13 +303,8 @@ function spamCheck(){
     
     if(spamStatus >= 1){
         spamStatus = spamStatus - 1;
-        console.log("Spam status*: " + spamStatus);
         return;
-    }
-        console.log("Spam status: " + spamStatus);
-    
-    
-    
+    }   
 }
 
 function reviveChat(){
@@ -318,11 +313,6 @@ function reviveChat(){
     console.log("Chat revived");
 }
 
-
-// Get incoming messages
-function replaceAll(str, find, replace) {
-    return str.replace(new RegExp(find, 'g'), replace);
-    } 
 
 
 var chatFilter = true;
@@ -353,6 +343,7 @@ socket.on("chat", function(data){
                 var censur = "*".repeat(replaceWord.length - 2);
                 var newWord = firstChar + censur + lastChar;
                 lastPos = wordPos + 1;
+                console.log("Replaced word");
                 
                 // Replace final string
                 recivedMessage = recivedMessage.toLowerCase().replace(replaceWord, newWord);
@@ -360,7 +351,7 @@ socket.on("chat", function(data){
                 wordPos = 0;
             }
             if(bannedWords[wordPos].indexOf(recivedMessage.toLowerCase()) == -1){
-                
+                console.log("Skipped word");
                 //killSwitch = 50;
                 wordPos++;
             }   
