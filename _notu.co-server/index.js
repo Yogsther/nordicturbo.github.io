@@ -34,7 +34,8 @@ io.on("connection", function(socket){
     
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
-       
+    
+    try{
     // Get the 10 latest messages
     // timeback is how many messages will get loaded for new users.
     var timeBack = 10;
@@ -63,12 +64,15 @@ io.on("connection", function(socket){
        
             
         firstMessagePush++;
-            }
+                }
             i++;
         }
+        }
     }
-    
+}catch(e){
+    console.log("Error on connection: " + e);
 }
+
     
 
 

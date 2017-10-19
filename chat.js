@@ -278,7 +278,7 @@ function sendMessage(){
     
     spamStatus++;
     
-    console.log(messageContent + messageProfile + messageUsername + messageTime + " ! " +  xp);
+    
     
     var personalID = readCookie("persID");
     
@@ -316,11 +316,13 @@ function reviveChat(){
 
 
 var chatFilter = true;
+
 var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "religion"];
 
 socket.on("chat", function(data){
 
     var recivedMessage = data.message;
+    
     
     if(chatFilter){
         
