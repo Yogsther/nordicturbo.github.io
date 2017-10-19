@@ -315,7 +315,7 @@ function reviveChat(){
 
 
 
-var chatFilter = true;
+var chatFilter = false;
 
 var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "religion"];
 
