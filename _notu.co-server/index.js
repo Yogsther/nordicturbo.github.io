@@ -103,7 +103,7 @@ socket.on('disconnect', function(){
                 found = true;
             }
             if(initPos > onlineUsers.length){
-                console.log("ERROR: user.lenght");
+                console.log("Spot found");
                 found = true;
             } else {
             initPos++;

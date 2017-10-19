@@ -1057,7 +1057,7 @@ body{
     background-color: rgba(0,0,0,1);
     position: relative;
     border-radius: 10px;
-    overflow-y: hidden;/*  TODO */
+    overflow-y: scroll;
     overflow-x: hidden;
 }      
 

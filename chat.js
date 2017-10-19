@@ -106,6 +106,8 @@ function getError(){
     // Show failed error
     document.getElementById("online_list_inner").innerHTML = "<span id='error-chat'>Error: You can not connect to the online list or use the chat because of an error with the server. <br><br>Error message:<br><b><i>" + failedMessage + "</i></b><br><br>If you don't know how to resolve this, go to Items and reset your stats. If you don't want to reset all the stats and items, delete the cookie that is causing the problem.<img src='https://i.imgur.com/OX5GjP8.png' id='protogent'></span>";
     console.log("TEST");
+        
+    document.getElementById("online_list_inner").style.overflowY = "hidden";
     }
 }
 
