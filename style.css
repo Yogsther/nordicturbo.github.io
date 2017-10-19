@@ -1057,7 +1057,7 @@ body{
     background-color: rgba(0,0,0,1);
     position: relative;
     border-radius: 10px;
-    overflow-y: auto;
+    overflow-y: hidden;/*  TODO */
     overflow-x: hidden;
 }      
 
@@ -1127,9 +1127,21 @@ body{
 
 
 
-
-
-
+#error-chat{
+    color: red;
+    position: relative;
+    top: 30px;
+    width: 200px;
+    left: 10px;
+    z-index: 2;
+}
+#protogent{
+    position: absolute;
+    top: 20px;
+    left: 290px;
+    opacity: 0.3;
+    z-index: 1;
+}
 
 
 

@@ -1574,7 +1574,9 @@ function getXP(){
     
     //Get xp level portrait
     
-    
+    if (level > 100){
+        level = 100;
+    }
     
     var xpPortraitLocation = "img/lvl/" + level + ".png"
     if(level > 24){
