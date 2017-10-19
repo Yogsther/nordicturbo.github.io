@@ -1497,7 +1497,7 @@ function rarityCommon(){
     if(whatEpicNum >= 5 && whatEpicNum <= 10){
         
         // Get random common
-        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears"]
+        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears", "toad2"]
         var unlockName = commonPics[Math.floor(Math.random()*commonPics.length)];
     
         console.log("You got a profile picture! > " + unlockName);
