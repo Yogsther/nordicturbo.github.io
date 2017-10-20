@@ -10,6 +10,12 @@ input:focus {
    
 }
 
+/* Chagne selection colors */
+
+::selection {
+  background: black;
+}
+
 
 /* Link atrebutes, change color of links */
 
