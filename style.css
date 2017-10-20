@@ -1144,8 +1144,15 @@ body{
 }
 
 
-
-
+#profanity_toggle_button{
+    background: #2b2b2b;
+    color: white;
+}
+#butonTextProfanity{
+    top: 158px;
+    left: 22px;
+    position: absolute;
+}
 
 
 

@@ -394,7 +394,48 @@ function changeTheme(){
     swedishMusic.pause();
     
  
+    
 }
+
+profanityButtonStyle();
+
+// Get button style for profanity toggle
+function profanityButtonStyle(){
+    var profanityStatus = readCookie("profanityFilter");
+    if(profanityStatus == null){
+        createCookie("profanityFilter", "enabled", 10000);
+    }
+    if(profanityStatus == "enabled"){
+        document.getElementById("profanity_toggle_button").style.backgroundColor = "#2b2b2b";
+        document.getElementById("profanity_toggle_button").style.color = "#dbdbdb";
+        document.getElementById("profanity_toggle_button").innerHTML = "Enabled";
+    }
+    if(profanityStatus == "disabled"){
+        document.getElementById("profanity_toggle_button").style.backgroundColor = "#dbdbdb";
+        document.getElementById("profanity_toggle_button").style.color = "#2b2b2b";
+        document.getElementById("profanity_toggle_button").innerHTML = "Disabled";
+    }
+}
+
+// Profanity filter toggle
+function toggleProfanityFilter(){
+    
+    var profanityStatus = readCookie("profanityFilter");
+    if(profanityStatus == null){
+        createCookie("profanityFilter", "enabled", 10000);
+    }
+    if(profanityStatus == "enabled"){
+        createCookie("profanityFilter", "disabled", 10000);
+        profanityButtonStyle();
+    }
+    if(profanityStatus == "disabled"){
+        createCookie("profanityFilter", "enabled", 10000);
+        profanityButtonStyle();
+    }
+    
+}
+
+
 
 // Button hover color change
 function buttonOn(buttonID){

@@ -62,6 +62,15 @@ socket.on("login", function(request){
             getError();
             return;
         }
+        
+        if(messageProfile == null){
+            failed = true;
+            console.log("Error 3");
+            failedMessage = "No profile picture!";
+            getError();
+            return;
+        }
+        
         if(messageProfile.toLowerCase().indexOf("livingforit.xyz/img/profiles") == -1){
             failed = true;
             console.log("Error 3");
@@ -315,9 +324,17 @@ function reviveChat(){
     console.log("Chat revived");
 }
 
+var chatFilter;
+checkFilterStatus();
+function checkFilterStatus(){
+    if(readCookie("profanityFilter") == "disabled"){
+        chatFilter = false;
+    } else {
+        chatFilter = true;
+    }
+}
 
 
-var chatFilter = false;
 
 var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "religion"];
 
@@ -332,9 +349,8 @@ socket.on("chat", function(data){
         var killSwitch = 0;
         var lastPos = 0;
         
-        
-        while(wordPos < bannedWords.length){
-            
+        while(bannedWords.length > wordPos){
+            console.log("Word pos: " + wordPos + " Lenght: " + bannedWords.length);
             if(killSwitch > 500){
                 console.log("Killed it");
                 return;

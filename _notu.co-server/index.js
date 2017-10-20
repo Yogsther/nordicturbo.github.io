@@ -194,7 +194,11 @@ socket.on("sentover", function(userinfo){
     var supportedAmount = 50; 
         
     // Check if user is valid
-        
+    
+    if(userinfo.username == null){
+        return;
+    }
+    
     if(userinfo.username.indexOf("<") != -1 || userinfo.username.indexOf(">") != -1){
         console.log("!! - Someone tried to enter code");
         return;
