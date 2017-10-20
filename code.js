@@ -30,7 +30,9 @@ setTimeout(function(){
     setInterval(addXP(1), 10000);
 }, 10000);
 
-
+// Declare settings for CSS Profile preview on unlock
+var profTopCSS = "-98.5px";
+var profHeightCSS = "78px";
 
 
 var credits = readCookie("credits");
@@ -1397,15 +1399,17 @@ function openCrate(){
     }
     
     
-// Declare settings for CSS Profile preview on unlock
-var profTopCSS = "-98.5px";
-var profHeightCSS = "78px";
+
     
     
 function rarityLegendary(){
+    
+    var profTopCSS = "-98.5px";
+    var profHeightCSS = "78px";
+    
     // Item is legendary tier.
     console.log("You got a Legendary!!");
-    var whatEpicNum = Math.floor(Math.random() * 6) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 9) + 1;
         
     if(whatEpicNum == 1){
         // Get item halloween
@@ -1417,50 +1421,26 @@ function rarityLegendary(){
         console.log("You got Sweden");
         document.getElementById("themeCard").src=swedenCard;
         createCookie("Sweden", true, 10000);
-    } else if(whatEpicNum == 3){
-        // Name of unlock
-        var unlockName = "happysale";
-        console.log("You got a profile picture! > " + unlockName);
-        unlockProfile(unlockName);
-        var imageLocation = getProfileLoc(unlockName);
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = profHeightCSS;
-        document.getElementById("themeCard").style.top = profTopCSS;
-        document.getElementById("themeCard").style.borderRadius = "80px";
-    } else if(whatEpicNum == 4){
-        // Name of unlock
-        var unlockName = "flagsv";
-        console.log("You got a profile picture! > " + unlockName);
-        unlockProfile(unlockName);
-        var imageLocation = getProfileLoc(unlockName);
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = profHeightCSS;
-        document.getElementById("themeCard").style.top = profTopCSS;
-        document.getElementById("themeCard").style.borderRadius = "80px";
-    } else if(whatEpicNum == 5){
-        // Name of unlock
-        var unlockName = "toad";
-        console.log("You got a profile picture! > " + unlockName);
-        unlockProfile(unlockName);
-        var imageLocation = getProfileLoc(unlockName);
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = profHeightCSS;
-        document.getElementById("themeCard").style.top = profTopCSS;
-        document.getElementById("themeCard").style.borderRadius = "80px";
-    } else if(whatEpicNum == 6){
-        // Name of unlock
-        var unlockName = "toad2";
-        console.log("You got a profile picture! > " + unlockName);
-        unlockProfile(unlockName);
-        var imageLocation = getProfileLoc(unlockName);
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").src = imageLocation;
-        document.getElementById("themeCard").style.height = profHeightCSS;
-        document.getElementById("themeCard").style.top = profTopCSS;
-        document.getElementById("themeCard").style.borderRadius = "80px";
     } 
+    if(whatEpicNum >= 3 && whatEpicNum < 9){
+        // Name of unlock
+        // Get random common
+        var legendaryPics = ["happysale", "flagsv", "toad", "toad2", "sonicmania", "luigidab"]; 
+        var unlockName = legendaryPics[Math.floor(Math.random()*legendaryPics.length)];
+    
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        console.log(profHeightCSS);
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
+        document.getElementById("themeCard").style.borderRadius = "80px";
+        } 
+     
+    
+    
     
     // Play opening animation
     document.getElementById("unbox_layer_01").src="https://i.imgur.com/EtPCQfw.gif";
@@ -1549,7 +1529,7 @@ function rarityCommon(){
     if(whatEpicNum >= 5 && whatEpicNum <= 10){
         
         // Get random common
-        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears"]
+        var commonPics = ["trump_won", "sonicdab", "halloween-2017", "deepfriedhumanbean", "yoshi", "mariomexico", "tjhenry", "haventheardthatnameinyears", "sonicgreen"]
         var unlockName = commonPics[Math.floor(Math.random()*commonPics.length)];
     
         console.log("You got a profile picture! > " + unlockName);
