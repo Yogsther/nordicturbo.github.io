@@ -140,7 +140,7 @@ socket.on("chat", function(data){
         return;
     }
     // Check for too long usernames (hacked!)
-    if(data.username.length > 32){
+    if(data.username.length > 20){
         console.error("failed: too long username: " + data.username);
         return;
     }  
@@ -158,6 +158,14 @@ socket.on("chat", function(data){
     // Emit users
     socket.on("sentover", function(userinfo){
        
+        
+    if(userinfo.username == null){
+        return;
+    }    
+    if(userinfo.username.indexOf("<") =! -1 || userinfo.username.indexOf(">") =! -1){
+        return;
+    } 
+        
     // NOTE! This system only supports 50 users online at a time. That can be changed, but will slow down performance.
     // If desired, change here:
     var pushPos = 0;

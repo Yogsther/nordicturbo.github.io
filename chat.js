@@ -12,7 +12,7 @@ socket.on("login", function(request){
     if(request == "loginInfo"){
         
         
-         var personalID = readCookie("persID");
+        var personalID = readCookie("persID");
         // Generate new personalID for new users.
         if(personalID == null){
             var newID = Math.floor(Math.random() * 999999999) + 1;
@@ -27,6 +27,7 @@ socket.on("login", function(request){
         var messageUsername = readCookie("username");
         var messageProfile = readCookie("profileLocation");
         
+        
         if(messageUsername == null){
         // Generate & save profile name, user has no saved Name.
         var newRandom = Math.floor(Math.random()*8999)+1000;
@@ -37,6 +38,12 @@ socket.on("login", function(request){
         messageProfile = "http://livingforit.xyz/img/profiles/profile_none.png";
 
     }
+        
+        if(messageUsername.indexOf("<") != -1){
+            console.log("TEST");
+            return;
+        }
+        
         
         var xp = (readCookie("xp") / 1000) + 1;
         xp = Math.floor(xp);
