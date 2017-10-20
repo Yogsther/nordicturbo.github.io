@@ -3,7 +3,7 @@
 var socket = io.connect("http://213.66.254.63:25565");
 
 
-var playStatus = "Somewhere";
+var playStatus = "...";
 
 if(window.location.href.indexOf("items") != -1){
     playStatus = "Items"   

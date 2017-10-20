@@ -1364,7 +1364,7 @@ var profHeightCSS = "78px";
 function rarityLegendary(){
     // Item is legendary tier.
     console.log("You got a Legendary!!");
-    var whatEpicNum = Math.floor(Math.random() * 5) + 1;
+    var whatEpicNum = Math.floor(Math.random() * 6) + 1;
         
     if(whatEpicNum == 1){
         // Get item halloween
@@ -1400,6 +1400,17 @@ function rarityLegendary(){
     } else if(whatEpicNum == 5){
         // Name of unlock
         var unlockName = "toad";
+        console.log("You got a profile picture! > " + unlockName);
+        unlockProfile(unlockName);
+        var imageLocation = getProfileLoc(unlockName);
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").src = imageLocation;
+        document.getElementById("themeCard").style.height = profHeightCSS;
+        document.getElementById("themeCard").style.top = profTopCSS;
+        document.getElementById("themeCard").style.borderRadius = "80px";
+    } else if(whatEpicNum == 6){
+        // Name of unlock
+        var unlockName = "toad2";
         console.log("You got a profile picture! > " + unlockName);
         unlockProfile(unlockName);
         var imageLocation = getProfileLoc(unlockName);
@@ -1563,7 +1574,9 @@ function getXP(){
     
     //Get xp level portrait
     
-    
+    if (level > 100){
+        level = 100;
+    }
     
     var xpPortraitLocation = "img/lvl/" + level + ".png"
     if(level > 24){
@@ -1744,17 +1757,6 @@ function getCredits(){
     return credits;
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

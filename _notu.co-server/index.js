@@ -34,7 +34,8 @@ io.on("connection", function(socket){
     
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
-       
+    
+    try{
     // Get the 10 latest messages
     // timeback is how many messages will get loaded for new users.
     var timeBack = 10;
@@ -63,12 +64,15 @@ io.on("connection", function(socket){
        
             
         firstMessagePush++;
-            }
+                }
             i++;
         }
+        }
     }
-    
+}catch(e){
+    console.log("Error on connection: " + e);
 }
+
     
 
 
@@ -99,7 +103,7 @@ socket.on('disconnect', function(){
                 found = true;
             }
             if(initPos > onlineUsers.length){
-                console.log("ERROR: user.lenght");
+                console.log("Spot found");
                 found = true;
             } else {
             initPos++;
@@ -139,11 +143,36 @@ socket.on("chat", function(data){
         console.error("Error: Null username");
         return;
     }
+    
+    if(isNaN(data.xp)){
+        return;
+    }
+    if(data.xp > 100){
+        data.xp = 100;
+    }
+    
+    if(data.message != null){
+        
+        if(data.message.length > 2000){
+        console.log("To long of a message (over 2000)");
+        return;
+        }
+        
+        if(data.message.indexOf("<") != -1){
+        console.log("Chat: ERROR: someone tried to enter code in the chat")
+        return;
+        }
+    }
     // Check for too long usernames (hacked!)
     if(data.username.length > 20){
         console.error("failed: too long username: " + data.username);
         return;
     }  
+    if(data.username.indexOf("<") != -1){
+        console.log("Error, code in username");
+        return;
+    }
+    
     
     // Save message to cache
     cache.push(data);
@@ -155,22 +184,49 @@ socket.on("chat", function(data){
     
     
     
-    // Emit users
-    socket.on("sentover", function(userinfo){
+// Emit users
+socket.on("sentover", function(userinfo){
        
-        
-    if(userinfo.username == null){
-        return;
-    }    
-    if(userinfo.username.indexOf("<") =! -1 || userinfo.username.indexOf(">") =! -1){
-        return;
-    } 
-        
     // NOTE! This system only supports 50 users online at a time. That can be changed, but will slow down performance.
     // If desired, change here:
     var pushPos = 0;
     var namePushed = false;  
     var supportedAmount = 50; 
+        
+    // Check if user is valid
+        
+    if(userinfo.username.indexOf("<") != -1 || userinfo.username.indexOf(">") != -1){
+        console.log("!! - Someone tried to enter code");
+        return;
+    }
+    if(userinfo.username.length > 20){
+        console.log("Error: Too long of username");
+        return;
+    }
+    
+    
+    if(isNaN(userinfo.xp)){
+        return;
+    }
+    if(userinfo.xp > 100){
+        userinfo.xp = 100;
+    }
+ 
+    if(isNaN(userinfo.xp)){
+    console.log("!! - Someone tried to enter code");
+    return;
+        
+    }
+        
+    if(userinfo.profile != null || userinfo.profile != undefined){
+    if(userinfo.profile.indexOf("livingforit.xyz/img/profiles") == -1){
+        console.log("Bad profile picture");
+        return;
+        }
+    }
+        
+        
+        
     io.sockets.emit("listreset"); 
         
     /*
