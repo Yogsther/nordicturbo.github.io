@@ -4,6 +4,10 @@ var socket = require("socket.io");
 
 var app = express();
 
+var fs = require("fs");
+
+var path = require('path');
+
 var server = app.listen(25565, function(){
     
   console.log("Listening to requests on port 25565");
@@ -30,7 +34,6 @@ var io = socket(server);
 io.on("connection", function(socket){
     
     console.log(socket.id);
-    
     
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
@@ -330,12 +333,134 @@ socket.on("sentover", function(userinfo){
         
 });
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Quickdraw
+    
+    // Signup
+    
+    
+    socket.on("signupReq", function(recInfo){
+    
+        var users = getUsers();
+        console.log("Sign Req, users.lenght = " +  users.length);
+        var i = 0;
+        
+        // Check for invalid username, passwords and IDs
+            if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
+                io.sockets.connected[socket.id].emit("callback_fail", "No HTML tags allowed in Username or Password.");
+                console.log("Quickdraw: Bad username tried to signup. (HTML Tag in name)");
+                failed = true;
+            }
+            if(recInfo.username.indexOf("#") != -1 || recInfo.password.indexOf("#") != -1 || recInfo.persID.indexOf("#") != -1){
+                io.sockets.connected[socket.id].emit("callback_fail", "No hashtags allowed in Username or Password.");
+                console.log("Quickdraw: Bad username tried to signup. (# in username)");
+                failed = true;
+            }
+                
+        if(failed == true){
+                return;  
+        }
+        
+        
+        
+        // Check for already existing username
+        while(users.length > i){
+        
+            var failed = false;
+       
+            if(users[i] != null && users[i] != ""){
+                // Parse String to Object
+                var storedUserRaw = users[i];
+                var storedUser = JSON.parse(storedUserRaw);
+                
+                if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
+                    io.sockets.connected[socket.id].emit("callback_fail", "No HTML tags allowed in Username or Password.");
+                    console.log("Quickdraw: Bad username tried to signup. (HTML Tag in name)");
+                    failed = true;
+                }
+                if(recInfo.username.indexOf("#") != -1 || recInfo.password.indexOf("#") != -1 || recInfo.persID.indexOf("#") != -1){
+                    io.sockets.connected[socket.id].emit("callback_fail", "No hashtags allowed in Username or Password.");
+                    console.log("Quickdraw: Bad username tried to signup. (# in username)");
+                    failed = true;
+                }
+                
+                
+                if(storedUser.username == recInfo.username){
+                    io.sockets.connected[socket.id].emit("callback_fail", "This username already exisit.");
+                    console.log("Quickdraw: Username already exist");
+                    failed = true;
+                }
+                if(storedUser.persID == recInfo.persID){
+                    io.sockets.connected[socket.id].emit("callback_fail", "User ID is already registered.");
+                    console.log("Quickdraw: ID already exist");
+                    failed = true;
+                }
+                if(failed == true){
+                    return;   
+                } else {
+                    i++;
+                }
+            }
+            if(users[i] == null || users[i] == ""){
+                i++;
+            }   
+        }
+        
+        
+        // User does not exist, and can get registered.
+        console.log("Registered User");
+        console.log("#" + recInfo);
+        
+        var userFormat = '#{"username": "'+recInfo.username+'","password":"'+recInfo.password+'","persID":"'+recInfo.persID+'"}';
+        users.push(userFormat);
+        users = users.join("#");
+        fs.writeFileSync("users.txt", users);
+        
+        // Send message to client, success message
+        io.sockets.connected[socket.id].emit("signup_success");
+        
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 });
 
 
-
-
-
+// Get users
+function getUsers(){
+    
+    var usersRaw = fs.readFileSync("users.txt");
+    var users = usersRaw.toString().split("#");
+    return users;
+}
 
 
 

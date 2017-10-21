@@ -1,0 +1,167 @@
+/* Removes blue border in chrome.  */
+button:focus{
+    outline:0;
+    background: #d3d3d3;
+   
+}
+input:focus {
+    outline:0;
+    background: #f2f2f2;
+   
+}
+
+/* Chagne selection colors */
+
+::selection {
+  background: black;
+}
+
+
+/* Link atrebutes, change color of links */
+
+a:link{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{ 
+    color: white;
+}
+
+#quickdraw_signup{
+    height: 513px;
+    width: 400px;
+    background: #ff994c;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+}
+
+#signup_image{
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    height: 513px;
+    width: 400px;
+    user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    z-index: 0;
+}
+
+body{
+    background-color: #111111;
+}
+
+
+.signupText{
+    border-radius: 3px;
+    border: none;
+    padding: 10px;
+    width: 230px;
+    font-family: ubuntu;
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.4);
+    top: 160px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.signupButton{
+    border-radius: 3px;
+    border: none;
+    padding: 10px;
+    width: 230px;
+    font-family: ubuntu;
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.4);
+    top: 240px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+    background-color: #6bea41;
+    cursor: pointer;
+}
+.signupButton:hover{
+    background-color: #7df455;
+}
+.signupButton:active{
+    background-color: #72d350;
+}
+
+#error_msg{
+    color: red;
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    font-family: ubuntu;
+    
+}
+
+
+#persIDSignup{
+    cursor: not-allowed;
+}
+
+#success_msg{
+    color: #6bea41;
+    font-family: ubuntu;
+    height: 100px;
+    width: 350px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+}
+
+
+#checkbox_warning{
+    position: absolute;
+    bottom: -2px;
+    right: -15px;
+    border-color: white;
+    zoom:2;
+
+}
+#warning_message{
+    color: white;
+    z-index: 2;
+    bottom: 90px;
+    width: 200px;
+    left: 90px;
+    position: absolute;
+    font-family: ubuntu;
+    font-size: 14px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

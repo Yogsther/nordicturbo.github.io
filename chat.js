@@ -14,10 +14,7 @@ var failedMessage;
 
 socket.on("login", function(request){
     
-    if(request == "loginInfo"){
-        
-        
-        
+        if(request == "loginInfo"){
         
         var personalID = readCookie("persID");
         // Generate new personalID for new users.

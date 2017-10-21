@@ -1,0 +1,4 @@
+Noric Turbo - Quick Draw End User License Agreement (EULA)
+
+1. Usernames, Passwords or ID's are not encrypted (serverside or client side), be
+awere that Notu.co staff can read this information.

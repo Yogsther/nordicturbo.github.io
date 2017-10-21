@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+            <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    
+    
+</head>
+<body>
+    <div id="quickdraw_signup">
+        <img src="src/quickdraw_login.png" id="signup_image">
+        <input class="signupText" type="text" id="username" placeholder="Username" maxlength="20"> 
+        <input class="signupText" type="password" id="password" placeholder="Create a password" maxlength="20">
+        <input class="signupText" type="password" id="password_confirmed" placeholder="Confirm password" maxlength="20">  
+        <input class="signupText" type="text" id="persIDSignup" placeholder="PersID" readonly maxlength="20"> 
+        
+        <div id="warning_message">
+            I have read and agree to the <a href="eula.txt">Notu.co Quick Draw EULA</a>
+        <input type="checkbox" id="checkbox_warning">
+        </div>
+        
+        
+        <button class="signupButton" onclick="checkInputs();">Sign up</button>
+    </div>
+    
+    <div id="error_msg"></div>
+    <div id="success_msg"></div>
+    <script src="quickdraw.js"></script>
+  
+</body>
+</html>
+

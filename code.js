@@ -285,6 +285,10 @@ function botCard(){
     window.location.href = "bot.html";
 }
 
+function quickdrawCard(){
+    window.location.href = "quickdraw";
+}
+
 function rouletteCard(){
     window.location.href = "roulette";
 }
