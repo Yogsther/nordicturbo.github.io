@@ -1,0 +1,260 @@
+body{
+    background: black;
+}
+
+/* Removes blue border in chrome.  */
+button:focus{
+    outline:0;
+    background: #d3d3d3;
+   
+}
+input:focus {
+    outline:0;
+    background: #f2f2f2;
+   
+}
+
+/* Chagne selection colors */
+
+::selection {
+  background: black;
+}
+
+
+/* Link atrebutes, change color of links */
+
+a:link{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{ 
+    color: white;
+}
+
+#background_main{
+    height: 890px;
+    width: 800px;
+    background-color: #2b2b2b;
+    position: relative;
+    margin: auto;
+    border-radius: 10px;
+    font-family: 'Muli', sans-serif;
+}
+
+#header{
+    background: #111111;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#header_text{
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 25px;
+    left: 120px;
+}
+#header_img{
+    position: relative;
+    top: -00px;
+    left: -50px;
+    cursor: pointer;
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#header_img:hover{
+    top: -3px;
+}
+
+#title_feautred{
+    position: absolute;
+    color: white;
+    top: 120px;
+    left: 53px;
+}
+
+#page_list_featured{
+    margin: auto;
+    height: 200px;
+    width: 700px;
+    background: #111111;
+    top: 50px;
+    border-radius: 5px;
+    position: relative;
+}
+
+
+#title{
+    position: absolute;
+    color: white;
+    top: 370px;
+    left: 53px;  
+}
+#page_list{
+    height: 460px;
+    width: 700px;
+    position: relative;
+    top: 100px;
+    border-radius: 5px;
+    margin: auto;
+    background: #111111;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+
+#page_listing{
+    position: relative;
+    height: 70px;
+    background-color: #4c4c4c;
+    border-radius: 3px;
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+#pagelisting_title{
+    position: absolute;
+    top: 21px;
+    font-size: 20px;
+    left: 100px;
+    color: white;
+}
+
+#thumb{
+    height: 64px;
+    position: relative;
+    top: 3px;
+    left: 10px;
+    border-radius: 70px;
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#views{
+    position: absolute;
+    top: 23px;
+    color: white;
+    right: 30px;
+}
+
+
+#my_page_button{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+#my_page_button:active{
+    top: 52px;
+}
+
+/* Button */
+.btn{
+    background: white;
+    border: none;
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    border-radius: 4px;
+    height: 30px;
+    width: 70px;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 3px;
+    color: #29394c;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: white;   
+    background: #262626;
+}
+
+.btn:active{
+    top: 4px;
+    top: 2px;
+    box-shadow: 0px 0px 0px #29394c;
+}
+
+#mypage_info{
+    margin: auto;
+    top: 50px;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    color: white;
+}
+
+.input{
+    height: 23px;
+    width: 200px;
+    position: relative;
+    padding: 5px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+#register_button{
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+#register_button:active{
+    top: -8px;
+}
+
+
+#register_button:hover{
+    background-color: #5ced38;
+}
+
+#eulaagree{
+    color: white;
+    height: 60px;
+    width: 250px;
+}
+#checkme{
+    
+}
+
+#login_button{
+    top: 40px;
+    left: -217px;
+}
+
+#signin_info{
+    position: relative;
+    top: 20px;
+}
+
+#error_message_login{
+    position: relative;
+    top: 15px;
+    color: red;
+}
+
+
+
+
+

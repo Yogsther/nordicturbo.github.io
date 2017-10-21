@@ -201,7 +201,13 @@ socket.on("onlinepush", function(profile){
         xpColor = "#ffe228";
     }
 
+   
     
+    
+    //var pageLink = "http://www.livingforit.xyz/pages/view.html?view=" + profile.persID;
+    // onclick="openLink(' + "'" + pageLink + "'" + ')"
+    
+   
     console.log(xpColor);
     document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
     
@@ -213,6 +219,10 @@ socket.on("onlinepush", function(profile){
     
 });
 
+
+function openLink(link){
+    window.location.href = link;
+}
 
 // Listen for enter press to send message
 var sendBtn = document.getElementById("chat_message");
@@ -333,7 +343,7 @@ function checkFilterStatus(){
 
 
 
-var bannedWords = ["cunt", "nigger", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "religion"];
+var bannedWords = ["cunt", "religion", "notch", "minecraft", "fortress", "fuck", "blyat", "whore", "right", "alt", "hate", "tranny", "nigga", "nut", "kys", "kill", "yourself", "h8", "diamond", "free", "tf2", "nibba", "shit", "cock", "pussy", "penis", "vagina", "boobs", "breast", "nude", "porn", "girl", "racist", "faggot", "homophobe", "keemstar", "drama", "nigger", "snopp", "snippa"];
 
 socket.on("chat", function(data){
 

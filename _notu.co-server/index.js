@@ -334,6 +334,170 @@ socket.on("sentover", function(userinfo){
 });
     
     
+    // Pages
+    
+    // Login
+    
+    socket.on("loginReqPage", function(recInfo){
+        
+        var users = getPageUsers();
+        var i = 0;
+        
+        while(users.length > i){
+            console.log("test");
+            if(users[i] != null && users[i] != ""){
+            var storedUserRaw = users[i];
+            var storedUser = JSON.parse(storedUserRaw);
+            
+            console.log("test");
+            if(storedUser != null){
+               if(storedUser.username == recInfo.username){
+                   console.log("3");
+                   // Found matching username
+                   if(storedUser.password == recInfo.password){
+                    // Password is correct
+                        console.log("Correct login");
+                        io.sockets.connected[socket.id].emit("login_success");
+                        return;
+                        
+                   } else {
+                       // Wrong password
+                       io.sockets.connected[socket.id].emit("login_failed", "Wrong password.");
+                       console.log("Pages: Wrong password!");
+                       return;
+                   }
+               } else {
+                   i++;
+               }   
+            } else {
+                i++;
+            }
+        } else {
+            i++;
+        }
+    }
+        
+     io.sockets.connected[socket.id].emit("login_failed", "Username does not exist.");   
+        
+    });
+    
+    
+    
+    // Pages register
+    
+    socket.on("pageRegister", function(recInfo){
+        
+        
+            var failed = false;
+        
+            if(recInfo.username == "" || recInfo.password == "" || recInfo.persID == ""){
+                io.sockets.connected[socket.id].emit("callback_fail", "Failed. (Null username or Password)");
+                return;
+            }
+            
+            if(recInfo.username == null || recInfo.password == null || recInfo.persID == null){
+                io.sockets.connected[socket.id].emit("callback_fail", "Failed. (Null username or Password)");
+                return;
+            }
+        
+        
+            if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
+                io.sockets.connected[socket.id].emit("callback_fail", "No HTML tags allowed in Username or Password.");
+                console.log("Quickdraw: Bad username tried to signup. (HTML Tag in name)");
+                failed = true;
+            }
+            if(recInfo.username.indexOf("#") != -1 || recInfo.password.indexOf("#") != -1 || recInfo.persID.indexOf("#") != -1){
+                io.sockets.connected[socket.id].emit("callback_fail", "No hashtags allowed in Username or Password.");
+                console.log("Quickdraw: Bad username tried to signup. (# in username)");
+                failed = true;
+            }
+                
+            if(failed == true){
+                return;  
+            }
+        
+            var users = getPageUsers();
+            var i = 0;
+        
+        
+        
+            while(users.length > i){
+       
+            if(users[i] != null && users[i] != ""){
+                // Parse String to Object
+                var storedUserRaw = users[i];
+                var storedUser = JSON.parse(storedUserRaw);
+                
+                
+                if(storedUser.username == recInfo.username){
+                    io.sockets.connected[socket.id].emit("callback_fail", "This username already exisit.");
+                    console.log("Quickdraw: Username already exist");
+                    failed = true;
+                }
+                if(storedUser.persID == recInfo.persID){
+                    io.sockets.connected[socket.id].emit("callback_fail", "User ID is already registered.");
+                    console.log("Quickdraw: ID already exist");
+                    failed = true;
+                }
+                if(failed == true){
+                    return;   
+                } else {
+                    i++;
+                }
+            }
+            if(users[i] == null || users[i] == ""){
+                i++;
+            }   
+        }
+        
+        
+       
+        // User does not exist, and can get registered.
+        console.log("Registered User");
+        
+        var userFormat = '#{"username": "'+recInfo.username+'","password":"'+recInfo.password+'","persID":"'+recInfo.persID+'"}';
+        users.push(userFormat);
+        users = users.join("#");
+        fs.writeFileSync("page_users.txt", users);
+        var filePath = "pages/" + recInfo.username + ".txt";
+        fs.writeFileSync(filePath, "test");
+        
+        
+        // Add to index
+        var index = fs.readFileSync("page_index.txt");
+        index = index.toString().split("#");
+        var username = recInfo.username;
+        
+        index.push(username);
+        
+        index.join("#");
+        
+        fs.writeFileSync("page_index.txt", index);
+       
+        console.log(index[0]);
+        
+        // Send message to client, success message
+        io.sockets.connected[socket.id].emit("pages_signup_success");
+        
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -351,8 +515,14 @@ socket.on("sentover", function(userinfo){
     socket.on("signupReq", function(recInfo){
     
         var users = getUsers();
-        console.log("Sign Req, users.lenght = " +  users.length);
         var i = 0;
+        console.log("Sign Req, users.lenght = " +  users.length);
+        
+        
+        if(recInfo.username == null || recInfo.password == null || recInfo.persID == null){
+            io.sockets.connected[socket.id].emit("callback_fail", "Failed. (Null username or Password)");
+            return;
+        }
         
         // Check for invalid username, passwords and IDs
             if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
@@ -462,9 +632,17 @@ function getUsers(){
     return users;
 }
 
+function getPageUsers(){
+    var usersRaw = fs.readFileSync("page_users.txt");
+    var users = usersRaw.toString().split("#");
+    return users;
+}
 
-
-
+function getIndex(){
+    var indexRaw = fs.readFileSync("page_index.txt");
+    var index = indexRaw.toString().split("#");
+    return index;
+}
 
 
 

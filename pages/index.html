@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+            <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div id="background_main">
+        
+        <button class="btn" id="my_page_button" onclick="gotoMyPage()">My Page</button> 
+        
+        
+        <div id="header">
+            <span id="header_text"><i>&lt;pages&gt;</i></span>
+            <img src="logo.png" id="header_img" onclick="gotoIndex()">
+        </div>    
+    <span id="title_feautred">Featured pages:</span>
+    <div id="page_list_featured">
+        
+        
+    </div>
+    <span id="title">All pages:</span>
+    <div id="page_list">
+    
+        <!-- Template -->
+        <div id="page_listing">
+            <img src="thumb_default.png" id="thumb">
+            <span id="pagelisting_title">Olle</span>
+            <span id="views">Views: n/a</span>
+        </div>
+        
+        
+    
+   
+        
+    
+    
+    </div>
+    </div>
+    <script src="page.js"></script>
+  
+</body>
+</html>
+

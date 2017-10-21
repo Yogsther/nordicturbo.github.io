@@ -289,6 +289,10 @@ function quickdrawCard(){
     window.location.href = "quickdraw";
 }
 
+function pagesCard(){
+    window.location.href = "pages";
+}
+
 function rouletteCard(){
     window.location.href = "roulette";
 }

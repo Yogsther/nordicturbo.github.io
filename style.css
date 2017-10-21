@@ -704,8 +704,8 @@ body{
 }
 
 #project_cards_div{
-    width: 732px;
-    left: 78px;
+    width: 1002px;
+    left: -45px;
     /* Center */
     margin: 0 auto;
     position: relative;
@@ -743,6 +743,9 @@ body{
 
 #card_3{
     left: 487px;
+}
+#card_4{
+    left: 731px;
 }
 
 
