@@ -48,6 +48,16 @@ function logout(){
     
 }
 
+function view(){
+    
+    save();
+    
+    var username = readCookie("pageUsername");
+    var link = "viewpage.html?" + username;
+    gotoLink(link);
+    
+}
+
 
 function save(){
     
@@ -58,7 +68,7 @@ function save(){
     var username = readCookie("pageUsername");
     var password = readCookie("pagePassword");
     
-    console.log(html + " - " + css + " - " + javascript);
+
     
     socket.emit("save", {
         username: username,
@@ -75,7 +85,7 @@ function showEditor(){
     
     var myName = readCookie("pageUsername");
     
-    document.getElementById("background_main").innerHTML = '<div id="logout_texs">' + myName + ' <a href="javascript:logout();">Logout</a></div> <button class="btn" id="my_page_button">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> <div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="about_mypage"> Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public.</div> <span class="code_title">Edit your HTML body:</span> <textarea class="code" id="html_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your CSS:</span> <textarea class="code" id="css_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your Javascript:</span> <textarea class="code" id="javascript_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>';
+    document.getElementById("background_main").innerHTML = '<div id="logout_texs">' + myName + ' <a href="javascript:logout();">Logout</a></div> <button class="btn" id="my_page_button"  onclick="view();">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> <div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="about_mypage"> Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public.</div> <span class="code_title">Edit your HTML body:</span> <textarea class="code" id="html_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your CSS:</span> <textarea class="code" id="css_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your Javascript:</span> <textarea class="code" id="javascript_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>';
     
     
 }
