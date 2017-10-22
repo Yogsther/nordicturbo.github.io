@@ -86,7 +86,19 @@ a:hover{
     left: 53px;
 }
 
+
+
+
 #page_list_featured{
+    margin: auto;
+    height: 185px;
+    top: 50px;
+    width: 700px;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 7px;
+    position: absolute;
     margin: auto;
     height: 200px;
     width: 700px;
@@ -94,9 +106,10 @@ a:hover{
     top: 50px;
     border-radius: 5px;
     position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
+   
 }
+
+
 
 
 #title{
@@ -122,7 +135,7 @@ a:hover{
 #page_listing{
     position: relative;
     height: 70px;
-    background-color: #721e1e;
+    background-color: #383838;
     border-radius: 3px;
     margin: 5px;
     cursor: pointer;
@@ -169,6 +182,19 @@ a:hover{
 #my_page_button:active{
     top: 52px;
 }
+
+::-webkit-scrollbar{
+    background-color: black;
+    width: 8px;
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #3a3a3a;
+    border-radius: 3px;
+    
+}
+
 
 /* Button */
 .btn{

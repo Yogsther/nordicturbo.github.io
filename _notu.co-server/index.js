@@ -504,7 +504,7 @@ socket.on("sentover", function(userinfo){
     socket.on("indexRequest", function(){
         
        
-        var featuredUsers = ["Olle"];
+        var featuredUsers = ["Demo", "DigitalMole", "popkrull"];
         var users = getPageUsers();
         
         io.sockets.connected[socket.id].emit("featuredUsers", featuredUsers);
@@ -513,6 +513,9 @@ socket.on("sentover", function(userinfo){
     
     socket.on("pageReq", function(name){
        
+        
+                        try{
+            
                         var fileLocation = "pages/" + name + ".txt";
                         var userPage = fs.readFileSync(fileLocation);
                         var userPageParts = userPage.toString().split("½");
@@ -530,7 +533,9 @@ socket.on("sentover", function(userinfo){
                             javascript: javascript
                         });
         
-        
+                        }catch(e){
+                            console.log("Pages error: " + e);
+                        }
         
     });
     
