@@ -4,7 +4,7 @@ if (window.location.href.indexOf("mypage") != -1){
     isRegistered();
 }
 
-if (window.location.href.indexOf("index") != -1 || window.location.href == "livingforit.xyz/pages/"{
+if (window.location.href.indexOf("index") != -1 || window.location.href == "livingforit.xyz/pages/"){
     loadIndex();
 }
 
