@@ -18,6 +18,25 @@
     
     <div id="background_main">
         
+     
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+        
+        
+        
+        <!-- Signup Page:
+
+        
         <button class="btn" id="my_page_button"></button> 
         <div id="header">
             <span id="header_text"><i>&lt;pages&gt;</i></span>
@@ -25,15 +44,8 @@
         </div>    
    
         <div id="mypage_info">
-       
-            
-            
-            
-        </div>
+
         
-        
-        
-        <!-- Signup Page:
         You don't have a page. But you can create one here!
         First you have to signup so only you can edit your page!
             
@@ -57,7 +69,18 @@
         -----------------------------------------------------------
         
         Login page:
-        
+    
+            
+        <button class="btn" id="my_page_button"></button> 
+        <div id="header">
+            <span id="header_text"><i>&lt;pages&gt;</i></span>
+            <img src="logo.png" id="header_img" onclick="gotoIndex()">
+        </div>    
+   
+        <div id="mypage_info">
+
+
+
             Log in:<br><br>
             <input type="text" id="username" class="input" placeholder="Username" maxlength="20">
             <input type="password" id="password" class="input" placeholder="Password" maxlength="50">
@@ -74,7 +97,28 @@
 
 
 
+        Edit page:
 
+
+       
+        <div id="logout_texs">Olle <a href="javascript:logout();">Logout</a></div>
+        <button class="btn" id="my_page_button">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> 
+        <div id="header">
+            <span id="header_text"><i>&lt;pages&gt;</i></span>
+            <img src="logo.png" id="header_img" onclick="gotoIndex()">
+        </div>    
+    
+    <div id="about_mypage">
+       Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public. "#" are not allowed in your code.
+    </div>
+        
+    <span class="code_title">Edit your HTML body:</span>
+    <textarea class="code" id="html_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+    <span class="code_title">Edit your CSS:</span>  
+    <textarea class="code" id="css_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+    <span class="code_title">Edit your Javascript:</span>
+    <textarea class="code" id="javascript_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+            
 
 
 

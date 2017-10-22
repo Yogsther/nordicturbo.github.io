@@ -36,7 +36,9 @@ a:hover{
 }
 
 #background_main{
-    height: 890px;
+    /* TODO height: 890px; */
+    top: -10px;
+    height: 1000px;
     width: 800px;
     background-color: #2b2b2b;
     position: relative;
@@ -92,6 +94,8 @@ a:hover{
     top: 50px;
     border-radius: 5px;
     position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
@@ -118,11 +122,8 @@ a:hover{
 #page_listing{
     position: relative;
     height: 70px;
-    background-color: #4c4c4c;
+    background-color: #721e1e;
     border-radius: 3px;
-    border-color: black;
-    border-width: 5px;
-    border-style: solid;
     margin: 5px;
     cursor: pointer;
 }
@@ -187,7 +188,7 @@ a:hover{
 
 .btn:hover{
     color: white;   
-    background: #262626;
+    background: #ad2222;
 }
 
 .btn:active{
@@ -253,6 +254,61 @@ a:hover{
     top: 15px;
     color: red;
 }
+
+#my_page_button2{
+    position: absolute;
+    top: 50px;
+    right: 130px;
+}
+
+#my_page_button2:active{
+    top: 52px;
+}
+
+.code{
+    top: 15px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 7px;
+    width: 700px;
+    height: 200px;
+    margin-bottom: 30px;
+    
+}
+
+
+.code_title{
+    position: relative;
+    top: 10px;
+    left: 50px;
+    color: white;
+}
+
+
+#about_mypage{
+    width: 500px;
+    position: relative;
+    margin: auto;
+    color: white;
+    height: 100px;
+    top: 20px;
+}
+
+#logout_texs{
+    color: white;
+    position: absolute;
+    top: 60px;
+    right: 230px;
+    text-align: right;
+}
+
+
+
+
+
+
+
 
 
 

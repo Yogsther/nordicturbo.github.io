@@ -4,6 +4,10 @@ if (window.location.href.indexOf("mypage") != -1){
     isRegistered();
 }
 
+if (window.location.href.indexOf("index") != -1){
+    loadIndex();
+}
+
 function gotoIndex(){
     window.location.href = "index.html";
 }
@@ -12,8 +16,12 @@ function gotoMyPage(){
     window.location.href = "mypage.html";
 }
 
+function gotoLink(link){
+    window.location.href = link;
+}
+
 function isRegistered(){
-    var registeredStatus = readCookie("pageRestigered");
+    var registeredStatus = readCookie("pageRegistered");
     if(registeredStatus == "true"){
         
         var username = readCookie("pageUsername");
@@ -23,30 +31,66 @@ function isRegistered(){
         username: username,
         password: password
         });
+      
         
     } else {
         showSignup();
     } 
 }
 
-function showSignup(){
-    document.getElementById("mypage_info").innerHTML = 'You dont have a page. But you can create one here! First you have to signup so only you can edit your page! <br><br> <input type="text" id="username" class="input" placeholder="Choose a Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Create a Password" maxlength="50"> <input type="password" id="confirm_password" class="input" placeholder="Confirm your Password" maxlength="50"> <div id="eulaagree"> I have read and agree to the <a href="eula.txt">Notu.co Pages EULA</a> <input type="checkbox" id="checkme"> </div> <button class="btn" id="register_button" onclick="register()">Register</button> <div id="fail_display" style="color: #f70e1b;"></div> Already a user? <a href="javascript:showLogin()">Login!</a>';
+
+function logout(){
+    eraseCookie("pageRegistered");
+    eraseCookie("pageUsername");
+    eraseCookie("pagePassword");
+    
+    showLogin();
+    
 }
 
 
-function showLogin(){
-    document.getElementById("password").addEventListener("keydown", function (e) {
-    if (e.keyCode === 13) {  
-        login();
-    }
-    });
-    document.getElementById("username").addEventListener("keydown", function (e) {
-    if (e.keyCode === 13) {  
-        login();
-    }
-    });
+function save(){
     
-    document.getElementById("mypage_info").innerHTML = 'Log in:<br><br> <input type="text" id="username" class="input" placeholder="Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Password" maxlength="50"> <button class="btn" id="login_button" onclick="login()">Login</button> <br><br> <div id="error_message_login"> </div> <span id="signin_info"> Not a user? <a href="javascript:showSignup()">Sign up here!</a> </span>';
+    var html = document.getElementById("html_code").value;
+    var css = document.getElementById("css_code").value;
+    var javascript = document.getElementById("javascript_code").value;
+    
+    var username = readCookie("pageUsername");
+    var password = readCookie("pagePassword");
+    
+    console.log(html + " - " + css + " - " + javascript);
+    
+    socket.emit("save", {
+        username: username,
+        password: password,
+        html: html,
+        css: css,
+        javascript: javascript
+    })
+    
+    
+}
+
+function showEditor(){
+    
+    var myName = readCookie("pageUsername");
+    
+    document.getElementById("background_main").innerHTML = '<div id="logout_texs">' + myName + ' <a href="javascript:logout();">Logout</a></div> <button class="btn" id="my_page_button">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> <div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="about_mypage"> Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public.</div> <span class="code_title">Edit your HTML body:</span> <textarea class="code" id="html_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your CSS:</span> <textarea class="code" id="css_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your Javascript:</span> <textarea class="code" id="javascript_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>';
+    
+    
+}
+
+function showSignup(){
+    document.getElementById("background_main").innerHTML = '<div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="mypage_info"> You dont have a page. But you can create one here! First you have to signup so only you can edit your page! <br><br> <input type="text" id="username" class="input" placeholder="Choose a Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Create a Password" maxlength="50"> <input type="password" id="confirm_password" class="input" placeholder="Confirm your Password" maxlength="50"> <div id="eulaagree"> I have read and agree to the <a href="eula.txt">Notu.co Pages EULA</a> <input type="checkbox" id="checkme"> </div> <button class="btn" id="register_button" onclick="register()">Register</button> <div id="fail_display" style="color: #f70e1b;"></div> Already a user? <a href="javascript:showLogin()">Login!</a>';
+}
+
+
+
+
+function showLogin(){
+    
+   
+    document.getElementById("background_main").innerHTML = '<div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="mypage_info"> Log in:<br><br> <input type="text" id="username" class="input" placeholder="Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Password" maxlength="50"> <button class="btn" id="login_button" onclick="login()">Login</button> <br><br> <div id="error_message_login"> </div> <span id="signin_info"> Not a user? <a href="javascript:showSignup()">Sign up here!</a> </span>';
 }
 
 
@@ -70,9 +114,14 @@ function login(){
 
 socket.on("login_success", function(info){
     
-    createCookie("pageRestigered", "true", 10000);
+    createCookie("pageRegistered", "true", 10000);
     console.log("You are logged in.");
-    isRegistered();
+    showEditor();
+    console.table(info);
+    
+    document.getElementById("html_code").innerHTML = info.html;
+    document.getElementById("css_code").innerHTML = info.css;
+    document.getElementById("javascript_code").innerHTML = info.javascript;
     
     
 });
@@ -140,6 +189,60 @@ socket.on("pages_signup_success", function(){
     
     
 });
+
+
+function loadIndex(){
+    socket.emit("indexRequest")
+    
+    
+    
+    
+}
+var featuredUsers = [];
+
+socket.on("featuredUsers", function(featured){
+    featuredUsers = featured; 
+});
+
+socket.on("indexRequest", function(data){
+    
+    console.log(data);
+    var i = 0;
+    
+    
+
+    while(data.length > i){
+        
+        if(data[i] != "" && data[i] != null){
+            
+            var userInfo = JSON.parse(data[i]);
+            var user = userInfo.username;
+           
+            
+            if(featuredUsers.indexOf(user) != -1){
+                // User is featured
+                // onclick="gotoLink('boi')"
+                document.getElementById("page_list_featured").innerHTML += '<div id="page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: n/a</span> </div>';
+                
+                
+                
+                
+            }
+                document.getElementById("page_list").innerHTML += '<div id="page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: n/a</span> </div>';
+                
+                
+            
+            
+            
+            var url = "viewpage.html?" + userInfo.username;
+            console.log(url);
+            
+            }
+        i++;
+    }
+    
+});
+
 
 
 function failed(err){

@@ -357,7 +357,24 @@ socket.on("sentover", function(userinfo){
                    if(storedUser.password == recInfo.password){
                     // Password is correct
                         console.log("Correct login");
-                        io.sockets.connected[socket.id].emit("login_success");
+                        var fileLocation = "pages/" + recInfo.username + ".txt";
+                        var userPage = fs.readFileSync(fileLocation);
+                        var userPageParts = userPage.toString().split("½");
+                        
+                        var html = userPageParts[0];
+                        var css = userPageParts[1];
+                        var javascript = userPageParts[2];
+                       
+                       
+                        io.sockets.connected[socket.id].emit("login_success", {
+                            html: html,
+                            css: css,
+                            javascript: javascript
+                        });
+                       
+                       
+                       
+                       
                         return;
                         
                    } else {
@@ -462,7 +479,7 @@ socket.on("sentover", function(userinfo){
         var filePath = "pages/" + recInfo.username + ".txt";
         fs.writeFileSync(filePath, "test");
         
-        
+        /*
         // Add to index
         var index = fs.readFileSync("page_index.txt");
         index = index.toString().split("#");
@@ -475,6 +492,7 @@ socket.on("sentover", function(userinfo){
         fs.writeFileSync("page_index.txt", index);
        
         console.log(index[0]);
+        */
         
         // Send message to client, success message
         io.sockets.connected[socket.id].emit("pages_signup_success");
@@ -483,10 +501,95 @@ socket.on("sentover", function(userinfo){
     
     
     
+    socket.on("indexRequest", function(){
+        
+       
+        var featuredUsers = ["Olle"];
+        var users = getPageUsers();
+        
+        io.sockets.connected[socket.id].emit("featuredUsers", featuredUsers);
+        io.sockets.connected[socket.id].emit("indexRequest", users);
+    });
+    
+    socket.on("pageReq", function(name){
+       
+                        var fileLocation = "pages/" + name + ".txt";
+                        var userPage = fs.readFileSync(fileLocation);
+                        var userPageParts = userPage.toString().split("½");
+                        
+                        var html = userPageParts[0];
+                        var css = userPageParts[1];
+                        var javascript = userPageParts[2];
+        
+                        var body = html + "<style>" + css + "</style><script>" + javascript + "</script><script src='viewpage.js'></script>"
+                       
+                        io.sockets.connected[socket.id].emit("pageSent", body);
+        
+        
+        
+    });
     
     
-    
-    
+    socket.on("save", function(recInfo){
+        
+            var users = getPageUsers();
+            var i = 0;
+            
+        while(users.length > i){
+            if(users[i] != null && users[i] != ""){
+            var storedUserRaw = users[i];
+            var storedUser = JSON.parse(storedUserRaw);
+            
+                console.log(recInfo.username);
+                console.log(storedUser.username);
+                console.log(recInfo.password);
+                console.log(storedUser.password);
+                
+                
+                
+                
+            if(storedUser != null){
+               if(storedUser.username == recInfo.username){
+                   
+                   // Found matching username
+                   if(storedUser.password == recInfo.password){
+                    // Password is correct
+                        console.log("Correct login");
+                        
+                       
+                        console.log(recInfo.html);
+                        var saveFile = recInfo.html + "½" + recInfo.css + "½" + recInfo.javascript;
+                        var fileLocation = "pages/" + recInfo.username + ".txt";
+                        fs.writeFileSync(fileLocation, saveFile);
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                        return;
+                        
+                   } else {
+                       // Wrong password
+                       
+                       return;
+                   }
+               } else {
+                   i++;
+               }   
+            } else {
+                i++;
+            }
+        } else {
+            i++;
+        }
+    }
+     
+        
+        
+        
+    })
     
     
     
