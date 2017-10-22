@@ -11,6 +11,14 @@ if (window.location.href.indexOf("index") != -1 || window.location.href == "http
     loadIndex();
 }
 
+window.onbeforeunload = function() {
+    
+    if(unsavedChanges){
+        return "You have unsvaed changes. Are you sure you want to leave and discard them?";
+    }
+}
+
+
 function gotoIndex(){
     window.location.href = "index.html";
 }
@@ -81,14 +89,22 @@ function save(){
         javascript: javascript
     })
     
+    unsavedChanges = false;
     
 }
+
+var unsavedChanges = false;
+
+function newChange(){
+    unsavedChanges = true;
+}
+
 
 function showEditor(){
     
     var myName = readCookie("pageUsername");
     
-    document.getElementById("background_main").innerHTML = '<div id="logout_texs">' + myName + ' <a href="javascript:logout();">Logout</a></div> <button class="btn" id="my_page_button"  onclick="view();">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> <div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="about_mypage"> Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public.</div> <span class="code_title">Edit your HTML body:</span> <textarea class="code" id="html_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your CSS:</span> <textarea class="code" id="css_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your Javascript:</span> <textarea class="code" id="javascript_code" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>';
+    document.getElementById("background_main").innerHTML = '<div id="logout_texs">' + myName + ' <a href="javascript:logout();">Logout</a></div> <button class="btn" id="my_page_button"  onclick="view();">View</button> <button class="btn" id="my_page_button2" onclick="save()">Save</button> <div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="about_mypage"> Welcome to the Pages editor. Here you can edit and personalize your own page. No need to link the CSS, HTML and Javascript - that is already done. Remember that everyones page is public.</div> <span class="code_title">Edit your HTML body:</span> <textarea class="code" id="html_code" oninput="newChange()" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your CSS:</span> <textarea class="code" id="css_code" oninput="newChange()" autocomplete="off" autocorrect="off" spellcheck="false"></textarea> <span class="code_title">Edit your Javascript:</span> <textarea class="code" id="javascript_code" oninput="newChange()" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>';
     
     
 }
@@ -101,9 +117,12 @@ function showSignup(){
 
 
 function showLogin(){
+  
     
-   
+    
     document.getElementById("background_main").innerHTML = '<div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="mypage_info"> Log in:<br><br> <input type="text" id="username" class="input" placeholder="Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Password" maxlength="50"> <button class="btn" id="login_button" onclick="login()">Login</button> <br><br> <div id="error_message_login"> </div> <span id="signin_info"> Not a user? <a href="javascript:showSignup()">Sign up here!</a> </span>';
+    
+
 }
 
 
@@ -126,6 +145,8 @@ function login(){
 }
 
 socket.on("login_success", function(info){
+    
+    loginActive = false;
     
     createCookie("pageRegistered", "true", 10000);
     console.log("You are logged in.");

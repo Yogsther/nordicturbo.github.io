@@ -417,6 +417,10 @@ socket.on("sentover", function(userinfo){
                 return;
             }
         
+            if(recInfo.username.indexOf("?") != -1){
+                io.sockets.connected[socket.id].emit("callback_fail", "Question marks are not allowed in your Title / Username.");
+                failed = true;
+            }    
         
             if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
                 io.sockets.connected[socket.id].emit("callback_fail", "No HTML tags allowed in Username or Password.");
@@ -451,11 +455,7 @@ socket.on("sentover", function(userinfo){
                     console.log("Quickdraw: Username already exist");
                     failed = true;
                 }
-                if(storedUser.persID == recInfo.persID){
-                    io.sockets.connected[socket.id].emit("callback_fail", "User ID is already registered.");
-                    console.log("Quickdraw: ID already exist");
-                    failed = true;
-                }
+                
                 if(failed == true){
                     return;   
                 } else {
@@ -477,7 +477,8 @@ socket.on("sentover", function(userinfo){
         users = users.join("#");
         fs.writeFileSync("page_users.txt", users);
         var filePath = "pages/" + recInfo.username + ".txt";
-        fs.writeFileSync(filePath, "test");
+        var demoFile = fs.readFileSync("demo.txt");
+        fs.writeFileSync(filePath, demoFile);
         
         /*
         // Add to index
@@ -531,6 +532,12 @@ socket.on("sentover", function(userinfo){
        
         
                         try{
+                            
+                            if(name.indexOf("%20") != -1){
+                                // Name contains spaces
+                                console.log("Name test");
+                                name = name.replace("%20",' ');
+                            }
             
                         var fileLocation = "pages/" + name + ".txt";
                         var userPage = fs.readFileSync(fileLocation);
