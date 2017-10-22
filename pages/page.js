@@ -1,10 +1,13 @@
 var socket = io.connect("http://213.66.254.63:25565");
+var playStatus = "Pages";
+
 
 if (window.location.href.indexOf("mypage") != -1){
     isRegistered();
+    playStatus = "Editing page"
 }
 
-if (window.location.href.indexOf("index") != -1 || window.location.href == "livingforit.xyz/pages/"){
+if (window.location.href.indexOf("index") != -1 || window.location.href == "http://livingforit.xyz/pages/"){
     loadIndex();
 }
 
@@ -277,62 +280,6 @@ function failed(err){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var playStatus = "Pages";
 
 
 // On connection send over Username, ProfileLoc & Lvl
