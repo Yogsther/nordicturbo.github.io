@@ -118,8 +118,9 @@ function checkIfThemeApplies(){
 
 function runOnIndex(){
     
-    if(window.location.href == "livingforit.xyz" || window.location.href.indexOf("index.html") != -1){
-        console.log("Test");
+    console.log(window.location.href.toLowerCase());
+    
+    if(window.location.href.toLowerCase() == "http://livingforit.xyz/" || window.location.href.indexOf("index.html") != -1){
         getXP();
         getBankStatus();
         insertProfile();
