@@ -217,43 +217,30 @@ socket.on("featuredUsers", function(featured){
     featuredUsers = featured; 
 });
 
-socket.on("indexRequest", function(data){
+socket.on("indexRequest", function(users){
     
-    console.log(data);
+    console.log(users);
     var i = 0;
     
     var colors = ["9b0a3f", "630a9b", "0a469b", "0a9b3a", "689b0a", "0a509b"];
     var color = colors[Math.floor(Math.random() * colors.length)];
 
-    while(data.length > i){
-        
-        if(data[i] != "" && data[i] != null){
-            
-            var userInfo = JSON.parse(data[i]);
-            var user = userInfo.username;
-           
-            
+    
+    
+        while(users.length > i){  
+            var user = users[i];
             if(featuredUsers.indexOf(user) != -1){
                 // User is featured
                 // onclick="gotoLink('boi')"
                 document.getElementById("page_list_featured").innerHTML += '<div id="page_listing" style="background:#' + color + ';" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: n/a</span> </div>';
-                
-                
-                
-                
+                 
             }
-                document.getElementById("page_list").innerHTML += '<div id="page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: n/a</span> </div>';
+                
+            document.getElementById("page_list").innerHTML += '<div id="page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: n/a</span> </div>';
+          i++
+        }  
             
-            
-            
-            
-            var url = "viewpage.html?" + userInfo.username;
-            console.log(url);
-            
-            }
-        i++;
-    }
-    
+           
 });
 
 

@@ -506,9 +506,25 @@ socket.on("sentover", function(userinfo){
        
         var featuredUsers = ["Demo", "DigitalMole", "popkrull"];
         var users = getPageUsers();
+        var usersArr = [];
+        var i = 0;
+        
+        while(users.length > i){
+            if(users[i] != "" && users[i] != null){
+            
+                var userInfo = JSON.parse(users[i]);
+                var user = userInfo.username;
+                usersArr.push(user);
+                i++;
+            }
+            i++;
+        }
+            console.log("Done, users: " + usersArr);
+            
+            
         
         io.sockets.connected[socket.id].emit("featuredUsers", featuredUsers);
-        io.sockets.connected[socket.id].emit("indexRequest", users);
+        io.sockets.connected[socket.id].emit("indexRequest", usersArr);
     });
     
     socket.on("pageReq", function(name){
