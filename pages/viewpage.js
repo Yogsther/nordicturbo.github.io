@@ -22,8 +22,10 @@ function getCustomPage(){
 
 socket.on("pageSent", function(data){
 
-    document.getElementById("customPage").innerHTML = data;
-    console.log(data);
+    
+ 
+    document.write('<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>View Page</title> <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> <link rel="shortcut icon" href="img/favicon.ico"> <!-- Socket.io --> <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> </head> <body>' + data.body + '<script>' +  data.javascript + '</script></body> </html>');
+    console.table(data);
     
 });
 

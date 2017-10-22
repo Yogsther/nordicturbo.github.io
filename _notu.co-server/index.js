@@ -521,9 +521,14 @@ socket.on("sentover", function(userinfo){
                         var css = userPageParts[1];
                         var javascript = userPageParts[2];
         
-                        var body = html + "<style>" + css + "</style><script>" + javascript + "</script><script src='viewpage.js'></script>"
-                       
-                        io.sockets.connected[socket.id].emit("pageSent", body);
+                        var body = html + "<style>" + css + "</style>"
+                        
+                        
+                        
+                        io.sockets.connected[socket.id].emit("pageSent", {
+                            body: body,
+                            javascript: javascript
+                        });
         
         
         
