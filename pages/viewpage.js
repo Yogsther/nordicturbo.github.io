@@ -21,18 +21,10 @@ function getCustomPage(){
 
 
 socket.on("pageSent", function(data){
+
+    document.getElementById("customPage").innerHTML = data;
+    console.log(data);
     
-    var html = data.html;
-    var css = data.css;
-    var javascript = data.javascript;
-    
-    
-    document.getElementById("javascript").innerHTML = ";
-    document.getElementById("html_body").innerHTML = html;
-    document.getElementById("css").innerHTML = "<style>"+css+"</style>";
-    
-    
-    console.table(data);
 });
 
 
