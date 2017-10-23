@@ -23,8 +23,24 @@ function getCustomPage(){
 socket.on("pageSent", function(data){
 
     
- 
-    document.write('<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>View Page</title> <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> <link rel="shortcut icon" href="img/favicon.ico"> <!-- Socket.io --> <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> </head> <body>' + data.body + '<script>' +  data.javascript + '</script></body> </html>');
+    // Insert 
+    //document.write('<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>View Page</title> <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> <link rel="shortcut icon" href="img/favicon.ico"></head> <body>' + data.body + '<span id="insert_js"></span></body> </html>');
+    
+    // Insert socket.io
+   //document.getElementsByTagName("head").appendChild('<!-- Socket.io --> <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>');
+                   
+    // Insert javascript
+    //document.getElementById("insert_js").appendChild('<script>' +  data.javascript + '</script>');
+        
+    document.getElementById("body_and_css").innerHTML = data.body;
+  
+    // Insert javascript from custom page
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.innerHTML = data.javascript;
+    head.appendChild(script);
+                                                      
     console.table(data);
     
 });

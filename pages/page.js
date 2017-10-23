@@ -31,6 +31,7 @@ function gotoLink(link){
     window.location.href = link;
 }
 
+
 function isRegistered(){
     var registeredStatus = readCookie("pageRegistered");
     if(registeredStatus == "true"){
