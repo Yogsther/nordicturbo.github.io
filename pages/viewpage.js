@@ -2,7 +2,6 @@ var socket = io.connect("http://213.66.254.63:25565");
 
 // Load custom page
 getCustomPage();
-
 var pageName;
 
 function getCustomPage(){
@@ -19,18 +18,8 @@ function getCustomPage(){
 }
 
 
-
+// Insert custom page
 socket.on("pageSent", function(data){
-
-    
-    // Insert 
-    //document.write('<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>View Page</title> <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> <link rel="shortcut icon" href="img/favicon.ico"></head> <body>' + data.body + '<span id="insert_js"></span></body> </html>');
-    
-    // Insert socket.io
-   //document.getElementsByTagName("head").appendChild('<!-- Socket.io --> <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>');
-                   
-    // Insert javascript
-    //document.getElementById("insert_js").appendChild('<script>' +  data.javascript + '</script>');
         
     document.getElementById("body_and_css").innerHTML = data.body;
   
@@ -43,7 +32,18 @@ socket.on("pageSent", function(data){
                                                       
     console.table(data);
     
+    addView();
+    
 });
+
+function addView(){
+    // Username of viewer (if null or contains # server wont accept, to prevent .)
+    
+    var viewer = readCookie("username");
+    console.log("Viewer: " + viewer);
+    
+    
+}
 
 
 

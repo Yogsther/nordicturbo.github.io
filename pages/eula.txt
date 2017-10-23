@@ -1,8 +1,12 @@
 Noric Turbo - Pages End User License Agreement (EULA)
 
+0. Arrays start at 0.
+
 1. Usernames, Passwords or ID's are not encrypted (serverside or client side), be
 awere that Notu.co staff can read this information.
 
 2. No illigal material is allowed to be posted or featured on Notu.co Pages
 
 3. Hatespeach is not allowed on Notu.co Pages
+
+4. Danish (language and / or culture) is not allowed. This offence is bannable and will get your page removed and deleted.
