@@ -100,7 +100,7 @@ a:hover{
     top: 7px;
     position: absolute;
     margin: auto;
-    height: 200px;
+    height: 230px;
     width: 700px;
     background: #111111;
     top: 50px;
@@ -115,7 +115,7 @@ a:hover{
 #title{
     position: absolute;
     color: white;
-    top: 370px;
+    top: 400px;
     left: 53px;  
 }
 #page_list{

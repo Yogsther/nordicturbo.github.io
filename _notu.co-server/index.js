@@ -8,6 +8,8 @@ var fs = require("fs");
 
 var path = require('path');
 
+var errorToken = fs.readFileSync("error.txt");
+
 var server = app.listen(25565, function(){
     
   console.log("Listening to requests on port 25565");
@@ -344,8 +346,10 @@ socket.on("sentover", function(userinfo){
         var i = 0;
         
         while(users.length > i){
-            console.log("test");
-            if(users[i] != null && users[i] != ""){
+            
+            
+            if(users[i] != null && users[i] != "" && users[i] != errorToken){
+            
             var storedUserRaw = users[i];
             var storedUser = JSON.parse(storedUserRaw);
             
@@ -383,6 +387,8 @@ socket.on("sentover", function(userinfo){
                        console.log("Pages: Wrong password!");
                        return;
                    }
+                   
+                  
                } else {
                    i++;
                }   
@@ -444,7 +450,7 @@ socket.on("sentover", function(userinfo){
         
             while(users.length > i){
        
-            if(users[i] != null && users[i] != ""){
+            if(users[i] != null && users[i] != "" && users[i] != errorToken){
                 // Parse String to Object
                 var storedUserRaw = users[i];
                 var storedUser = JSON.parse(storedUserRaw);
@@ -505,22 +511,26 @@ socket.on("sentover", function(userinfo){
     socket.on("indexRequest", function(){
         
        
-        var featuredUsers = ["Demo", "DigitalMole", "popkrull"];
+        var featuredUsers = ["Demo", "Agman", "hehe lmao"];
         var users = getPageUsers();
         var usersArr = [];
         var i = 0;
         
         while(users.length > i){
-            if(users[i] != "" && users[i] != null){
             
+            if(users[i] != "" && users[i] != null && users[i] != errorToken){
+                
                 var userInfo = JSON.parse(users[i]);
                 var user = userInfo.username;
                 usersArr.push(user);
+               
+                   
                 i++;
             }
             i++;
         }
-            console.log("Done, users: " + usersArr);
+        
+        console.log("Done, users: " + usersArr);
             
             
         
@@ -562,6 +572,41 @@ socket.on("sentover", function(userinfo){
         
     });
     
+    socket.on("addView", function(data){
+        
+        if(data.viewer != null){
+            
+            if(data.viewer.indexOf("#") != -1){
+                //Viewer has a deafult name, don't count the view.
+                return;
+            }
+            
+            var users = getPageUsers();
+            var i = 0;
+            
+            
+            while(users.length > i){
+                
+                if(users[i] != null && users[i] != "" && users[i] != errorToken){
+                
+                var userInfo = JSON.parse(users[i]);
+                var user = userInfo.username;
+                   
+                
+                
+                if(user == data.pageName){
+                    // Match
+                    console.log(" -----  Its a match" + user);
+                    return;
+                    
+                } else {
+                    i++;
+                }     
+            } i++;
+        }  
+    }
+    });
+    
     
     socket.on("save", function(recInfo){
         
@@ -569,7 +614,7 @@ socket.on("sentover", function(userinfo){
             var i = 0;
             
         while(users.length > i){
-            if(users[i] != null && users[i] != ""){
+            if(users[i] != null && users[i] != "" && users[i] != errorToken){
             var storedUserRaw = users[i];
             var storedUser = JSON.parse(storedUserRaw);
             
@@ -683,7 +728,7 @@ socket.on("sentover", function(userinfo){
         
             var failed = false;
        
-            if(users[i] != null && users[i] != ""){
+            if(users[i] != null && users[i] != "" && users[i] != errorToken){
                 // Parse String to Object
                 var storedUserRaw = users[i];
                 var storedUser = JSON.parse(storedUserRaw);

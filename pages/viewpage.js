@@ -40,9 +40,12 @@ function addView(){
     // Username of viewer (if null or contains # server wont accept, to prevent .)
     
     var viewer = readCookie("username");
-    console.log("Viewer: " + viewer);
+    console.log("Viewer: " + viewer + pageName);
     
-    
+    socket.emit("addView", {
+        viewer: viewer,
+        pageName: pageName
+    });
 }
 
 
