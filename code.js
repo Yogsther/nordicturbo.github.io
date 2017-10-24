@@ -1435,7 +1435,7 @@ function rarityLegendary(){
     if(whatEpicNum >= 3 && whatEpicNum < 9){
         // Name of unlock
         // Get random common
-        var legendaryPics = ["happysale", "flagsv", "toad", "toad2", "sonicmania", "luigidab", "proto"]; 
+        var legendaryPics = ["happysale", "flagsv", "toad", "toad2", "sonicmania", "luigidab", "proto", "myboy"]; 
         var unlockName = legendaryPics[Math.floor(Math.random()*legendaryPics.length)];
     
         console.log("You got a profile picture! > " + unlockName);

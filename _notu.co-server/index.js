@@ -35,7 +35,7 @@ var io = socket(server);
 
 io.on("connection", function(socket){
     
-    console.log(socket.id);
+
     
     // Request user info on connection
     io.sockets.connected[socket.id].emit("login", "loginInfo");
@@ -75,7 +75,7 @@ io.on("connection", function(socket){
         }
     }
 }catch(e){
-    console.log("Error on connection: " + e);
+
 }
 
     
@@ -100,15 +100,15 @@ socket.on('disconnect', function(){
     while(found == false){
     
             if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
-                console.log(initPos + " = Empty");
+                
                 initPos++;
             } else if(onlineUsers[initPos].id === socket.id){
-                console.log("FOUND @: " + initPos)
+                console.log();
                 onlineUsers.splice(initPos,1);
                 found = true;
             }
             if(initPos > onlineUsers.length){
-                console.log("Spot found");
+               
                 found = true;
             } else {
             initPos++;
