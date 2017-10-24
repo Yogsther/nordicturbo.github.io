@@ -37,15 +37,22 @@ socket.on("pageSent", function(data){
 });
 
 function addView(){
-    // Username of viewer (if null or contains # server wont accept, to prevent .)
     
     var viewer = readCookie("username");
-    console.log("Viewer: " + viewer + pageName);
+    
+    
+    var lastViewd = readCookie("94BL38383AGW47238226453" + pageName);
+    if(lastViewd != "true"){
+    
+    createCookie("94BL38383AGW47238226453"+pageName, "true", 0.9); 
     
     socket.emit("addView", {
         viewer: viewer,
         pageName: pageName
     });
+    console.log("Added view :)");
+        
+    }
 }
 
 

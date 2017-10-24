@@ -512,23 +512,20 @@ socket.on("sentover", function(userinfo){
         
        
         var featuredUsers = ["Demo", "Agman", "hehe lmao"];
-        var users = getPageUsers();
+        var users = getPageUsersB();
         var usersArr = [];
         var i = 0;
         
         while(users.length > i){
-            
-            if(users[i] != "" && users[i] != null && users[i] != errorToken){
-                
-                var userInfo = JSON.parse(users[i]);
-                var user = userInfo.username;
-                usersArr.push(user);
-               
-                   
+        
+                usersArr.push({
+                username: users[i].username,
+                views: users[i].views
+                });
                 i++;
             }
             i++;
-        }
+        
         
         console.log("Done, users: " + usersArr);
             
@@ -573,7 +570,7 @@ socket.on("sentover", function(userinfo){
     });
     
     socket.on("addView", function(data){
-        
+        //TODO more sequre view feature
         if(data.viewer != null){
             
             if(data.viewer.indexOf("#") != -1){
@@ -597,14 +594,42 @@ socket.on("sentover", function(userinfo){
                 if(user == data.pageName){
                     // Match
                     console.log(" -----  Its a match" + user);
+                    pageName = data.pageName;
+                    var allUsers = getPageUsersB();
+                   
+                    var objIndex = allUsers.findIndex((obj => obj.username == user));
+                    var currentViews = allUsers[objIndex].views;
+                    if(isNaN(currentViews)){
+                        currentViews = 0;
+                    }
+                    currentViews = Number(currentViews) + 1;
+                    
+                    allUsers[objIndex].views = currentViews;
+                    console.log(allUsers[objIndex]);
+               
+                    
+                    var l = 0;
+                    var stringUsers = [];
+                    
+                    while(allUsers.length > l){
+                            var newUser = JSON.stringify(allUsers[l]);
+                            console.log("To string ->> " + newUser);
+                            stringUsers.push(newUser);
+                            l++;
+                        }
+                    var stringUsers = stringUsers.join("#");
+                    fs.writeFileSync("page_users.txt", stringUsers);
+                    
                     return;
+                    
                     
                 } else {
                     i++;
                 }     
             } i++;
-        }  
-    }
+                console.log("Error 3");
+        }  console.log("Error two");
+    }console.log("Error 1");
     });
     
     
@@ -803,6 +828,32 @@ socket.on("sentover", function(userinfo){
     
     
 });
+
+
+function getPageUsersB(){
+    
+    var usersRaw = fs.readFileSync("page_users.txt");
+    var users = usersRaw.toString().split("#");
+    var i = 0;
+    var userArray = [];
+    while(users.length > i){
+        try{
+            var storedUser = JSON.parse(users[i]);
+            userArray.push(storedUser)
+            i++;
+        }catch(e){
+            i++;
+            console.log("Error.");
+        }
+    }
+    return userArray;
+}
+
+//function saveAllPageUsers(allUsers){
+   
+//}
+
+
 
 
 // Get users
