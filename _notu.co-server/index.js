@@ -569,15 +569,7 @@ socket.on("sentover", function(userinfo){
         
     });
     
-    socket.on("addView", function(data){
-        //TODO more sequre view feature
-        if(data.viewer != null){
-            
-            if(data.viewer.indexOf("#") != -1){
-                //Viewer has a deafult name, don't count the view.
-                return;
-            }
-            
+    /*
             var users = getPageUsers();
             var i = 0;
             
@@ -589,15 +581,34 @@ socket.on("sentover", function(userinfo){
                 var userInfo = JSON.parse(users[i]);
                 var user = userInfo.username;
                    
-                
+                console.log("View to add: " + data.pageName);
                 
                 if(user == data.pageName){
                     // Match
                     console.log(" -----  Its a match" + user);
                     pageName = data.pageName;
+                */
+    
+    socket.on("addView", function(data){
+        //TODO more sequre view feature
+        if(data.viewer == null){
+            console.log("Username is null");
+            return;
+        }
+            
+            if(data.viewer.indexOf("#") != -1){
+                console.log("Name contains # / spam");
+                //Viewer has a deafult name, don't count the view.
+                return;
+            }
+            
                     var allUsers = getPageUsersB();
                    
-                    var objIndex = allUsers.findIndex((obj => obj.username == user));
+                    var objIndex = allUsers.findIndex((obj => obj.username == data.pageName));
+                    if(objIndex == -1){
+                        console.log("Could not find any name.");
+                        return;
+                    }
                     var currentViews = allUsers[objIndex].views;
                     if(isNaN(currentViews)){
                         currentViews = 0;
@@ -607,29 +618,8 @@ socket.on("sentover", function(userinfo){
                     allUsers[objIndex].views = currentViews;
                     console.log(allUsers[objIndex]);
                
-                    
-                    var l = 0;
-                    var stringUsers = [];
-                    
-                    while(allUsers.length > l){
-                            var newUser = JSON.stringify(allUsers[l]);
-                            console.log("To string ->> " + newUser);
-                            stringUsers.push(newUser);
-                            l++;
-                        }
-                    var stringUsers = stringUsers.join("#");
-                    fs.writeFileSync("page_users.txt", stringUsers);
-                    
-                    return;
-                    
-                    
-                } else {
-                    i++;
-                }     
-            } i++;
-                console.log("Error 3");
-        }  console.log("Error two");
-    }console.log("Error 1");
+                    savePageUsers(allUsers);
+                    return;        
     });
     
     
@@ -853,7 +843,20 @@ function getPageUsersB(){
    
 //}
 
-
+function savePageUsers(allUsers){
+    
+        var i = 0;
+        var stringUsers = [];
+                    
+        while(allUsers.length > i){
+            var newUser = JSON.stringify(allUsers[i]);
+            console.log("To string ->> " + newUser);
+            stringUsers.push(newUser);
+            i++;
+                        }
+        var stringUsers = stringUsers.join("#");
+        fs.writeFileSync("page_users.txt", stringUsers);
+}
 
 
 // Get users
