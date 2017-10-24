@@ -1417,6 +1417,7 @@ function rarityLegendary(){
     var profTopCSS = "-98.5px";
     var profHeightCSS = "78px";
     
+    
     // Item is legendary tier.
     console.log("You got a Legendary!!");
     var whatEpicNum = Math.floor(Math.random() * 9) + 1;
@@ -1447,6 +1448,7 @@ function rarityLegendary(){
         document.getElementById("themeCard").style.height = profHeightCSS;
         document.getElementById("themeCard").style.top = profTopCSS;
         document.getElementById("themeCard").style.borderRadius = "80px";
+        //document.getElementById("themeCard").style.boxShadow = 
         } 
      
     

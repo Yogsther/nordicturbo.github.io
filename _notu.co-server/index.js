@@ -103,7 +103,7 @@ socket.on('disconnect', function(){
                 
                 initPos++;
             } else if(onlineUsers[initPos].id === socket.id){
-                console.log();
+                console.log("User disconnected.");
                 onlineUsers.splice(initPos,1);
                 found = true;
             }
@@ -159,18 +159,18 @@ socket.on("chat", function(data){
     if(data.message != null){
         
         if(data.message.length > 2000){
-        console.log("To long of a message (over 2000)");
+        console.log("Chat: To long of a message (over 2000)");
         return;
         }
         
         if(data.message.indexOf("<") != -1){
-        console.log("Chat: ERROR: someone tried to enter code in the chat")
+        console.log("Chat: Someone tried to enter code in the chat")
         return;
         }
     }
     // Check for too long usernames (hacked!)
     if(data.username.length > 20){
-        console.error("failed: too long username: " + data.username);
+        console.log("Chat: too long username: " + data.username);
         return;
     }  
     if(data.username.indexOf("<") != -1){
@@ -184,7 +184,7 @@ socket.on("chat", function(data){
     // Send out message to every client.
     io.sockets.emit("chat", data);
     // Log message in console.
-    console.log("Message > " + data.username + ": " + data.message);
+    console.log("Chat: Message > " + data.username + ": " + data.message);
   });
     
     
@@ -205,7 +205,7 @@ socket.on("sentover", function(userinfo){
     }
     
     if(userinfo.username.indexOf("<") != -1 || userinfo.username.indexOf(">") != -1){
-        console.log("!! - Someone tried to enter code");
+        console.log("Username: Someone tried to enter code");
         return;
     }
     if(userinfo.username.length > 20){
@@ -220,16 +220,19 @@ socket.on("sentover", function(userinfo){
     if(userinfo.xp > 100){
         userinfo.xp = 100;
     }
+    if(userinfo.xp < 1){
+        userinfo.xp 
+    }
  
     if(isNaN(userinfo.xp)){
-    console.log("!! - Someone tried to enter code");
+    console.log("Error: Username on login");
     return;
         
     }
         
     if(userinfo.profile != null || userinfo.profile != undefined){
     if(userinfo.profile.indexOf("livingforit.xyz/img/profiles") == -1){
-        console.log("Bad profile picture");
+        console.log("On login: Bad profile picture");
         return;
         }
     }
@@ -237,37 +240,18 @@ socket.on("sentover", function(userinfo){
         
         
     io.sockets.emit("listreset"); 
-        
-    /*
-     while(found == false){
-    
-            if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
-                console.log(initPos + " = Empty");
-                initPos++;
-            } else if(onlineUsers[initPos].id === socket.id){
-                console.log("FOUND @: " + initPos)
-                onlineUsers.splice(initPos,1);
-                found = true;
-            }
-            if(initPos > onlineUsers.length){
-                console.log("ERROR: user.lenght");
-                found = true;
-            }
-    
-    }
-    */
-        
 
+    console.log("User connected: " + userinfo.username + " - persID: " + userinfo.persID);
     var newUser = true;
     var initPos = 0;
         
     while(initPos < onlineUsers.length){
         if(onlineUsers[initPos] == undefined || onlineUsers[initPos] == null){
-            console.log(initPos + " = Empty");
+            
             initPos++;
             
         } else if (onlineUsers[initPos].persID === userinfo.persID){
-            console.log("USER ALREADY HERE!, wrote in: " + initPos)
+            
             onlineUsers[initPos] = userinfo;
             newUser = false;
             initPos++;
@@ -283,31 +267,17 @@ socket.on("sentover", function(userinfo){
     while(namePushed == false){
         
         if(onlineUsers[pushPos] == undefined || onlineUsers[pushPos] == null){
-            console.log("Wrote in, on pos: " + pushPos);
+            
             onlineUsers[pushPos] = userinfo;
             namePushed = true;
         } 
         if(onlineUsers[pushPos] != undefined && onlineUsers[pushPos] != null){
             pushPos++; 
-            console.log("Skipped one");
+          
         }
     }
 } 
-     /*
-        console.log("-------------------");
-    for(i = 0; i < 6; i++){
-        console.log("NUMBER: " + i + " >>> "+onlineUsers[i]);
-        if(onlineUsers[i] == undefined){
-            console.log(" == UNDEFINED");
-        } else {   
-        console.log("Defined.")
-        console.log("Username: " + onlineUsers[i].username);
-        console.log("ID: " + onlineUsers[i].id);
-        }
-        console.log("..............");
-    } */
-         
-        // onlineUsers.push(userinfo);
+  
         var userPos = 0; 
     
         // Send all online users
@@ -322,14 +292,7 @@ socket.on("sentover", function(userinfo){
             io.sockets.emit("onlinepush", newUser);
             userPos++;
         }
-        /* Causes error!
-        if(onlineUsers[userPos] == null){
-            userPos = -1;
-            console.log("User pos: " + userPos);
-            console.log("Online users: " + onlineUsers.length);
-            return;
-        }
-        */
+        
     }
         
         
@@ -353,14 +316,14 @@ socket.on("sentover", function(userinfo){
             var storedUserRaw = users[i];
             var storedUser = JSON.parse(storedUserRaw);
             
-            console.log("test");
+            
             if(storedUser != null){
                if(storedUser.username == recInfo.username){
-                   console.log("3");
+                  
                    // Found matching username
                    if(storedUser.password == recInfo.password){
                     // Password is correct
-                        console.log("Correct login");
+                        
                         var fileLocation = "pages/" + recInfo.username + ".txt";
                         var userPage = fs.readFileSync(fileLocation);
                         var userPageParts = userPage.toString().split("½");
@@ -430,12 +393,12 @@ socket.on("sentover", function(userinfo){
         
             if(recInfo.username.indexOf("<") != -1 || recInfo.password.indexOf("<") != -1 || recInfo.persID.indexOf("<") != -1){
                 io.sockets.connected[socket.id].emit("callback_fail", "No HTML tags allowed in Username or Password.");
-                console.log("Quickdraw: Bad username tried to signup. (HTML Tag in name)");
+                console.log("Pages: Bad username tried to signup. (HTML Tag in name)");
                 failed = true;
             }
             if(recInfo.username.indexOf("#") != -1 || recInfo.password.indexOf("#") != -1 || recInfo.persID.indexOf("#") != -1){
                 io.sockets.connected[socket.id].emit("callback_fail", "No hashtags allowed in Username or Password.");
-                console.log("Quickdraw: Bad username tried to signup. (# in username)");
+                console.log("Pages: Bad username tried to signup. (# in username)");
                 failed = true;
             }
                 
@@ -458,7 +421,7 @@ socket.on("sentover", function(userinfo){
                 
                 if(storedUser.username == recInfo.username){
                     io.sockets.connected[socket.id].emit("callback_fail", "This username already exisit.");
-                    console.log("Quickdraw: Username already exist");
+                    console.log("Pages: Username already exist");
                     failed = true;
                 }
                 
@@ -476,9 +439,9 @@ socket.on("sentover", function(userinfo){
         
        
         // User does not exist, and can get registered.
-        console.log("Registered User");
+        console.log("Registered New User: " + recInfo.username);
         
-        var userFormat = '#{"username": "'+recInfo.username+'","password":"'+recInfo.password+'","persID":"'+recInfo.persID+'"}';
+        var userFormat = '#{"username": "'+recInfo.username+'","password":"'+recInfo.password+'","persID":"'+recInfo.persID+'", "views":"0"}';
         users.push(userFormat);
         users = users.join("#");
         fs.writeFileSync("page_users.txt", users);
@@ -486,21 +449,7 @@ socket.on("sentover", function(userinfo){
         var demoFile = fs.readFileSync("demo.txt");
         fs.writeFileSync(filePath, demoFile);
         
-        /*
-        // Add to index
-        var index = fs.readFileSync("page_index.txt");
-        index = index.toString().split("#");
-        var username = recInfo.username;
-        
-        index.push(username);
-        
-        index.join("#");
-        
-        fs.writeFileSync("page_index.txt", index);
-       
-        console.log(index[0]);
-        */
-        
+      
         // Send message to client, success message
         io.sockets.connected[socket.id].emit("pages_signup_success");
         
@@ -525,9 +474,7 @@ socket.on("sentover", function(userinfo){
                 i++;
             }
             i++;
-        
-        
-        console.log("Done, users: " + usersArr);
+       
             
             
         
@@ -542,7 +489,6 @@ socket.on("sentover", function(userinfo){
                             
                             if(name.indexOf("%20") != -1){
                                 // Name contains spaces
-                                console.log("Name test");
                                 name = name.replace("%20",' ');
                             }
             
@@ -564,49 +510,31 @@ socket.on("sentover", function(userinfo){
                         });
         
                         }catch(e){
-                            console.log("Pages error: " + e);
+                            
                         }
         
     });
     
-    /*
-            var users = getPageUsers();
-            var i = 0;
-            
-            
-            while(users.length > i){
-                
-                if(users[i] != null && users[i] != "" && users[i] != errorToken){
-                
-                var userInfo = JSON.parse(users[i]);
-                var user = userInfo.username;
-                   
-                console.log("View to add: " + data.pageName);
-                
-                if(user == data.pageName){
-                    // Match
-                    console.log(" -----  Its a match" + user);
-                    pageName = data.pageName;
-                */
-    
+
     socket.on("addView", function(data){
         //TODO more sequre view feature
         if(data.viewer == null){
-            console.log("Username is null");
             return;
         }
             
             if(data.viewer.indexOf("#") != -1){
-                console.log("Name contains # / spam");
                 //Viewer has a deafult name, don't count the view.
                 return;
             }
-            
                     var allUsers = getPageUsersB();
                    
+                    if(data.pageName.indexOf("%20") != -1){
+                        // Name contains spaces
+                        data.pageName = data.pageName.replace("%20",' ');
+                    }
+        
                     var objIndex = allUsers.findIndex((obj => obj.username == data.pageName));
                     if(objIndex == -1){
-                        console.log("Could not find any name.");
                         return;
                     }
                     var currentViews = allUsers[objIndex].views;
@@ -616,7 +544,7 @@ socket.on("sentover", function(userinfo){
                     currentViews = Number(currentViews) + 1;
                     
                     allUsers[objIndex].views = currentViews;
-                    console.log(allUsers[objIndex]);
+                    
                
                     savePageUsers(allUsers);
                     return;        
@@ -633,11 +561,6 @@ socket.on("sentover", function(userinfo){
             var storedUserRaw = users[i];
             var storedUser = JSON.parse(storedUserRaw);
             
-                console.log(recInfo.username);
-                console.log(storedUser.username);
-                console.log(recInfo.password);
-                console.log(storedUser.password);
-                
                 
                 
                 
@@ -647,10 +570,10 @@ socket.on("sentover", function(userinfo){
                    // Found matching username
                    if(storedUser.password == recInfo.password){
                     // Password is correct
-                        console.log("Correct login");
+                        console.log("Pages: " + recInfo.username + " saved a page.");
                         
                        
-                        console.log(recInfo.html);
+                        
                         var saveFile = recInfo.html + "½" + recInfo.css + "½" + recInfo.javascript;
                         var fileLocation = "pages/" + recInfo.username + ".txt";
                         fs.writeFileSync(fileLocation, saveFile);
@@ -712,7 +635,7 @@ socket.on("sentover", function(userinfo){
     
         var users = getUsers();
         var i = 0;
-        console.log("Sign Req, users.lenght = " +  users.length);
+       
         
         
         if(recInfo.username == null || recInfo.password == null || recInfo.persID == null){
@@ -783,8 +706,7 @@ socket.on("sentover", function(userinfo){
         
         
         // User does not exist, and can get registered.
-        console.log("Registered User");
-        console.log("#" + recInfo);
+        
         
         var userFormat = '#{"username": "'+recInfo.username+'","password":"'+recInfo.password+'","persID":"'+recInfo.persID+'"}';
         users.push(userFormat);
@@ -833,7 +755,7 @@ function getPageUsersB(){
             i++;
         }catch(e){
             i++;
-            console.log("Error.");
+            
         }
     }
     return userArray;
@@ -850,7 +772,7 @@ function savePageUsers(allUsers){
                     
         while(allUsers.length > i){
             var newUser = JSON.stringify(allUsers[i]);
-            console.log("To string ->> " + newUser);
+           
             stringUsers.push(newUser);
             i++;
                         }

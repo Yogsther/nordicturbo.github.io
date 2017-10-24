@@ -246,8 +246,16 @@ socket.on("indexRequest", function(users){
     
     var colors = ["9b0a3f", "630a9b", "0a469b", "0a9b3a", "689b0a", "0a509b"];
     var color = colors[Math.floor(Math.random() * colors.length)];
-
     
+    function viewsSort(a,b) {
+        if (a.views > b.views)
+            return -1;
+        if (a.views < b.views)
+            return 1;
+            return 0;
+        }  
+    
+        users.sort(viewsSort);
     
         while(users.length > i){  
             var user = users[i].username;

@@ -310,6 +310,8 @@ body{
     margin: 0 auto;
     position: relative;
     display: block;
+    /* box-shadow: 0px 0px 14px #ffd700; */
+    
     
     /* Make image undraggable */
     user-drag: none; 
