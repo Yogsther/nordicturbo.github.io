@@ -334,6 +334,15 @@ body{
     
 }
 
+#verified{
+    height: 19px;
+    position: relative;
+    left: 2px;
+    top: 2px;
+    
+    
+}
+
 #credits_display{
     color: gold;
     text-align: center;

@@ -137,6 +137,8 @@ socket.on("onlinepush", function(profile){
     
     onlineUsers++;
     
+    console.log(profile);
+    
     // Get online users
     
     var data = profile;
@@ -207,10 +209,13 @@ socket.on("onlinepush", function(profile){
     //var pageLink = "http://www.livingforit.xyz/pages/view.html?view=" + profile.persID;
     // onclick="openLink(' + "'" + pageLink + "'" + ')"
     
-   
+    if(profile.verified == true){
+        
+        document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '<img src="img/verified.png" title="Verified User" id="verified"></span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
+    } else {
    
     document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
-    
+    }
     document.getElementById("online_users_number").innerHTML = onlineUsers;
     
     

@@ -221,7 +221,7 @@ socket.on("sentover", function(userinfo){
         userinfo.xp = 100;
     }
     if(userinfo.xp < 1){
-        userinfo.xp 
+        userinfo.xp = 1;
     }
  
     if(isNaN(userinfo.xp)){
@@ -289,7 +289,26 @@ socket.on("sentover", function(userinfo){
         }
         if(onlineUsers[userPos] != undefined){
             var newUser = onlineUsers[userPos];
-            io.sockets.emit("onlinepush", newUser);
+            
+            var verified = false;
+            var verifiedUsers = fs.readFileSync("verified.txt");
+            verifiedUsers = verifiedUsers.toString().split(",");
+            
+            if(verifiedUsers.indexOf(newUser.persID) != -1){
+               verified = true; 
+            }
+            
+            
+            var sendToClients = {
+                username: newUser.username,
+                profilepic: newUser.profilepic,
+                xp: newUser.xp,
+                status: newUser.status,
+                verified: verified
+            };
+            
+            
+            io.sockets.emit("onlinepush", sendToClients);
             userPos++;
         }
         
