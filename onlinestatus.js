@@ -116,6 +116,21 @@ function pardonUser(){
     });
 }
 
+function showUserLog(){
+    
+   
+    var inputToken = document.getElementById("inputToken").value;
+  
+    socket.emit("userlog", {
+        token: inputToken
+    });
+}
+
+socket.on("userlog", function(log){
+    
+    document.getElementById("messages_admin").innerHTML = log;
+    console.log(log);
+});
 
 
 

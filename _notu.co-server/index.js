@@ -287,7 +287,7 @@ socket.on("sentover", function(userinfo){
     
     // Log new user in log file
     var log = fs.readFileSync("userlog.txt","utf8");
-    console.log("Log " + log);
+  
     log = log.toString();
     
     if(log.indexOf(userinfo.username) == -1 || log.indexOf(userinfo.persID) == -1){
@@ -996,6 +996,23 @@ socket.on("pardon", function(data){
     }
 });
     
+    
+socket.on("userlog", function(data){
+    try{
+    var token = fs.readFileSync("admin_token.txt", "utf8");
+    if(data.token === token){
+      
+        var log = fs.readFileSync("userlog.txt", "utf8");
+        log = log.toString();
+        io.sockets.connected[socket.id].emit("userlog", log);
+        
+        }     
+    }catch(e){
+        
+    }
+    
+    
+});
     
     
 

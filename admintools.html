@@ -17,6 +17,8 @@
     
 </head>
 <body>
+    
+    <img src="img/admin_tools.png" id="admin_tools_image">
     <div id="main"><br>
     <input type="text" class="input" placeholder="User ID / PersID" id="inputID"><br><br>
         
@@ -27,6 +29,7 @@
         
         <button class="btn" onclick="banUser()">Ban User</button><br>
         <button class="btn" onclick="pardonUser()">Pardon User</button><br>
+        <button class="btn" onclick="showUserLog()">Show User Log</button><br>
         
     </div>
     <div id="messages_admin">
@@ -34,6 +37,14 @@
         
     </div>
     <style>
+        
+        #admin_tools_image{
+            height: 70px;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            top: 12px;
+        }
         
         #messages_admin{
             width: 300px;
@@ -46,6 +57,7 @@
             text-align: center;
             color: white;
             font-family: ubuntu;
+            white-space: pre-wrap;
         }
         
         .btn{
@@ -73,7 +85,7 @@
         }
         
         #main{
-            height: 350px;
+            height: 390px;
             width: 300px;
             background: #111111;
             border-radius: 10px;
