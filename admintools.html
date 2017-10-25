@@ -23,13 +23,30 @@
     <input type="password" class="input" placeholder="Admin Token" id="inputToken"><br><br> 
        <br>
         <button class="btn" onclick="verifyUser()">Verify User</button><br>
-        <button class="btn" onclick="verifyUser">Unverify User</button><br>
+        <button class="btn" onclick="unverifyUser()">Unverify User</button><br>
         
-        <button class="btn" onclick="verifyUser">Ban User</button><br>
-        <button class="btn" onclick="verifyUser">Pardon User</button><br>
+        <button class="btn" onclick="banUser()">Ban User</button><br>
+        <button class="btn" onclick="pardonUser()">Pardon User</button><br>
+        
+    </div>
+    <div id="messages_admin">
+        
         
     </div>
     <style>
+        
+        #messages_admin{
+            width: 300px;
+            height: 100px;
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            top: 30px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-family: ubuntu;
+        }
         
         .btn{
             width: 120px; 

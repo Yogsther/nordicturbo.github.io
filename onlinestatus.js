@@ -65,6 +65,9 @@ socket.on("login", function(request){
 
 // Admin tools
 
+socket.on("message_admin", function (message){
+    document.getElementById("messages_admin").innerHTML = message;
+})
 
 
 function verifyUser(){
@@ -79,15 +82,39 @@ function verifyUser(){
 }
 
 
+function unverifyUser(){
+    
+    var inputID = document.getElementById("inputID").value;
+    var inputToken = document.getElementById("inputToken").value;
+ 
+    socket.emit("unverify", {
+        id: inputID,
+        token: inputToken
+    });
+}
 
 
+function banUser(){
+    
+    var inputID = document.getElementById("inputID").value;
+    var inputToken = document.getElementById("inputToken").value;
+  
+    socket.emit("ban", {
+        id: inputID,
+        token: inputToken
+    });
+}
 
-
-
-
-
-
-
+function pardonUser(){
+    
+    var inputID = document.getElementById("inputID").value;
+    var inputToken = document.getElementById("inputToken").value;
+  
+    socket.emit("pardon", {
+        id: inputID,
+        token: inputToken
+    });
+}
 
 
 

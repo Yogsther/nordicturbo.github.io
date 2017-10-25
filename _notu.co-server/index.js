@@ -754,19 +754,172 @@ socket.on("sentover", function(userinfo){
 socket.on("verify", function(data){
     
     try{
-    var verfiedList = fs.readFileSync("veriefied.txt", "utf8");
-        verfiedList = verfiedList.toString().split("#");
-    console.log(verfiedList);
+        
+    var token = fs.readFileSync("admin_token.txt", "utf8");
+    if(data.token === token){
+        
+    var verfiedList = fs.readFileSync("verified.txt", "utf8");
+    verfiedList = verfiedList.toString().split(",");
+    // verifiedList is now an array of every verfied ID
+        
     
     
     
+    
+        
+    if(verfiedList.indexOf(data.id) != -1){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is already verified!");
+        return;
+    }
+    if(isNaN(data.id)){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is not a number (invalid ID)");
+        return;
+    }
+    verfiedList.push(data.id);
+    //verfiedList = verfiedList.join("#");
+    fs.writeFileSync("verified.txt", verfiedList);
+                    
+    console.log("ID was verified! " + data.id);   
+    io.sockets.connected[socket.id].emit("message_admin", "ID has been verified!");
+        return;
+        // End
+        }
+        io.sockets.connected[socket.id].emit("message_admin", "Wrong Admin Token");
     }catch(e){
+        io.sockets.connected[socket.id].emit("message_admin", "Error " + e);
         console.log("Verified user error. " + e);
     }
 });
 
-
+socket.on("unverify", function(data){
     
+    try{
+     
+    var token = fs.readFileSync("admin_token.txt", "utf8");
+    if(data.token === token){
+        
+    var verfiedList = fs.readFileSync("verified.txt", "utf8");
+    verfiedList = verfiedList.toString().split(",");
+    // verifiedList is now an array of every verfied ID
+    
+        
+    if(verfiedList.indexOf(data.id) == -1){
+        io.sockets.connected[socket.id].emit("message_admin", "This ID is not verified.");
+        return;
+    }
+    if(isNaN(data.id)){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is not a number. (invalid ID)");
+        return;
+    }
+   
+    // Remove from verified
+    var index = verfiedList.indexOf(data.id);
+    verfiedList.splice(index, 1);
+        
+        
+    fs.writeFileSync("verified.txt", verfiedList);
+    io.sockets.connected[socket.id].emit("message_admin", "ID has been unverified!");
+    console.log("ID was unverified! " + data.id);   
+    return;
+        
+        // End
+        }
+        
+        io.sockets.connected[socket.id].emit("message_admin", "Wrong Admin Token");
+        
+    }catch(e){
+        io.sockets.connected[socket.id].emit("message_admin", "Error " + e);
+        console.log("Verified user error. " + e);
+    }
+});
+    
+ // Ban and Pardon
+    
+    
+        
+// Admin tools
+
+socket.on("ban", function(data){
+    
+    try{
+        
+    var token = fs.readFileSync("admin_token.txt", "utf8");
+    if(data.token === token){
+        
+    var banList = fs.readFileSync("banned.txt", "utf8");
+    banList = banList.toString().split(",");
+    // verifiedList is now an array of every verfied ID
+        
+    
+    
+    
+    
+        
+    if(banList.indexOf(data.id) != -1){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is already banned!");
+        return;
+    }
+    if(isNaN(data.id)){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is not a number (invalid ID)");
+        return;
+    }
+    banList.push(data.id);
+    //verfiedList = verfiedList.join("#");
+    fs.writeFileSync("banned.txt", banList);
+                    
+    console.log("ID was banList! " + data.id);   
+    io.sockets.connected[socket.id].emit("message_admin", "ID has been banned!");
+        return;
+        // End
+        }
+        io.sockets.connected[socket.id].emit("message_admin", "Wrong Admin Token");
+    }catch(e){
+        io.sockets.connected[socket.id].emit("message_admin", "Error " + e);
+        console.log("banned user error. " + e);
+    }
+});
+
+socket.on("pardon", function(data){
+    
+    try{
+     
+    var token = fs.readFileSync("admin_token.txt", "utf8");
+    if(data.token === token){
+        
+    var banList = fs.readFileSync("banned.txt", "utf8");
+    banList = banList.toString().split(",");
+    // verifiedList is now an array of every verfied ID
+    
+        
+    if(banList.indexOf(data.id) == -1){
+        io.sockets.connected[socket.id].emit("message_admin", "This ID is not banned.");
+        return;
+    }
+    if(isNaN(data.id)){
+        io.sockets.connected[socket.id].emit("message_admin", "ID is not a number. (invalid ID)");
+        return;
+    }
+   
+    // Remove from verified
+    var index = banList.indexOf(data.id);
+    banList.splice(index, 1);
+        
+        
+    fs.writeFileSync("banned.txt", banList);
+    io.sockets.connected[socket.id].emit("message_admin", "ID has been unbanned!");
+    console.log("ID was unbanned! " + data.id);   
+    return;
+        
+        // End
+        }
+        
+        io.sockets.connected[socket.id].emit("message_admin", "Wrong Admin Token");
+        
+    }catch(e){
+        io.sockets.connected[socket.id].emit("message_admin", "Error " + e);
+        console.log("Banned error. " + e);
+    }
+});
     
     
     
