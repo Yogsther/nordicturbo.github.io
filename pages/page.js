@@ -111,7 +111,7 @@ function showEditor(){
 }
 
 function showSignup(){
-    document.getElementById("background_main").innerHTML = '<div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="mypage_info"> You dont have a page. But you can create one here! First you have to signup so only you can edit your page! <br><br> <input type="text" id="username" class="input" placeholder="Choose a Username" maxlength="20"> <input type="password" id="password" class="input" placeholder="Create a Password" maxlength="50"> <input type="password" id="confirm_password" class="input" placeholder="Confirm your Password" maxlength="50"> <div id="eulaagree"> I have read and agree to the <a href="eula.txt">Notu.co Pages EULA</a> <input type="checkbox" id="checkme"> </div> <button class="btn" id="register_button" onclick="register()">Register</button> <div id="fail_display" style="color: #f70e1b;"></div> Already a user? <a href="javascript:showLogin()">Login!</a>';
+    document.getElementById("background_main").innerHTML = '<div id="header"> <span id="header_text"><i>&lt;pages&gt;</i></span> <img src="logo.png" id="header_img" onclick="gotoIndex()"> </div> <div id="mypage_info"> You dont have a page. But you can create one here! First you have to signup so only you can edit your page! <br><br> <input type="text" id="username" class="input" oninput="onChange()" placeholder="Choose a Username / Title" maxlength="20"> <input type="password" id="password" class="input" placeholder="Create a Password" maxlength="50"> <input type="password" id="confirm_password" class="input" placeholder="Confirm your Password" maxlength="50"> <div id="eulaagree"> I have read and agree to the <a href="eula.txt">Notu.co Pages EULA</a> <input type="checkbox" id="checkme"> </div> <button class="btn" id="register_button" onclick="register()">Register</button> <div id="fail_display" style="color: #f70e1b;"></div> Already a user? <a href="javascript:showLogin()">Login!</a>';
 }
 
 
@@ -163,9 +163,24 @@ socket.on("login_success", function(info){
 
 socket.on("login_failed", function(err){
    
+    var username = readCookie("pageUsername");
+    var registeredStatus = readCookie("pageRegistered");
+    if(registeredStatus == "true"){
+      document.getElementById("background_main").innerHTML = "<div style='top: 50px; color: red; width: 450px; margin: 0 auto; text-align: center; position: relative;'>OPS!<br> <b>Looks like you have been banned!</b><br>Your account has been deleted and you can no longer login or edit your account. Your page will no longer be featured on notu.co pages, but you can still visit it here for now: <a href='http://www.livingforit.xyz/pages/viewpage?" + username + "'>http://www.livingforit.xyz/pages/viewpage?" + username + "</a></div>";  
+    };
+    
+    
     document.getElementById("error_message_login").innerHTML = err;
     
 });
+
+
+function onChange(){
+    var username = document.getElementById("username").value;
+    username = username.replace(/[^a-z0-9]/gi,'');
+    document.getElementById("username").value = username;
+}
+
 
 function register(){
     
@@ -184,6 +199,22 @@ function register(){
         failed("No field can be left empty.");
         return;
     }
+    
+    if(username.indexOf("Å") != -1 || password.indexOf("Å") != -1){
+        failed("Å,Ä or Ö are not allowed.");
+        return;
+    }
+    
+    if(username.indexOf("Ä") != -1 || password.indexOf("Ä") != -1){
+        failed("Å,Ä or Ö are not allowed.");
+        return;
+    }
+    if(username.indexOf("Ö") != -1 || password.indexOf("Ö") != -1){
+        failed("Å,Ä or Ö are not allowed.");
+        return;
+    }
+    
+    
     if(username.indexOf("#") != -1 || password.indexOf("#") != -1){
         failed("# are not allowed in Usernames or Passwords.");
         return;
@@ -239,6 +270,27 @@ socket.on("featuredUsers", function(featured){
     featuredUsers = featured; 
 });
 
+
+function banpage(){
+    
+    var page = document.getElementById("ban_page").value;
+    var token = document.getElementById("token").value;
+    
+    socket.emit("banpage", {
+        page: page,
+        token: token
+    });
+}
+
+socket.on("test", function(test){
+    console.log(test);
+});
+
+var pinnedPages;
+socket.on("pinnedPages", function(data){
+    pinnedPages = data;
+});
+
 socket.on("indexRequest", function(users){
     
     console.log(users);
@@ -262,20 +314,36 @@ socket.on("indexRequest", function(users){
             var views = users[i].views;
             if(isNaN(views)){
                 views = 0;
-            }
+            }  
             if(featuredUsers.indexOf(user) != -1){
                 // User is featured
                 // onclick="gotoLink('boi')"
                 document.getElementById("page_list_featured").innerHTML += '<div id="page_listing" style="background:#' + color + ';" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views + '</span> </div>';
             }
+            if(pinnedPages.indexOf(user) != -1){
+                document.getElementById("page_list").insertAdjacentHTML("afterbegin", '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="pinned.png" title="Pinned post" id="pin"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div><button class="btn" onclick="source()" id="sourceButton">Source</button><button class="btn" onclick="gotoLink(' + "'report?" + user + "'" + '" id="reportButton">Report</button> </div>');
                 
-            document.getElementById("page_list").innerHTML += '<div id="page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div>';
-          i++
-        }  
+                i++;
+            } else {
             
+            document.getElementById("page_list").innerHTML += '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div><button class="btn" onclick="source()" id="sourceButton">Source</button><button class="btn" onclick="report()" id="reportButton">Report</button> </div>';
+            i++
+            }
+            
+        }  
+    
+    /*
+   onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"
+   onclick="gotoLink(' + "'report.html?" + user + "'" + '"
+    */      
            
 });
 
+
+
+function report(name){
+   
+}
 
 
 function failed(err){

@@ -361,9 +361,10 @@ socket.on("sentover", function(userinfo){
         } else {
             i++;
         }
+   
+            
     }
-        
-     io.sockets.connected[socket.id].emit("login_failed", "Username does not exist.");   
+    io.sockets.connected[socket.id].emit("login_failed", "Username does not exist.");   
         
     });
     
@@ -460,7 +461,8 @@ socket.on("sentover", function(userinfo){
     socket.on("indexRequest", function(){
         
        
-        var featuredUsers = ["Demo", "Agman", "hehe lmao"];
+        var featuredUsers = ["Agman", "hehe lmao", "Benchmark"];
+        var pinnedPages = ["Demo"]
         var users = getPageUsersB();
         var usersArr = [];
         var i = 0;
@@ -479,6 +481,7 @@ socket.on("sentover", function(userinfo){
             
         
         io.sockets.connected[socket.id].emit("featuredUsers", featuredUsers);
+        io.sockets.connected[socket.id].emit("pinnedPages", pinnedPages);
         io.sockets.connected[socket.id].emit("indexRequest", usersArr);
     });
     
@@ -514,6 +517,29 @@ socket.on("sentover", function(userinfo){
                         }
         
     });
+    
+    
+    socket.on("banpage", function(data){
+       
+        var adminToken = fs.readFileSync("admin_token.txt", "utf8");
+        
+        if(data.token === adminToken){
+            
+            var users = getPageUsersB();
+            var objIndex = users.findIndex((obj => obj.username == data.page));
+            if(objIndex == -1){
+                return;
+            }
+            users.splice(objIndex,1);
+            savePageUsers(users);
+            console.log("Banned user: " + data.page);
+        }
+        
+        
+        
+        
+    });
+    
     
 
     socket.on("addView", function(data){

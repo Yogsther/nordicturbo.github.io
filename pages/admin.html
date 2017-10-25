@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+            <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    
+    
+</head>
+<body>
+<div id="body">
+    <br><br>
+    <i>Delete page</i><br><br> 
+    
+    Page name: <br><input type="text" id="ban_page"><br><br>
+    Admin token: <br><input type="password" id="token"><br>
+    <button onclick="banpage()">BAN</button>
+    <br><br><br><div id="text_block">
+    On ban the page and associated account is removed from the index but the page is still accessible via direct url, but can be overwritten if a new account is created in the same name.
+    </div>
+    
+    
+
+    <style>
+        button{
+            position: relative;
+            top: 20px;
+            border: none;
+            font-family: ubuntu;
+            height: 30px;
+            width: 100px;
+            border-radius: 5px;
+            background: #111111;
+            color: #ce4339;
+        }
+        #text_block{
+            width: 300px;
+            position: relative;
+            margin: 0 auto;
+            display: block;
+        }
+        input{
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 5px;
+            text-align: center;
+            font-family: ubuntu;
+            
+            
+        }
+        body{
+            background: black;
+            text-align: center;
+            font-family: ubuntu;
+        }
+        #body{
+            height: 500px;
+            width: 400px;
+            margin: 0 auto;
+            position: relative;
+            top: 20px;
+            background: #ce4339;
+            color: white;
+            border-radius: 20px;
+            
+        }
+    
+    </style>
+    <script src="page.js"></script>
+</body>
+</html>
