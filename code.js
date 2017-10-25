@@ -1092,7 +1092,7 @@ function Red(request){
         document.getElementById("header_table").style.backgroundColor = "#f44242";
         document.getElementById("header_table").style.backgroundImage = "url()";
         // Debug
-        console.log("Red theme is selected.");  
+       
     
         // Background Color  document.getElementById("members_background_shadow").style.backgroundColor = "#cd932d";
         // Text color  document.getElementById("members_header_text").style.color = "#f9ba4c"; 
@@ -1109,7 +1109,7 @@ function Default(){
     
         document.getElementById("background_div").style.backgroundColor = "#2d3f53";
         document.getElementById("header_table").style.backgroundColor = "#436a95";
-        console.log("Defualt theme is selected.");
+        
         document.getElementById("header_table").style.backgroundImage = "url()";
         // Debug
     
@@ -1154,7 +1154,7 @@ function countDown(){
         checkCrateStatus();
         checkClaim();
     }
-    console.log("Minutes left: " + minutesLeft);
+    
     
     
     

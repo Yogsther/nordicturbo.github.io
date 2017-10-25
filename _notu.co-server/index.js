@@ -125,13 +125,39 @@ socket.on('disconnect', function(){
     // Send all online users
 
     while(userPos < 51){
+        
+        
+        
+        
+        
 
         if(onlineUsers[userPos] == undefined){
             userPos++;
         }
         if(onlineUsers[userPos] != undefined){
         var newUser = onlineUsers[userPos];
-        io.sockets.emit("onlinepush", newUser);
+            
+            
+        var verified = false;
+        var verifiedUsers = fs.readFileSync("verified.txt");
+        verifiedUsers = verifiedUsers.toString().split(",");
+            
+        if(verifiedUsers.indexOf(newUser.persID) != -1){
+            verified = true; 
+        }
+            
+            
+            var sendToClients = {
+                username: newUser.username,
+                profilepic: newUser.profilepic,
+                xp: newUser.xp,
+                status: newUser.status,
+                verified: verified
+            };
+                
+            
+            
+        io.sockets.emit("onlinepush", sendToClients);
         userPos++;
         }
     }
@@ -157,6 +183,15 @@ socket.on("chat", function(data){
     }
     
     if(data.message != null){
+        
+        var bannedList = fs.readFileSync("banned.txt","utf8");
+        if(bannedList.indexOf(data.persID) != -1){
+        console.log("Banned user tried to chat: " + data.username + " - " + data.persID);
+        io.sockets.connected[socket.id].emit("yourBanned", "chat");
+        return;
+        }
+      
+        
         
         if(data.message.length > 2000){
         console.log("Chat: To long of a message (over 2000)");
@@ -236,12 +271,33 @@ socket.on("sentover", function(userinfo){
         return;
         }
     }
-        
+    
+    var bannedList = fs.readFileSync("banned.txt","utf8");
+    if(bannedList.indexOf(userinfo.persID) != -1){
+        console.log("Banned user tried to connect: " + userinfo.username + " - " + userinfo.persID);
+        io.sockets.connected[socket.id].emit("yourBanned", "login");
+        return;
+    }
         
         
     io.sockets.emit("listreset"); 
 
     console.log("User connected: " + userinfo.username + " - persID: " + userinfo.persID);
+    
+    
+    // Log new user in log file
+    var log = fs.readFileSync("userlog.txt","utf8");
+    console.log("Log " + log);
+    log = log.toString();
+    
+    if(log.indexOf(userinfo.username) == -1 || log.indexOf(userinfo.persID) == -1){
+        log = log + "\r\n" + userinfo.username + " : " + userinfo.persID;
+        fs.writeFileSync("userlog.txt", log);
+    }
+    
+    
+    
+    
     var newUser = true;
     var initPos = 0;
         
@@ -942,17 +998,9 @@ socket.on("pardon", function(data){
     
     
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
 });
 

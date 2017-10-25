@@ -325,13 +325,23 @@ body{
 #crateInfoText{
     color: gold;
     text-align: center;
-
     position: relative;
     font-family: ubuntu;
     font-size: 19px;
     
     
     
+}
+#banned_image{
+    height: 150px;
+}
+#ban_text{
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    color: red;
+    top: 5px;
 }
 
 #verified{

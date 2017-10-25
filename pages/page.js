@@ -318,12 +318,13 @@ socket.on("indexRequest", function(users){
             if(featuredUsers.indexOf(user) != -1){
                 // User is featured
                 // onclick="gotoLink('boi')"
-                document.getElementById("page_list_featured").innerHTML += '<div id="page_listing" style="background:#' + color + ';" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views + '</span> </div>';
+                document.getElementById("page_list_featured").innerHTML += '<div id="page_listing" style="background:#' + color + ';" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views + '</span> <span id="source_link"><a href="viewsource.html?' + user + '">Source</a></span><span id="report_link"><a id="report_color" href="report.html?' + user + '">Report</a></span></div>';
             }
             if(pinnedPages.indexOf(user) != -1){
-                document.getElementById("page_list").insertAdjacentHTML("afterbegin", '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="pinned.png" title="Pinned post" id="pin"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div><button class="btn" onclick="source()" id="sourceButton">Source</button><button class="btn" onclick="gotoLink(' + "'report?" + user + "'" + '" id="reportButton">Report</button> </div>');
+                document.getElementById("page_list").insertAdjacentHTML("afterbegin", '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"> <img src="pinned.png" title="Pinned post" id="pin"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div><span id="source_link"><a href="viewsource.html?' + user + '">Source</a></span><span id="report_link"><a id="report_color" href="report.html?' + user + '">Report</a></span> </div>');
                 
                 i++;
+                
             } else {
             document.getElementById("page_list").innerHTML += '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div> <span id="source_link"><a href="viewsource.html?' + user + '">Source</a></span><span id="report_link"><a id="report_color" href="report.html?' + user + '">Report</a></span></div>';
             i++
@@ -339,9 +340,6 @@ socket.on("indexRequest", function(users){
 
 
 
-function report(name){
-   
-}
 
 
 function failed(err){

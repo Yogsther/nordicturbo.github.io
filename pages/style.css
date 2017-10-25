@@ -175,16 +175,17 @@ a:hover{
 
 
 #report_color{
-    color: #ef2f2f;
+    color: #ff0a0a;
 }
 
 
 #pin{
-    height: 29px;
+    height: 39px;
     position: absolute;
-    right: 160px;
-    top: 00px;
+    right: 180px;
+    top: 9px;
     z-index: 2;
+    transform: rotate(5deg)
 }
 
 

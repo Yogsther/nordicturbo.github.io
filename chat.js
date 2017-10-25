@@ -11,6 +11,8 @@ var failed = false;
 var failedMessage;
 
 
+var banned = false;
+
 
 socket.on("login", function(request){
     
@@ -106,6 +108,22 @@ socket.on("login", function(request){
     
 }); 
 
+socket.on("yourBanned", function(info){
+   
+    banned = true;
+    
+    if(info == "login"){
+        // Display banned message in Online users list
+        document.getElementById("online_list_inner").innerHTML = '<img src="img/you_are_banned.png" id="banned_image"><div id="ban_text"> You have been banned. If you think this is a mistake, talk to Notu.co staff over on our <a href="https://discordapp.com/invite/Hb4Vg7S">discord</a>. </div>';
+    }
+    if(info == "chat"){
+        // Display error in chat, cause: banned.
+        document.getElementById("chat-inner").innerHTML += '<div id="spam_div"><span id="spam_warning"><i>Your banned and can not use the chat. </i></span></div>';
+    }
+    
+    
+});
+
 
 function getError(){
     if(failed){
@@ -132,6 +150,9 @@ socket.on("listreset", function(profile){
 socket.on("onlinepush", function(profile){
     
     if(failed){
+        return;
+    }
+    if(banned){
         return;
     }
     
