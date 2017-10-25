@@ -749,6 +749,23 @@ socket.on("sentover", function(userinfo){
     
     
     
+// Admin tools
+
+socket.on("verify", function(data){
+    
+    try{
+    var verfiedList = fs.readFileSync("veriefied.txt", "utf8");
+        verfiedList = verfiedList.toString().split("#");
+    console.log(verfiedList);
+    
+    
+    
+    }catch(e){
+        console.log("Verified user error. " + e);
+    }
+});
+
+
     
     
     
@@ -787,9 +804,6 @@ function getPageUsersB(){
     return userArray;
 }
 
-//function saveAllPageUsers(allUsers){
-   
-//}
 
 function savePageUsers(allUsers){
     
@@ -826,6 +840,50 @@ function getIndex(){
     var index = indexRaw.toString().split("#");
     return index;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

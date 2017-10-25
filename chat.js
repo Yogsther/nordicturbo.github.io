@@ -24,7 +24,7 @@ socket.on("login", function(request){
             personalID = readCookie("persID");
         }
         
-        console.log("Personal ID: " + personalID);
+    
         
         
         
@@ -47,14 +47,14 @@ socket.on("login", function(request){
         
         if(messageUsername.length > 20){
             failed = true;
-            console.log("Error 1");
+            
             failedMessage = "Too long username!";
             getError();
             return;
         }
         if(messageUsername.indexOf("<") != -1){
             failed = true;
-            console.log("Error 2");
+          
             failedMessage = "HTML Tag in username!";
             getError();
             return;
@@ -62,7 +62,7 @@ socket.on("login", function(request){
         
         if(messageProfile == null){
             failed = true;
-            console.log("Error 3");
+           
             failedMessage = "No profile picture!";
             getError();
             return;
@@ -70,21 +70,21 @@ socket.on("login", function(request){
         
         if(messageProfile.toLowerCase().indexOf("livingforit.xyz/img/profiles") == -1){
             failed = true;
-            console.log("Error 3");
+       
             failedMessage = "Bad profile picture, make sure your profile picture is hosted on Livingforit.xyz";
             getError();
             return;
         }
         if(isNaN(xp)){
             failed = true;
-            console.log("Error 4");
+    
             failedMessage = "Bad XP: Your XP level is not a number.";
             getError();
             return;
         }
         if(xp > 120){
             failed = true;
-            console.log("Error 5");
+           
             failedMessage = "Bad XP: Your XP level is over the cap (100). Please don't cheat.";
             getError();
             return;
@@ -99,7 +99,7 @@ socket.on("login", function(request){
             persID: personalID
         });
         
-        console.log("You have connected to the server, socket.id: " + socket.id);
+      
     }
     
    
@@ -111,7 +111,7 @@ function getError(){
     if(failed){
     // Show failed error
     document.getElementById("online_list_inner").innerHTML = "<span id='error-chat'>Error: You can not connect to the online list or use the chat because of an error with the server. <br><br>Error message:<br><b><i>" + failedMessage + "</i></b><br><br>If you don't know how to resolve this, go to Items and reset your stats. If you don't want to reset all the stats and items, delete the cookie that is causing the problem.<img src='https://i.imgur.com/OX5GjP8.png' id='protogent'></span>";
-    console.log("TEST");
+    
         
     document.getElementById("online_list_inner").style.overflowY = "hidden";
     }
@@ -208,14 +208,11 @@ socket.on("onlinepush", function(profile){
     // onclick="openLink(' + "'" + pageLink + "'" + ')"
     
    
-    console.log(xpColor);
+   
     document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
     
     document.getElementById("online_users_number").innerHTML = onlineUsers;
     
-    console.log("ONLINE USERS: " + onlineUsers);
-    console.log("USER ID: " + profile.id);
-    console.log("Online users: " + profile.username);
     
 });
 
@@ -328,7 +325,7 @@ function spamCheck(){
 function reviveChat(){
     chatEnabled = true;
     spamStatus = 0;
-    console.log("Chat revived");
+    
 }
 
 var chatFilter;
@@ -357,9 +354,9 @@ socket.on("chat", function(data){
         var lastPos = 0;
         
         while(bannedWords.length > wordPos){
-            console.log("Word pos: " + wordPos + " Lenght: " + bannedWords.length);
+            
             if(killSwitch > 500){
-                console.log("Killed it");
+                
                 return;
             }
             
@@ -370,7 +367,7 @@ socket.on("chat", function(data){
                 var censur = "*".repeat(replaceWord.length - 2);
                 var newWord = firstChar + censur + lastChar;
                 lastPos = wordPos + 1;
-                console.log("Replaced word");
+               
                 
                 // Replace final string
                 recivedMessage = recivedMessage.toLowerCase().replace(replaceWord, newWord);
@@ -378,7 +375,7 @@ socket.on("chat", function(data){
                 wordPos = 0;
             }
             if(bannedWords[wordPos].indexOf(recivedMessage.toLowerCase()) == -1){
-                console.log("Skipped word");
+               
                 //killSwitch = 50;
                 wordPos++;
             }   

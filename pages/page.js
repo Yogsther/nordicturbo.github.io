@@ -325,16 +325,14 @@ socket.on("indexRequest", function(users){
                 
                 i++;
             } else {
-            
-            document.getElementById("page_list").innerHTML += '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div><button class="btn" onclick="source()" id="sourceButton">Source</button><button class="btn" onclick="report()" id="reportButton">Report</button> </div>';
+            document.getElementById("page_list").innerHTML += '<div id="page_listing"><div id="inner_page_listing" onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"><img src="thumb_default.png" id="thumb"> <span id="pagelisting_title"> ' + user + ' </span> <span id="views">Views: ' + views +'</span> </div> <span id="source_link"><a href="viewsource.html?' + user + '">Source</a></span><span id="report_link"><a id="report_color" href="report.html?' + user + '">Report</a></span></div>';
             i++
             }
-            
         }  
     
     /*
    onclick="gotoLink(' + "'viewpage.html?" + user + "'" + ')"
-   onclick="gotoLink(' + "'report.html?" + user + "'" + '"
+   onclick="gotoLink(' + "'report.html?" + user + "'" + ')"
     */      
            
 });

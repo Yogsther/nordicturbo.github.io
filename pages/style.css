@@ -106,7 +106,6 @@ a:hover{
     top: 50px;
     border-radius: 5px;
     position: relative;
-   
 }
 
 
@@ -130,6 +129,13 @@ a:hover{
     overflow-y: auto;
 }
 
+#dropdown_button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 10px;
+    
+}
 
 
 #page_listing{
@@ -153,39 +159,30 @@ a:hover{
     
 }
 
-#reportButton{
+#report_link{
     position: absolute;
-    height: 25px;
-    top: 35px;
-    right: 5px;
-    width: 70px;
-    background: #a01e1e;
-    color: white;
-    
+    z-index: 2;
+    right: 25px;
+    bottom: 15px;
 }
 
-#sourceButton{
+#source_link{
     position: absolute;
-    height: 25px;
-    top: 3px;
-    right: 5px;
-    width: 70px;
-    background: #848484;
-    color: white;
+    z-index: 2;
+    right: 25px;
+    top: 15px;
 }
 
-#sourceButton:active{
-    top: 5px;
-}
-#reportButton:active{
-    top: 38px;
+
+#report_color{
+    color: #ef2f2f;
 }
 
 
 #pin{
     height: 29px;
     position: absolute;
-    right: 80px;
+    right: 160px;
     top: 00px;
     z-index: 2;
 }
@@ -218,7 +215,7 @@ a:hover{
     position: absolute;
     top: 23px;
     color: white;
-    right: 110px;
+    right: 90px;
 }
 
 #my_page_button{

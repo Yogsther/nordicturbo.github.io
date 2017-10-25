@@ -10,6 +10,7 @@ var eventBackground = "";
 
 yearlyCrate();
 
+var id = readCookie("persID");
 
 // Give free crates to users every year, and on the first time they log on.
 function yearlyCrate(){
@@ -118,7 +119,7 @@ function checkIfThemeApplies(){
 
 function runOnIndex(){
     
-    console.log(window.location.href.toLowerCase());
+  
     
     if(window.location.href.toLowerCase() == "http://livingforit.xyz/" || window.location.href.indexOf("index.html") != -1){
         getXP();
@@ -171,7 +172,7 @@ function showCratesOnIndex(){
     var finalLenght = crateLenght + "px";
     
     document.getElementById("insertBlob").innerHTML = '<div id="crateStatusBlobDiv" style="width: ' + finalLenght +';">' + currentCrates + '</div>';
-    console.log("Crates: " + currentCrates);
+    
 }
 
 
@@ -238,7 +239,7 @@ function insertUsername(){
 
 
 function changeProfile(pic){
-    console.log(pic.src)
+   
     var newPic = pic.src;
     createCookie("profileLocation", newPic, 10000);
     insertUsername();
@@ -318,15 +319,15 @@ function toggleMusic(){
     if(musicEnabled == null){
         // If this is the first time the button is clicked, ever.
         createCookie("musicToggle", true, 10000);
-        console.log("Cookie was created for music toggle");
+     
         toggleMusic();
     } else if(musicEnabled == "true") {
         // Music has been disabled
-        console.log("Music has been disabled");
+     
         createCookie("musicToggle", false, 10000);
     } else if(musicEnabled == "false"){
         // Music has been enabled
-        console.log("Music enabled.");
+      
         createCookie("musicToggle", true, 10000);
     } else {
         console.error("Something went wrong, please tell the notu.co devs about this. Error code: 55:2");
@@ -389,7 +390,7 @@ function changeTheme(){
         // Change to red
         window.setTimeout(Red,300); 
         createCookie("Theme", "Red", 10000); 
-        console.log("Theme changed to Red");
+       
     } else {
         // Change back to defualt if the current theme is not defult.
         createCookie("Theme", "Default", 10000); 
@@ -458,7 +459,7 @@ function buttonOn(buttonID){
     var buttonColor = eval(functionName);
     
     if(buttonColor != "undefined"){
-    console.log(buttonColor);
+ 
     document.getElementById(buttonID).style.background = buttonColor;
     }
 }
@@ -473,7 +474,7 @@ function buttonOff(buttonID){
 function addSkins(){
     var skinName = document.getElementById("theme_chooser").value;
     document.getElementById("theme_chooser").value = "";
-    console.log(skinName);
+ 
     
     var addSkinFunction = skinName + "();" 
     eval(addSkinFunction);
@@ -501,7 +502,7 @@ function unlockProfile(name){
     animatedPictures = animatedPictures.join("|");
     createCookie("animatedProfiles", animatedPictures, 10000)
     
-    console.log(animatedPictures);
+ 
     
 }
 
@@ -535,7 +536,7 @@ function getSavedSkins(){
             var name = animatedPictures[i];
             var nameOfImage = "img/profiles/unlock_" + animatedPictures[i] + ".gif";
             document.getElementById("all_profiles").innerHTML += '<img onclick="changeProfile(this);" id="profile-img" src="' + nameOfImage + '" title="'+ name +'">';
-            console.log(nameOfImage);
+           
         }
         i = i-1;   
     }
@@ -640,11 +641,11 @@ function getTheme(){
     if(currentThemeName == null){
         // Create cookie if user is new to the site.
         createCookie("Theme", "Default", 10000); 
-        console.log("Created Cookie, Default theme.");
+        
         getTheme();
         
     } else { 
-    console.log("Current theme is: " + currentThemeName + ".");
+    
     var finalFunction = currentThemeName + "();";
     eval(finalFunction);
     }
@@ -1228,9 +1229,9 @@ function checkClaim(){
 
     
     if(claimStatus == "true"){
-        console.log("Claimed");
+    
     } else {
-        console.log("Not claimed");
+       
         document.getElementById("insert_claim_button_here").innerHTML = '<img src="img/button_claim.gif" id="claim_button" onclick="claimHourlyCredits();" onmouseover="claimAnimation(1)"; onmouseout="claimAnimation(2)">';
         }
     }
@@ -1601,7 +1602,6 @@ function getXP(){
     xpBar = xpLeft / 10;
     xpBar = 100 - xpBar;
     
-    console.log(xpBar);
     
     level = level + 1;
     
@@ -1697,11 +1697,11 @@ function addXP(amount){
             createCookie("xp",0,10000);
             credits = Number(xp) + Number(amount);
             createCookie("xp",credits, 10000);
-            console.log("You gained " + amount + "xp.");
+          
         } else {
             xp = Number(xp) + amount;
             createCookie("xp",xp, 10000);
-            console.log("You gained " + amount + "xp.");
+         
             var newLvl = parseInt(Math.floor(xp / 1000) + 1, 10)
             // Added xp, check for lvl up:
             //if(oldXP.floor)

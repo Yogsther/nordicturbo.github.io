@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin tools</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="onlinestatus.js"></script>
+    <script src="code.js"></script>
+   
+    
+</head>
+<body>
+    <div id="main"><br>
+    <input type="text" class="input" placeholder="User ID / PersID" id="inputID"><br><br>
+        
+    <input type="password" class="input" placeholder="Admin Token" id="inputToken"><br><br> 
+       <br>
+        <button class="btn" onclick="verifyUser()">Verify User</button><br>
+        <button class="btn" onclick="verifyUser">Unverify User</button><br>
+        
+        <button class="btn" onclick="verifyUser">Ban User</button><br>
+        <button class="btn" onclick="verifyUser">Pardon User</button><br>
+        
+    </div>
+    <style>
+        
+        .btn{
+            width: 120px; 
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            margin-top: -10px;
+        }
+        
+        body{
+            font-family: ubuntu;
+            color: white;
+        }
+        
+        
+        .input{
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            top: 20px;
+            height: 30px;
+            width: 200px;
+            font-family: ubuntu;
+        }
+        
+        #main{
+            height: 350px;
+            width: 300px;
+            background: #111111;
+            border-radius: 10px;
+            margin: 0 auto;
+            top: 20px;
+            position: relative;
+            
+        }    
+        input{
+            padding: 5px;
+            width: 220px;
+            border: none;
+            border-radius: 5px;
+            
+        }
+        
+        
+    </style>
+    
+</body>
+</html>
+

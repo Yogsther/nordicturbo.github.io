@@ -63,6 +63,49 @@ socket.on("login", function(request){
 
 
 
+// Admin tools
+
+
+
+function verifyUser(){
+    
+    var inputID = document.getElementById("inputID").value;
+    var inputToken = document.getElementById("inputToken").value;
+    
+    socket.emit("verify", {
+        id: inputID,
+        token: inputToken
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

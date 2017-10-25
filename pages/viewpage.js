@@ -11,11 +11,15 @@ function getCustomPage(){
     pageName = url.substr(questionPos + 1);
     console.log(pageName);
     
+    var displayName = pageName.replace("%20", " ")
+    document.title = displayName;
+    
     // Send request to server for the page info.
     
     socket.emit("pageReq", pageName);
     
 }
+
 
 
 // Insert custom page
