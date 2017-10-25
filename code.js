@@ -48,12 +48,12 @@ var slideIndex = 0;
         var emeraldCard = "img/emerald_card.png";
         var prideCard = "img/pride_2017_card.png";
         var swedenCard = "img/sweden_card.png";
-        var coffeecard = "img/coffee_card.png"
-        var superbrightCard = "img/Super-Bright_card.png"
+        var coffeecard = "img/coffee_card.png";
+        var superbrightCard = "img/Super-Bright_card.png";
         var rubyCard = "img/ruby_card.png";
         var sapphireCard = "img/sapphire_card.png";
         var piCard = "img/pi_card.png"; 
-        var deepfriedTheme = "img/deepfried_card.png"
+        var deepfriedTheme = "img/deepfried_card.png";
 
 
 // Declare Music variables for every theme with music.

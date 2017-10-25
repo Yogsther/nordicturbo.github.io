@@ -20,13 +20,13 @@
     
     <img src="img/admin_tools.png" id="admin_tools_image">
     <div id="main"><br>
+        <span id="user_id_text">User ID (optinal)</span>
     <input type="text" class="input" placeholder="User ID / PersID" id="inputID"><br><br>
-        
+       <span id="token_text">Admin Token (required)</span> 
     <input type="password" class="input" placeholder="Admin Token" id="inputToken"><br><br> 
        <br>
         <button class="btn" onclick="verifyUser()">Verify User</button><br>
         <button class="btn" onclick="unverifyUser()">Unverify User</button><br>
-        
         <button class="btn" onclick="banUser()">Ban User</button><br>
         <button class="btn" onclick="pardonUser()">Pardon User</button><br>
         <button class="btn" onclick="showUserLog()">Show User Log</button><br>
@@ -37,6 +37,21 @@
         
     </div>
     <style>
+        
+        #token_text{
+            color: white;
+            position: absolute;
+            font-size: 14px;
+            left: 45px;
+            top: 94px;
+        }
+        
+        #user_id_text{
+            color: white;
+            position: absolute;
+            font-size: 14px;
+            left: 45px;
+        }
         
         #admin_tools_image{
             height: 70px;
