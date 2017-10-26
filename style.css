@@ -328,13 +328,12 @@ body{
     position: relative;
     font-family: ubuntu;
     font-size: 19px;
-    
-    
-    
 }
+
 #banned_image{
     height: 150px;
 }
+
 #ban_text{
     width: 400px;
     position: relative;
@@ -348,10 +347,9 @@ body{
     height: 19px;
     position: relative;
     left: 2px;
-    top: 2px;
-    
-    
+    top: 2px;   
 }
+
 #verified_message{
     height: 19px;
     position: relative;

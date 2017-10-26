@@ -1047,7 +1047,75 @@ socket.on("userlog", function(data){
 });
     
     
+socket.on("docReg", function(data){
+    try{
+        
+        var token = fs.readFileSync("admin_token.txt", "utf8");
+        if(data.token === token){
+            
+            // Token correct, clear to write.
+            var newFile = data.title + "½" + data.desciption + "½" + data.author + "½" + data.id;
+            // Create file
+            fs.writeFileSync("docs/" + data.title + ".txt", newFile);
+            
+            
+            
+            console.log("DOCS: New doc was made - " + data.title + " : " + data.id);
+            io.sockets.connected[socket.id].emit("docs_error", "Success! Doc is live!");
+            return;
+            
+        //verfiedList = verfiedList.toString().split(","); TODO
+        }else{
+            console.log("DOCS: Incorect token");
+            io.sockets.connected[socket.id].emit("docs_error", "Incorect token!");
+            return;
+        }
+    } catch(e){
+        console.log("DOCS error: " + e);
+        
+            io.sockets.connected[socket.id].emit("docs_error", "Failed.");
+            return;
+    }
+});
 
+    
+socket.on("docs_index_req", function(b){
+  
+    var docs = [];
+    
+    fs.readdirSync("docs").forEach(file => {
+        file = file.toString().substr(0, file.length - 4);
+        docs.push(file);
+        
+    })
+   
+    io.sockets.connected[socket.id].emit("docs_index", {
+        docs: docs
+    });
+    
+    
+    
+    
+});    
+
+socket.on("doc_req", function(name){
+    
+    while(name.indexOf("%20") != -1){
+        name = name.replace("%20", " ");
+    }
+    
+    var fileLocation = "docs/" + name + ".txt";
+    var docFile = fs.readFileSync(fileLocation);
+        docFile = docFile.toString().split("½");
+    console.log(docFile);
+    
+    io.sockets.connected[socket.id].emit("doc_req_sent", {
+        title: docFile[0],
+        description: docFile[1],
+        author: docFile[2]
+    });
+    
+});
     
  
     

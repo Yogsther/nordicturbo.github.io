@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NordicTurbo.co</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+</head>
+<body>
+   
+    <img src="notuco-docs-logo.png" id="header_logo" onclick="goBack()">
+    <div id="body">
+
+    <div id="latest">
+       
+        <input id="title" placeholder="Title" type="text">
+        <textarea id="description" placeholder="Description"></textarea>
+        <input id="author" placeholder="Author" type="text">
+        <input id="token" placeholder="Token" type="password">
+        <button id="submit_button" onclick="sendDoc()" class="btn">Submit</button>   
+    </div>
+      
+    </div>
+    <script src="docs.js"></script>
+</body>
+</html>
+
