@@ -776,6 +776,28 @@ body{
 }
 
 
+#card_5{
+    top: 274px;
+}
+
+#card_6{
+    left: 243px;
+    top: 274px;
+}
+
+#card_7{
+    left: 487px;
+    top: 274px;
+}
+#card_8{
+    left: 731px;
+    top: 274px;
+}
+
+
+
+
+
 @keyframes zoomIn {
     0% {
         transform: scale(1);

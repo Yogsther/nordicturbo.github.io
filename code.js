@@ -280,6 +280,10 @@ function checkForSale(){
 }
 
 
+function docsCard(){
+   window.location.href = "docs"; 
+}
+
 function goToCrates(){
     window.location.href = "crate.html";
 }
