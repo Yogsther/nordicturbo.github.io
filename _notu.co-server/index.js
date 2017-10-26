@@ -213,11 +213,34 @@ socket.on("chat", function(data){
         return;
     }
     
+    var isVerified = false;
+    var verifiedUsers = fs.readFileSync("verified.txt");
+        verifiedUsers = verifiedUsers.toString().split(",");
+            
+        if(verifiedUsers.indexOf(data.persID) != -1){
+            isVerified = true;
+        }
+    
+    var clientData = {
+        message: data.message,
+        username: data.username,
+        profile: data.profile,
+        time: data.time,
+        xp: data.xp,
+        verified: isVerified
+    };
+    
     
     // Save message to cache
-    cache.push(data);
+    cache.push(clientData);
     // Send out message to every client.
-    io.sockets.emit("chat", data);
+    io.sockets.emit("chat", clientData);
+    
+    
+    
+    
+    console.log(clientData);
+    
     // Log message in console.
     console.log("Chat: Message > " + data.username + ": " + data.message);
   });
@@ -238,6 +261,15 @@ socket.on("sentover", function(userinfo){
     if(userinfo.username == null){
         return;
     }
+    
+       
+        var verifiedUsers = fs.readFileSync("verified.txt");
+        verifiedUsers = verifiedUsers.toString().split(",");
+            
+        if(verifiedUsers.indexOf(userinfo.persID) != -1){
+            io.sockets.connected[socket.id].emit("verified", true);
+        }
+    
     
     if(userinfo.username.indexOf("<") != -1 || userinfo.username.indexOf(">") != -1){
         console.log("Username: Someone tried to enter code");

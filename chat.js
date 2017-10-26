@@ -13,6 +13,16 @@ var failedMessage;
 
 var banned = false;
 
+var verified = false;
+
+socket.on("verified", function(data){
+    verified = true;
+    document.getElementById("insert-username").style.right = "102px";
+    document.getElementById("verified_profile").style.visibility = "visible";
+    
+})
+
+
 
 socket.on("login", function(request){
     
@@ -382,7 +392,6 @@ socket.on("chat", function(data){
         while(bannedWords.length > wordPos){
             
             if(killSwitch > 500){
-                
                 return;
             }
             
@@ -393,7 +402,6 @@ socket.on("chat", function(data){
                 var censur = "*".repeat(replaceWord.length - 2);
                 var newWord = firstChar + censur + lastChar;
                 lastPos = wordPos + 1;
-               
                 
                 // Replace final string
                 recivedMessage = recivedMessage.toLowerCase().replace(replaceWord, newWord);
@@ -469,8 +477,13 @@ socket.on("chat", function(data){
     if(data.xp >= 100){
         xpColor = "#ffe228";
     }
+    if(data.verified == true){
+        document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + '<img src="img/verified.png" id="verified_message"> | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + recivedMessage + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+    } else {
+        document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + recivedMessage + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+    }
 
-    document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + recivedMessage + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
+    console.log(data);
     
     var personalID = readCookie("persID");
     

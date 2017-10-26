@@ -13,7 +13,7 @@ input:focus {
 /* Chagne selection colors */
 
 ::selection {
-  background: black;
+  background: white;
 }
 
 
@@ -352,6 +352,14 @@ body{
     
     
 }
+#verified_message{
+    height: 19px;
+    position: relative;
+    padding-left: 2px;
+    padding-right: 2px;
+    top: 3px;
+}
+
 
 #credits_display{
     color: gold;
@@ -870,6 +878,14 @@ body{
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+#verified_profile{
+    position: relative;
+    top: 58px;
+    left: 400px; 
+    visibility: hidden;
+}
+
 #insert-username{
     color: white;
     position: absolute;
