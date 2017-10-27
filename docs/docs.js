@@ -23,7 +23,7 @@ function search(){
             i++;
         }
     }
-    
+
     if(keyWord != ""){
         // Search function
         
@@ -46,6 +46,12 @@ function search(){
     
 }
 
+function getEditList(){
+    
+    edit_select
+}
+
+
 
 function sendDoc(){
     
@@ -65,7 +71,8 @@ function sendDoc(){
 }
 
 function initiate(){
-    if (window.location.href.indexOf("?") != -1){
+
+    if (window.location.href.indexOf("index.html?") != -1){
     // Specific doc is requested 
     // Get name of requested doc
     var url = window.location.href;
