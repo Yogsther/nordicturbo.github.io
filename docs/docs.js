@@ -80,6 +80,10 @@ function initiate(){
         
     } else if(window.location.href.indexOf("new") != -1) {
     // New page
+    socket.emit("docs_index_req");    
+        
+        
+        
     } else {
     // Index
     socket.emit("docs_index_req");  
@@ -88,6 +92,19 @@ function initiate(){
 }
 
 socket.on("doc_req_sent", function(data){
+    
+    if(window.location.href.indexOf("new") != -1){
+        // On edit page, get list index
+        list = data.docs;
+        list.sort();
+        var i = 0;
+    
+    while(i < list.length){
+        document.getElementById("actual_list").innerHTML += '<span class="list_item"><a href="index.html?' + list[i] + '">' + list[i] + '</a></span><br>';
+        i++;
+    }
+}
+    
     
     document.getElementById("doc_title").innerHTML = data.title;
     document.getElementById("doc_description").innerHTML = data.description;
