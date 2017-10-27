@@ -66,6 +66,11 @@ function sendDoc(){
     })
 }
 
+socket.on("docs_error", function(e){
+   document.getElementById("err_text").innerHTML = e;
+});
+
+
 function initiate(){
 
     if (window.location.href.indexOf("index.html?") != -1){

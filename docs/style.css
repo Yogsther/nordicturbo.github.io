@@ -93,6 +93,14 @@ code{
     left: 14px;
 }
 
+#err_text{
+    position: relative;
+    top: 110px;
+    left: 20px;
+    width: 400px;
+}
+
+
 #doc_description{
     overflow: auto;
     height: 560px;
