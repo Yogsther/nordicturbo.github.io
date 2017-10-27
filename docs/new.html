@@ -18,16 +18,16 @@
     <div id="body">
        
     <div id="latest">
-        <select id="edit_select"><option value="none">Edit</option></select>
+        <select id="edit_select" oninput="getEditDoc()"><option value="none">Edit Doc</option></select>
         <input id="title" placeholder="Title" type="text">
         <textarea id="description" placeholder="Description"></textarea>
         <input id="author" placeholder="Author" type="text">
         <input id="token" placeholder="Token" type="password">
         <button id="submit_button" onclick="sendDoc()" class="btn">Submit</button>   
+        <div id="err_text"></div>
     </div>
       
     </div>
     <script src="docs.js"></script>
 </body>
 </html>
-

@@ -1,6 +1,6 @@
 // Sale settings
-var sale = false;
-var priceOfCrate = 1000;
+var sale = true;
+var priceOfCrate = 250;
 // Amount of XP you gain by being idle on the website every 10 seconds.
 var idleXP = 1;
 
@@ -1438,7 +1438,7 @@ function rarityLegendary(){
         document.getElementById("themeCard").src=swedenCard;
         createCookie("Sweden", true, 10000);
     } 
-    if(whatEpicNum >= 3 && whatEpicNum < 9){
+    if(whatEpicNum >= 3 && whatEpicNum <= 9){
         // Name of unlock
         // Get random common
         var legendaryPics = ["happysale", "flagsv", "toad", "toad2", "sonicmania", "luigidab", "proto", "myboy"]; 
