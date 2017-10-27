@@ -18,7 +18,7 @@
     <div id="body">
        
     <div id="latest">
-        <select id="edit_select"><option value="none">Edit</option></select>
+        <select id="edit_select" oninput="getEditDoc()"><option value="none">-- Edit Doc --</option></select>
         <input id="title" placeholder="Title" type="text">
         <textarea id="description" placeholder="Description"></textarea>
         <input id="author" placeholder="Author" type="text">
@@ -30,4 +30,3 @@
     <script src="docs.js"></script>
 </body>
 </html>
-

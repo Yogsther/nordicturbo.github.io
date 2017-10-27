@@ -101,16 +101,11 @@ function initiate(){
 socket.on("doc_req_sent", function(data){
     
     if(window.location.href.indexOf("new") != -1){
-        // On edit page, get list index
-        list = data.docs;
-        list.sort();
-        var i = 0;
-    
-    while(i < list.length){
-        document.getElementById("actual_list").innerHTML += '<span class="list_item"><a href="index.html?' + list[i] + '">' + list[i] + '</a></span><br>';
-        i++;
+      
+      
+      
+      
     }
-}
     
     
     document.getElementById("doc_title").innerHTML = data.title;
@@ -123,8 +118,30 @@ socket.on("doc_req_sent", function(data){
 
 var list = [];
 
+function getEditDoc(){
+    
+    var name = document.getElementById("edit_select").value;
+    
+    
+}
+
 socket.on("docs_index", function(data){
    
+    if(window.location.href.indexOf("new") != -1){
+        // On edit page, get list index
+        list = data.docs;
+        list.sort();
+        var i = 0;
+        console.log("TEST");
+    while(i < list.length){
+        document.getElementById("edit_select").innerHTML += '<option value="'+ list[i] + '">' + list[i] +'</option>';
+        i++;
+    }
+    return;
+}
+    
+    
+    
     list = data.docs;
     list.sort();
     var i = 0;
