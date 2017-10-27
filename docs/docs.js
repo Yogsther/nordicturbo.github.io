@@ -46,10 +46,6 @@ function search(){
     
 }
 
-function getEditList(){
-    
-    edit_select
-}
 
 
 
@@ -86,25 +82,22 @@ function initiate(){
     socket.emit("docs_index_req");    
         
     } else if(window.location.href.indexOf("new") != -1) {
-    // New page
-    socket.emit("docs_index_req");    
-        
-        
-        
+    // New pag
+        socket.emit("docs_index_req");  
     } else {
     // Index
     socket.emit("docs_index_req");  
-    document.getElementById("latest").innerHTML = '<span id="title_latest"><h3>Get started:</h3> Notu.co is a project hosting site. The documentation here is mainly<br> for developers developing projects for notu.co or working on notu.co<br> itself. Feel free to read up on the documentation we have made so far. <h4>Links: </h4> <a href="https://github.com/Yogsther/nordicturbo.github.io">Github</a> - Github<br> <a href="http://livingforit.xyz">Notu.co</a> - Notu.co<br> <a href="https://trello.com/b/NXvKqjrB/notuco-website">Trello</a> - Open trello page<br> <h3>For developers:</h3> If you are going to post here keep this is mind: <br> <ul> <li>Everything document should be written in English</li> <li>If you are writing for a project, title your document <br>"ProjectName: DocName", to keep things sorted.</li> <li>When working on offical Notu.co code, comment your code<br>thoroughly.</li> <li>Publish everything important to Notu.co Docs!</li> </ul> <b>Markdown and code embedding is coming soon!</b></span>';
+    document.getElementById("latest").innerHTML = '<span id="title_latest"><h3>Get started:</h3> Notu.co is a project hosting site. The documentation here is mainly<br> for developers developing projects for notu.co or working on notu.co<br> itself. Feel free to read up on the documentation we have made so far. <h4>Links: </h4> <a href="https://github.com/Yogsther/nordicturbo.github.io">Github</a> - Github<br> <a href="http://livingforit.xyz">Notu.co</a> - Notu.co<br> <a href="https://trello.com/b/NXvKqjrB/notuco-website">Trello</a> - Public trello page<br> <h3>For developers:</h3> If you are going to post here keep this is mind: <br> <ul> <li>Everything document should be written in English</li> <li>If you are writing for a project, title your document <br>"ProjectName: DocName", to keep things sorted.</li> <li>When working on offical Notu.co code, comment your code<br>thoroughly.</li> <li>Publish everything important to Notu.co Docs!</li> </ul> To markdown code, use &lt;code&gt; "Your code here" &lt;/code&gt;&lt;br&gt;&lt;br&gt;<br>It will be display like this: <br><code>"Your code here"</code></span>';
     }
 }
 
 socket.on("doc_req_sent", function(data){
     
     if(window.location.href.indexOf("new") != -1){
-      
-      
-      
-      
+        document.getElementById("title").value = data.title;
+        document.getElementById("description").value = data.description;
+        document.getElementById("author").value = data.author;
+        
     }
     
     
@@ -121,6 +114,11 @@ var list = [];
 function getEditDoc(){
     
     var name = document.getElementById("edit_select").value;
+    if(name != "none"){
+    
+        socket.emit("doc_req", name);   
+        
+    }
     
     
 }
@@ -132,7 +130,6 @@ socket.on("docs_index", function(data){
         list = data.docs;
         list.sort();
         var i = 0;
-        console.log("TEST");
     while(i < list.length){
         document.getElementById("edit_select").innerHTML += '<option value="'+ list[i] + '">' + list[i] +'</option>';
         i++;
