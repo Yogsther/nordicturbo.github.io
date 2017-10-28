@@ -111,6 +111,16 @@ outline: 5px solid white;
   bottom: -52px;
 }
 
+#timelapse_speed{
+  height: 20px;
+  width: 30px;
+  position: absolute;
+  bottom: -48px;
+  right: 205px;
+  text-align: center;
+  font-family: ubuntu;
+}
+
 .btn{
   height: 30px;
   width: 150px;

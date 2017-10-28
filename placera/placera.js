@@ -14,6 +14,8 @@ function getID(){
   console.log("Welcome back! " + localStorage.id);
 }
 
+// Initiate some stuff
+document.getElementById("timelapse_speed").value = 1
 
 
 // Setup canvas
@@ -76,7 +78,7 @@ overlay.addEventListener("mouseout", function(){
 
 var cooldownOver;
 var cooldownTime;
-var messages = ["Clear to doodle!", "Ready for art!", "Paint on!", "Clear!", "I'm ready!", "It's over :)", "Time over", "Place on!"];
+var messages = ["Clear to doodle!", "Ready for art!", "Paint on!", "Clear!", "I'm ready!", "It's over :)", "Time over", "Place on!", "You are now cool.", "BOI"];
 
 socket.on("cooldown", function(time){
   console.log(time);
@@ -96,8 +98,6 @@ function runCooldown(){
   var message = messages[Math.floor(Math.random() * messages.length)];
   document.getElementById("cooldown").innerHTML = message;
   }
-
-clearCooldown();
 
 function clearCooldown(){
   // Only run this on load to clear the coold down and insert a message.
@@ -140,12 +140,13 @@ ctxOverlay.fillRect(mouseX, mouseY, 10, 10);
 var allPixels = pixels;
 var pos = 0;
 var lapseTime;
-function timelapse(time){
+function timelapse(){
+  var userSpeed = document.getElementById("timelapse_speed").value;
   allPixels = pixels;
   pixels = [];
   pos = 0;
   runTimelapse();
-  lapseTime = time;
+  lapseTime = 0.001 / userSpeed;
 }
 
 function runTimelapse(){
