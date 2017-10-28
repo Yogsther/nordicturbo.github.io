@@ -11,6 +11,32 @@ var pixels = [];
 var mouseX;
 var mouseY;
 
+
+
+var color = "0,0,0";
+
+function changeColor(newColor){
+  color = newColor;
+  console.log(color);
+}
+
+
+var palette = ["0,0,0", "170,0,0", "0,170,0", "170,85,0", "0,0,170", "170,0,170", "0,170,170", "170,170,170", "255,255,255"];
+
+generateButton();
+function generateButton(){
+  var i = 0;
+  while(palette.length > i){
+
+    var color = palette[i];
+    document.getElementById("palette").innerHTML += '<button type="button" id="' + palette[i] + '" class="colorPick" onclick="changeColor(this.id)" style="background-color: rgb(' + palette[i] + ')"></button>';
+    i++;
+  }
+
+
+
+}
+
 function getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect();
         return {
@@ -41,26 +67,23 @@ function update(){
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  mouseX = Math.round(mouseX / 10);
+  mouseX = Math.floor(mouseX / 10);
   mouseX = mouseX * 10;
 
-  mouseY = Math.round(mouseY / 10);
+  mouseY = Math.floor(mouseY / 10);
   mouseY = mouseY * 10;
 
 
 
   var i = 0;
   while(i < pixels.length){
-    ctx.fillStyle = pixels[i].color;
+    ctx.fillStyle = "rgb(" + pixels[i].color + ")";
     ctx.fillRect(pixels[i].x, pixels[i].y, 10, 10);
     i++;
   }
 
-  ctx.fillStyle = "rgba(0,0,0,.5)";
+  ctx.fillStyle = "rgba(" + color + ",.6)";
   ctx.fillRect(mouseX, mouseY, 10, 10);
-
-  console.log("update");
-
 }
 
 // Place pixels user
@@ -75,7 +98,7 @@ canvas.addEventListener("click", function(){
   var  newPixel = {
     x: mouseX,
     y: mouseY,
-    color: "black"
+    color: color
   };
 
   socket.emit("newpixel", newPixel);
