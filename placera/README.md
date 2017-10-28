@@ -1,3 +1,9 @@
-![img](https://imgur.com/wmEyMoK.png)
+![img](placera.png)
+
+
+
+Check it out http://livingforit.xyz/placera/
+
+Made during a LAN at NTI Umea.
 
 Bootleg r/place
