@@ -2,10 +2,22 @@ body{
   background: #111;
 }
 
-#img{
+#logo{
   position: absolute;
-  left: -210px;
   top: 10px;
+}
+
+#img{
+  height: 50px;
+}
+
+#logotext{
+  position: absolute;
+  left: 48px;
+  bottom: -22px;
+  color: white;
+  font-size: 32px;
+  font-family: sans-serif;
 }
 
 #contain{
@@ -16,21 +28,20 @@ body{
 }
 
 #canvas{
-
   position: relative;
   top: 10px;
+  left: 200px;
   border-radius: 5px;
   overflow: hidden;
 }
 
 #palette{
-  height: 640px;
-  width: 80px;
+  width: 160px;
   background: #262626;
   position: absolute;
-  left: -100px;
+  left: 10px;
   border-radius: 5px;
-  bottom: 105px;
+  bottom: 120px;
   padding: 5px;
 }
 
