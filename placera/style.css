@@ -48,7 +48,23 @@ body{
   left: 200px;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
+
+#coordinates{
+  background-color: white;
+  height: 25px;
+  padding-top: 5px;
+  width: 150px;
+  border-radius: 8px;
+  text-align: center;
+  font-family: ubuntu;
+  font-weight: 400;
+  position: absolute;
+  bottom: 65px;
+  left: 20px;
+}
+
 
 #cooldown{
   background-color: white;
@@ -72,6 +88,7 @@ body{
   left: 200px;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 
@@ -93,10 +110,12 @@ body{
   border-radius: 2px;
   border: none;
   background: blue;
+  cursor: pointer;
 }
 
 .colorPick:focus{
 outline: 5px solid white;
+border-radius: 0px;
 }
 
 #timelapse{
@@ -127,7 +146,7 @@ outline: 5px solid white;
   border: none;
   background: white;
   border-radius: 3px;
-  cursor: pointer;
+
 }
 
 #about{
