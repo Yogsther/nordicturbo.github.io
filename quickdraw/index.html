@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NordicTurbo.co</title>
+<title>Quick Draw</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
@@ -11,30 +11,33 @@
 
             <!-- Socket.io -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-    
-    
 </head>
 <body>
-    <div id="quickdraw_signup">
-        <img src="src/quickdraw_login.png" id="signup_image">
-        <input class="signupText" type="text" id="username" placeholder="Username" maxlength="20"> 
-        <input class="signupText" type="password" id="password" placeholder="Create a password" maxlength="20">
-        <input class="signupText" type="password" id="password_confirmed" placeholder="Confirm password" maxlength="20">  
-        <input class="signupText" type="text" id="persIDSignup" placeholder="PersID" readonly maxlength="20"> 
+        <img src="src/quickdraw_logo.png" id="header_logo">
+        <!-- Searching gif -->
+        <div id="insert_search"></div>
+        <canvas id="canvas" width="550" height="300"></canvas>
         
-        <div id="warning_message">
-            I have read and agree to the <a href="eula.txt">Notu.co Quick Draw EULA</a>
-        <input type="checkbox" id="checkbox_warning">
+        <div id="menu_div">
+        <!-- Search Game button -->
+        <button id="search_game" onclick="search()">Search Game</button>
+            <div id="rank" title="Competitive Rating"><span id="insert_rank">4000</span></div>
+            <div id="gold"><span id="insert_gold">0</span><img src="src/gold.png" id="gold_img" title="Gold"></div>
+        <script src="quickdraw.js"></script>
+        
+            <div id="inspect_and_items">
+                <div id="character_inspect">
+                <img src="skins/skin01.png" id="skin_preview">
+                <img src="hats/hat01.png" id="hat_preview">
+                <img src="src/inspect_bg.png" id="skin_preview_background">
+                </div>
+                <div id="items_select">
+
+                        
+                </div>
+            </div>
+            
         </div>
-        
-        
-        <button class="signupButton" onclick="checkInputs();">Sign up</button>
-    </div>
-    
-    <div id="error_msg"></div>
-    <div id="success_msg"></div>
-    <script src="quickdraw.js"></script>
-  
+
 </body>
 </html>
-

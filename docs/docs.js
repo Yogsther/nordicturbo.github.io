@@ -71,6 +71,19 @@ socket.on("docs_error", function(e){
 });
 
 
+document.addEventListener('keydown', function(event) {
+        if(event.code == "Enter"){
+        document.getElementById("description").value += "<br>";
+        }
+    
+    }, false);
+
+function checktitle(){
+    var title = document.getElementById("title").value;
+    var edit = title.replace(/[^A-Za-z0-9 ]/,"");
+    document.getElementById("title").value = edit;
+}
+
 function initiate(){
 
     if (window.location.href.indexOf("index.html?") != -1){
@@ -92,7 +105,7 @@ function initiate(){
     } else {
     // Index
     socket.emit("docs_index_req");  
-    document.getElementById("latest").innerHTML = '<span id="title_latest"><h3>Get started:</h3> Notu.co is a project hosting site. The documentation here is mainly<br> for developers developing projects for notu.co or working on notu.co<br> itself. Feel free to read up on the documentation we have made so far. <h4>Links: </h4> <a href="https://github.com/Yogsther/nordicturbo.github.io">Github</a> - Github<br> <a href="http://livingforit.xyz">Notu.co</a> - Notu.co<br> <a href="https://trello.com/b/NXvKqjrB/notuco-website">Trello</a> - Public trello page<br> <h3>For developers:</h3> If you are going to post here keep this is mind: <br> <ul> <li>Everything document should be written in English</li> <li>If you are writing for a project, title your document <br>"ProjectName: DocName", to keep things sorted.</li> <li>When working on offical Notu.co code, comment your code<br>thoroughly.</li> <li>Publish everything important to Notu.co Docs!</li> </ul> To markdown code, use &lt;code&gt; "Your code here" &lt;/code&gt;&lt;br&gt;&lt;br&gt;<br>It will be display like this: <br><code>"Your code here"</code></span>';
+    document.getElementById("latest").innerHTML = '<span id="title_latest"><h3>Get started:</h3> Notu.co is a project hosting site. The documentation here is mainly<br> for developers developing projects for notu.co or working on notu.co<br> itself. Feel free to read up on the documentation we have made so far. <h4>Links: </h4> <a href="https://github.com/Yogsther/nordicturbo.github.io">Github</a> - Github<br> <a href="http://livingforit.xyz">Notu.co</a> - Notu.co<br> <a href="https://trello.com/b/NXvKqjrB/notuco-website">Trello</a> - Public trello page<br> <h3>For developers:</h3> If you are going to post here keep this is mind: <br> <ul> <li>Everything document should be written in English</li> <li>If you are writing for a project, title your document <br>"ProjectName DocName", to keep things sorted.</li> <li>When working on offical Notu.co code, comment your code<br>thoroughly.</li> <li>Publish everything important to Notu.co Docs!</li> </ul> To markdown code, use &lt;code&gt; "Your code here" &lt;/code&gt;&lt;br&gt;&lt;br&gt;<br>It will be displayed like this: <br><code>"Your code here"</code></span>';
     }
 }
 

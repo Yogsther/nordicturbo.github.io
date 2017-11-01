@@ -2,12 +2,12 @@
 button:focus{
     outline:0;
     background: #d3d3d3;
-   
+
 }
 input:focus {
     outline:0;
     background: #f2f2f2;
-   
+
 }
 
 /* Chagne selection colors */
@@ -27,7 +27,7 @@ a:visited{
     color: white;
 }
 
-a:hover{ 
+a:hover{
     color: white;
 }
 
@@ -37,7 +37,7 @@ a:hover{
     background: #ff994c;
     border-radius: 10px;
     overflow: hidden;
-    
+
     margin: 0 auto;
     position: relative;
     top: 20px;
@@ -58,6 +58,7 @@ a:hover{
 body{
     background-color: #111111;
 }
+
 
 
 .signupText{
@@ -103,7 +104,7 @@ body{
     margin: 0 auto;
     top: 40px;
     font-family: ubuntu;
-    
+
 }
 
 
@@ -139,20 +140,380 @@ body{
     position: absolute;
     font-family: ubuntu;
     font-size: 14px;
+
+}
+
+#login_link{
+    border-radius: 10px;
+    height: 110px;
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    top: -65px;
+    background: black;
+    font-family: ubuntu;
+
+}
+
+#already_user{
+    color: white;
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
+    width: 210px;
+    top: 40px;
+    position: relative;
+    text-shadow: 0px 0px 5px white;
+}
+
+#canvas{
+    background: black;
+    position: relative;
+    top: -80px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
     
 }
 
 
+#header_logo{
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+
+}
+
+#search_game{
+    height: 50px;
+    width: 150px;
+    border-radius: 6px;
+    border: none;
+    font-family: ubuntu;
+    background: #40ef49;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#search_game:hover{
+    transform: scale(1.05);
+}
+
+#search_game:active{
+    transform: scale(0.95);
+}
 
 
 
+#menu_div{
+    width: 550px;
+    position: relative;
+    margin: 0 auto;
+    top: -70px;
+}
+
+
+#signup_div{
+    width: 340px;
+    height: 400px;
+    margin: 0 auto;
+    color: white;
+    font-family: ubuntu;
+}
+
+
+#join_button{
+    height: 50px;
+    width: 150px;
+    border-radius: 6px;
+    border: none;
+    font-family: ubuntu;
+    background: #f7b91d;
+    color: #111;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    top: 50px;
+    position: relative;
+}
+
+#join_button:hover{
+    transform: scale(1.05);
+}
+
+#join_button:active{
+    transform: scale(0.95);
+}
+
+#rank{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: white;
+    font-family: ubuntu;
+    font-size: 30px;
+    
+}
+
+#gold_img{
+    height: 25px;
+    position: relative;
+    top: 3px;
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#gold{
+    position: absolute;
+    font-family: ubuntu;
+    font-size: 25px;
+    color: white;
+    right: 0px;
+    top: 35px;
+}
+
+
+#load_gif{
+    margin: 0 auto;
+    display: block;
+    top: 130px;
+    z-index: 5;
+    position: relative;
+    
+    
+}
+
+#searching_stats{
+    color: white;
+    font-family: ubuntu;
+    z-index: 5;
+    font-size: 20px;
+    position: relative;
+    top: 40px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
 
 
 
+#insert_search{
+    height: 100px;
+    width: 340px;
+    margin: 0 auto;
+    
+}
+
+#inspect_and_items{
+    background: #262626;
+    height: 250px;
+    width: 550px;
+    position: relative;
+    top: 30px;
+    border-radius: 10px;
+
+}
+
+/* Character Inspect Div */
+#character_inspect{
+    height: 230px;
+    width: 200px;
+    border-radius: 10px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    overflow: hidden;
+    
+}
+
+#skin_preview_background{
+    height: 100%;
+    width: 100%;
+      /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#hat_preview{
+    position: absolute;
+    height: 285px;
+    top: -65px;
+    left: -20px;
+      /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
 
 
+#skin_preview{
+    
+    position: absolute;
+    left: 25px;
+    top: 15px;
+    height: 205px;
+   
+
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    
+}
 
 
+#items_select{
+    background: #111;
+    height: 230px;
+    width: 320px;
+    border-radius: 10px;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+.item{
+    
+    border-radius: 10px;
+    margin-top: 4.3px;
+    margin-left: 4.3px;
+    height: 70px;
+    width: 70px;
+    background: white;
+    display:inline-block;
+    cursor: pointer;
+    position: relative;
+    background-image: url(src/item_bg.png);    
+}
+
+
+.item_img{
+    position: absolute;
+    height: 120px;
+    left: -8px;
+    top: -13px;
+    z-index: 5;
+
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.item_img:hover{
+    animation: zoom 0.1s forwards;
+}
+
+.item_cost{
+    font-family: ubuntu;
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    z-index: 5;
+}
+
+
+@keyframes zoom{
+    from{transform: scale(1);}
+    to{transform: scale(1.1);}
+}
+
+
+.lock{
+    height: 20px;
+    position: absolute;
+    right: 25px;
+    top: 2px;
+    z-index: 1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 
 
 

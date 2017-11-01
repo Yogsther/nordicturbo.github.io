@@ -180,12 +180,12 @@ a:hover{
 
 
 #pin{
-    height: 39px;
+    height: 25px;
     position: absolute;
-    right: 180px;
-    top: 9px;
+    left: 160px;
+    top: 22px;
     z-index: 2;
-    transform: rotate(5deg)
+    opacity: 0.5; 
 }
 
 
@@ -375,14 +375,85 @@ a:hover{
     text-align: right;
 }
 
+#viewsource_body{
+    background: #111;
+    height: 800px;
+    width: 800px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 5px;
+    top: 3px;
+}
+
+#source_title{
+    color: white;
+    font-family: 'Muli', sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    
+}
+.source{
+    height: 200px;
+    width: 90%;
+    margin: 0 auto;
+    top: 50px;
+    position: relative;
+    overflow: auto;
+    background: white;
+    border-radius: 5px;
+}
 
 
+#source_id{
+    position: relative;
+    top: 50px;
+    left: 40px;
+    font-family: 'Muli', sans-serif;
+    color: white;
+}
 
+#report_div{
+    position: relative;
+    margin: auto;
+    top: 5px;
+    height: 400px;
+    width: 400px;
+    background: #ce4331;
+    border-radius: 5px;
+    
+}
 
+#report_title{
+    color: white;
+    font-family: 'Muli', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
 
+#report_reason{
 
+    height: 200px;
+    width: 300px;
+    border-radius: 5px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    top: 30px;
+}
 
-
+#reportbutton{
+    position: relative;
+    top: 60px;
+    margin: 0 auto;
+    display: block;
+}
+#reportbutton:hover{
+    background: black;
+}
 
 
 
