@@ -59,7 +59,7 @@ function addView(){
 
 
 
-var playStatus = "Pages/src: " + pageName;
+var playStatus = "Pages";
 
 
 // On connection send over Username, ProfileLoc & Lvl

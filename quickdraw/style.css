@@ -429,7 +429,7 @@ body{
     
     border-radius: 10px;
     margin-top: 4.3px;
-    margin-left: 4.3px;
+    margin-left: 6px;
     height: 70px;
     width: 70px;
     background: white;
@@ -437,16 +437,32 @@ body{
     cursor: pointer;
     position: relative;
     background-image: url(src/item_bg.png);    
+    overflow: hidden;
+}
+
+
+.item_locked{
+    
+    border-radius: 10px;
+    margin-top: 4.3px;
+    margin-left: 6px;
+    height: 70px;
+    width: 70px;
+    background: white;
+    display:inline-block;
+    cursor: pointer;
+    position: relative;
+    background: grey;    
+    overflow: hidden;
 }
 
 
 .item_img{
     position: absolute;
-    height: 120px;
-    left: -8px;
-    top: -13px;
-    z-index: 5;
-
+    height: 125px;
+    left: -10px;
+    top: -23px;
+    z-index: 1;
     /* Make logo undraggable */
     user-drag: none; 
     user-select: none;
@@ -464,9 +480,31 @@ body{
     -ms-interpolation-mode: nearest-neighbor;
 }
 
-.item_img:hover{
-    animation: zoom 0.1s forwards;
+
+.item_img_locked{
+    position: absolute;
+    height: 125px;
+    left: -10px;
+    top: -23px;
+    z-index: 1;
+    filter: brightness(0%);
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
+
 
 .item_cost{
     font-family: ubuntu;
@@ -474,6 +512,57 @@ body{
     right: 6px;
     top: 4px;
     z-index: 5;
+    color: gold;
+}
+
+.bg_skin{
+    height: 87px;
+    top: 11px;
+    left: 11px;
+    position: absolute;
+    
+    filter: brightness(50%);
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.bg_skin_locked{
+    height: 87px;
+    top: 11px;
+    left: 11px;
+    position: absolute;
+    
+    filter: brightness(100) invert(1);
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 
@@ -482,14 +571,10 @@ body{
     to{transform: scale(1.1);}
 }
 
-
 .lock{
-    height: 20px;
-    position: absolute;
-    right: 25px;
-    top: 2px;
-    z-index: 1;
+    z-index: 5;
 }
+
 
 ::-webkit-scrollbar {
   width: 6px;

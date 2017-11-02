@@ -946,8 +946,41 @@ var items = [{
     src: "wizard01",
     cost: 50,
     type: "hat"
+}, {
+    name: "Top Hat",
+    src: "tophat",
+    cost: 25,
+    type: "hat"
+}, {
+    name: "Pumpkin",
+    src: "pumpkin",
+    cost: 50,
+    type: "hat"
+}, {
+    name: "Shyguy",
+    src: "shyguy",
+    cost: 70,
+    type: "hat"
+}, {
+    name: "Pepe",
+    src: "frog",
+    cost: 70,
+    type: "hat"
+}, {
+    name: "Interstellar",
+    src: "interstellar",
+    cost: 100,
+    type: "hat"
+}, {
+    name: "Ghost",
+    src: "ghost",
+    cost: 60,
+    type: "hat"
 }];
 
+    
+    
+    
 socket.on("qd_item", function(data){
    
     var profile = getQuickdrawProfile(data.id);

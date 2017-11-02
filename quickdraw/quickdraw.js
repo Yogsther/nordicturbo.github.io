@@ -120,14 +120,7 @@ var skin_won = new Image();
     
 var skin_lost = new Image();
     skin_lost.src = "skins/skin_fallen.png"
-    
 
-// Declare hats
-var hat01 = new Image();
-    hat01.src = "hats/hat01.png"
-    
-var wizard01 = new Image();
-    wizard01.src = "hats/wizard01.png"
 
 // All items
 var items = [{
@@ -140,27 +133,87 @@ var items = [{
     src: "wizard01",
     cost: 50,
     type: "hat"
+}, {
+    name: "Top Hat",
+    src: "tophat",
+    cost: 25,
+    type: "hat"
+}, {
+    name: "Pumpkin",
+    src: "pumpkin",
+    cost: 50,
+    type: "hat"
+}, {
+    name: "Shyguy",
+    src: "shyguy",
+    cost: 70,
+    type: "hat"
+}, {
+    name: "Pepe",
+    src: "frog",
+    cost: 70,
+    type: "hat"
+}, {
+    name: "Interstellar",
+    src: "interstellar",
+    cost: 100,
+    type: "hat"
+}, {
+    name: "Ghost",
+    src: "ghost",
+    cost: 60,
+    type: "hat"
 }];
 
+// Declare hat sources and variables
+
+var itempos = 0;
+while(itempos < items.length){
+    
+    eval("var " + items[itempos].src + " = new Image();");
+    eval(items[itempos].src + ".src = 'hats/" + items[itempos].src + ".png';");
+    itempos++;
+}
+
+ function itemSort(a,b) {
+        if (a.cost < b.cost)
+            return -1;
+        if (a.cost > b.cost)
+            return 1;
+            return 0;
+        }  
+    
+    items.sort(itemSort);
 
 var unlockedItems = ["hat01"];
 var inGame = false;
 
 // Item loader
 function loadItems(){
+    
     document.getElementById("items_select").innerHTML = "";
     var i = 0;
     while(i < items.length){
         if(unlockedItems.indexOf(items[i].src) != -1){
             // Item is unlocked
-        document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item" onclick="itemAction(this.id)" title="' + items[i].name + '"><img src="hats/' + items[i].src + '.png" class="item_img"> </div>';
-        i++;    
+        document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item" onclick="itemAction(this.id)" title="' + items[i].name + '"><img src="hats/' + items[i].src + '.png" class="item_img"> <img src="skins/skin01.png" class="bg_skin"> </div>';
+            i++;    
         } else {
+            i++; 
+        }
+        
+    }
+          
+    i = 0;
+    while(i < items.length){
+        if(unlockedItems.indexOf(items[i].src) == -1){
         // Item is locked
-        document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item" onclick="itemAction(this.id)" title="' + items[i].name + '"> <span class="item_cost"> ' + items[i].cost +'</span> <img src="hats/' + items[i].src + '.png" class="item_img"> <img src="src/lock.png" class="lock"></div>';
-        i++;
-        }    
-    }     
+        document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item_locked" onclick="itemAction(this.id)" title="' + items[i].name + '"> <span class="item_cost"> ' + items[i].cost +'</span> <img src="hats/' + items[i].src + '.png" class="item_img_locked"><img src="skins/skin01.png" class="bg_skin_locked"> </div>';
+           i++;
+        } else{
+           i++;  
+        } 
+    }
 }
 
 var skin;
@@ -189,8 +242,6 @@ function loadProfile(profile){
     document.getElementById("skin_preview").src = eval(skin).src;
     document.getElementById("hat_preview").src = eval(hat).src;
     
-
-    
     var i = 2;
     unlockedItems = ["hat01"];
     while(profile[i] != null){
@@ -203,7 +254,7 @@ function itemAction(name){
     var itemUnlockedPos = unlockedItems.indexOf(name);
     var itemPos = items.findIndex(i => i.src === name);
     var type = items[itemPos].type;
-     
+    
     if(type == "hat"){
         // Item is of type Hat
     if(itemUnlockedPos != -1){
@@ -292,6 +343,8 @@ function manualLoad(){
         gun.src = "sound/gun.mp3";
     var victory = new Audio();
         victory.src = "sound/win_theme.mp3";
+    var fail = new Audio();
+        fail.src = "sound/fail.mp3";
 
 
 // Setup canvas
@@ -429,7 +482,7 @@ document.body.addEventListener('keydown',function(e) {
 },false);
 
 function drawWait(){
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -468,11 +521,15 @@ var searching = false;
 function search(){
     var name = readCookie("username");
     if(inGame == true){
+        playStatus = "Quick Draw"
+        refreshProfile();
         reloadPage();
         return;
     }
     
     if(searching == false){
+        playStatus = "Quick Draw: Searching"
+        refreshProfile();
         logoPos = 0;
         searching = true;
         socket.emit("qd_search", {
@@ -488,6 +545,8 @@ function search(){
         searching = false;
         document.getElementById("insert_search").innerHTML = '';
         socket.emit("qd_stopsearch", id);
+        playStatus = "Quick Draw"
+        refreshProfile();
     }
     
 }
@@ -507,6 +566,8 @@ var optime;
 var status;
 
 socket.on("newGame", function(data){
+    playStatus = "Quick Draw: In Game"
+    refreshProfile();
     setTimeout(shoot,(data.playTime * 1000) + 2000);
     shot = false;
     gameData = data;
@@ -521,21 +582,27 @@ function shoot(){
         // User lost, preshot.
         failed = true;
     }
+    draw = "wait";
     theme.pause();
     gun.play();
     shot = true;
     result = 1000;
     then = Date.now(); 
     setTimeout(sendResults, 1000);
-    draw = "wait";
 }
 
 
 function fire(){
-    if(userShot == true){
+    if(shot != true){
+        fail.play();
+        theme.pause();
+        failed = true;
         return;
     }
     if(failed == true){
+        return;
+    }
+    if(userShot == true){
         return;
     }
     now = Date.now();
@@ -598,8 +665,38 @@ function render(){
 
 
 
-var playStatus = "Quickdraw";
+var playStatus = "Quick Draw";
 
+
+function refreshProfile(){
+    var personalID = readCookie("persID");
+        // Generate new personalID for new users.
+        if(personalID == null){
+            var newID = Math.floor(Math.random() * 999999999) + 1;
+            createCookie("persID", newID, 10000);
+            personalID = readCookie("persID");
+        }
+
+        console.log("Personal ID: " + personalID);
+
+
+        var messageUsername = readCookie("username");
+        var messageProfile = readCookie("profileLocation");
+        var xp = (readCookie("xp") / 1000) + 1;
+        xp = Math.floor(xp);
+
+
+         socket.emit("sentover", {
+            username: messageUsername,
+            profilepic: messageProfile,
+            xp: xp,
+            id: socket.id,
+            status: playStatus,
+            persID: personalID
+        });
+
+        console.log("Sent over data");
+}
 
 // On connection send over Username, ProfileLoc & Lvl
 

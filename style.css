@@ -1132,15 +1132,12 @@ body{
 }      
 
 
-
-
-
 #online_user_div{
     color: white;
     margin-left: 10px;
     margin-top: 10px;
     position: relative;
-    height: 70px;
+    height: 80px;
     width: 217px;
     background: rgba(255,255,255,0.05);
     border-radius: 10px;

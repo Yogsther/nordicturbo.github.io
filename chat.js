@@ -431,6 +431,7 @@ socket.on("chat", function(data){
         wordPos++;
     }
     
+    
     recivedMessage = stichedMessage.join(" ");
     
     var xpColor = "white";
@@ -517,4 +518,9 @@ socket.on("chat", function(data){
     chatWindow.scrollTop = chatWindow.scrollHeight;
 
 });
+
+
+// Scroll to bottom on new message
+    var chatWindow = document.getElementById("chat-inner");
+    chatWindow.scrollTop = chatWindow.scrollHeight;
 
