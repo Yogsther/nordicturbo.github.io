@@ -109,6 +109,26 @@ function showError(errMsg){
 
 */
 
+// Declare all skins sources
+
+// Decalare skins
+var skin01 = new Image();
+    skin01.src = "skins/skin01.png"
+    
+var skin_won = new Image();
+    skin_won.src = "skins/skin_victory.png"
+    
+var skin_lost = new Image();
+    skin_lost.src = "skins/skin_fallen.png"
+    
+
+// Declare hats
+var hat01 = new Image();
+    hat01.src = "hats/hat01.png"
+    
+var wizard01 = new Image();
+    wizard01.src = "hats/wizard01.png"
+
 // All items
 var items = [{
     name: "Hat 01",
@@ -124,6 +144,7 @@ var items = [{
 
 
 var unlockedItems = ["hat01"];
+var inGame = false;
 
 // Item loader
 function loadItems(){
@@ -135,16 +156,18 @@ function loadItems(){
         document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item" onclick="itemAction(this.id)" title="' + items[i].name + '"><img src="hats/' + items[i].src + '.png" class="item_img"> </div>';
         i++;    
         } else {
-            // Item is locked
+        // Item is locked
         document.getElementById("items_select").innerHTML += '<div id="' + items[i].src + '" class="item" onclick="itemAction(this.id)" title="' + items[i].name + '"> <span class="item_cost"> ' + items[i].cost +'</span> <img src="hats/' + items[i].src + '.png" class="item_img"> <img src="src/lock.png" class="lock"></div>';
         i++;
         }    
     }     
 }
 
+var skin;
+var hat;
 
 var gold;
-var cp;
+var cr;
 var id = readCookie("persID");
 
 function reloadStats(){
@@ -152,11 +175,21 @@ function reloadStats(){
 }
 
 function loadProfile(profile){
-    cp = profile[0];
+    cr = profile[0];
     gold = profile[1];
     
-    document.getElementById("insert_rank").innerHTML = cp;
+    skin = readCookie("qd_skin");
+    hat = readCookie("qd_hat");
+    
+    
+    // insert gold and cr
+    document.getElementById("insert_rank").innerHTML = cr;
     document.getElementById("insert_gold").innerHTML = gold;
+    
+    document.getElementById("skin_preview").src = eval(skin).src;
+    document.getElementById("hat_preview").src = eval(hat).src;
+    
+
     
     var i = 2;
     unlockedItems = ["hat01"];
@@ -176,8 +209,8 @@ function itemAction(name){
     if(itemUnlockedPos != -1){
         // Item is unlocked, and will be choosed.
         createCookie("qd_hat", name, 10000);
-        console.log("Selected skin/hat " + name
-                    readlo
+        console.log("Selected skin/hat " + name);
+        reloadStats();
         }
     if(itemUnlockedPos == -1){
         // Item is not unlocked, and will try to purchase through server.
@@ -241,10 +274,15 @@ socket.on("profile_callback", function(profile){
 });
 
 
-// Quickdraw game
+    // Quickdraw game
 
-
-
+    // Preload audio
+    var theme = new Audio();
+        theme.src = "sound/theme.mp3";
+    var gun = new Audio();
+        gun.src = "sound/gun.mp3";
+    var victory = new Audio();
+        victory.src = "sound/win_theme.mp3";
 
 
 // Setup canvas
@@ -259,14 +297,6 @@ var gameBG = new Image();
 
 var menuLogo = new Image();
     menuLogo.src = "src/quickdraw_logo_big.png"
-
-// Decalare skins
-var skin01 = new Image();
-    skin01.src = "skins/skin01.png"
-
-// Declare hats
-var hat01 = new Image();
-    hat01.src = "hats/hat01.png"
 
 
 var player1 = {
@@ -296,9 +326,16 @@ var draw = "menu";
 // hDraw game
 function drawGame(){
     
+    player1.skin = skin;
+    player1.hat = hat;
+    
+    player2.skin = skin;
+    player2.hat = gameData.p2hat;
+    
     // Draw background image
     ctx.drawImage(gameBG, 0, 0);
-
+    document.getElementById("insert_search").innerHTML = '';
+    document.getElementById("opponent_info").innerHTML = "Your playing against " + gameData.p2name + "!<br>Press any key to fire!";
     
     // Player one
     // Draw player one skin
@@ -317,7 +354,72 @@ function drawGame(){
     document.getElementById("search_game").innerHTML = "In Game";
     document.getElementById("search_game").style.background = "black";
     document.getElementById("search_game").disabled = true;
+}
+
+
+
+function drawGameOver(){
+
+
+    player1.hat = hat;
+    player2.hat = gameData.p2hat;
     
+    // Draw background image
+    ctx.drawImage(gameBG, 0, 0);
+    document.getElementById("insert_search").innerHTML = '';
+    if(status == "won"){
+        document.getElementById("opponent_info").innerHTML = "You won! Your time: " + result + "ms! <br> Opponent time: " + optime + "ms.";
+        
+        player1.skin = skin_won;
+        player2.skin = skin_lost;
+        
+        
+        ctx.drawImage(eval(player1.skin), player1Pos.x, player1Pos.y, 64, 82);
+        ctx.drawImage(eval(player1.hat), (player1Pos.x - 17), (player1Pos.y - 31), 82, 114);
+        ctx.scale(-1, 1);
+        ctx.drawImage(eval(player2.skin), -player2Pos.x, player2Pos.y, 64, 82);
+        ctx.drawImage(eval(player2.hat), -(player2Pos.x - 45), (player2Pos.y + 15), 82, 114);
+        
+        
+    }
+    if(status == "lost"){
+        document.getElementById("opponent_info").innerHTML = "You lost. Your time: " + result + "ms. <br> Opponent time: " + optime + "ms.";
+        player1.skin = skin_lost;
+        player2.skin = skin_won;
+        
+        ctx.drawImage(eval(player1.skin), player1Pos.x, player1Pos.y, 64, 82);
+        ctx.drawImage(eval(player1.hat), (player1Pos.x + 45), (player1Pos.y + 15), 82, 114);
+        ctx.scale(-1, 1);
+        ctx.drawImage(eval(player2.skin), -player2Pos.x, player2Pos.y, 64, 82);
+        ctx.drawImage(eval(player2.hat), -(player2Pos.x + 17), (player2Pos.y - 31), 82, 114);
+    }
+
+
+    
+    
+    document.getElementById("search_game").innerHTML = "Leave";
+    document.getElementById("search_game").style.background = "darkgrey";
+    document.getElementById("search_game").disabled = false;
+    
+}
+
+
+document.body.addEventListener('keydown',function(e) { 
+    if(e.code == "Enter"){
+        if(inGame == false){
+            search();
+        }
+    }
+    if(inGame == true){
+        fire();
+    }
+    
+    
+},false);
+
+function drawWait(){
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 
@@ -353,18 +455,90 @@ function drawSearching(){
 var searching = false;
 
 function search(){
-    
+    var name = readCookie("username");
     if(searching == false){
         logoPos = 0;
         searching = true;
+        socket.emit("qd_search", {
+            id: id,
+            skin: skin,
+            hat: hat,
+            name: name
+            
+        });
         
     } else {
         logoPos = 200;
         searching = false;
         document.getElementById("insert_search").innerHTML = '';
+        socket.emit("qd_stopsearch", id);
     }
 }
 
+var gameData;
+var shot;
+var result;
+var userShot;
+var then;
+var now;
+var failed = false;
+var optime;
+var status;
+
+socket.on("newGame", function(data){
+    setTimeout(shoot,(data.playTime * 1000) + 2000);
+    shot = false;
+    gameData = data;
+    searching = false;
+    inGame = true;
+    draw = "game";
+    theme.play();
+});
+
+function shoot(){
+    if(userShot == true){
+        // User lost, preshot.
+        failed = true;
+    }
+    theme.pause();
+    gun.play();
+    shot = true;
+    result = 1000;
+    then = Date.now(); 
+    setTimeout(sendResults, 1000);
+    draw = "wait";
+}
+
+
+function fire(){
+    if(failed == true){
+        return;
+    } else {
+    now = Date.now();
+    userShot = true;
+    result = now - then;
+    }
+    
+    console.log(result);
+}
+
+function sendResults(){
+    userShot = true;
+    socket.emit("game_results", {
+        time: result,
+        gameID: gameData.gameID,
+        id: id
+    })
+    console.log({time: result,
+        gameID: gameData.gameID,
+        id: id});
+}
+
+socket.on("game_over", function(data){
+    draw = "over";
+    status = data.status;
+    optime = data.optime;
+});
 
 render();
 
@@ -379,7 +553,12 @@ function render(){
     if(searching == true){
         drawSearching();
     }
-    
+    if(draw == "wait"){
+        drawWait();
+    }
+    if(draw == "over"){
+        drawGameOver();
+    }
     
     requestAnimationFrame(render);
 }

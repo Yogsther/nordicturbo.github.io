@@ -29,8 +29,10 @@ app.use(express.static("public"))
 
 var io = socket(server);
 
-
-
+// Quickdraw
+var startRating = 4000;
+var searching = [];
+var game = [];
 
 
 io.on("connection", function(socket){
@@ -887,7 +889,7 @@ socket.on("sentover", function(userinfo){
 
 // (New) Quickdraw
 
-var startRating = 4000;
+
     
 socket.on("validate", function(id){
     try{
@@ -968,11 +970,131 @@ socket.on("qd_item", function(data){
     
 });
 
+    
+socket.on("qd_search", function(data){
+    var sendMe = {
+        id: data.id,
+        socket: socket.id,
+        skin: data.skin,
+        hat: data.hat,
+        name: data.name
+    };
+    
+    searching.push(sendMe);
+    matchMake();    
+})
 
+socket.on("qd_stopsearch", function(id){
+    var searchPos = searching.findIndex(i => i.id === id);
+    searching.splice(searchPos, 1);
+    matchMake();    
+})
 
+function matchMake(){
+    console.log(searching);
+    if(searching.length > 1){
+        // Multible people are searching.
+        newQDGame(searching[0], searching[1]);
+        searching.splice(searching[0], 1);
+        searching.splice(searching[1], 1);
+        matchMake();
+    }
+}
+    
+function newQDGame(p1, p2){
+    
+    // Generate random number between 1 - 15 (timer)
+    var playTime = Math.floor(Math.random() * 20) + 1;
+    var gameID  = Math.floor(Math.random() * 1000000000000) + 1;
+    try{
+    io.sockets.connected[p1.socket].emit("newGame", {
+        playTime: playTime,
+        gameID: gameID,
+        p2hat: p2.hat,
+        p2name: p2.name
+    });
+    
+    io.sockets.connected[p2.socket].emit("newGame", {
+        playTime: playTime,
+        gameID: gameID,
+        p2hat: p1.hat,
+        p2name: p1.name
+    });
+    
+    game.push({
+        gameID: gameID,
+        p1time: 0,
+        p2time: 0,
+        p1ID: p1.id,
+        p2ID: p2.id,
+        p1Socket: p1.socket,
+        p2Socket: p2.socket
+    });
+    setTimeout(function(){ 
+        endGame(gameID);
+    }, (playTime * 1000) + 4000);
+        
+    console.log("New game created.");
+    }catch(e){
+    console.log("Error with Quickdraw Mathmaking: " + e);
+    }
+}
+// game id, socke.on(gamefinnished)
+    
+    
+socket.on("game_results", function(data){
+    var gameIndex = game.findIndex((obj => obj.gameID == data.gameID));
+    var p1ID = game[gameIndex].p1ID;
+    var p2ID = game[gameIndex].p2ID;
+    
+    if(data.id == p1ID){
+        game[gameIndex].p1time = data.time;
+    } else if(data.id == p2ID){
+        game[gameIndex].p2time = data.time;
+    }
+});
+    
+function endGame(gameID){
+    var gameIndex = game.findIndex((obj => obj.gameID == gameID));
+    var gameData = game[gameIndex];
+    console.log("Game over");
+    if(gameData.p1time < gameData.p2time){
+        //P1 won
+        io.sockets.connected[gameData.p1Socket].emit("game_over", {
+            status: "won",
+            optime: gameData.p2time
+        });
+        
+        io.sockets.connected[gameData.p2Socket].emit("game_over", {
+            status: "lost",
+            optime: gameData.p1time
+        });
+        
+        
+    } else if (gameData.p2time < gameData.p1time){
+        //P2 won
+        io.sockets.connected[gameData.p1Socket].emit("game_over", {
+            status: "lost",
+            optime: gameData.p2time
+        });
+        io.sockets.connected[gameData.p2Socket].emit("game_over", {
+            status: "won",
+            optime: gameData.p1time
+        });
+        
+    } else {
+        // Tied
+        
+    }
+    
+    
+    // Remove game from arr
+    game.splice(gameIndex, 1);
+}
+    
 function saveQuickdrawProfile(id, profile){
     profile = profile.join("|");
-    fs.writeFileSync("quickdraw/" + id + ".txt", profile)
+    fs.writeFileSync("quickdraw/" + id + ".txt", profile);
 }
 
 
@@ -1238,13 +1360,11 @@ socket.on("doc_req", function(name){
         description: docFile[1],
         author: docFile[2]
     });
-
-});
-
-
-
-});
-
+       
+}); 
+       
+}); 
+    
 
 function getPageUsersB(){
 

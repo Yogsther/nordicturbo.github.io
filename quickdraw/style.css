@@ -516,7 +516,16 @@ body{
 }
 
 
-
+#game_info{
+    top: 0px;
+    left: 160px;
+    height: 70px;
+    width: 300px;
+    position: absolute;
+    border-radius: 10px;
+    color: white;
+    font-family: ubuntu;
+}
 
 
 
