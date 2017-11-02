@@ -358,6 +358,10 @@ body{
     top: 3px;
 }
 
+.message_image{
+    width: 250px;
+}
+
 
 #credits_display{
     color: gold;

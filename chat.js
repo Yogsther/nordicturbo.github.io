@@ -416,8 +416,22 @@ socket.on("chat", function(data){
         } 
     }
     
-      
+    var supportedFormats = ["jpg", "png", "gif"];
+    var wordPos = 0;
+    var stichedMessage = recivedMessage.split(" ");
+    console.log(stichedMessage);
+    while(wordPos < stichedMessage.length){
+        var i = 0;
+        while(i < supportedFormats.length){
+            if(stichedMessage[wordPos].endsWith(supportedFormats[i])){
+                stichedMessage[wordPos] = '<img src="' + stichedMessage[wordPos] +'" class="message_image">';
+            }
+            i++;
+        }
+        wordPos++;
+    }
     
+    recivedMessage = stichedMessage.join(" ");
     
     var xpColor = "white";
     if(data.xp >= 2){

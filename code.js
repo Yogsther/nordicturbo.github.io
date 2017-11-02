@@ -1,6 +1,6 @@
 // Sale settings
-var sale = true;
-var priceOfCrate = 250;
+var sale = false;
+var priceOfCrate = 1000;
 // Amount of XP you gain by being idle on the website every 10 seconds.
 var idleXP = 1;
 
