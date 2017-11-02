@@ -1058,32 +1058,63 @@ function endGame(gameID){
     var gameIndex = game.findIndex((obj => obj.gameID == gameID));
     var gameData = game[gameIndex];
     console.log("Game over");
+    if(gameData.p1time < 1){
+        gameData.p1time = 1000;
+    }
+    if(gameData.p2time < 1){
+        gameData.p2time = 1000;
+    }
+    
     if(gameData.p1time < gameData.p2time){
         //P1 won
+        var user = getQuickdrawProfile(gameData.p1ID);
+        user[1] = Number(user[1]) + 10;
+        saveQuickdrawProfile(gameData.p1ID, user);
+        
+        try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
             status: "won",
             optime: gameData.p2time
         });
-        
+        } catch(e){
+            
+        }
+        try{
         io.sockets.connected[gameData.p2Socket].emit("game_over", {
             status: "lost",
             optime: gameData.p1time
         });
-        
+        }catch(e){
+            
+        }
         
     } else if (gameData.p2time < gameData.p1time){
         //P2 won
+        
+        var user = getQuickdrawProfile(gameData.p2ID);
+        user[1] = Number(user[1]) + 10;
+        saveQuickdrawProfile(gameData.p2ID, user);
+        
+        
+        try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
             status: "lost",
             optime: gameData.p2time
         });
+        } catch(e){
+                
+        }
+        try{
         io.sockets.connected[gameData.p2Socket].emit("game_over", {
             status: "won",
             optime: gameData.p1time
         });
+        } catch(e){
+                    
+        }
         
     } else {
-        // Tied
+        // Tied TODO
         
     }
     

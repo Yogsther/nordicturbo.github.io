@@ -245,7 +245,12 @@ function join(){
     // Register function for quickdraw
     var id = readCookie("persID");
     socket.emit("quickdraw_join", id);
+    reloadPage();
     
+}
+
+function reloadPage(){
+    window.location.reload(false); 
 }
 
 socket.on("validate_callback", function(call){
@@ -398,7 +403,7 @@ function drawGameOver(){
     
     
     document.getElementById("search_game").innerHTML = "Leave";
-    document.getElementById("search_game").style.background = "darkgrey";
+    document.getElementById("search_game").style.background = "#474747";
     document.getElementById("search_game").disabled = false;
     
 }
@@ -472,6 +477,9 @@ function search(){
         searching = false;
         document.getElementById("insert_search").innerHTML = '';
         socket.emit("qd_stopsearch", id);
+    }
+    if(inGame == true){
+        reloadPage();
     }
 }
 
