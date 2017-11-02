@@ -257,7 +257,7 @@ socket.on("validate_callback", function(call){
     var id = readCookie("persID");
     if(call == "failed"){
         
-       document.body.innerHTML = '<img src="src/quickdraw_logo.png" id="header_logo"> <div id="signup_div"> Welcome to Quickdraw, looks like you are new! <br><br> Quick draw is a competitive standoff game in early access. <button id="join_button" onclick="join()">Join!</button> <script src="quickdraw.js"></script> </div>';
+       document.body.innerHTML = '<img src="src/quickdraw_logo.png" id="header_logo"> <div id="signup_div"> Welcome to Quick Draw, looks like you are new! <br><br>  Quick Draw is a competitive standoff game for the whole family. <h3>How to play</h3> Search for a game, and you will be matched against another player over the internet. You will hear a gunshot after a little while, thats the signal - and now you are ready to shoot. The first one to shoot after the gunshot effect wins. (You shoot by pressing any key on your keyboard.) Shooting too early and you will lose, so make sure you shoot after the gunshot. <button id="join_button" onclick="join()">Join!</button> <script src="quickdraw.js"></script> </div>';
         console.log("Not found");
     }
     if(call == "valid"){
@@ -277,6 +277,10 @@ socket.on("profile_callback", function(profile){
     loadProfile(profile);
     loadItems();
 });
+
+function manualLoad(){
+    socket.emit("getProfile_quickdraw", id);
+}
 
 
     // Quickdraw game
@@ -373,6 +377,8 @@ function drawGameOver(){
     ctx.drawImage(gameBG, 0, 0);
     document.getElementById("insert_search").innerHTML = '';
     if(status == "won"){
+        victory.play();
+        victory.loop = false;
         document.getElementById("opponent_info").innerHTML = "You won! Your time: " + result + "ms! <br> Opponent time: " + optime + "ms.";
         
         player1.skin = skin_won;
@@ -461,6 +467,11 @@ var searching = false;
 
 function search(){
     var name = readCookie("username");
+    if(inGame == true){
+        reloadPage();
+        return;
+    }
+    
     if(searching == false){
         logoPos = 0;
         searching = true;
@@ -478,9 +489,11 @@ function search(){
         document.getElementById("insert_search").innerHTML = '';
         socket.emit("qd_stopsearch", id);
     }
-    if(inGame == true){
-        reloadPage();
-    }
+    
+}
+
+window.onbeforeunload = function() {
+    socket.emit("qd_stopsearch", id);
 }
 
 var gameData;
@@ -519,15 +532,16 @@ function shoot(){
 
 
 function fire(){
+    if(userShot == true){
+        return;
+    }
     if(failed == true){
         return;
-    } else {
+    }
     now = Date.now();
     userShot = true;
     result = now - then;
-    }
-    
-    console.log(result);
+
 }
 
 function sendResults(){
@@ -543,6 +557,7 @@ function sendResults(){
 }
 
 socket.on("game_over", function(data){
+    manualLoad();
     draw = "over";
     status = data.status;
     optime = data.optime;

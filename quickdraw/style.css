@@ -527,7 +527,11 @@ body{
     font-family: ubuntu;
 }
 
-
+#opponent_info{
+    position: relative;
+    left: 30px;
+    top: 5px;
+}
 
 
 

@@ -980,18 +980,25 @@ socket.on("qd_search", function(data){
         name: data.name
     };
     
+    var searchPos = searching.findIndex(i => i.id === data.id);
+    if(searchPos != -1){
+        return;
+    }
     searching.push(sendMe);
     matchMake();    
 })
 
 socket.on("qd_stopsearch", function(id){
     var searchPos = searching.findIndex(i => i.id === id);
+    if(searchPos == -1){
+        
+        return;
+    }
     searching.splice(searchPos, 1);
     matchMake();    
 })
 
 function matchMake(){
-    console.log(searching);
     if(searching.length > 1){
         // Multible people are searching.
         newQDGame(searching[0], searching[1]);
@@ -1034,7 +1041,7 @@ function newQDGame(p1, p2){
         endGame(gameID);
     }, (playTime * 1000) + 4000);
         
-    console.log("New game created.");
+   
     }catch(e){
     console.log("Error with Quickdraw Mathmaking: " + e);
     }
@@ -1043,6 +1050,7 @@ function newQDGame(p1, p2){
     
     
 socket.on("game_results", function(data){
+    try{
     var gameIndex = game.findIndex((obj => obj.gameID == data.gameID));
     var p1ID = game[gameIndex].p1ID;
     var p2ID = game[gameIndex].p2ID;
@@ -1052,12 +1060,15 @@ socket.on("game_results", function(data){
     } else if(data.id == p2ID){
         game[gameIndex].p2time = data.time;
     }
+        }catch(e){
+            console.log("Problem with game results - " + e);
+        }
 });
     
 function endGame(gameID){
     var gameIndex = game.findIndex((obj => obj.gameID == gameID));
     var gameData = game[gameIndex];
-    console.log("Game over");
+    
     if(gameData.p1time < 1){
         gameData.p1time = 1000;
     }
@@ -1070,6 +1081,21 @@ function endGame(gameID){
         var user = getQuickdrawProfile(gameData.p1ID);
         user[1] = Number(user[1]) + 10;
         saveQuickdrawProfile(gameData.p1ID, user);
+        
+        
+        // P1 CR 
+        var p1User = getQuickdrawProfile(gameData.p1ID);
+        p1User[0] = Number(p1User[0]) + 50;
+        saveQuickdrawProfile(gameData.p1ID, p1User);
+        // P2 CR
+        var p2User = getQuickdrawProfile(gameData.p2ID);
+        if(p2User[0] < 50){
+            p2User[0] = 0;
+        } else {
+            p2User[0] = Number(p2User[0]) - 50;
+        }
+        saveQuickdrawProfile(gameData.p2ID, p2User);
+        
         
         try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
@@ -1095,6 +1121,19 @@ function endGame(gameID){
         user[1] = Number(user[1]) + 10;
         saveQuickdrawProfile(gameData.p2ID, user);
         
+        // P2 CR 
+        var p2User = getQuickdrawProfile(gameData.p2ID);
+        p2User[0] = Number(p2User[0]) + 50;
+        saveQuickdrawProfile(gameData.p2ID, p2User);
+        // P1 CR
+        var p1User = getQuickdrawProfile(gameData.p1ID);
+        if(p1User[0] < 50){
+            p1User[0] = 0;
+        } else {
+            p1User[0] = Number(p1User[0]) - 50;
+        }
+        saveQuickdrawProfile(gameData.p1ID, p1User);
+        
         
         try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
@@ -1114,8 +1153,19 @@ function endGame(gameID){
         }
         
     } else {
+        try{
         // Tied TODO
-        
+        io.sockets.connected[gameData.p2Socket].emit("game_over", {
+            status: "lost",
+            optime: gameData.p1time
+        });
+        io.sockets.connected[gameData.p1Socket].emit("game_over", {
+            status: "lost",
+            optime: gameData.p2time
+        });
+        } catch(e){
+            
+        }
     }
     
     
