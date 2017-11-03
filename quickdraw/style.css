@@ -330,6 +330,65 @@ body{
 
 }
 
+#leaderboard_title{
+    color: white;
+    position: absolute;
+    top: 337px;
+    left: 5px;
+    font-size: 14px;
+    font-family: ubuntu;
+    
+}
+
+#leaderboard_outer{
+    background: #262626;
+    height: 200px;
+    position: absolute;
+    width: 550px;
+    border-radius: 10px;
+    top: 356px;
+
+}
+
+#leaderboard{
+    background: #111;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    width: 530px;
+    border-radius: 10px;
+    top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#leaderboard_table{
+    height: 30px;
+    width: 98%;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background: #1c1b1b;
+    border-radius: 5px;
+    color: white;
+    font-family: ubuntu;
+}
+
+
+#leaderboard_name{
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+
+#leaderboard_time{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
+
 /* Character Inspect Div */
 #character_inspect{
     height: 230px;

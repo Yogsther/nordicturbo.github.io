@@ -969,6 +969,11 @@ socket.on("getProfile_quickdraw", function(id){
     if(profile == "error"){
         return;
     }
+    
+    var recordList = fs.readFileSync("quickdraw_records.txt", "utf8");
+        recordList = JSON.parse(recordList);
+    
+    io.sockets.connected[socket.id].emit("qd_leaderboard", recordList);
     io.sockets.connected[socket.id].emit("profile_callback", profile);
 
 });
@@ -1140,11 +1145,54 @@ function newQDGame(p1, p2){
 // game id, socke.on(gamefinnished)
 
 
+/* 
+Generate new Record list for quickdraw.
+ 
+generateQuickdrawRecords();
+function generateQuickdrawRecords(){
+    
+    var record = [];
+    var o = 0;
+    while(o < 10){
+    record.push({
+        name: "?",
+        time: 1000
+    });
+    o++;
+    }
+    record = JSON.stringify(record);
+    fs.writeFileSync("quickdraw_records.txt", record);
+}    
+*/  
+
 socket.on("game_results", function(data){
     try{
     var gameIndex = game.findIndex((obj => obj.gameID == data.gameID));
     var p1ID = game[gameIndex].p1ID;
     var p2ID = game[gameIndex].p2ID;
+        
+        
+    // Check for record
+    var recordList = fs.readFileSync("quickdraw_records.txt", "utf8");
+        recordList = JSON.parse(recordList);
+
+        // If data is less than biggest record, (last 10th)
+        if(data.time < Number(recordList[9].time)){
+            console.log("New record! " + data.time);
+            // Remove last record
+            recordList.splice(9, 1);
+            // Push new record to list
+            recordList.push({
+                name: data.name,
+                time: data.time
+            });
+            // Sort record list.
+            recordList.sort(recordSort);
+            // Save record to file.
+            recordList = JSON.stringify(recordList);
+            fs.writeFileSync("quickdraw_records.txt", recordList);
+        }
+        
 
     if(data.id == p1ID){
         game[gameIndex].p1time = data.time;
@@ -1153,9 +1201,21 @@ socket.on("game_results", function(data){
     }
         }catch(e){
             console.log("Problem with game results - " + e);
-        }
+    }
+        
+        
+        
 });
 
+        function recordSort(a,b) {
+            if (a.time < b.time)
+                return -1;
+            if (a.time > b.time)
+                return 1;
+                return 0;
+        }      
+    
+    
 function endGame(gameID){
     var gameIndex = game.findIndex((obj => obj.gameID == gameID));
     var gameData = game[gameIndex];
@@ -1176,6 +1236,7 @@ function endGame(gameID){
 
         // P1 CR
         var p1User = getQuickdrawProfile(gameData.p1ID);
+        
         p1User[0] = Number(p1User[0]) + 50;
         saveQuickdrawProfile(gameData.p1ID, p1User);
         // P2 CR

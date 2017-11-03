@@ -228,6 +228,23 @@ function reloadStats(){
     socket.emit("getProfile_quickdraw", id);
 }
 
+socket.on("qd_leaderboard", function(board){
+    
+    console.log("boi");
+    var i = 0;
+    while(i < board.length){
+
+        if(board[i].name == undefined){
+            var name = "?";
+        } else {
+            var name = board[i].name;
+        }
+        document.getElementById("leaderboard").innerHTML += '<div id="leaderboard_table"> <span id="leaderboard_name">' + name + '</span> <span id="leaderboard_time">' + board[i].time + 'ms</span> </div>';
+        i++;
+    }
+});
+
+
 function loadProfile(profile){
     cr = profile[0];
     gold = profile[1];
@@ -368,6 +385,11 @@ function manualLoad(){
         victory.src = "sound/win_theme.mp3";
     var fail = new Audio();
         fail.src = "sound/fail.mp3";
+
+theme.volume = 0.5;
+gun.volume = 0.5;
+victory.volume = 0.5;
+fail.volume = 0.5;
 
 
 // Setup canvas
@@ -637,18 +659,18 @@ function fire(){
     result = now - then;
 
 }
-
+var name = readCookie("username");
 function sendResults(){
     userShot = true;
     socket.emit("game_results", {
         time: result,
         gameID: gameData.gameID,
-        id: id
+        id: id,
+        name: name
     })
-    console.log({time: result,
-        gameID: gameData.gameID,
-        id: id});
 }
+
+
 
 socket.on("game_over", function(data){
     manualLoad();
