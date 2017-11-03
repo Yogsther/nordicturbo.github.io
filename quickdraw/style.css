@@ -267,9 +267,9 @@ body{
 }
 
 #gold_img{
-    height: 25px;
+    height: 20px;
     position: relative;
-    top: 3px;
+    top: 2px;
     
     /* Make logo undraggable */
     user-drag: none; 
@@ -614,13 +614,42 @@ body{
 
 #opponent_info{
     position: relative;
-    left: 30px;
+    left: 00px;
     top: 5px;
 }
 
+#showcase{
+    position: relative;
+    z-index: -1;
+    top: 10px;
+    
+     /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
+#cr_rank{
+    height: 50px;
+    position: absolute;
+    top: -9px;
+    right: -10px;
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
-
-
-
+#insert_rank{
+    position: absolute;
+    right: 40px;
+    top: -4px;
+}
 

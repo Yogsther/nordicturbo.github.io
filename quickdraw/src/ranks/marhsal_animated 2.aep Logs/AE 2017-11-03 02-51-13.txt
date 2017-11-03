@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “marhsal_animated 2.aep”
+
+Rendering started on 2017-11-03 at 02:51:13
+
+  2017-11-03 02:51:13: Starting composition “sheriff-portrait”.
+
+  Output To: C:\te16_git\NordicTurbo\quickdraw\src\ranks\marshal_animated_video.mov  After Effects error: Rendering error while writing to file “C:\te16_git\NordicTurbo\quickdraw\src\ranks\marshal_animated_video.mov”. Unable to delete existing file. (-1610153460)  didn’t delete empty file “marshal_animated_video.mov” because it was larger than expected. (26  ::  170)  2017-11-03 02:51:16: Finished composition “sheriff-portrait”.
+
+
+  Total Time Elapsed: 1 Seconds
+Log closed on 2017-11-03 at 02:51:16
+

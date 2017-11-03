@@ -218,6 +218,7 @@ function loadItems(){
 
 var skin;
 var hat;
+var cr_rank = "farmer";
 
 var gold;
 var cr;
@@ -247,6 +248,28 @@ function loadProfile(profile){
     while(profile[i] != null){
         unlockedItems.push(profile[i]);
         i++;
+    }
+    
+    if(cr < 2500){
+        cr_rank = "farmer"
+        document.getElementById("cr_rank").title = "Farmer";
+        document.getElementById("cr_rank").src = "ranks/farmer.png"; 
+    }
+    
+    if(cr >= 2500){
+        cr_rank = "cowboy"
+        document.getElementById("cr_rank").title = "Cowboy";
+        document.getElementById("cr_rank").src = "ranks/cowboy.png";
+    }
+    if(cr >= 5000){
+        cr_rank = "Sheriff"
+        document.getElementById("cr_rank").title = "Sheriff";
+        document.getElementById("cr_rank").src = "ranks/sheriff.png";
+    }
+    if(cr >= 7500){
+        cr_rank = "Marshal"
+        document.getElementById("cr_rank").title = "Marshal";
+        document.getElementById("cr_rank").src = "ranks/marhsal-grey.gif";
     }
 }
 
@@ -353,9 +376,11 @@ var ctx = canvas.getContext("2d");
 // Remove pixelation.
 ctx.imageSmoothingEnabled = false;
 
+var maps = ["sand_village", "night_village"];
+
 // Declare image sources
 var gameBG = new Image();
-    gameBG.src = "src/bg.png";
+    gameBG.src = "maps/" + maps[Math.floor(Math.random() * maps.length)] + ".png";
 
 var menuLogo = new Image();
     menuLogo.src = "src/quickdraw_logo_big.png"
@@ -394,8 +419,10 @@ function drawGame(){
     player2.skin = skin;
     player2.hat = gameData.p2hat;
     
+    gameBG.src = "maps/" + gameData.map + ".png";
+    
     // Draw background image
-    ctx.drawImage(gameBG, 0, 0);
+    ctx.drawImage(gameBG, 0, 0, canvas.width, canvas.height);
     document.getElementById("insert_search").innerHTML = '';
     document.getElementById("opponent_info").innerHTML = "Your playing against " + gameData.p2name + "!<br>Press any key to fire!";
     
@@ -427,7 +454,7 @@ function drawGameOver(){
     player2.hat = gameData.p2hat;
     
     // Draw background image
-    ctx.drawImage(gameBG, 0, 0);
+    ctx.drawImage(gameBG, 0, 0, canvas.width, canvas.height);
     document.getElementById("insert_search").innerHTML = '';
     if(status == "won"){
         victory.play();
@@ -490,7 +517,7 @@ function drawWait(){
 var logoPos = 200;
 
 function drawMenu(){
-    ctx.drawImage(gameBG, 0, 0);
+    ctx.drawImage(gameBG, 0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgba(0,0,0,0.5)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(menuLogo, 0, logoPos);
@@ -503,7 +530,7 @@ function drawMenu(){
 }
 
 function drawSearching(){
-    ctx.drawImage(gameBG, 0, 0);
+    ctx.drawImage(gameBG, 0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgba(0,0,0,0.5)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     document.getElementById("insert_search").innerHTML = '<img src="src/loading.gif" id="load_gif"><span id="searching_stats">Searching</span>';

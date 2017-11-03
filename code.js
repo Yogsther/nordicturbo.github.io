@@ -133,6 +133,7 @@ function runOnItemsPage(){
     if (window.location.href.indexOf("items.html") != -1){
         musicToggleButtonStatus();
         insertUsername();
+        profanityButtonStyle();
     }  
 }
 
@@ -414,7 +415,7 @@ function changeTheme(){
     
 }
 
-profanityButtonStyle();
+
 
 // Get button style for profanity toggle
 function profanityButtonStyle(){
@@ -1264,20 +1265,19 @@ function slideShow(){
        
     }
     
-    
-    document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png";
+
     
     // Run slideShow() every 4 seconds.
     
     if (slideIndex == 1){
         // Slide show 1
-        document.getElementById("slide_image").src="https://i.imgur.com/iYh2uBA.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/QccbBww.gif"
         progressBar();
     } else if (slideIndex == 2){
-        document.getElementById("slide_image").src="https://i.imgur.com/JDGDg05.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/yjdU98N.png"
         progressBar();
     } else if (slideIndex == 3){
-        document.getElementById("slide_image").src="https://i.imgur.com/E2Td1BM.png"
+        document.getElementById("slide_image").src="https://i.imgur.com/LqSfzBQ.png"
         progressBar();
     }
     
@@ -1285,12 +1285,12 @@ function slideShow(){
 
 function slideRedirect(){
     if (slideIndex == 1){
-            window.open("bot.html");
+        window.open("quickdraw");
             
     } else if (slideIndex == 2){
-        window.open("https://twitter.com/NordicTurbo",'_blank');
+        window.open("pages");
     } else if (slideIndex == 3){
-        window.open("https://github.com/Yogsther/nordicturbo.github.io",'_blank');
+        window.open("placera");
     }
 }
 

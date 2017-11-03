@@ -360,6 +360,13 @@ body{
 
 .message_image{
     width: 250px;
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 
@@ -1139,11 +1146,29 @@ body{
     position: relative;
     height: 80px;
     width: 217px;
-    background: rgba(255,255,255,0.05);
+    background: #030303;
     border-radius: 10px;
     display: inline-block;
     overflow: hidden;
 }
+
+
+#qd_rank{
+    height: 40px;
+    top: 02px;
+    right: 3px;
+    position: absolute;
+    cursor: pointer;
+    
+    /* Make image undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 
 #online_list_user_profile{
     height: 50px;
@@ -1220,8 +1245,6 @@ body{
     left: 22px;
     position: absolute;
 }
-
-
 
 
 

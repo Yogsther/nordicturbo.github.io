@@ -57,7 +57,7 @@ socket.on("login", function(request){
         xp = Math.floor(xp);
         // Check if everything is valid
         
-        if(messageUsername.length > 20){
+        if(messageUsername.length > 12){
             failed = true;
             
             failedMessage = "Too long username!";
@@ -167,9 +167,7 @@ socket.on("onlinepush", function(profile){
     }
     
     onlineUsers++;
-    
-    console.log(profile);
-    
+
     // Get online users
     
     var data = profile;
@@ -235,23 +233,43 @@ socket.on("onlinepush", function(profile){
     }
 
    
+    var quickdrawEmblem = "";
     
+    if(profile.quickdraw != null){
+        if(profile.quickdraw < 2500){
+        quickdrawEmblem = '<img id="qd_rank" src="quickdraw/ranks/farmer.png" onclick="gotoQuickdraw()" title="Farmer - ' + profile.quickdraw + 'cr">'
+        }
+        if(profile.quickdraw >= 2500){
+        quickdrawEmblem = '<img id="qd_rank" src="quickdraw/ranks/cowboy.png" onclick="gotoQuickdraw()" title="Cowboy - ' + profile.quickdraw + 'cr">'
+        }
+        if(profile.quickdraw >= 5000){
+        quickdrawEmblem = '<img id="qd_rank" src="quickdraw/ranks/sheriff.png" onclick="gotoQuickdraw()" title="Sheriff - ' + profile.quickdraw + 'cr">'
+        }
+        if(profile.quickdraw >= 7500){
+        quickdrawEmblem = '<img id="qd_rank" src="quickdraw/ranks/marhsal-light-black.gif" onclick="gotoQuickdraw()" title="Marshal - ' + profile.quickdraw + 'cr">'
+        }
+        
+    }
     
     //var pageLink = "http://www.livingforit.xyz/pages/view.html?view=" + profile.persID;
     // onclick="openLink(' + "'" + pageLink + "'" + ')"
     
     if(profile.verified == true){
         
-        document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '<img src="img/verified.png" title="Verified User" id="verified"></span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
+        document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '<img src="img/verified.png" title="Verified User" id="verified"></span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span>' + quickdrawEmblem + '</div>';
     } else {
    
-    document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span></div>';
+    document.getElementById("online_list_inner").innerHTML += '<div id="online_user_div"><img src="' + profile.profilepic + '" id="online_list_user_profile"><span id="online_list_name">' + profile.username + '</span><span id="online_list_status"><span style="color: ' + xpColor + ';">Lvl ' + profile.xp + ' </span>| <span style="color: #1ff226;">' + profile.status + '</span></span>' + quickdrawEmblem + '</div>';
     }
     document.getElementById("online_users_number").innerHTML = onlineUsers;
     
     
 });
 
+
+function gotoQuickdraw(){
+    window.location.href = "quickdraw";
+}
 
 function openLink(link){
     window.location.href = link;
@@ -342,6 +360,10 @@ function sendMessage(){
         persID: personalID
     });
     
+    // Scroll to bottom on new message
+    var chatWindow = document.getElementById("chat-inner");
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    
 }
 
 var chatEnabled = true;
@@ -419,7 +441,6 @@ socket.on("chat", function(data){
     var supportedFormats = ["jpg", "png", "gif"];
     var wordPos = 0;
     var stichedMessage = recivedMessage.split(" ");
-    console.log(stichedMessage);
     while(wordPos < stichedMessage.length){
         var i = 0;
         while(i < supportedFormats.length){
@@ -498,8 +519,6 @@ socket.on("chat", function(data){
         document.getElementById("chat-inner").innerHTML += '<div id="message_blob"><img id="message_profile" src="' + data.profile + '"><span id="message_username">' + data.username + ' | <i><span style="color: ' + xpColor +';">' + data.xp + '</span></i></span><div id="message_content">' + recivedMessage + '<div id="sidebar-colored" style="background-color: ' + xpColor + '; "></div><div id="timestamp">' + data.time + '</div></div></div>';
     }
 
-    console.log(data);
-    
     var personalID = readCookie("persID");
     
     if(personalID !== data.persID){
@@ -519,8 +538,8 @@ socket.on("chat", function(data){
 
 });
 
-
-// Scroll to bottom on new message
+setTimeout(function(){
+    // Scroll to bottom on new message
     var chatWindow = document.getElementById("chat-inner");
     chatWindow.scrollTop = chatWindow.scrollHeight;
-
+}, 200);

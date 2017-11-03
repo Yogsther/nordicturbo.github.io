@@ -1,0 +1,12 @@
+Adobe After Effects v14.1 Windows 64 render log for project “marhsal_animated 2.aep”
+
+Rendering started on 2017-11-03 at 02:59:37
+
+  2017-11-03 02:59:37: Starting composition “sheriff-portrait”.
+
+  Output To: C:\te16_git\NordicTurbo\quickdraw\src\ranks\marshal_animated_video.mov    2017-11-03 03:02:41: Finished composition “sheriff-portrait”.
+
+
+  Total Time Elapsed: 3 Min, 3 Sec
+Log closed on 2017-11-03 at 03:02:42
+

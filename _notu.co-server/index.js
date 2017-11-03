@@ -148,13 +148,31 @@ socket.on('disconnect', function(){
             verified = true;
         }
 
-
+            // Check if user has joined Quick Draw
+            var quickdrawRank = null;
+            var quickdrawProfile = null;
+            try{
+                var quickdrawProfile = fs.readFileSync("quickdraw/" + newUser.persID + ".txt", "utf8");
+                if(quickdrawProfile != null){
+                        quickdrawProfile = quickdrawProfile.split("|");
+                        quickdrawRank = quickdrawProfile[0];
+            } else {
+                quickdrawRank = null;
+                quickdrawProfile = null;
+            }
+            } catch(e){
+                quickdrawRank = null;
+                quickdrawProfile = null;
+            }
+            
+                
             var sendToClients = {
                 username: newUser.username,
                 profilepic: newUser.profilepic,
                 xp: newUser.xp,
                 status: newUser.status,
-                verified: verified
+                verified: verified,
+                quickdraw: quickdrawRank
             };
 
 
@@ -206,7 +224,7 @@ socket.on("chat", function(data){
         }
     }
     // Check for too long usernames (hacked!)
-    if(data.username.length > 20){
+    if(data.username.length > 12){
         console.log("Chat: too long username: " + data.username);
         return;
     }
@@ -239,10 +257,6 @@ socket.on("chat", function(data){
     io.sockets.emit("chat", clientData);
 
 
-
-
-    console.log(clientData);
-
     // Log message in console.
     console.log("Chat: Message > " + data.username + ": " + data.message);
   });
@@ -264,6 +278,11 @@ socket.on("sentover", function(userinfo){
         return;
     }
 
+    
+    
+    
+     
+    
 
         var verifiedUsers = fs.readFileSync("verified.txt");
         verifiedUsers = verifiedUsers.toString().split(",");
@@ -277,7 +296,7 @@ socket.on("sentover", function(userinfo){
         console.log("Username: Someone tried to enter code");
         return;
     }
-    if(userinfo.username.length > 20){
+    if(userinfo.username.length > 12){
         console.log("Error: Too long of username");
         return;
     }
@@ -387,14 +406,31 @@ socket.on("sentover", function(userinfo){
             if(verifiedUsers.indexOf(newUser.persID) != -1){
                verified = true;
             }
-
+                
+            // Check if user has joined Quick Draw
+            var quickdrawRank = null;
+            var quickdrawProfile = null;
+            try{
+                var quickdrawProfile = fs.readFileSync("quickdraw/" + newUser.persID + ".txt", "utf8");
+                if(quickdrawProfile != null){
+                        quickdrawProfile = quickdrawProfile.split("|");
+                        quickdrawRank = quickdrawProfile[0];
+            } else {
+                quickdrawRank = null;
+                quickdrawProfile = null;
+            }
+            } catch(e){
+                quickdrawRank = null;
+                quickdrawProfile = null;
+            }
 
             var sendToClients = {
                 username: newUser.username,
                 profilepic: newUser.profilepic,
                 xp: newUser.xp,
                 status: newUser.status,
-                verified: verified
+                verified: verified,
+                quickdraw: quickdrawRank
             };
 
 
@@ -1046,19 +1082,25 @@ function newQDGame(p1, p2){
     // Generate random number between 1 - 15 (timer)
     var playTime = Math.floor(Math.random() * 20) + 1;
     var gameID  = Math.floor(Math.random() * 1000000000000) + 1;
-    try{
+    
+    var maps = ["sand_village", "night_village"];
+    var map = maps[Math.floor(Math.random() * maps.length)];
+    
+    try{    
     io.sockets.connected[p1.socket].emit("newGame", {
         playTime: playTime,
         gameID: gameID,
         p2hat: p2.hat,
-        p2name: p2.name
+        p2name: p2.name,
+        map: map
     });
     
     io.sockets.connected[p2.socket].emit("newGame", {
         playTime: playTime,
         gameID: gameID,
         p2hat: p1.hat,
-        p2name: p1.name
+        p2name: p1.name,
+        map: map
     });
     
     game.push({
@@ -1069,6 +1111,7 @@ function newQDGame(p1, p2){
         p2ID: p2.id,
         p1Socket: p1.socket,
         p2Socket: p2.socket
+        
     });
     setTimeout(function(){ 
         endGame(gameID);
