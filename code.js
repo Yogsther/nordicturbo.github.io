@@ -65,7 +65,6 @@ runCrateFunctions();
 runOnItemsPage();
 checkForDev();
 itemsPageCheck();
-slideShowCheck();
 checkIfThemeApplies();
 runOnIndex();
 countDownTimer();

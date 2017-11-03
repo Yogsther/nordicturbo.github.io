@@ -49,6 +49,14 @@ body{
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 #coordinates{
@@ -89,6 +97,14 @@ body{
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+    
+    /* Remove anti-aliasing */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 

@@ -35,6 +35,21 @@ var searching = [];
 var game = [];
 
 
+// Placera
+
+// Enable or Disable cooldown
+var cooldownEnabled = true;
+// Cooldown time (ms)
+var cooldownTime = 20000;
+
+
+// Pixels cache
+var pixels = [];
+var cooldownList = [];
+var allowedColors = ["255, 255, 255", "228, 228, 228", "136, 136, 136", "34, 34, 34", "255, 167, 209", "229, 0, 0", "229, 149, 0", "160, 106, 66", "229, 217, 0", "148, 224, 68", "2, 190, 1", "0, 211, 221", "0, 131, 199", "0, 0, 234", "207, 110, 228", "130, 0, 128"];
+
+fsPixelsRead();
+
 io.on("connection", function(socket){
 
 
@@ -164,8 +179,8 @@ socket.on('disconnect', function(){
                 quickdrawRank = null;
                 quickdrawProfile = null;
             }
-            
-                
+
+
             var sendToClients = {
                 username: newUser.username,
                 profilepic: newUser.profilepic,
@@ -278,11 +293,11 @@ socket.on("sentover", function(userinfo){
         return;
     }
 
-    
-    
-    
-     
-    
+
+
+
+
+
 
         var verifiedUsers = fs.readFileSync("verified.txt");
         verifiedUsers = verifiedUsers.toString().split(",");
@@ -406,7 +421,7 @@ socket.on("sentover", function(userinfo){
             if(verifiedUsers.indexOf(newUser.persID) != -1){
                verified = true;
             }
-                
+
             // Check if user has joined Quick Draw
             var quickdrawRank = null;
             var quickdrawProfile = null;
@@ -629,7 +644,7 @@ socket.on("sentover", function(userinfo){
         io.sockets.connected[socket.id].emit("pinnedPages", pinnedPages);
         io.sockets.connected[socket.id].emit("indexRequest", usersArr);
     });
-    
+
     socket.on("pageReqSrc", function(name){
           try{
 
@@ -646,7 +661,7 @@ socket.on("sentover", function(userinfo){
                         var css = userPageParts[1];
                         var javascript = userPageParts[2];
 
-    
+
 
 
 
@@ -659,7 +674,7 @@ socket.on("sentover", function(userinfo){
                         }catch(e){
 
                         }
-        
+
     });
 
     socket.on("pageReq", function(name){
@@ -926,7 +941,7 @@ socket.on("sentover", function(userinfo){
 // (New) Quickdraw
 
 
-    
+
 socket.on("validate", function(id){
     try{
         fs.readFileSync("quickdraw/" + id + ".txt");
@@ -935,27 +950,27 @@ socket.on("validate", function(id){
         io.sockets.connected[socket.id].emit("validate_callback", "failed");
     }
 })
-    
+
 
 socket.on("quickdraw_join", function(id){
-    
+
     //Set up save file
     var savefile = startRating + "|" + 0;
     fs.writeFileSync("quickdraw/" + id + ".txt", savefile);
     io.sockets.connected[socket.id].emit("validate_callback", "valid");
-    
-    
+
+
 });
 
 
 socket.on("getProfile_quickdraw", function(id){
-   
+
     var profile = getQuickdrawProfile(id);
     if(profile == "error"){
         return;
     }
     io.sockets.connected[socket.id].emit("profile_callback", profile);
-    
+
 });
 
 
@@ -1014,16 +1029,16 @@ var items = [{
     type: "hat"
 }];
 
-    
-    
-    
+
+
+
 socket.on("qd_item", function(data){
-   
+
     var profile = getQuickdrawProfile(data.id);
     var profileBank = profile[1];
     var itemPos = items.findIndex(i => i.src === data.src);
     var itemCost = items[itemPos].cost;
-    
+
     if(profileBank >= itemCost){
         // Clear to buy
         // Ajust balance after purchase
@@ -1036,10 +1051,10 @@ socket.on("qd_item", function(data){
         // Can't buy
         return;
     }
-    
+
 });
 
-    
+
 socket.on("qd_search", function(data){
     var sendMe = {
         id: data.id,
@@ -1048,23 +1063,23 @@ socket.on("qd_search", function(data){
         hat: data.hat,
         name: data.name
     };
-    
+
     var searchPos = searching.findIndex(i => i.id === data.id);
     if(searchPos != -1){
         return;
     }
     searching.push(sendMe);
-    matchMake();    
+    matchMake();
 })
 
 socket.on("qd_stopsearch", function(id){
     var searchPos = searching.findIndex(i => i.id === id);
     if(searchPos == -1){
-        
+
         return;
     }
     searching.splice(searchPos, 1);
-    matchMake();    
+    matchMake();
 })
 
 function matchMake(){
@@ -1076,17 +1091,17 @@ function matchMake(){
         matchMake();
     }
 }
-    
+
 function newQDGame(p1, p2){
-    
+
     // Generate random number between 1 - 15 (timer)
     var playTime = Math.floor(Math.random() * 20) + 1;
     var gameID  = Math.floor(Math.random() * 1000000000000) + 1;
-    
+
     var maps = ["sand_village", "night_village"];
     var map = maps[Math.floor(Math.random() * maps.length)];
-    
-    try{    
+
+    try{
     io.sockets.connected[p1.socket].emit("newGame", {
         playTime: playTime,
         gameID: gameID,
@@ -1094,7 +1109,7 @@ function newQDGame(p1, p2){
         p2name: p2.name,
         map: map
     });
-    
+
     io.sockets.connected[p2.socket].emit("newGame", {
         playTime: playTime,
         gameID: gameID,
@@ -1102,7 +1117,7 @@ function newQDGame(p1, p2){
         p2name: p1.name,
         map: map
     });
-    
+
     game.push({
         gameID: gameID,
         p1time: 0,
@@ -1111,26 +1126,26 @@ function newQDGame(p1, p2){
         p2ID: p2.id,
         p1Socket: p1.socket,
         p2Socket: p2.socket
-        
+
     });
-    setTimeout(function(){ 
+    setTimeout(function(){
         endGame(gameID);
     }, (playTime * 1000) + 4000);
-        
-   
+
+
     }catch(e){
     console.log("Error with Quickdraw Mathmaking: " + e);
     }
 }
 // game id, socke.on(gamefinnished)
-    
-    
+
+
 socket.on("game_results", function(data){
     try{
     var gameIndex = game.findIndex((obj => obj.gameID == data.gameID));
     var p1ID = game[gameIndex].p1ID;
     var p2ID = game[gameIndex].p2ID;
-    
+
     if(data.id == p1ID){
         game[gameIndex].p1time = data.time;
     } else if(data.id == p2ID){
@@ -1140,26 +1155,26 @@ socket.on("game_results", function(data){
             console.log("Problem with game results - " + e);
         }
 });
-    
+
 function endGame(gameID){
     var gameIndex = game.findIndex((obj => obj.gameID == gameID));
     var gameData = game[gameIndex];
-    
+
     if(gameData.p1time < 1){
         gameData.p1time = 1000;
     }
     if(gameData.p2time < 1){
         gameData.p2time = 1000;
     }
-    
+
     if(gameData.p1time < gameData.p2time){
         //P1 won
         var user = getQuickdrawProfile(gameData.p1ID);
         user[1] = Number(user[1]) + 10;
         saveQuickdrawProfile(gameData.p1ID, user);
-        
-        
-        // P1 CR 
+
+
+        // P1 CR
         var p1User = getQuickdrawProfile(gameData.p1ID);
         p1User[0] = Number(p1User[0]) + 50;
         saveQuickdrawProfile(gameData.p1ID, p1User);
@@ -1171,15 +1186,15 @@ function endGame(gameID){
             p2User[0] = Number(p2User[0]) - 50;
         }
         saveQuickdrawProfile(gameData.p2ID, p2User);
-        
-        
+
+
         try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
             status: "won",
             optime: gameData.p2time
         });
         } catch(e){
-            
+
         }
         try{
         io.sockets.connected[gameData.p2Socket].emit("game_over", {
@@ -1187,17 +1202,17 @@ function endGame(gameID){
             optime: gameData.p1time
         });
         }catch(e){
-            
+
         }
-        
+
     } else if (gameData.p2time < gameData.p1time){
         //P2 won
-        
+
         var user = getQuickdrawProfile(gameData.p2ID);
         user[1] = Number(user[1]) + 10;
         saveQuickdrawProfile(gameData.p2ID, user);
-        
-        // P2 CR 
+
+        // P2 CR
         var p2User = getQuickdrawProfile(gameData.p2ID);
         p2User[0] = Number(p2User[0]) + 50;
         saveQuickdrawProfile(gameData.p2ID, p2User);
@@ -1209,15 +1224,15 @@ function endGame(gameID){
             p1User[0] = Number(p1User[0]) - 50;
         }
         saveQuickdrawProfile(gameData.p1ID, p1User);
-        
-        
+
+
         try{
         io.sockets.connected[gameData.p1Socket].emit("game_over", {
             status: "lost",
             optime: gameData.p2time
         });
         } catch(e){
-                
+
         }
         try{
         io.sockets.connected[gameData.p2Socket].emit("game_over", {
@@ -1225,9 +1240,9 @@ function endGame(gameID){
             optime: gameData.p1time
         });
         } catch(e){
-                    
+
         }
-        
+
     } else {
         try{
         // Tied TODO
@@ -1240,15 +1255,15 @@ function endGame(gameID){
             optime: gameData.p2time
         });
         } catch(e){
-            
+
         }
     }
-    
-    
+
+
     // Remove game from arr
     game.splice(gameIndex, 1);
 }
-    
+
 function saveQuickdrawProfile(id, profile){
     profile = profile.join("|");
     fs.writeFileSync("quickdraw/" + id + ".txt", profile);
@@ -1501,6 +1516,7 @@ socket.on("docs_index_req", function(b){
 
 });
 
+
 socket.on("doc_req", function(name){
 
     while(name.indexOf("%20") != -1){
@@ -1517,11 +1533,107 @@ socket.on("doc_req", function(name){
         description: docFile[1],
         author: docFile[2]
     });
-       
-}); 
-       
-}); 
-    
+
+});
+
+
+
+// Placera
+socket.on("getCachePlacera", function(e){
+  io.sockets.connected[socket.id].emit("cache", pixels);
+});
+
+// Placera.io handler
+
+// Register new pixels
+socket.on("newpixel", function(newPixel){
+  try{
+
+    if(isNaN(newPixel.id)){
+      return;
+    }
+
+    if(cooldownList.indexOf(newPixel.id) != -1){
+
+      return;
+    }
+
+    if(allowedColors.indexOf(newPixel.color) == -1){
+      console.log("Bad color");
+      return;
+    }
+
+    var paletteTranslate = ["white", "grey", "dark grey", "black", "pink", "red", "orange", "brown", "yellow", "light green", "green", "turquoise", "blue", "dark blue", "dark pink", "purple"];
+    var colorPos = allowedColors.indexOf(newPixel.color);
+
+
+    // Log pixel in console
+    console.log(newPixel.username + " placed a " + paletteTranslate[colorPos] + " pixel @ " + newPixel.x + ", " + newPixel.y);
+
+    newPixelF = {
+      x: newPixel.x,
+      y: newPixel.y,
+      color: newPixel.color
+    };
+
+    // Add user to cooldown list
+    if(cooldownEnabled){
+    io.sockets.connected[socket.id].emit("cooldown", cooldownTime);
+    cooldownList.push(newPixel.id);
+    var timeoutFunction = function() { removeCooldown(newPixel.id); };
+    setTimeout(timeoutFunction, 20000);
+    }
+
+    pixels.push(newPixelF);
+    io.sockets.emit("update", newPixelF);
+    fsPixelsSave();
+  }catch(e){
+    console.log(e);
+    return;
+  }
+});
+
+
+
+// End of on connection !!!
+});
+
+
+
+function removeCooldown(id){
+  var index = cooldownList.indexOf(id);
+  cooldownList.splice(index, 1);
+}
+
+// Get saved pixels from .txt file
+function fsPixelsRead(){
+    var readPixel = fs.readFileSync("placera.txt", "utf8");
+    var pixelArr = readPixel.toString().split("|");
+
+    var i = 0;
+    while(i < pixelArr.length - 1){
+      var pushMe = JSON.parse(pixelArr[i]);
+      pixels.push(pushMe);
+      i++;
+    }
+    console.log("Loaded pixels. " + pixelArr.length + " pixels.");
+}
+
+function fsPixelsSave(){
+  var saveArr = [];
+  var i = 0;
+  while(i < pixels.length){
+    var saveObj = JSON.stringify(pixels[i]);
+    saveArr.push(saveObj);
+    i++;
+  }
+  saveArr = saveArr.join("|");
+  fs.writeFileSync("placera.txt", saveArr, "utf8")
+}
+
+
+
+
 
 function getPageUsersB(){
 
