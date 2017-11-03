@@ -119,12 +119,11 @@ function checkIfThemeApplies(){
 
 function runOnIndex(){
     
-  
-    
     if(window.location.href.toLowerCase() == "http://livingforit.xyz/" || window.location.href.indexOf("index.html") != -1){
         getXP();
         getBankStatus();
         insertProfile();
+        slideShow();
     }
 }
 
@@ -303,12 +302,6 @@ function pagesCard(){
 
 function rouletteCard(){
     window.location.href = "roulette";
-}
-
-function slideShowCheck(){
-if (window.location.href.indexOf("index.html") != -1){
-    slideShow();
-    }
 }
 
 function itemsPageCheck(){
