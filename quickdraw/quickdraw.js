@@ -163,7 +163,15 @@ var items = [{
     src: "ghost",
     cost: 60,
     type: "hat"
+}, {
+    name: "Toad",
+    src: "toad",
+    cost: 100,
+    type: "hat"
 }];
+
+// All maps
+var maps = ["sand_village", "night_village", "moon"];
 
 // Declare hat sources and variables
 
@@ -232,6 +240,7 @@ socket.on("qd_leaderboard", function(board){
     
     console.log("boi");
     var i = 0;
+    document.getElementById("leaderboard").innerHTML = "";
     while(i < board.length){
 
         if(board[i].name == undefined){
@@ -398,7 +407,7 @@ var ctx = canvas.getContext("2d");
 // Remove pixelation.
 ctx.imageSmoothingEnabled = false;
 
-var maps = ["sand_village", "night_village"];
+
 
 // Declare image sources
 var gameBG = new Image();

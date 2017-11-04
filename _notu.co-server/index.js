@@ -1032,8 +1032,15 @@ var items = [{
     src: "ghost",
     cost: 60,
     type: "hat"
+}, {
+    name: "Toad",
+    src: "toad",
+    cost: 100,
+    type: "hat"
 }];
 
+// All maps
+var maps = ["sand_village", "night_village", "moon"];
 
 
 
@@ -1103,7 +1110,6 @@ function newQDGame(p1, p2){
     var playTime = Math.floor(Math.random() * 20) + 1;
     var gameID  = Math.floor(Math.random() * 1000000000000) + 1;
 
-    var maps = ["sand_village", "night_village"];
     var map = maps[Math.floor(Math.random() * maps.length)];
 
     try{
