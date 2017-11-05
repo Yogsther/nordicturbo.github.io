@@ -168,10 +168,25 @@ var items = [{
     src: "toad",
     cost: 100,
     type: "hat"
+}, {
+    name: "Cappy",
+    src: "cappy",
+    cost: 65,
+    type: "hat"
+}, {
+    name: "Crone's Dome",
+    src: "crones_dome",
+    cost: 100,
+    type: "hat"
+}, {
+    name: "Rainbow Dash",
+    src: "rainbowdash",
+    cost: 100,
+    type: "hat"
 }];
 
 // All maps
-var maps = ["sand_village", "night_village", "moon"];
+var maps = ["sand_village", "night_village", "moon", "desert"];
 
 // Declare hat sources and variables
 
@@ -530,6 +545,9 @@ document.body.addEventListener('keydown',function(e) {
     if(e.code == "Enter"){
         if(inGame == false){
             search();
+        }
+        if(draw == "over"){
+            reloadPage();
         }
     }
     if(inGame == true){
