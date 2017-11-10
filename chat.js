@@ -438,6 +438,7 @@ socket.on("chat", function(data){
         } 
     }
     
+    if(data.verified){
     var supportedFormats = ["jpg", "png", "gif"];
     var wordPos = 0;
     var stichedMessage = recivedMessage.split(" ");
@@ -451,9 +452,10 @@ socket.on("chat", function(data){
         }
         wordPos++;
     }
+        recivedMessage = stichedMessage.join(" ");
+    }
     
     
-    recivedMessage = stichedMessage.join(" ");
     
     var xpColor = "white";
     if(data.xp >= 2){
