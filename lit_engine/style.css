@@ -1,0 +1,35 @@
+body{
+    background: black;
+}
+
+#header_logo{
+    height: 400px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    top: -80px;
+}
+
+#body_div{
+    width: 300px;
+    font-size: 16px;
+    color: white;
+    font-family: 'Muli', sans-serif;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: -120px;
+    text-align: center;
+}
+
+a:link{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{ 
+    color: lightgrey;
+}
