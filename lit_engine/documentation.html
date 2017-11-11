@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>L.it Engine</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+</head>
+<body>
+    
+    <img src="header.gif" id="header_logo">
+   
+    <div id="body_div" style="width: 650px;">
+        <a href="index.html"> < Back </a>
+        <h4>Draw</h4>
+        <i>// Draw pixel (value should only be one character.)</i><br>
+        <code>LitEngine.draw(int x, int y, String value);</code><br><br>
+        
+        <i>// Print text</i><br>
+        <code>LitEngine.print(int x, int y, String value);</code><br><br>
+
+        
+        <i>// Animate printed text (speed is how fast it prints out.)</i><br>
+        <code>LitEngine.printAnimated(int x, int y, String value, int speed);</code><br><br>
+        
+       
+        <i>// Draw rectangle (value should only be one character)</i><br>
+        <code>LitEngine.drawRect(int x, int y, int width, int height, String value);</code><br><br>
+        
+        <i>// Draw circle (value should only be one character)</i><br>
+        <code>LitEngine.drawCircle(int x, int y, int radius, String value);</code><br><br>
+        
+        <i>// Clear everything (type = "border" || "clear")</i><br>
+        <code>LitEngine.clear(String type)</code><br><br>
+
+        <h4>Input</h4>
+
+
+        <i>// Get String</i><br>
+        <code>String string = LitEngine.inputString();</code><br><br>
+            
+        <i>// Get int</i><br>
+        <code>int num = LitEngine.inputInt();</code><br><br>
+
+
+
+        
+        
+    </div>
+    
+    
+    <script src="code.js"></script>
+</body>
+</html>
+

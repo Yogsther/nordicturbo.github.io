@@ -1,25 +1,41 @@
 body{
-    background: black;
+    background: #111;
 }
 
 #header_logo{
-    height: 400px;
+    height: 300px;
     position: relative;
     margin: 0 auto;
     display: block;
-    top: -80px;
+    top: -30px;
+    
+    /* Make logo undraggable */
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #body_div{
-    width: 300px;
+    width: 400px;
     font-size: 16px;
     color: white;
     font-family: 'Muli', sans-serif;
     display: block;
     margin: 0 auto;
     position: relative;
-    top: -120px;
-    text-align: center;
+    top: -85px;
+    text-align: left;
+    margin-top: 10px;
+    max-height: 400px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #D53232;
+    padding: 16px;
+    overflow-y: auto;
 }
 
 a:link{
@@ -32,4 +48,9 @@ a:visited{
 
 a:hover{ 
     color: lightgrey;
+}
+
+.img{
+    width: 100%;
+    padding-top: 10px;
 }
