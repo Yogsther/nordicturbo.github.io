@@ -14,41 +14,43 @@
 </head>
 <body>
     
-    <img src="header.gif" id="header_logo">
+    <img src="header.gif" id="header_logo" onclick="window.location.href = 'index.html';">
    
+    <div id="body">
     <div id="body_div">
         
-        <b>Welcome to the L.it Engine!</b> v.0.2<br>
-        The Livingfor.it Engine is an ASCII Game engine written in Java. Easy, intuitive and most importantly, powerfull! 🔥
+        <b>Welcome to the L.it 🔥 Engine!</b> v.0.2<br>
+        The Livingfor.it Engine is an open source ASCII Game engine written in Java. Easy, intuitive and most importantly, powerfull! 
         <br><br>
         
-        <a href="https://github.com/Yogsther/LitEngine" title="Github Link! :D">Github - Get<span style="color: #262626;">L</span>it!</a>
+        <a href="https://github.com/Yogsther/LitEngine" title="Get L.it 🔥">Github - Source Code</a><br>
         
-        <br><br>
+        <a href="downloads/LitEngine_TechDemo.rar" title="Download.it">Download Tech Demo! (8kb)</a><br>
         
-        Quickstart guide:
+        <a href="documentation.html" title="Full documentation, all methods"><b>Documentation</b></a>
+        
+        <h4>Quickstart guide:</h4>
+        <code>
+        //Initiate LitEngine<br>
+        LitEngine.start("border"); <br>
+        
+        <br>//Get input<br>
+        String string = LitEngine.inputString(); <br>
+        
+        <br>//Print out text<br>
+        LitEngine.print(x, y, string); </code><br>
         <br>
-        <br>
-        <i>//Initiate LitEngine</i><br>
-        <code>LitEngine.start("border"); </code><br>
         
-        <br><i>//Get input</i><br>
-        <code>String string = LitEngine.inputString(); </code><br>
         
-        <br><i>//Print out text</i><br>
-        <code>LitEngine.print(x, y, string); </code><br>
-        <br>
-        
-        <a href="documentation.html">Full Documentation</a>
     </div>
     
-    <div id="body_div">
+    <div id="screenshot_div">
         <b>Screenshots:</b>
         <img class="img" src="screenshots/screen_01.PNG">
         <img class="img" src="screenshots/screen_02.PNG">
         <img class="img" src="screenshots/screen_03.PNG">
     </div>
-    
+    </div>
     
     <script src="code.js"></script>
 </body>
