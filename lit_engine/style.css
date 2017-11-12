@@ -39,9 +39,10 @@ body{
     float: left;
     text-align: left;
     margin-top: 10px;
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     padding: 16px;
+    overflow-y: scroll;
 }
 
 #screenshot_div{
@@ -55,7 +56,7 @@ body{
     float: right;
     text-align: left;
     margin-top: 10px;
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     padding: 16px;
     overflow-y: auto;
@@ -73,7 +74,7 @@ body{
     top: -85px;
     text-align: left;
     margin-top: 10px;
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     padding: 16px;
     overflow-y: auto;
@@ -142,7 +143,6 @@ input{
     border-radius: 5px;
     border: none;
     padding: 5px;
-
     font-weight: 700;
     
 }
@@ -157,6 +157,82 @@ input{
 }
 
 
+h4{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+#fire_gif{
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    left: 161px;
+}
+
+
+#canvas{
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    z-index: 10;
+    max-height: 10000000;
+    max-width: 10000000;
+}
+
+#x{
+    position: absolute;
+    top: 10px;
+}
+
+#y{
+    position: absolute;
+    top: 10px;
+    left: 200px;
+}
+
+#value{
+    position: absolute;
+    top: 10px;
+    left: 390px;
+}
+
+#copyButton{
+    position: absolute;
+    top: 10px;
+    left: 580px; 
+    height: 35px;
+    width: 150px;
+    z-index: 100;
+    background: white;
+    border-radius: 5px;
+    border: none;
+    transition: transform 0.05s;
+    
+    
+      -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+#copyButton:hover{
+    transform: scale(1.05);
+}
+
+#copyButton:active{
+    transform: scale(0.95);
+}
+
+
+#info_text{
+    position: relative;
+    top: 460px;
+    left: 10px;
+    color: white;
+}
 
 ::-webkit-scrollbar {
   width: 6px;

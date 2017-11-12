@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>L.it Engine</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+</head>
+<body>  
+
+    
+    <input id="x" placeholder="Enter width" oninput="setupPlotter()" title="Set width">
+    <input id="y" placeholder="Enter height" oninput="setupPlotter()" title="Set height">
+    <input id="value" placeholder="value" oninput="setupPlotter()" title="Set value">
+    <button id="copyButton" onclick="copyJava()" title="Export drawing to LitEngine Java code.">Copy java code</button>
+    
+    <span id="info_text">
+    Click to set pixel, click again to remove a pixel. Hold any key to draw. <br>
+    Reload page to clear. (60x20 is the default resolution for LitEngine)
+    </span>
+        
+    <canvas id="canvas"></canvas>
+    <script src="code.js"></script>
+</body>
+</html>
+

@@ -1,6 +1,7 @@
 
 // Socket.io & chat functions
 var socket = io.connect("http://213.66.254.63:25565");
+var playStatus = "L.it Engine 🔥";
 
 const documentation = [{
     code: "draw(int x, int y, String value);",
@@ -27,8 +28,20 @@ const documentation = [{
     comment: 'Draw circle (value should only be one character) x and y are the center coordinates of your circle.',
     category: "Draw"
 }, {
-    code: "clear(String type)",
+    code: "clear(String type);",
     comment: '// Clear everything. "type" is the the render type: "border" - Draws a border around the screen. "clear" - Draws nothing, no border. "plot" - Draws out coordinates to make it easy to develop.',
+    category: "Draw"
+}, {
+    code: "drawNoRender(int x, int y, String value);", 
+    comment: "Normal Draw method, but without rendering. Usefull when you draw something big and you want it all to appear at the time.",
+    category: "Draw"
+}, {
+    code: "drawRaw(int pos, String value);",
+    comment: "Draw at position in the render array.",
+    category: "Draw"
+}, {
+    code: "drawRawNoRender(int pos, String value);",
+    comment: "Normal drawRaw method, but without rendering. Usefull when you draw something big and you want it all to appear at the time.",
     category: "Draw"
 }, {
     code: "inputString();",
@@ -50,6 +63,15 @@ const documentation = [{
     comment: "Set the resolution of your application. (Make sure you do this before calling start();!)",
     category: "System"
     
+}, {
+    code: "render();",
+    comment: "Render, call it to render a new frame.",
+    category: "System"
+    
+},{
+    code: "getPos(int x, int y);",
+    comment: "Returns position from coordinates, in render array.",
+    category: "System"
 },{
     code: "debugDisableSplash();",
     comment: "Disable splash screen on launch, for debugging.",
@@ -57,10 +79,223 @@ const documentation = [{
 }];
 
 
+var initate = true;
+
+var inputWidth;
+var inputHeight;
+
+var canvas;
+var ctx;
+
+var mosuedown = false;
+var mousePos;
+
+
+var renderArray = [];
 
 if (window.location.href.indexOf("documentation") != -1){
     loadDocumentation();
+    playStatus = "L.it Engine 🔥 // Documentation";
 }
+
+if (window.location.href.indexOf("plotter") != -1){
+    setupPlotter();
+    playStatus = "L.it Engine 🔥 // Plotter";
+}
+
+
+
+function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+  }
+
+
+function setupPlotter(){
+    // Render plotter
+    
+    if(initate == true){
+        document.getElementById("x").value = 60;
+        document.getElementById("y").value = 20;
+        document.getElementById("value").value = "*";
+        initate = false;
+    }
+    
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    
+    
+    inputWidth = document.getElementById("x").value;
+    inputHeight = document.getElementById("y").value;
+
+    
+    
+    canvas.width = inputWidth*10;
+    canvas.height = inputHeight*10*2;
+    
+    // Draw background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    
+    
+    
+    
+    
+    // Draw saved pixels
+    
+    if(renderArray != ""){
+    ctx.fillStyle = "red";
+    var i = 0;
+    while(i < renderArray.length){
+        ctx.fillRect(renderArray[i].x * 10, renderArray[i].y * 10, 10, 20);
+        i++;
+        }
+    }
+    
+    ctx.fillStyle = "black";
+    
+    var i = 0;
+    while(i <= inputHeight){
+        ctx.fillRect(0, i*10*2, canvas.width, 1);
+        i++;
+    }
+    
+    var i = 0;
+    while(i <= inputWidth){
+        ctx.fillRect(i*10, 0, 1, canvas.height);
+        i++;
+    }
+}
+
+
+function copyJava(){
+    
+    var value = document.getElementById("value").value;
+    
+    
+    var copyString = "/* Generated with LitEngine Plotter */\n";
+    var i = 0;
+    while(i < renderArray.length){
+        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + ", " + (renderArray[i].y / 2) + ", " + '"' + value + '"' + ");\n";
+        copyString = copyString + addString;
+        i++;
+    }
+    copyString = copyString + "LitEngine.render();";
+    copyToClipboard(copyString);
+}
+
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        // IE specific code path to prevent textarea being shown while dialog is visible.
+        return clipboardData.setData("Text", text); 
+
+    } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+        } catch (ex) {
+            console.warn("Copy to clipboard failed.", ex);
+            return false;
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
+}
+
+
+
+
+canvas.addEventListener('mousemove', function(evt) {
+
+    mousePos = getMousePos(canvas, evt);
+    
+    var mouseX = mousePos.x -1;
+    var mouseY = mousePos.y -1;
+
+
+    mouseX = Math.floor(mouseX / 10);
+    mouseY = Math.floor(mouseY / 10);
+    
+    if(mouseY % 2 != 0){
+        mouseY = mouseY - 1;
+    }
+    
+    
+    setupPlotter();
+    ctx.fillStyle = "black";
+    ctx.fillRect(mouseX*10, mouseY*10, 10, 20);
+    
+}, false);
+
+document.addEventListener('keydown', function(evt) {
+
+    
+    var mouseX = mousePos.x -1;
+    var mouseY = mousePos.y -1;
+
+
+    mouseX = Math.floor(mouseX / 10);
+    mouseY = Math.floor(mouseY / 10);
+    
+    if(mouseY % 2 != 0){
+        mouseY = mouseY - 1;
+    }
+    
+    console.log(mouseX + " S "  +mouseY);
+    var find = renderArray.findIndex(x => x.x == mouseX && x.y == mouseY);
+
+    if(find == -1){
+        renderArray.push({
+            x: mouseX,
+            y: mouseY
+        });
+    }
+    
+setupPlotter();
+   
+}, false);
+
+
+
+canvas.addEventListener('click', function(evt) {
+
+    mousePos = getMousePos(canvas, evt);
+    
+    var mouseX = mousePos.x -1;
+    var mouseY = mousePos.y -1;
+
+
+    mouseX = Math.floor(mouseX / 10);
+    mouseY = Math.floor(mouseY / 10);
+    
+    if(mouseY % 2 != 0){
+        mouseY = mouseY - 1;
+    }
+    
+    // Save pixel
+    
+    var find = renderArray.findIndex(x => x.x == mouseX && x.y == mouseY);
+    
+
+    if(find != -1){
+        renderArray.splice(find, 1);
+        setupPlotter();
+        return;
+    }
+
+    setupPlotter();
+    renderArray.push({
+        x: mouseX,
+        y: mouseY
+    });
+}, false);
 
 
 // Documentation reader
@@ -147,7 +382,6 @@ function search(){
 
 
 
-var playStatus = "L.it Engine 🔥";
 
 // On connection send over Username, ProfileLoc & Lvl
 
