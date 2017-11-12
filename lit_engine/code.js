@@ -168,6 +168,8 @@ function setupPlotter(){
         ctx.fillRect(i*10, 0, 1, canvas.height);
         i++;
     }
+    
+    
 }
 
 
@@ -232,6 +234,10 @@ canvas.addEventListener('mousemove', function(evt) {
     ctx.fillStyle = "black";
     ctx.fillRect(mouseX*10, mouseY*10, 10, 20);
     
+    
+    // Insert info text
+    document.getElementById("info").innerHTML = "X: " + mouseX + " Y: " + (mouseY/2) + " <br>Saved Pixels: " + renderArray.length;
+    
 }, false);
 
 document.addEventListener('keydown', function(evt) {
@@ -247,18 +253,21 @@ document.addEventListener('keydown', function(evt) {
     if(mouseY % 2 != 0){
         mouseY = mouseY - 1;
     }
-    
-    console.log(mouseX + " S "  +mouseY);
+
     var find = renderArray.findIndex(x => x.x == mouseX && x.y == mouseY);
 
     if(find == -1){
+        if(mouseX == -1 || mouseY == -1){
+            setupPlotter();
+            return;
+        }
         renderArray.push({
             x: mouseX,
             y: mouseY
         });
     }
     
-setupPlotter();
+    setupPlotter();
    
 }, false);
 
