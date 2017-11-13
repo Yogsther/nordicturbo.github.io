@@ -138,6 +138,7 @@ function setupPlotter(){
     
     // Draw background
     ctx.fillStyle = "white";
+    
     ctx.fillRect(0,0,canvas.width,canvas.height);
     
     
@@ -147,15 +148,20 @@ function setupPlotter(){
     // Draw saved pixels
     
     if(renderArray != ""){
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "black";
+    ctx.font = "17px Arial";
     var i = 0;
     while(i < renderArray.length){
-        ctx.fillRect(renderArray[i].x * 10, renderArray[i].y * 10, 10, 20);
+        ctx.fillText(renderArray[i].value, (renderArray[i].x * 10), (renderArray[i].y * 10)+17);
         i++;
         }
     }
     
-    ctx.fillStyle = "black";
+    
+    
+    //Draw grid
+    ctx.fillStyle = "lightgrey";
+    
     
     var i = 0;
     while(i <= inputHeight){
@@ -181,7 +187,7 @@ function copyJava(){
     var copyString = "/* Generated with LitEngine Plotter */\n";
     var i = 0;
     while(i < renderArray.length){
-        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + ", " + (renderArray[i].y / 2) + ", " + '"' + value + '"' + ");\n";
+        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + ", " + (renderArray[i].y / 2) + ", " + '"' + renderArray[i].value + '"' + ");\n";
         copyString = copyString + addString;
         i++;
     }
@@ -245,6 +251,8 @@ document.addEventListener('keydown', function(evt) {
     
     var mouseX = mousePos.x -1;
     var mouseY = mousePos.y -1;
+    
+    var value = document.getElementById("value").value;
 
 
     mouseX = Math.floor(mouseX / 10);
@@ -263,7 +271,8 @@ document.addEventListener('keydown', function(evt) {
         }
         renderArray.push({
             x: mouseX,
-            y: mouseY
+            y: mouseY,
+            value: value
         });
     }
     
@@ -276,7 +285,7 @@ document.addEventListener('keydown', function(evt) {
 canvas.addEventListener('click', function(evt) {
 
     mousePos = getMousePos(canvas, evt);
-    
+    var value = document.getElementById("value").value;
     var mouseX = mousePos.x -1;
     var mouseY = mousePos.y -1;
 
@@ -298,11 +307,18 @@ canvas.addEventListener('click', function(evt) {
         setupPlotter();
         return;
     }
+    
+    if(mouseX == -1 || mouseY == -1){
+            setupPlotter();
+            return;
+    }
+    
 
     setupPlotter();
     renderArray.push({
         x: mouseX,
-        y: mouseY
+        y: mouseY,
+        value: value
     });
 }, false);
 
