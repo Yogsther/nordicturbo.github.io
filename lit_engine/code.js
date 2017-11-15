@@ -31,6 +31,10 @@ const documentation = [{
     code: "clear(String type);",
     comment: '// Clear everything. "type" is the the render type: "border" - Draws a border around the screen. "clear" - Draws nothing, no border. "plot" - Draws out coordinates to make it easy to develop.',
     category: "Draw"
+},{
+    code: "clearNoRender(String type);",
+    comment: '// Clear everything but dont render, very usefull when you want to animate something without flickering. . "type" is the the render type: "border" - Draws a border around the screen. "clear" - Draws nothing, no border. Plot is not supported for this Method.',
+    category: "Draw"
 }, {
     code: "drawNoRender(int x, int y, String value);", 
     comment: "Normal Draw method, but without rendering. Usefull when you draw something big and you want it all to appear at the time.",
@@ -76,6 +80,10 @@ const documentation = [{
     code: "debugDisableSplash();",
     comment: "Disable splash screen on launch, for debugging.",
     category: "Debug"  
+},{
+    code: "Change Icon",
+    comment: "Change the icon.png file in src to desired image. Recommended size 128x128px",
+    category: "Other"  
 }];
 
 
@@ -104,6 +112,12 @@ if (window.location.href.indexOf("plotter") != -1){
 }
 
 
+var mouseOn = false;
+
+function mouseStatus(status){
+    mouseOn = status;
+}
+
 
 function getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect();
@@ -118,7 +132,7 @@ function setupPlotter(){
     // Render plotter
     
     if(initate == true){
-        document.getElementById("x").value = 60;
+        document.getElementById("x").value = 90;
         document.getElementById("y").value = 20;
         document.getElementById("value").value = "*";
         initate = false;
@@ -184,14 +198,14 @@ function copyJava(){
     var value = document.getElementById("value").value;
     
     
-    var copyString = "/* Generated with LitEngine Plotter */\n";
+    var copyString = "public static void DOODLE_NAME(int x, int y){\n/* Generated with LitEngine Plotter */\n";
     var i = 0;
     while(i < renderArray.length){
-        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + ", " + (renderArray[i].y / 2) + ", " + '"' + renderArray[i].value + '"' + ");\n";
+        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + " + x, " + (renderArray[i].y / 2) + " + y, " + '"' + renderArray[i].value + '"' + ");\n";
         copyString = copyString + addString;
         i++;
     }
-    copyString = copyString + "LitEngine.render();";
+    copyString = copyString + "LitEngine.render();\n}";
     copyToClipboard(copyString);
 }
 
@@ -248,6 +262,8 @@ canvas.addEventListener('mousemove', function(evt) {
 
 document.addEventListener('keydown', function(evt) {
 
+    
+    if(!mouseOn){return;};
     
     var mouseX = mousePos.x -1;
     var mouseY = mousePos.y -1;
