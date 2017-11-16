@@ -87,6 +87,36 @@ const documentation = [{
 }];
 
 
+const colors = [{
+    value: 0,
+    color: "White"
+}, {
+    value: 1,
+    color: "Red"
+}, {
+    value: 2,
+    color: "Blue"
+}, {
+    value: 3,
+    color: "Green"
+}, {
+    value: 4,
+    color: "Yellow"
+},{
+    value: 5,
+    color: "Grey"
+}, {
+    value: 6,
+    color: "Purple"
+}, {
+    value: 7,
+    color: "Orange"
+}, {
+    value: 10,
+    color: "Black"
+}];
+
+
 var initate = true;
 
 var inputWidth;
@@ -107,12 +137,14 @@ if (window.location.href.indexOf("documentation") != -1){
 }
 
 if (window.location.href.indexOf("plotter") != -1){
+    initatePlotter();
     setupPlotter();
     playStatus = "L.it Engine 🔥 // Plotter";
 }
 
 
 var mouseOn = false;
+var selectedColor = 0;
 
 function mouseStatus(status){
     mouseOn = status;
@@ -126,6 +158,30 @@ function getMousePos(canvas, evt) {
           y: evt.clientY - rect.top
         };
   }
+
+
+
+function initatePlotter(){
+    
+    
+    
+    for(var i = 0; i < colors.length; i++){
+        var color = colors[i].color;
+        if(color == "White"){
+            color = "Black"
+        }
+        document.getElementById("color_select").innerHTML += '<option value="' + colors[i].value + '" style="color:' + color + ';">' + colors[i].color + '</option>';
+    }
+}
+
+function colorChange(){
+    selectedColor = document.getElementById("color_select").value;
+    var color = colors[selectedColor].color;
+    if(color == "White"){
+        color = "black";
+    }
+    document.getElementById("color_select").style.color = color;
+}
 
 
 function setupPlotter(){
@@ -151,7 +207,7 @@ function setupPlotter(){
     canvas.height = inputHeight*10*2;
     
     // Draw background
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "black";
     
     ctx.fillRect(0,0,canvas.width,canvas.height);
     
@@ -162,10 +218,11 @@ function setupPlotter(){
     // Draw saved pixels
     
     if(renderArray != ""){
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "17px Arial";
     var i = 0;
     while(i < renderArray.length){
+        ctx.fillStyle = colors[renderArray[i].color].color;
         ctx.fillText(renderArray[i].value, (renderArray[i].x * 10), (renderArray[i].y * 10)+17);
         i++;
         }
@@ -174,7 +231,7 @@ function setupPlotter(){
     
     
     //Draw grid
-    ctx.fillStyle = "lightgrey";
+    ctx.fillStyle = "#111";
     
     
     var i = 0;
@@ -201,11 +258,11 @@ function copyJava(){
     var copyString = "public static void DOODLE_NAME(int x, int y){\n/* Generated with LitEngine Plotter */\n";
     var i = 0;
     while(i < renderArray.length){
-        var addString = "LitEngine.drawNoRender(" + renderArray[i].x + " + x, " + (renderArray[i].y / 2) + " + y, " + '"' + renderArray[i].value + '"' + ");\n";
+        var addString = "LitEngine.drawNoRenderColor(" + renderArray[i].x + " + x, " + (renderArray[i].y / 2) + " + y, " + '"' + renderArray[i].value + '"' + "," + renderArray[i].color + ");\n";
         copyString = copyString + addString;
         i++;
     }
-    copyString = copyString + "LitEngine.render();\n}";
+    copyString = copyString + "//LitEngine.render();\n}";
     copyToClipboard(copyString);
 }
 
@@ -238,6 +295,8 @@ canvas.addEventListener('mousemove', function(evt) {
 
     mousePos = getMousePos(canvas, evt);
     
+    var value = document.getElementById("value").value;
+    
     var mouseX = mousePos.x -1;
     var mouseY = mousePos.y -1;
 
@@ -251,8 +310,9 @@ canvas.addEventListener('mousemove', function(evt) {
     
     
     setupPlotter();
-    ctx.fillStyle = "black";
-    ctx.fillRect(mouseX*10, mouseY*10, 10, 20);
+    ctx.fillStyle = "white";
+    ctx.font = "17px Arial";
+    ctx.fillText(value, mouseX * 10, (mouseY * 10)+17);
     
     
     // Insert info text
@@ -267,6 +327,8 @@ document.addEventListener('keydown', function(evt) {
     
     var mouseX = mousePos.x -1;
     var mouseY = mousePos.y -1;
+    
+    var color = selectedColor;
     
     var value = document.getElementById("value").value;
 
@@ -288,7 +350,8 @@ document.addEventListener('keydown', function(evt) {
         renderArray.push({
             x: mouseX,
             y: mouseY,
-            value: value
+            value: value,
+            color: color
         });
     }
     
@@ -330,11 +393,14 @@ canvas.addEventListener('click', function(evt) {
     }
     
 
+    var color = selectedColor;
+    
     setupPlotter();
     renderArray.push({
-        x: mouseX,
-        y: mouseY,
-        value: value
+            x: mouseX,
+            y: mouseY,
+            value: value,
+            color: color
     });
 }, false);
 

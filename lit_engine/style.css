@@ -193,6 +193,7 @@ h4{
     position: absolute;
     top: 10px;
     left: 390px;
+    width: 30px;
 }
 
 
@@ -233,6 +234,16 @@ h4{
 
 #copyButton:active{
     transform: scale(0.95);
+}
+
+#color_select{
+    
+    position: absolute;
+    top: 0px;
+    border-radius: 5px;
+    height: 35px;
+    top: 10px;
+    left: 440px;
 }
 
 

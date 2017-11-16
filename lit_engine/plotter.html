@@ -18,6 +18,8 @@
     <input id="x" placeholder="Enter width" oninput="setupPlotter()" title="Set width">
     <input id="y" placeholder="Enter height" oninput="setupPlotter()" title="Set height">
     <input id="value" placeholder="value" maxlength="1" oninput="setupPlotter()" title="Set value">
+    <select id="color_select" oninput="colorChange();">
+    </select>
     <button id="copyButton" onclick="copyJava()" title="Export drawing to LitEngine Java code.">Copy java code</button>
     <span id="info">X: 0 Y: 0 <br>Saved Pixels: 0</span>
     <span id="info_text">
