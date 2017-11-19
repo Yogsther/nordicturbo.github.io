@@ -5,7 +5,11 @@ var playStatus = "L.it Engine 🔥";
 
 const documentation = [{
     code: "draw(int x, int y, String value);",
-    comment: 'This method is the standard draw method to draw a pixel. (Note: "value" should only be one character.)',
+    comment: 'This method is the standard draw method to draw a white pixel. (Note: "value" should only be one character.)',
+    category: "Draw"
+},{
+    code: "drawColor(int x, int y, String value, int color);",
+    comment: 'This method is the standard draw method to draw a colored pixel. (Color table can be accessed here: <a href="colortable.txt">Color Table</a>)',
     category: "Draw"
 }, {
     code: "print(int x, int y, String value);",
@@ -48,6 +52,10 @@ const documentation = [{
     comment: "Normal drawRaw method, but without rendering. Usefull when you draw something big and you want it all to appear at the time.",
     category: "Draw"
 }, {
+    code: "checkKey(int KeyCode);",
+    comment: 'Check if a key is pressed down.',
+    category: "Input"  
+},{
     code: "inputString();",
     comment: 'Get a string (with spaces) from the user. Example: <code>String string = LitEngine.inputString();</code>',
     category: "Input"  
@@ -79,6 +87,10 @@ const documentation = [{
 },{
     code: "debugDisableSplash();",
     comment: "Disable splash screen on launch, for debugging.",
+    category: "Debug"  
+},{
+    code: "debugShowPressedKeys();",
+    comment: "This prints out current keys pressed. Usefull for finding a KeyCode for a specific key.",
     category: "Debug"  
 },{
     code: "Change Icon",

@@ -19,7 +19,7 @@
     <div id="body">
     <div id="body_div">
         
-        <b>Welcome to the L.it <img src="https://media.giphy.com/media/26BRt5hkD6hLzTl3q/giphy.gif" id="fire_gif"><span style="visibility:hidden;">X</span> Engine!</b> v.0.2<br>
+        <b>Welcome to the L.it <img src="https://media.giphy.com/media/26BRt5hkD6hLzTl3q/giphy.gif" id="fire_gif"><span style="visibility:hidden;">X</span> Engine!</b> v.0.5<br>
         The Livingfor.it Engine is an open source ASCII Game engine written in Java. Easy, intuitive and most importantly, powerfull! 
 
          
@@ -31,11 +31,14 @@
         
         <a href="documentation.html" title="Full documentation, all methods"><b>Documentation (All methods)</b></a><br>
         
-        <a href="downloads/LitEngine_TechDemo.zip" title="Download.it">Download Tech Demo! (8kb)</a>
+        <a href="downloads/TechDemo.zip" title="Download.it">Download Tech Demo! (34kb zip)</a>
         
         <h4>Features</h4>
-        - Draw out raw pixels at coordinates.<br>
-        - Plotter - Draw out your art, and import it into LitEngine<br>
+        - Color support<br>
+        - Draw out ascii characters at coordinates.<br>
+        - Keypress input<br>
+        - <a href="plotter.html" title="Draw and export them to your project.">Plotter</a> - Draw out your art, and import it into LitEngine<br>
+        - JFrame integration<br>
         - Get user input (Strings and Input)<br>
         - Draw rectangles and circles<br>
         - Print animated text, perfect for RPGs.<br>
@@ -49,9 +52,6 @@
         
         
         <h4>Planned features</h4>
-        - JFrame integration<br>
-        - Keypress input<br>
-        - Multithreaded heartbeat<br>
         - Audio support<br>
         
         <br>
@@ -59,21 +59,25 @@
         
         <h4>Quickstart guide:</h4>
         <code>
-        //Initiate LitEngine<br>
+            <span style="color: grey;">//Initiate LitEngine</span><br>
         LitEngine.start("border"); <br>
         
-        <br>//Get input<br>
+            <br><span style="color: grey;">//Get input</span><br>
         String string = LitEngine.inputString(); <br>
         
-        <br>//Print out text<br>
-        LitEngine.print(x, y, string); </code><br>
+            <br><span style="color: grey;">//Print out text (Animated RPG style)</span><br>
+        LitEngine.printAnimated(5, 10, string, 10); </code><br>
         <br>
+        
+        More advanced <a href="https://github.com/Yogsther/LitEngine/blob/master/README.md">Quickstart Guide</a>
         
         
     </div>
     
     <div id="screenshot_div">
         <b>Screenshots:</b>
+        <img class="img" alt="Screenshot from the L.it Engine" src="screenshots/screen_color_01.PNG" title="Color support!">
+        <img class="img" alt="Screenshot from the L.it Engine" src="screenshots/screen_color_02.PNG" title="Color support!">
         <img class="img" alt="Screenshot from the L.it Engine" src="screenshots/screen_00.PNG" title="Drawn with plotter">
         <img class="img" alt="Screenshot from the L.it Engine" src="screenshots/screen_01.PNG">
         <img class="img" alt="Screenshot from the L.it Engine" src="screenshots/screen_02.PNG">
