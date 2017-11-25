@@ -1821,7 +1821,13 @@ function eraseCookie(name) {
 }
  
 
-
+function weeb(binary){
+    if(binary > 0){
+        document.getElementById("weeb").innerHTML = "weeb";
+    } else {
+        document.getElementById("weeb").innerHTML = "web";
+    }
+}
 
 
 

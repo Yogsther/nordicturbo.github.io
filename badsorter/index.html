@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bad sort visual</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<title>Redirect</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <link rel="shortcut icon" href="img/favicon.ico">
 
-            <!-- Socket.io -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-  </head>
-  <body>
-
-    <div id="body">
-    <button onclick="generate()">Shuffle numbers</button>
-    <button onclick="initateSort()" title="Randomizes the entire array until its sorted.">Sort numbers (Random)</button>
-    <button onclick="goodSort()" title="Standard sorting algorithm.">Sort numbers (Normal)</button>
-    <input id="amount" oninput="generate()" placeholder="Amount to generate" /><span id="status"></span>
-    <div id="numbers"></div>
-    <canvas id="canvas"></canvas>
+</head>
+<body>
+    <!-- Redirect page -->
+    We have moved to Livingforit.xyz/SuperSorter
+    <br>
+    You are being redirected now, if this doesn't work <a href="http://www.livingforit.xyz/supersorter">click here!</a>
+    
+    
+    <script>
+    
+        window.onload = new function(){
+            window.location.replace('http://www.livingforit.xyz/supersorter');
+        }
         
-        <!-- Top 10 scoreboard -->
-     
-        <span id="scoreboard_title">Top 10 random sorts:</span>
-    <div id="scoreboard">
-    </div>
-        
-    <script src="code.js"></script>
-    </div>
+    </script>
 
-  </body>
+</body>
 </html>

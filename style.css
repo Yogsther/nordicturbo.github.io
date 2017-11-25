@@ -1114,7 +1114,7 @@ body{
     width: 483px;
     background-color: rgba(0,0,0,.4);
     position: absolute;
-    top: 450px;
+    top: 350px;
     left: 40px;
     border-radius: 10px;
     
@@ -1248,30 +1248,6 @@ body{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #twitter{
     position: absolute;
     bottom: -950px;
@@ -1285,10 +1261,22 @@ body{
 
 
 
+#news{
+    height: 300px;
+    width: 483px;
+    background: rgba(0,0,0,0.2);
+    position: relative;
+    top: 320px;
+    left: 40px;
+    border-radius: 10px;
+}
 
 
-
-
+.title{
+    margin: 10px;
+    position: relative;
+    top: 10px;
+}
 
 
 
