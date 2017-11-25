@@ -171,7 +171,7 @@ socket.on("scoreboard", function loadScoreBoard(data){
         }
 
         
-        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgb(' + color + ');"> <span class="name"> ' + (i+1) + ". " + object.name +'</span> <span class="items">' + object.items + '</span> <span class="time">' + timeMinutes+ ' minutes ' + timeSeconds.toFixed(1) + ' seconds</span> </div>';
+        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgb(' + color + ');"> <span class="name" title="Username"> ' + (i+1) + ". " + object.name +'</span> <span class="items" title="Items sorted">' + object.items + '</span> <span class="time" title="Time taken">' + timeMinutes+ ' minutes ' + timeSeconds.toFixed(1) + ' seconds</span> </div>';
         //document.getElementById("score").style.borderColor = "rgb(" + color + ")";
     }
 });
@@ -189,6 +189,10 @@ function initateSort(){
   runsort();
 }
 
+var then = Date.now();
+var runsOnRecord = 0;
+var avrageSpeed = [];
+
 function goodSort(){
     stop = true;
     numbers.sort(function(a, b) {
@@ -198,15 +202,46 @@ function goodSort(){
 }
 
 
+var avrageSpeedInt = 0;
+
 // Sorting loop
 async function runsort(){
     
     if(stop){
         return;
     }
-
-  document.getElementById("status").innerHTML = " Sorting... (this can take a while...) Tried sorting " + runs + " times.";
+    
+    var now = Date.now();
+    if((now - then) > 100){
+        then = now;
+        runsPerSecond = runsOnRecord;
+        avrageSpeed.push(runsPerSecond);
+        
+        var totalAvrage = 0;
+        for(var i = 0; i < avrageSpeed.length; i++){
+            totalAvrage += avrageSpeed[i];
+        } 
+        
+        console.log(avrageSpeed.length);
+        avrageSpeedInt = Math.round((totalAvrage / avrageSpeed.length)*10);
+        runsOnRecord = 0;
+        
+        console.log(avrageSpeed);
+        
+        if(avrageSpeed.length > 100){
+            // Reset avragespeed
+            var oldAvrageSpeed = avrageSpeed;
+            avrageSpeed = [];
+            for(var i = 0; i < 10; i++){
+                avrageSpeed.push(oldAvrageSpeed[oldAvrageSpeed.length - i - 1]);
+            }
+        }
+    } 
+  
+  var amount = document.getElementById("amount").value;
+  document.getElementById("status").innerHTML = "<span title='S/s = Sorts per Second'>Speed: " + runsPerSecond*10 + " S/s Avrage speed: " + avrageSpeedInt + " S/s</span> Tried sorting " + runs + " times.";
   runs++;
+  runsOnRecord++;
   if(!sorted){
     numbers = shuffle(numbers); // Shuffle
     printNumbers(); // Print Numbers
@@ -215,7 +250,9 @@ async function runsort(){
     runsort();
   } else {
     // Numbers are sorted
-    
+    if(numbers.length >= 10){
+        unlockProfile("sort");
+    }
     var now = Date.now();
     var timeMinutes = Math.round((now - startTime) / 60000);
     var timeSeconds = ((now - startTime) / 1000) - Math.round((timeMinutes * 60));
@@ -275,6 +312,29 @@ function shuffle(arr){
   }
   return shuffledArray;
 
+}
+
+function unlockProfile(name){
+    
+    // Read cookie
+    var animatedPictures = readCookie("animatedProfiles");
+    if(animatedPictures == undefined || animatedPictures == null){
+        createCookie("animatedProfiles", "", 10000);
+        animatedPictures = readCookie("animatedProfiles");
+    }
+    animatedPictures = animatedPictures.split("|")
+    
+    // Modify value
+    if(animatedPictures.indexOf(name) == -1){
+    animatedPictures.push(name);
+    }
+    
+    // Save cookie
+    animatedPictures = animatedPictures.join("|");
+    createCookie("animatedProfiles", animatedPictures, 10000)
+    
+ 
+    
 }
 
 
