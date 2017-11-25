@@ -1,3 +1,9 @@
+// Setup canvas
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var stop = false;
+
+
 window.onload = new function(){
   document.getElementById("amount").value = 10;
   generate();
@@ -8,14 +14,23 @@ function generate(){
   numbers = [];
   var amount = document.getElementById("amount").value;
   for(var i = 0; i < amount; i++){
-    numbers.push(Math.floor(Math.random()*100) + 1);
+    numbers.push(i+1);
   }
-  printNumbers();
+    numbers = shuffle(numbers);
+    printNumbers();
 }
 
 // Print out numbers to the document.
 function printNumbers(){
   // Print arr numbers
+    canvas.width = numbers.length*50;
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0, canvas.width, canvas.height);
+  for(var i = 0; i < numbers.length; i++){
+        ctx.fillStyle = "rgba(255, 0, 0, " + (numbers[i]/(numbers.length)) +")";
+        ctx.fillRect(i*50, 0, 50, 50);
+  }   
   document.getElementById("numbers").innerHTML = numbers;
 }
 
@@ -26,14 +41,29 @@ var runs;
 
 // Start storting
 function initateSort(){
-  runs = 0;
+  stop = false;
+  runs = -1;
   sorted = false;
   startTime = Date.now();
   runsort();
+
 }
+
+function goodSort(){
+    stop = true;
+    numbers.sort(function(a, b) {
+        return a - b;
+    });
+    printNumbers();
+}
+
 
 // Sorting loop
 async function runsort(){
+    
+    if(stop){
+        return;
+    }
 
   document.getElementById("status").innerHTML = " Sorting... (this can take a while...) Tried sorting " + runs + " times.";
   runs++;
@@ -47,7 +77,10 @@ async function runsort(){
     // Numbers are sorted
     var now = Date.now();
     var timeMinutes = Math.round((now - startTime) / 60000);
-    var timeSeconds = ((now - startTime) / 1000) - (timeMinutes * 60)
+    var timeSeconds = ((now - startTime) / 1000) - Math.round((timeMinutes * 60));
+    if(timeSeconds < 0){
+        timeSeconds *= -1;
+    }
 
     document.getElementById("status").innerHTML = " Sorted! 👍 Took " + runs + " tries in " + timeMinutes.toFixed(0) + " minutes and " + timeSeconds.toFixed(1) + " seconds.";
   }

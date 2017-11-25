@@ -3,23 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Bad sort visual</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
 
 
     <button onclick="generate()">Generate numbers</button>
-    <button onclick="initateSort()">Sort numbers</button>
+    <button onclick="initateSort()" title="Randomizes the entire array until its sorted.">Sort numbers (Random)</button>
+    <button onclick="goodSort()" title="Standard sorting algorithm.">Sort numbers (Normal)</button>
     <input id="amount" placeholder="Amount to generate" /><span id="status"></span>
     <div id="numbers"></div>
+    <canvas id="canvas"></canvas>
     <script src="code.js"></script>
 
-    <style>
-    #numbers{
-      width: 90%;
-      display: block;
-      word-wrap: break-word;
-    }
-    </style>
 
   </body>
 </html>
