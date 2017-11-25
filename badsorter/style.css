@@ -3,3 +3,163 @@
     display: block;
     word-wrap: break-word;
 }
+
+body{
+    color: white;
+    background: #111;
+}
+
+#canvas{
+    border-radius: 5px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    top: 30px;
+}
+
+#status{
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    text-align: center;
+    font-family: ubuntu;
+    display: blocK;
+}
+
+button{
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    background: white;
+    font-family: ubuntu;
+    margin: 5px;
+    transition: transform 0.05s;
+    left: 25px;
+    position: relative;
+    
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+button:active{
+    transform: scale(0.95);
+}
+
+
+
+input{
+    border-radius: 3px;
+    border: none;
+    height: 27px;
+    width: 50px;
+    font-family: ubuntu;
+    margin: 5px;
+    text-align: center;
+    position: relative;
+    left: 25px;
+}
+
+#numbers{
+    font-family: ubuntu;
+    font-size: 20px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    top: 20px;
+    text-align: center;
+}
+
+#body{
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#scoreboard{
+    /*background: black;*/
+
+    position: relative;
+    top: 100px;
+}
+
+#score{
+    display: block;
+    position: relative;
+    background: #111;
+    height: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: ubuntu;
+    
+    border-width: 1px;
+    border-style: solid;
+    margin: 5px;
+    
+   /* border-color: red;*/
+    
+}
+
+.name{
+    display: block;
+    width: 30%;
+    float: left;
+    display: inline-block;
+}
+.items{
+    text-align: center;
+    display: block;
+    width: 30%;
+    margin: 0 auto;
+    display: inline-block;
+}
+.time{
+    text-align: right;
+    display: block;
+    width: 40%;
+    float: right;
+    display: inline-block;
+}
+
+#scoreboard_title{
+    position: relative;
+    top: 90px;
+    left: 10px;
+    font-family: ubuntu;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+

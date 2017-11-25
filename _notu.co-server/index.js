@@ -1680,6 +1680,80 @@ socket.on("newpixel", function(newPixel){
     return;
   }
 });
+    
+    
+    
+/*
+    Super Sorter (Bongosort)
+    Scoreboard
+*/
+
+// Read scoreboard for super sorter
+function readScoreboard(){
+    var indexRaw = fs.readFileSync("ss_scoreboard.txt");
+    var index = indexRaw.toString().split("#");
+    
+    var returnArr = [];
+    for(var i = 0; i < index.length; i++){
+        var pushMe = JSON.parse(index[i]);
+        returnArr.push(pushMe);
+    }
+    
+    return returnArr;
+}
+
+function writeScoreboard(allUsers){
+
+        var i = 0;
+        var stringUsers = [];
+
+        while(allUsers.length > i){
+            var newUser = JSON.stringify(allUsers[i]);
+
+            stringUsers.push(newUser);
+            i++;
+        }
+        var stringUsers = stringUsers.join("#");
+        fs.writeFileSync("ss_scoreboard.txt", stringUsers);
+}
+
+
+socket.on("ss_record", function(data){
+    
+    var scoreboard = readScoreboard();
+    
+    if(data.items > scoreboard[scoreboard.length - 1].items){
+        // New record
+        
+        // Remove last record
+        scoreboard.splice(scoreboard.length -1, 1);
+        
+        // Insert new record.
+        scoreboard.push(data);
+        
+        // Sort this shit
+        scoreboard.sort(function(a,b){
+            return b.items - a.items;
+        });
+        
+        
+        // Write (save)
+        writeScoreboard(scoreboard);
+        
+    } else {
+        return;
+    }
+
+});
+
+    
+socket.on("get_ss_scoreboard", function(){
+    var scoreboard = readScoreboard();
+    socket.emit("scoreboard", scoreboard);
+})
+
+    
+
 
 
 
@@ -1778,3 +1852,39 @@ function getIndex(){
     var index = indexRaw.toString().split("#");
     return index;
 }
+
+
+    
+    
+function createScoreboardTemplate(){
+    // This function is never used.
+    
+    var scoreboard = [];
+    var object = {
+            name: "name",
+            items: 3,
+            time: 30000
+        }
+    
+    for(var i = 0; i < 10; i++){
+        scoreboard.push(object);
+    }
+    
+    // Save
+    writeScoreboard(scoreboard);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
