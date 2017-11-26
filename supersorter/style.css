@@ -21,11 +21,15 @@ body{
 
 #status{
     position: absolute;
-    top: 150px;
-    left: 50px;
     text-align: center;
     font-family: ubuntu;
-    display: blocK;
+    display: block;
+    left: 65px;
+    top: 44px;
+}
+
+#sortbutton{
+    width: 100px;
 }
 
 button{
@@ -38,6 +42,7 @@ button{
     transition: transform 0.05s;
     left: 25px;
     position: relative;
+    cursor: pointer;
     
 }
 
@@ -62,6 +67,11 @@ input{
     left: 25px;
 }
 
+#top{
+    left: 35px;
+    position: relative;
+}
+
 #numbers{
     font-family: ubuntu;
     font-size: 20px;
@@ -83,6 +93,7 @@ input{
 
     position: relative;
     top: 100px;
+    margin-bottom: 30px;
 }
 
 #score{
@@ -157,7 +168,18 @@ input{
 
 
 
-
+#sortType{
+    border-radius: 5px;
+    border: none;
+    margin: 5px;
+    position: relative;
+    height: 30px;
+    width: 165px;
+    left: 25px;
+    font-family: ubuntu;
+    cursor: pointer;
+    
+}
 
 
 

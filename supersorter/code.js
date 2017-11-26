@@ -112,21 +112,49 @@ var stop = false;
 //const colors = ["0, 169, 255", "250, 0, 255", "255, 0, 0", "255, 204, 0", "0, 255, 29"];
 //var color = colors[Math.floor(Math.random()*colors.length)];
 
-
-
-var color = Math.floor(Math.random()*255) + "," + Math.floor(Math.random()*255) + "," + Math.floor(Math.random()*255);
-
-
-
-window.onload = new function(){
-  document.getElementById("amount").value = 10;
-  generate();
+var color;
+betterColors();
+function betterColors(){
+    
+    var colorArr = [Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)];
+    
+    var brighten = false;
+    for(var i = 0; i < colorArr.length; i++){
+        if(colorArr[i] < 200){
+            brighten = true;
+        }
+    }
+    if(brighten){
+        console.log("color adjusted");
+        console.log(colorArr);
+        colorArr[Math.floor(Math.random()*colorArr.length)] = Math.floor(Math.random()*55) + 200;
+        console.log(colorArr);
+    }
+    
+    color = colorArr[0] + "," + colorArr[1] + "," + colorArr[2];
+    
+    
 }
+
+
+function sort(){
+    
+    var type = document.getElementById("sortType").value;
+    if(type == "bogo"){
+        initateSort();
+    }
+    if(type == "bubble"){
+        bubbleSort();
+    }
+    
+}
+
 
 // Generate random numbers (prep)
 function generate(){
   numbers = [];
   var amount = document.getElementById("amount").value;
+    createCookie("ss_amount", amount, 10000);
   for(var i = 0; i < amount; i++){
     numbers.push(i+1);
   }
@@ -137,7 +165,7 @@ function generate(){
 // Print out numbers to the document.
 function printNumbers(){
     // Print arr numbers
-    var rows = Math.floor(numbers.length / 10);
+    var rows = Math.ceil(numbers.length / 10);
     if(rows == 0){
         rows = 1;
     }
@@ -146,7 +174,6 @@ function printNumbers(){
         canvas.width = 500;
     }
     canvas.height = 50 * rows;
-    console.log(canvas.height + " - " + rows);
     
     
     ctx.fillStyle = "#111";
@@ -158,7 +185,7 @@ function printNumbers(){
         ctx.fillStyle = "rgba(" + color +  "," + (numbers[i]/(numbers.length)) +")";
         ctx.fillRect(i*50 - (Math.floor(i / 10) * 500), Math.floor(i/10)*50, 50, 50);
   }   
-  document.getElementById("numbers").innerHTML = numbers;
+  //document.getElementById("numbers").innerHTML = numbers;
 }
 
 // Main loop run on "Sort numbers"
@@ -191,6 +218,19 @@ socket.on("scoreboard", function loadScoreBoard(data){
 
 
 
+window.onload = new function(){
+    var amount = readCookie("ss_amount");
+    if(amount == null){
+        document.getElementById("amount").value = 10;
+    } else {
+        document.getElementById("amount").value = amount;
+    }
+    generate();
+}
+
+
+
+
 // Start storting
 function initateSort(){
   stop = false;
@@ -211,8 +251,37 @@ function goodSort(){
     numbers.sort(function(a, b) {
         return a - b;
     });
+}
+
+
+
+async function bubbleSort(){
+    sorted = checkSorted();
+    
+    while(!sorted){
+        
+        // Sort
+        for(var i = 0; i < numbers.length; i++){
+            // Import old array into new array.
+            var newArray = numbers.slice();
+            
+            if(numbers[i] > numbers[i+1]){
+                
+                newArray[i+1] = numbers[i];
+                newArray[i] = numbers[i+1];
+
+                //Save changes
+                printNumbers();
+                numbers = newArray;
+            }
+            await sleep(0.1);
+            sorted = checkSorted();
+        }
+        
+    }
     printNumbers();
 }
+
 
 
 var avrageSpeedInt = 0;

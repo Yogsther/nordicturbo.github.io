@@ -15,16 +15,24 @@
   <body>
 
     <div id="body">
+    <div id="top">
     <button onclick="generate()">Shuffle numbers</button>
-    <button onclick="initateSort()" title="Randomizes the entire array until its sorted.">Sort numbers (Random)</button>
-    <button onclick="goodSort()" title="Standard sorting algorithm.">Sort numbers (Normal)</button>
-    <input id="amount" oninput="generate()" placeholder="Amount to generate" /><span id="status"></span>
+        
+    <select id="sortType">
+        <option title="Shuffle until it's sortet. Very slow, or fast." value="bogo">Bogosort</option>
+        <option title="Inefficient but simple sorting algorithm. Bottlenecked so it can be visualized." value="bubble">Bubble sort</option>
+    </select>
+        
+    <button onclick="sort()" title="Sort" id="sortbutton">Sort</button>
+    <input id="amount" type="number" oninput="generate()" placeholder="Amount of Items" />
+    </div>        
+    <span id="status"></span>
     <div id="numbers"></div>
     <canvas id="canvas"></canvas>
         
         <!-- Top 10 scoreboard -->
      
-        <span id="scoreboard_title">Top 10 random sorts:</span>
+    <span id="scoreboard_title">Top 10 bogo sorts:</span>
     <div id="scoreboard">
     </div>
         
