@@ -136,15 +136,27 @@ function generate(){
 
 // Print out numbers to the document.
 function printNumbers(){
-  // Print arr numbers
+    // Print arr numbers
+    var rows = Math.floor(numbers.length / 10);
+    if(rows == 0){
+        rows = 1;
+    }
     canvas.width = numbers.length*50;
-    canvas.height = 50;
+    if(canvas.width > 500){
+        canvas.width = 500;
+    }
+    canvas.height = 50 * rows;
+    console.log(canvas.height + " - " + rows);
+    
     
     ctx.fillStyle = "#111";
     ctx.fillRect(0,0, canvas.width, canvas.height);
-  for(var i = 0; i < numbers.length; i++){
+  
+    var row = 1;
+    for(var i = 0; i < numbers.length; i++){
+
         ctx.fillStyle = "rgba(" + color +  "," + (numbers[i]/(numbers.length)) +")";
-        ctx.fillRect(i*50, 0, 50, 50);
+        ctx.fillRect(i*50 - (Math.floor(i / 10) * 500), Math.floor(i/10)*50, 50, 50);
   }   
   document.getElementById("numbers").innerHTML = numbers;
 }
