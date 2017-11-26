@@ -20,12 +20,14 @@ body{
 }
 
 #status{
-    position: absolute;
+    position: relative;
     text-align: center;
     font-family: ubuntu;
     display: block;
-    left: 65px;
-    top: 44px;
+    margin: 0 auto;
+    top: 12px;
+    right: 140px;
+    width: 150%;
 }
 
 #sortbutton{
@@ -86,6 +88,7 @@ input{
     width: 600px;
     margin: 0 auto;
     position: relative;
+    
 }
 
 #scoreboard{

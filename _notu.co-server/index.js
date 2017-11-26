@@ -1722,8 +1722,17 @@ socket.on("ss_record", function(data){
     
     var scoreboard = readScoreboard();
     
+    
+
     if(data.items > scoreboard[scoreboard.length - 1].items){
         // New record
+        // Check for dupes
+        for(var i = 0; i < scoreboard.length; i++){
+        if(scoreboard[i].time == data.time){
+            console.log("Found dup!");
+            return;
+         }
+        }
         
         // Remove last record
         scoreboard.splice(scoreboard.length -1, 1);
@@ -1753,9 +1762,6 @@ socket.on("get_ss_scoreboard", function(){
 })
 
     
-
-
-
 
 // End of on connection !!!
 });
