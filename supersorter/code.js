@@ -240,7 +240,7 @@ var estimatedTime = "";
 // Start storting
 function initateSort(){
     sent = false;
-  estimatedLast = 0;
+  estimatedLast = Date.now();
   estimatedTime = estimateTime(amount.value, 200);
   stop = false;
   runs = -1;
@@ -333,14 +333,15 @@ async function runsort(){
   
   
     
-    if((Date.now() - estimatedLast) > 3000){
+    if((Date.now() - estimatedLast) > 5000){
         // Do this every second
-        estimatedTime = estimateTime(amount, (runsPerSecond * 10));
+        estimatedTime = estimateTime(amount, (avrageSpeedInt));
         estimatedLast = Date.now();
     }
     
+  var estimatedTimeLeft = millisToTime((startTime + estimatedTime) - Date.now());
     
-  document.getElementById("status").innerHTML = "<span title='S/s = Sorts per Second'>Speed: " + runsPerSecond*10 + " S/s Avrage speed: " + avrageSpeedInt + " S/s</span> Tried sorting " + runs + " times. Estimated time: " + estimatedTime.hours + "h " + estimatedTime.minutes + "m " + estimatedTime.seconds + "s.";
+  document.getElementById("status").innerHTML = "<span title='S/s = Sorts per Second'>Speed: " + runsPerSecond*10 + " S/s Avrage speed: " + avrageSpeedInt + " S/s</span> Tried sorting " + runs + " times. Estimated time left: " + estimatedTimeLeft.days + "d " + estimatedTimeLeft.hours + "h " + estimatedTimeLeft.minutes + "m " + estimatedTimeLeft.seconds + "s.";
   runs++;
   runsOnRecord++;
   if(!sorted){
@@ -378,8 +379,7 @@ async function runsort(){
 function estimateTime(amount, speed){
     var firstCalc = (1 / factorial[amount-1]) * speed;
     var millis = (1 /  firstCalc) * 1000;
-    var time = millisToTime(millis);
-    return time;
+    return millis;
 }
 
 
@@ -429,14 +429,16 @@ function shuffle(arr){
 // Millis to h-m-s
 function millisToTime(millis){
     
-    var hours = Math.floor(millis / 1000 / 3600);
-    var minutes = Math.floor((millis / 1000 / 60) - hours * 60);
-    var seconds = Math.floor(millis / 1000) - (hours * 3600+ minutes * 60);
+    var days = Math.floor(millis / 1000 / 3600 / 24);
+    var hours = Math.floor(millis / 1000 / 3600) - days * 24;
+    var minutes = Math.floor((millis / 1000 / 60) - hours * 60 - days * 24 * 60);
+    var seconds = Math.floor(millis / 1000) - (hours * 3600 + minutes * 60 + 24 * days * 3600);
     
     return {
         seconds: seconds,
         minutes: minutes,
-        hours: hours
+        hours: hours,
+        days: days
     };
 }
 
