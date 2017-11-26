@@ -212,7 +212,7 @@ socket.on("scoreboard", function loadScoreBoard(data){
         
         var insertGlow = "";
         if(username == object.name){
-            insertGlow = 'style="text-shadow: 0px 0px 3px white"';
+            insertGlow = 'style="text-shadow: 0px 0px 1px white"';
         }
         
         
@@ -337,6 +337,9 @@ async function runsort(){
         // Do this every second
         estimatedTime = estimateTime(amount, (avrageSpeedInt));
         estimatedLast = Date.now();
+        
+        playStatus = "Sorting " + amount + " items at " + avrageSpeedInt + " S/s";
+        refreshProfile();
     }
     
   var estimatedTimeLeft = millisToTime((startTime + estimatedTime) - Date.now());
