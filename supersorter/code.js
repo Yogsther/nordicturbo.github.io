@@ -108,9 +108,13 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var stop = false;
 
-const colors = ["0, 169, 255", "250, 0, 255", "255, 0, 0", "255, 204, 0", "0, 255, 29"];
+// Old colors, not used for new 100% random color method.
+//const colors = ["0, 169, 255", "250, 0, 255", "255, 0, 0", "255, 204, 0", "0, 255, 29"];
+//var color = colors[Math.floor(Math.random()*colors.length)];
 
-var color = colors[Math.floor(Math.random()*colors.length)];
+
+
+var color = Math.floor(Math.random()*255) + "," + Math.floor(Math.random()*255) + "," + Math.floor(Math.random()*255);
 
 
 
@@ -158,21 +162,18 @@ function reqeustScoreboard(){
 
 
 socket.on("scoreboard", function loadScoreBoard(data){
+    var brightness = 1;
     for(var i = 0; i < 10; i++){
         
         var object = data[i];
 
+        var time = millisToTime(object.time);
         
-        var timeMinutes = Math.floor(object.time / 60000);
-        var timeSeconds = (object.time / 1000) - Math.round((timeMinutes * 60));
         
-        if(timeSeconds < 0){
-            timeSeconds *= -1;
-        }
-
         
-        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgb(' + color + ');"> <span class="name" title="Username"> ' + (i+1) + ". " + object.name +'</span> <span class="items" title="Items sorted">' + object.items + '</span> <span class="time" title="Time taken">' + timeMinutes+ ' minutes ' + timeSeconds.toFixed(1) + ' seconds</span> </div>';
+        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgba(' + color + ',' + brightness + ');"> <span class="name" title="Username"> ' + (i+1) + ". " + object.name +'</span> <span class="items" title="Items sorted">' + object.items + '</span> <span class="time" title="Time taken">' + time.hours + 'h ' + time.minutes + 'm ' + time.seconds + 's</span> </div>';
         //document.getElementById("score").style.borderColor = "rgb(" + color + ")";
+        brightness -= 0.1;
     }
 });
 
@@ -222,11 +223,11 @@ async function runsort(){
             totalAvrage += avrageSpeed[i];
         } 
         
-        console.log(avrageSpeed.length);
+ 
         avrageSpeedInt = Math.round((totalAvrage / avrageSpeed.length)*10);
         runsOnRecord = 0;
         
-        console.log(avrageSpeed);
+    
         
         if(avrageSpeed.length > 100){
             // Reset avragespeed
@@ -254,14 +255,10 @@ async function runsort(){
         unlockProfile("sort");
     }
     var now = Date.now();
-    var timeMinutes = Math.round((now - startTime) / 60000);
-    var timeSeconds = ((now - startTime) / 1000) - Math.round((timeMinutes * 60));
-    if(timeSeconds < 0){
-        timeSeconds *= -1;
-    }
+    var time = millisToTime(now - startTime);
 
-    document.getElementById("status").innerHTML = "Sorted! 👍 Took " + runs + " tries in " + timeMinutes.toFixed(0) + " minutes and " + timeSeconds.toFixed(1) + " seconds.";
-    playStatus = "Sorted " + numbers.length + " items in " + timeMinutes.toFixed(0) + " minutes.";
+    document.getElementById("status").innerHTML = "Sorted! 👍 Took " + runs + " tries in " + time.hours + "h " + time.minutes + "m " + time.seconds + "s.";
+    playStatus = "Sorted " + numbers.length + " items in " + time.hours + "h " + time.minutes + "m " + time.seconds + "s.";
     refreshProfile();
       
     // Send new record to server
@@ -313,6 +310,28 @@ function shuffle(arr){
   return shuffledArray;
 
 }
+
+
+
+
+// Millis to h-m-s
+function millisToTime(millis){
+    
+    var hours = Math.floor(millis / 1000 / 3600);
+    var minutes = Math.floor((millis / 1000 / 60) - hours * 60);
+    var seconds = Math.floor(millis / 1000) - (hours * 3600+ minutes * 60);
+    
+    return {
+        seconds: seconds,
+        minutes: minutes,
+        hours: hours
+    };
+}
+
+
+
+
+
 
 function unlockProfile(name){
     

@@ -1830,6 +1830,29 @@ function weeb(binary){
 }
 
 
+function deleteEverything(){
+    if(confirm("You are about to erase all items, settings and stats from Notu.co \nAre you sure you want to do this?")){
+        if(confirm("Are you sure? There is not turning back.")){
+            if(confirm("Last chance, are you sure?")){
+                deleteAllCookies();
+                createCookie("profileLocation", "http://livingforit.xyz/img/profiles/profile_none.png", 10000);
+                reloadPage();
+            }
+        }
+}}
+
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
 
 
 

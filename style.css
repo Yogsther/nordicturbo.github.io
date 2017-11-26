@@ -1273,11 +1273,17 @@ body{
 
 
 .title{
-    margin: 10px;
+    margin: 13px;
     position: relative;
     top: 10px;
+    left: 10px;
 }
-
+#news_splash{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+    top: 5px;
+}
 
 
 

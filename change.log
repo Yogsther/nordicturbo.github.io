@@ -2,10 +2,28 @@ Changelog:
 
 ALPHA:
 
-Alpha | v.5.4 [!IN PROGRESS]
 
-- [!IN PROGRESS] Added clever profanity filter with censoring.
-- [!IN PROGRESS] Added Animated Profile Pictures as loot in crates (Legendary) 
+Alpha | v.7.0
+
+- Added verified user option!
+- New project Pages, Make tiny websites and share them.
+- New project Quick Draw, competetive standoff game.
+- New project placera, booleg r/place
+- New project L.it Engine, ASCII game engine written in Java
+- New project Super Sorter, A bogosort visual example with online leaderboards.
+- New project DOCS, Notu.oc documentation.
+- Added Admin tools for moderators to ban or verify other Notu.co users.
+- Added Image support in Notu.co Chat for verified users (Send an image url and it will be displayed.)
+- Added new secret profile picture, only unlockable by Sorting more than 10 items (randomly) in Super sorter.
+
+
+HUGE LEAP
+    
+
+Alpha | v.5.4
+
+- Added clever profanity filter with censoring.
+- Added Animated Profile Pictures as loot in crates (Legendary) 
 - Added Deepfried theme to crates!
 - Now playes sound and gives you a Crate on level-up!
 - Added crate notification icon on the Crate button on the homepage.
