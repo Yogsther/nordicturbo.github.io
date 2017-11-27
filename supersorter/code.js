@@ -216,9 +216,10 @@ socket.on("scoreboard", function loadScoreBoard(data){
         }
         
         
-        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgba(' + color + ',' + brightness + ');"> <span class="name" title="Username" ' + insertGlow + '> ' + (i+1) + ". " + object.name +'</span> <span class="items" title="Items sorted">' + object.items + '</span> <span class="time" title="Time taken">' + time.hours + 'h ' + time.minutes + 'm ' + time.seconds + 's</span> </div>';
+        document.getElementById("scoreboard").innerHTML += '<div id="score" style="border-color: rgba(' + color + ',' + brightness + ');"> <span class="name" title="Username" ' + insertGlow + '> ' + (i+1) + ". " + object.name +'</span> <span class="items" title="Items sorted">' + object.items + '</span> <span class="time" title="Time taken">'+ time.days + "d " + time.hours + 'h ' + time.minutes + 'm ' + time.seconds + 's</span> </div>';
         //document.getElementById("score").style.borderColor = "rgb(" + color + ")";
         brightness -= 0.1;
+        
     }
 });
 
@@ -355,6 +356,11 @@ async function runsort(){
     runsort();
   } else {
     // Numbers are sorted
+      
+    // Play success sound effect
+    var success = new Audio("success.mp3");
+    success.play();
+      
     if(numbers.length >= 10){
         unlockProfile("sort");
     }
