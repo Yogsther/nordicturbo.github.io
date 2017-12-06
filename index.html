@@ -13,178 +13,173 @@
 
 </head>
 <body>
-   
+
    <!-- Background wall -->
      <div id="background_div">
         <div id="header_table">
             <img src="img/website_logo_gif.gif" id="header_logo" onclick="changeTheme()">
-            
-        </div>    
-        
-       
-         
+
+        </div>
+
+
+
         <!-- Hourly Credit Claim -->
-        
+
             <div id="claim_credits_div">
                 <span id="insert_claim_button_here"></span>
                 <span id="insert_claim_countdown"></span>
-            </div>   
-         
-         
+            </div>
+
+
             <div id="profile">
                 <img src="img/profiles/profile_none.png" id="insert-profile">
                 <span id="insert-username">New</span><img src="img/verified.png" id="verified_profile" title="Verified User">
             </div>
-         
-        
+
+
          <!-- Buttons -->
-         
-            <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="project()">Projects</button> 
+
+            <button id="projects_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="project()">Projects</button>
             <div id="top_buttons">
-            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button> 
-            
+            <button id="home_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="home()">Home</button>
+
                 <span id="insertBlob"></span>
-                
-            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button> 
+
+            <button id="crates_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="goToCrates()">Crates</button>
             <button id="items_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" class="btn" onclick="items()">Items</button>
             <button id="about_button" class="btn" onclick="about()" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)">About</button>
             </div>
-         
+
          <!-- From here and up should be the same for every page! -->
-        
+
         <!-- Homepage / Blog -->
         <div id="home_page">
-    
-            
-            
-        Welcome to Nordic Turbo! <span style="color:red;font-weight:800;">Servers are currently down. Read more in "What's New?"</span>
+
+
+
+        Welcome to Nordic Turbo!
         Notu.co is the <span id="weeb" onmouseout="weeb(0)" onmouseover="weeb(1)">web</span>-portal we all need.
         <br>Featured projects:
-                
-        
+
+
         <!-- Slideshow -->
         <div id="slideshow">
             <div id="progress_div">
             <div id="progress_bar"></div>
             </div>
             <img src="https://i.imgur.com/5eSQh2j.png" id="slide_image" class="fade" onclick="slideRedirect()">
-        </div>    
-        
-        <br><br> 
-        
-         
-      
+        </div>
+
+        <br><br>
+
+
+
         <div id="online_list">
-        
+
             <span id="online_list_title">Online users: <span id="online_users_number">0</span>
             </span>
             <div id="online_list_inner">
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
             </div>
 
         </div>
-            
-            
+
+
         <!-- Whats new? -->
-            
+
         <div id="news">
             <span style="font-size: 20px;" class="title">What's new? <a href="/change.log" style="font-size:15px;" title="View patch notes.">Alpha (v.7.0)</a></span>
             <br><br>
-		<div id="news_splash">
-              <span style="color:red;font-weight:800;">All Livingfor.it Servers are currently down for maintenance and will be up again tomorrow. This breaks most features on the website. However, crates and the Casino still work.</span>
-           
-            
-            </div>
 		
+
 		 <div id="news_splash">
               <b>- <a href="https://yogsther.github.io/warrain.js/">Warrain.js</a></b> MMO / RPG game we've been working on latley. Check it out! :)
-            
+
             </div>
-          
+
             <br>
             <div id="news_splash">
                 <b>- New project, <a href="supersorter">Super Sorter!</a></b> A bogosort visual example. Sort items randomly and compete to sort the most items and get first place on the leaderboard!
-            
+
             </div>
-          
+
         </div>
-            
-        
-            
+
+
+
         <!-- End of homepage -->
         </div>
-            
-    
+
+
             <div id="sidebar_div" class="fade">
-                
+
                 <div id="xp_div">
 
                     <div id="level_disaply">Lvl 1</div>
                     <div id="xp_bar"></div>
                     <div id="xp_bar_rest"></div>
                     <i><span id="xp_left">1000xp left</span>
-                        <div id="numCredits"><span id="insert_number_of_credits">0</span> 
+                        <div id="numCredits"><span id="insert_number_of_credits">0</span>
                         <img src="img/credit_animated.gif" id="credit_animation_xpscreen"> </div></i>
                     <div id="lvl_portrait"></div>
                     <img src="img/lvl/1.png" id="xp_portrait_img">
                 </div>
-                
+
                 <div id="chat-window">
                     <div id="chat-inner">
-                    
-                    <!-- Chat message template 
-                        
+
+                    <!-- Chat message template
+
                     <div id="message_blob">
                         <img id="message_profile" src="img/profiles/profile_none.png">
                         <span id="message_username">Username</span>
-                        <div id="message_content">message</div>  
+                        <div id="message_content">message</div>
                     </div>
-                        
-                    -->    
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div> 
-                <input type="text" class="text_field" id="chat_message" maxlength="2000" placeholder="Message..."/> 
+
+                    -->
+
+
+
+
+
+
+                    </div>
+                <input type="text" class="text_field" id="chat_message" maxlength="2000" placeholder="Message..."/>
                 <button class="btn" id="send_button" onmouseover="buttonOn(this.id)" onmouseout="buttonOff(this.id)" onclick="sendMessage()">Send</button>
                 </div>
-                
+
                 <div id="twitter">
                 <a class="twitter-timeline" width="300"
                 data-height="500" href="https://twitter.com/NordicTurbo">Tweets by NordicTurbo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <br><br>
                 </div>
-                
-                
-                
-                <!-- 
+
+
+
+                <!--
                 <iframe src="https://discordapp.com/widget?id=357102560827539457&theme=dark" width="290" height="300" allowtransparency="true" frameborder="0"></iframe>
                 -->
             </div>
 
         <!-- Footer -->
-        
+
         <div id="footer_div">
-        
+
         </div>
-        
-         
+
+
     <!-- END OF BACKGROUND DIV -->
          <script src="code.js"></script>
          <script src="chat.js"></script>
-         
+
          <element onload="loadGif()"></element>
     </div>
 </body>
 </html>
-
